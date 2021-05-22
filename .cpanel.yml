@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/cp125823/public_html/staging/
+    - /bin/cp -R * $DEPLOYPATH

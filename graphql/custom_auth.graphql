@@ -1,0 +1,49 @@
+input EmailInput {
+    email: String! @rules(apply: ["required", "email"])
+}
+
+extend type Query @middleware(checks:["auth:api"]) {
+  "Get current user"
+  getCurrentUser: User @auth(guard:"api")
+}
+
+type RESEND_EMAIL_VERIFICATION_RESPONSE {
+    message: String!
+}
+
+extend type Mutation {
+    resendEmailVerification(input: EmailInput @spread): RESEND_EMAIL_VERIFICATION_RESPONSE! @field(resolver:"ResendEmailVerification")
+
+    requestAccount(input: RequestAccountInput @spread): REQUEST_ACCOUNT_RESPONSE! @field(resolver:"RequestAccount")
+
+    createAccount(input: CreateAccountInput! @spread): CREATE_ACCOUNT_RESPONSE! @field(resolver:"CreateAccount")
+}
+
+input RequestAccountInput {
+	name: String!
+	email: String!
+	operating_unit: ID!
+	contact_number: String!
+	message: String
+}
+
+type REQUEST_ACCOUNT_RESPONSE {
+	status: String
+	message: String
+}
+
+input CreateAccountInput {
+	email: String!
+	name: String!
+	password: String!
+	operating_unit_id: ID!
+	contact_number: String!
+	role_id: ID!
+	notify: Boolean
+}
+
+type CREATE_ACCOUNT_RESPONSE {
+	user: User
+	status: String
+	message: String
+}

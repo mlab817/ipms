@@ -1,0 +1,21 @@
+extend type Mutation {
+  assignBannerProgramToOu(
+    operating_unit_id: ID!
+    banner_programs: [ID!]!
+    ): OperatingUnit @field(resolver:"AssignBannerProgramToOu")
+
+  exportForConsolidation:
+    ConsolidatedFile
+    @field(resolver:"ExportForConsolidation")
+    @guard(with: ["api"])
+}
+
+extend type Query {
+  consolidatedActivities: [PrexcActivity]
+    @guard(with: ["api"])
+    @field(resolver: "ConsolidatedActivitiesQuery")
+}
+
+type ConsolidatedFile {
+    link: String
+}

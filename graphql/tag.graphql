@@ -1,0 +1,27 @@
+extend type Query {
+  tags: [Tag] @all
+}
+
+extend type Mutation {
+  createTag(input: CreateTagInput! @spread): Tag @create
+  updateTag(input: UpdateTagInput! @spread): Tag @update
+  deleteTag(id: ID!): Tag @delete
+}
+
+type Tag {
+  id: ID
+  name: String
+  slug: String
+  projects: [Project] @belongsToMany
+  prexc_activities: [PrexcActivity] @belongsToMany
+  users: [User] @belongsToMany
+}
+
+input CreateTagInput {
+  name: String
+}
+
+input UpdateTagInput {
+  id: ID!
+  name: String
+}

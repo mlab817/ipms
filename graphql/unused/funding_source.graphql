@@ -1,0 +1,41 @@
+extend type Query {
+  funding_sources: [FundingSource!]! @all
+}
+
+type FundingSource {
+  id: ID!
+  name: String!
+  projects: [Project!]! @belongsToMany @guard(with:"api")
+  pivot: ProjectFundingSourcePivot
+    investment_target_total: Float
+    investment_target_2016: Float
+    investment_target_2017: Float
+    investment_target_2018: Float
+    investment_target_2019: Float
+    investment_target_2020: Float
+    investment_target_2021: Float
+    investment_target_2022: Float
+    investment_target_2023: Float
+    project_count: Int
+}
+
+type ProjectFundingSourcePivot {
+  target_2016: Float
+  target_2017: Float
+  target_2018: Float
+  target_2019: Float
+  target_2020: Float
+  target_2021: Float
+  target_2022: Float
+  target_2023: Float
+  target_total: Float
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_total: Float
+}

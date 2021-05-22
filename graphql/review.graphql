@@ -1,0 +1,38 @@
+extend type Query {
+	reviews: [Review] @all
+
+	review(id: ID! @eq): Review @find
+}
+
+type Review {
+	id: ID
+	project_id: ID
+	project: Project
+	pip: Boolean
+	typology_id: ID
+	typology: Typology
+	cip: Boolean
+	cip_type_id: ID
+	cip_type: CipType
+	trip: Boolean
+	within_period: Boolean
+	readiness_id: ID
+	readiness: Readiness
+	remarks: String
+	created_at: String
+	updated_at: String
+	reviewed_by: ID
+	reviewer: User @belongsTo
+	sustainable_development_goals: [SustainableDevelopmentGoal] @belongsToMany
+	ten_point_agenda: [TenPointAgenda] @belongsToMany
+	bases: [Basis] @belongsToMany
+	paradigms: [Paradigm] @belongsToMany
+	pdp_indicators: [PdpIndicator] @belongsToMany
+	pdp_chapters: [PdpChapter] @belongsToMany
+	selected_sustainable_development_goals: [ID]
+	selected_ten_point_agenda: [ID]
+	selected_paradigms: [ID]
+	selected_pdp_chapters: [ID]
+	selected_pdp_indicators: [ID]
+	selected_bases: [ID]
+}

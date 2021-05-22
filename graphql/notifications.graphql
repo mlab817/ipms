@@ -1,0 +1,26 @@
+extend type Query {
+	notifications: [Notification] @field(resolver:"FetchNotificationsQuery@notifications") @guard(with:"api")
+
+	unreadNotifications: [Notification] @field(resolver:"FetchNotificationsQuery@unreadNotifications") @guard(with:"api")
+}
+
+type Notification {
+    id: String
+    type: String
+    notifiable: User @morphTo
+    notifiable_id: ID
+    notifiable_type: String
+    data: NotificationData
+    read_at: String
+    created_at: String
+    updated_at: String
+}
+
+type NotificationData {
+    type: String
+    from: String
+    title: String
+    body: String
+    actionUrl: String
+    actionText: String
+}

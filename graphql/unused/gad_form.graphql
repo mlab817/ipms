@@ -1,0 +1,26 @@
+extend type Query {
+	gad_forms: [GadForm] @all
+}
+
+extend type Mutation {
+	createGadForm(
+		project_id: ID!
+		gad_form: Upload!
+	): GadForm 
+		@field(resolver:"UploadGadFormMutation")
+}
+
+type GadForm {
+	id: ID
+	uuid: String
+	project_id: ID
+	project: Project @belongsTo
+	file_name: String
+	file_size: String
+	file_extension: String
+	file_type: String
+	file_path: String
+	dropbox_link: String
+	uploaded_by: User @belongsTo
+	deleted_by: User @belongsTo
+}

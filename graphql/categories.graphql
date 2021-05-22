@@ -1,0 +1,242 @@
+extend type Query {
+  "Get all implementation basis"
+  bases: [Basis] @all
+
+  "Get all Core Investment Program/Project Types"
+	cip_types: [CipType] @all
+
+  "Get all cities and municipalities"
+  city_municipalities: [CityMunicipality] @all
+
+  "Get all legislative districts"
+  districts: [District] @all
+
+  "Get all funding institutions"
+  funding_institutions: [FundingInstitution] @all
+
+  "Get all funding sources"
+  funding_sources: [FundingSource] @all
+
+  "Get all GADs"
+  gads: [Gad] @all
+
+  "Get all implementation modes"
+  implementation_modes: [ImplementationMode] @all
+
+  "Get all infrastructure_sectors"
+  infrastructure_sectors: [InfrastructureSector] @all
+
+  "Get all operating unit types"
+  operating_unit_types: [OperatingUnitType] @all
+
+  "Get all paradigms"
+  paradigms: [Paradigm] @all
+
+  "Get all project preparation documents"
+  project_preparation_documents: [ProjectPreparationDocument] @all
+
+  "Get all sustainable development goals"
+  sustainable_development_goals: [SustainableDevelopmentGoal] @all
+
+  project_statuses: [ProjectStatus] @all
+
+  "Get all provinces"
+  provinces: [Province] @all
+
+  "Get all readinesses"
+  readinesses: [Readiness] @all
+
+  regions: [Region] @all
+
+  region(id: ID! @eq): Region @find
+
+  "Get all spatial coverages"
+  spatial_coverages: [SpatialCoverage] @all
+
+  "Get all technical readiness"
+  technical_readinesses: [TechnicalReadiness] @all
+
+  "Get all the ten point agenda"
+  ten_point_agenda: [TenPointAgenda] @all
+
+  "Get all budget tiers"
+  tiers: [Tier!]! @all
+
+  "Get all pap types"
+  types: [Type] @all
+
+  "Get all typologies"
+  typologies: [Typology] @all
+
+  "Get all years"
+  years: [Year] @all
+}
+
+type Basis {
+  id: ID!
+  name: String!
+  projects: [Project!]! @belongsToMany @guard(with:"api")
+}
+
+type CipType {
+	id: ID!
+	name: String
+	projects: [Project] @belongsTo
+}
+
+type CityMunicipality {
+    id: ID!
+    name: String!
+    city_municipality_name: String
+    population_2015: Float
+    area_km2: Float
+    population_density: Float
+    barangay: Float
+    province_id: ID
+    province: Province @belongsTo
+    class: String
+}
+
+type District {
+	id: ID!
+	name: String!
+  province_id: ID
+	province: Province! @belongsTo
+	projects: [Project!] @belongsToMany
+}
+
+type FundingInstitution {
+  id: ID!
+  name: String!
+  projects: [Project] @hasMany
+}
+
+type FundingSource {
+  id: ID!
+  name: String
+  projects: [Project] @belongsToMany
+}
+
+type Gad {
+	id: ID!
+	name: String
+}
+
+type ImplementationMode {
+  id: ID
+  name: String
+  projects: [Project!]! @hasMany @guard(with:"api")
+}
+
+type OperatingUnitType {
+  id: ID
+  name: String
+  operating_units: [OperatingUnit] @hasMany
+}
+
+type Paradigm {
+  id: ID
+  name: String
+  projects: [Project!]! @belongsToMany
+}
+
+type SpatialCoverage {
+  id: ID!
+  name: String!
+  projects: [Project] @hasMany
+}
+
+type SustainableDevelopmentGoal {
+  id: ID
+  name: String
+  description: String
+  projects: [Project] @belongsToMany @guard(with:"api")
+}
+
+type Province {
+  id: ID
+  name: String
+  label: String
+  region_id: ID
+  region: Region @belongsTo
+  projects: [Project] @belongsToMany
+}
+
+type Readiness {
+  id: ID
+  name: String
+}
+
+type Region {
+    id: ID
+    name: String
+    label: String
+    provinces: [Province!]! @hasMany
+    projects: [Project!]! @belongsToMany
+}
+
+
+type TechnicalReadiness {
+  id: ID!
+  name: String!
+  projects: [Project] @belongsToMany
+}
+
+type TenPointAgenda {
+  id: ID!
+  name: String
+  projects: [Project] @belongsToMany @guard(with:"api")
+}
+
+type Tier {
+  id: ID!
+  name: String
+  projects: [Project] @hasMany @guard(with:["api"])
+  prexc_activities: [PrexcActivity] @hasMany @guard(with:["api"])
+}
+
+type Type {
+  id: ID
+  name: String
+  projects: [Project] @hasMany @guard(with:"api")
+}
+
+type Typology {
+  id: ID!
+  name: String!
+  projects: [Project!]! @hasMany @guard(with:"api")
+}
+
+type Year {
+  id: Int!
+  name: String
+  projects: [Project] @hasMany
+}
+
+type InfrastructureSector {
+  id: ID
+  name: String
+  infrastructure_subsectors: [InfrastructureSubsector] @hasMany
+  value: ID @rename(attribute:"id")
+  label: String @rename(attribute:"name")
+  children: [InfrastructureSubsector] @hasMany
+}
+
+type InfrastructureSubsector {
+  id: ID
+  name: String
+  infrastructure_sector: InfrastructureSector @belongsTo
+  value: ID @rename(attribute:"id")
+  label: String @rename(attribute:"name")
+}
+
+type ProjectPreparationDocument {
+  id: ID
+  name: String
+}
+
+type ProjectStatus {
+    id: ID
+    name: String
+    projects: [Project] @hasMany
+}

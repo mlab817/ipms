@@ -1,0 +1,20 @@
+extend type Mutation {
+	"Transfer ownership of project to another user"
+	transferProject(
+		project_id: ID!
+		user_id: ID!
+	): TransferProjectResponse! 
+		@field(resolver: "TransferProject")
+		# must implement subscription and notification
+		@broadcast(subscription:"transferredProject")
+}
+
+type TransferProjectResponse {
+	project: Project
+	status: String
+	message: String
+}
+
+extend type Subscription {
+	transferredProject(user_id: ID): Project
+}

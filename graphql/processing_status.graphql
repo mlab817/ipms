@@ -1,0 +1,13 @@
+extend type Query {
+  processing_statuses: [ProcessingStatus] @all
+
+  processing_status(id: ID! @eq): ProcessingStatus @find
+}
+
+type ProcessingStatus {
+  id: ID
+  name: String
+  project_processing_statuses: [ProjectProcessingStatus] @hasMany
+  projects: [Project] @hasMany
+  count_projects: Int
+}

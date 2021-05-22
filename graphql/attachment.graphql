@@ -1,0 +1,39 @@
+extend type Query {
+	attachments: [Attachment] @all
+
+	attachment(id: ID!): Attachment @find
+
+	attachment_types: [AttachmentType] @all
+}
+
+extend type Mutation {
+	uploadAttachment(
+		project_id: ID!
+		attachment_type_id: ID!
+		file: Upload!
+	): Attachment @field(resolver:"UploadAttachment") @guard(with:"api")
+
+	deleteAttachment(id: ID!): Attachment @delete @guard(with:"api")
+}
+
+type Attachment {
+	id: ID!
+	uuid: String
+	project_id: ID
+	attachment_type_id: ID
+	attachment_type: AttachmentType @belongsTo
+	file_name: String
+	file_size: String
+	file_extension: String
+	file_type: String
+	file_path: String
+	dropbox_link: String
+	uploaded_by: ID
+	deleted_by: ID
+}
+
+type AttachmentType {
+	id: ID!
+	name: String!
+}
+

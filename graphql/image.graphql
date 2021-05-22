@@ -1,0 +1,18 @@
+extend type Query {
+	images: [Image] @all @guard(with:"api")
+
+	image(id: ID! @eq): Image @find
+}
+
+type Image {
+	id: ID
+	name: String
+	type: String
+	size: Int
+	dropbox_path: String
+	dropbox_link: String
+	uploader_id: ID
+	uploader: User @belongsTo
+	mime_type: String
+	extension: String
+}

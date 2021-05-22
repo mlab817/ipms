@@ -1,0 +1,117 @@
+extend type Query {
+  operating_units: [OperatingUnit] @all @orderBy(columns:["id"])
+
+  operating_unit(id: ID! @eq): OperatingUnit @find
+}
+
+extend type Mutation {
+  "Create a new operating unit"
+  createOperatingUnit(
+    input: CreateOperatingUnitInput! @spread
+  ): OperatingUnit @create
+
+  "Update operating unit"
+  updateOperatingUnit(input: UpdateOperatingUnitInput! @spread): OperatingUnit @update
+
+  "Delete operating unit"
+  deleteOperatingUnit(id:ID!): OperatingUnit @delete
+
+  updateOperatingUnitImage(
+    id: ID!
+    image: Upload!
+  ): OperatingUnit @field(resolver:"UpdateOperatingUnitImageMutation")
+
+  assignReviewer(
+    input: AssignReviewerInput! @spread): AssignReviewerResponse
+    @field(resolver: "AssignReviewer")
+    @guard(with:["api"])
+}
+
+type OperatingUnit {
+    id: ID
+    name: String
+    acronym: String
+    image: String
+    image_url: String
+    address: String
+    agency_head_name: String
+    agency_head_designation: String
+    telephone_number: String
+    fax_number: String
+    email: String
+    focals: [User] @hasMany
+    operating_unit_type_id: ID
+    operating_unit_type: OperatingUnitType @belongsTo
+    projects(first: Int!, after: String): [Project!]! @hasMany(type:"connection", defaultCount:10, maxCount: 25)
+    count_project: Int @middleware(checks:["auth:api"])
+    total_investment: Float
+    reviewers: [User] @belongsToMany
+    viewers: [User] @belongsToMany
+    investment_target_total: Float
+    investment_target_2016: Float
+    investment_target_2017: Float
+    investment_target_2018: Float
+    investment_target_2019: Float
+    investment_target_2020: Float
+    investment_target_2021: Float
+    investment_target_2022: Float
+    investment_target_2023: Float
+    project_count: Int
+    prexc_activities: [PrexcActivity] @hasMany
+    prexc_programs: [PrexcProgram] @belongsToMany
+    prexc_subprograms: [PrexcSubprogram] @belongsToMany
+    consolidates: [BannerProgram] @belongsToMany
+}
+
+input AssignReviewerInput {
+  operating_unit_id: ID!
+  users: [ID]!
+}
+
+type AssignReviewerResponse {
+  status: String
+  message: String
+  operating_unit: OperatingUnit
+}
+
+input UpdatePrexcActivitiesHasMany {
+  update: [UpdatePrexcActivityInput]
+}
+
+input CreateOperatingUnitInput {
+  name: String!
+  acronym: String!
+  address: String
+  image: String
+  agency_head_name: String
+  agency_head_designation: String
+  telephone_number: String
+  fax_number: String
+  email: String
+  operating_unit_type_id: ID
+}
+
+input UpdateOperatingUnitInput {
+  id: ID!
+  name: String
+  acronym: String
+  address: String
+  image: String
+  agency_head_name: String
+  agency_head_designation: String
+  telephone_number: String
+  fax_number: String
+  email: String
+  operating_unit_type_id: ID
+  prexc_activities: UpdatePrexcActivitiesHasMany
+  prexc_programs: UpdatePrexcProgramsBelongsToMany
+  prexc_subprograms: UpdatePrexcSubprogramsBelongsToMany
+}
+
+input UpdatePrexcProgramsBelongsToMany {
+  connect: [ID]
+}
+
+input UpdatePrexcSubprogramsBelongsToMany {
+  connect: [ID]
+}

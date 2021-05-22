@@ -1,0 +1,50 @@
+extend type Query {
+  roles: [Role!]! @all
+}
+
+extend type Mutation {
+	createRole(input: CreateRoleInput! @spread): Role @create
+
+	updateRole(input: UpdateRoleInput! @spread): Role @update
+
+	deleteRole(id: ID!): Role @delete
+
+	attachPermissions(input: AttachPermissionsInput! @spread): Role @update
+}
+
+type Role {
+  id: ID!
+  name: String!
+  ident: String!
+  color: String
+  description: String
+  active: Boolean
+  users: [User] @hasMany
+  permissions: [Permission] @belongsToMany
+}
+
+input CreateRoleInput {
+	name: String!
+	ident: String!
+	color: String
+	description: String
+	active: Boolean
+}
+
+input UpdateRoleInput {
+	id: ID!
+	name: String!
+	ident: String!
+	color: String
+	description: String
+	active: Boolean
+}
+
+input AttachPermissionsInput {
+	id: ID!
+	permissions: SyncPermissions
+}
+
+input SyncPermissions {
+	sync: [ID!]
+}

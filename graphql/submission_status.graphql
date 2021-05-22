@@ -1,0 +1,28 @@
+extend type Query {
+	submission_statuses: [SubmissionStatus] @all
+}
+
+extend type Mutation {
+	createSubmissionStatus(
+		name: String!
+	): SubmissionStatus @create
+
+	updateSubmissionStatus(
+		id: ID!
+		name: String!
+	): SubmissionStatus @update
+
+	deleteSubmissionStatus(
+		id: ID!
+	): SubmissionStatus @delete
+
+	restoreSubmissionStatus(
+		id: ID!
+	): SubmissionStatus @restore
+}
+
+type SubmissionStatus {
+	id: ID!
+	name: String!
+	projects: [Project] @hasMany
+}

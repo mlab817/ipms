@@ -1,0 +1,38 @@
+extend type Query {
+	release(id: ID!): Release @find
+
+	releases: [Release] @all
+}
+
+extend type Mutation {
+	createRelease(input: CreateReleaseInput! @spread): Release @create @inject(context: "user.id", name: "user_id") @guard(with: ["api"])
+	updateRelease(input: UpdateReleaseInput! @spread): Release @update @inject(context: "user.id", name: "user_id") @guard(with: ["api"])
+	deleteRelease(id: ID!): Release @delete @guard(with: ["api"])
+}
+
+type Release {
+	id: ID
+	version: String
+	summary: String
+	change_log: String
+	notes: String
+	user_id: ID
+	user: User @belongsTo
+	created_at: String
+	updated_at: String
+}
+
+input CreateReleaseInput {
+	version: String
+	summary: String
+	change_log: String
+	notes: String
+}
+
+input UpdateReleaseInput {
+	id: ID!
+	version: String
+	summary: String
+	change_log: String
+	notes: String
+}

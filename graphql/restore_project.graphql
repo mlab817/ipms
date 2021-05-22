@@ -1,0 +1,5 @@
+extend type Mutation @middleware(checks:["auth:api"]) {
+  
+  restoreProject(id: ID!): Project @restore
+
+}

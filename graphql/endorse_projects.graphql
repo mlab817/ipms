@@ -1,0 +1,31 @@
+extend type Mutation {
+    "Deprecated"
+    endorseProjects(
+        projects: [ID!]! @rulesForArray(apply: ["min:1"])
+        file: Upload!
+    ): Endorsement
+        @field(resolver: "EndorseProjectsMutation")
+        @guard(with:"api")
+}
+
+type Endorsement {
+    id: ID!
+    uuid: String
+    file_name: String
+    file_path: String
+    file_size: String
+    file_extension: String
+    file_type: String
+    file_path: String
+    dropbox_link: String
+    remarks: String
+    uploaded_by: String
+    uploader: User @belongsTo
+    deleted_by: String
+    deleter: User @belongsTo
+    created_at: String
+    updated_at: String
+    deleted_at: String
+    projects: [Project]
+    link: String
+}

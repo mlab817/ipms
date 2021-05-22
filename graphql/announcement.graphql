@@ -1,0 +1,29 @@
+extend type Query {
+    announcements: [Announcement] @all
+}
+
+extend type Mutation {
+    createAnnouncement(input: CreateAnnouncementInput @spread): Announcement @create @guard(with: ["api"]) @inject(context: "user.id", name: "created_by")
+    updateAnnouncement(input: UpdateAnnouncementInput @spread): Announcement @update @guard(with: ["api"])
+    deleteAnnouncement(id: ID!): Announcement @delete @guard(with: ["api"])
+}
+
+type Announcement {
+    id: ID!
+    subject: String
+    message: String
+    created_at: String
+    created_by: ID
+    creator: User @belongsTo
+}
+
+input CreateAnnouncementInput {
+    subject: String
+    message: String
+}
+
+input UpdateAnnouncementInput {
+    id: ID!
+    subject: String
+    message: String
+}

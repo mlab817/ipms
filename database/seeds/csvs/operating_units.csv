@@ -1,0 +1,72 @@
+"id","name","acronym","operating_unit_type_id","agency_code","uacs_code","address","image","agency_head_name","agency_head_designation","telephone_number","fax_number","email","created_at","updated_at","deleted_at"
+"1","OSEC - Office of the Secretary","OSEC","1",NULL,NULL,NULL,"osec.svg","William D. Dar","Secretary",,,"w.dar38@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"2","RFO CAR - Cordillera Administrative Region","RFO CAR","3",NULL,NULL,NULL,"rfo-car.svg","Cameron P. Odsey","OIC - RED","CISCO-1419",,"pmed3fdacar@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"3","RFO I - Ilocos Region","RFO 1","3",NULL,NULL,NULL,"rfo-1.svg","Lucresio R. Alviar, Jr.","Regional Executive Director","(072)-242-1045 and (072)-242-1046",,"darfo1.ored@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"4","RFO II - Cagayan Valley","RFO 2","3",NULL,NULL,NULL,"rfo-2.svg","Narciso A. Edillo","RED",,,"da_rfu2000@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"5","RFO III - Central Luzon","RFO 3","3",NULL,NULL,NULL,"rfo-3.svg","Crispulo G. Bautista","OIC - RED","(045)-9613472/and(045)-9617699",,"da_rfu3@yahoo.com/ored.da3@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"6","RFO IVA - CALABARZON","RFO 4A","3",NULL,NULL,NULL,"rfo-4a.svg","Arnel V. de Mesa","RED","8928-5375/8920-0116/CISCO-4420",,"darfu4a.ored@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"7","RFO IVB - MIMAROPA","RFO 4B","3",NULL,NULL,NULL,"rfo-4b.svg","Antonio G. Gerundio","RED","8332-7274/8927-4350",,"ored4b@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"8","RFO V - Bicol Region","RFO 5","3",NULL,NULL,NULL,"rfo-5.svg","Rodel P. Tornilla","RED","(054)-477-0381/CISCO-4511/4500",,"da5ored@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"9","RFO VI - Western Visayas","RFO 6","3",NULL,NULL,NULL,"rfo-6.svg","Remelyn R. Recoter","RED",,"(033)- 337-1262 (ORED)","darfu6@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"10","RFO VII - Central Visayas","RFO 7","3",NULL,NULL,NULL,"rfo-7.svg","Atty. Salvador D. Diputado","RED","(032) 3833679 loc 4702","(032)268-3063","redsoffice7@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"11","RFO VIII - Eastern Visayas","RFO 8","3",NULL,NULL,NULL,"rfo-8.svg","Angel C. Enriquez","OIC RED","CISCO-4830",,"da8ored@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"12","RFO IX - Zamboanga Peninsula","RFO 9","3",NULL,NULL,NULL,"rfo-9.svg","Rad donn l. Cedeno","RED",,,"ored_sec@yahoo.com.ph","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"13","RFO X - Northern Mindanao","RFO 10","3",NULL,NULL,NULL,"rfo-10.svg","Carlene C. Collado","RED",,,"da10ored@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"14","RFO XI - Davao Region","RFO 11","3",NULL,NULL,NULL,"rfo-11.svg","Engr. Ricardi M. O�ate Jr.","RED",,,"darfoxi.ored@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"15","RFO XII - SOCCSKSARGEN","RFO 12","3",NULL,NULL,NULL,"rfo-12.svg","Arlan M. Mangelen","RED",,,"ored.darfo12@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"16","RFO XIII - CARAGA","RFO 13","3",NULL,NULL,NULL,"rfo-13.svg","Abel James I. Monteagudo","RED",,,"dacaraga@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"17","RFO DAF-ARMM - Department of Agriculture and Fisheries in the Autonomous Region in Muslim Mindanao","DAF-ARMM","3",NULL,NULL,NULL,"daf-armm.svg","Alexander G. Alonto, Jr.","OIC, Regional Secretary",,,"daf_pmpdd@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"18","ATI - Agricultural Training Institute","ATI","4",NULL,NULL,NULL,"ati.svg","Alfredo S. aton, MPS-DM","Director","8929-8541 LOC 265/267","89209792","ati_director@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"19","BAI - Bureau of Animal Industry","BAI","4",NULL,NULL,NULL,"bai.svg","Ronnie D. Domingo, DVM, MSc.","Director","(02)85282206","(02)89200431","bai_dir@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"20","BAR - Bureau of Agricultural Research","BAR","4",NULL,NULL,NULL,"bar.svg","Nicomedes P. Eleazar","Director",,"89275691","od@bar.gov.ph","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"21","BPI - Bureau of Plant Industry","BPI","4",NULL,NULL,NULL,"bpi.svg","George Y. Culaste","Director","85244551
+/ 85240718","85240718","bpi.directorsoffice@yahoo.com
+","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"22","BSWM - Bureau of Soils and Water Management","BSWM","4",NULL,NULL,NULL,"bswm.svg","Sonia M. Salguero","OIC Director","88978120","9230466","sonia_salguero@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"23","BAFE-Bureau of Agricultural and Fisheries Engineering","BAFE","4",NULL,NULL,NULL,"bafe.svg","Ariodear C. Rico","Director","89418151","89418151","oed.bafe@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"24","ACPC - Agricultural Credit Policy Council","ACPC","5",NULL,NULL,NULL,"acpc.svg","Ms. Jocelyn Alma R. Badiola","Executive Director","86363392/86343319","86343319","oed@acpc.gov.ph","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"25","BFAR - Bureau of Fisheries and Aquatic Resources","BFAR","5",NULL,NULL,NULL,"bfar.svg","Eduardo B. Gongona","Undersecretary fo Fisheries, / Director","89297673","89298074","bfardirector@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"26","FPA-Fertilizer Pesticides Authority","FPA","5",NULL,NULL,NULL,"fpa.svg","Wilfredo C. Roldan","Executive Director","84261572
+/8 9208173","89208173","fpa.oed@gmail.com
+","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"27","National Fisheries Research and Development Institute","NFRDI","5",NULL,NULL,NULL,"nfrdi.svg","Dr. Lilian C. Garcia, CESO V","Interim Executive Director"," (02) 352-3596"," (02) 352-3596","iestd.nfrdi@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"28","NMIS - National Meat Inspection Service","NMIS","5",NULL,NULL,NULL,"nmis.svg","Atty. Beata H. Obsioma","OIC - Executive Director","89247980","89247980","nmisexedir@mail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"29","Philippine Rubber Research Institute","PRRI","5",NULL,NULL,NULL,"prri.svg","Engr. Dennis H. Palabrica, DR,  Dev","OIC-Executive Director",,"CISCO-2265","prri_office@yahoo.com.ph","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"30","PCC - Phlippine Carabao Center","PCC","5",NULL,NULL,NULL,"pcc.svg","Arnel N. del Barrio","Executive Director III","8444560731","8444560730","pimd.pcc@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"31","PhilMech - Philippine Center for Postharvest Development and Mechanization","PhilMech","5",NULL,NULL,NULL,"philmech.svg","Baldwin G. Iallorina, PhD.","Director IV","(044)4560213","(044)4560213","od.philmech@yahoo.com
+philmech.ppds@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"32","PCAF - Philippine Council for Agriculture and Fisheries","PCAF","5",NULL,NULL,NULL,"pcaf.svg","Liza G. Battad","OIC - Executive Director","8926-2706","89243361","docliza@pcaf.da.gov.ph","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"33","PhilFIDA - Philippine Fiber Industry Development Authority","PhilFIDA","6",NULL,NULL,NULL,"philfida.svg","Kennedy T. Costales","Ecxecutive Director III","8441-4606/4306-CISCO 2650","84414080","oed@philfida.da.gov.ph","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"34","NDA - National Dairy Authority","NDA","6",NULL,NULL,NULL,"nda.svg","Marilyn B. Mabale","OIC-Administrator","89288681","89288681","dairynda@pldtdsl.net","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"35","National Food Authority","NFA","6",NULL,NULL,NULL,"nfa.svg","Atty.Judi Carol L. Dansal","Administrator",,,"nfaaostaff@yahoo.com.ph","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"36","NTA - National Tobacco Administration","NTA","6",NULL,NULL,NULL,"nta.svg","Robert L. Seares, M.D.","Administrator","83743987","83743987","docrseares@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"37","PCA-Philippine Coconut Authority","PCA","6",NULL,NULL,NULL,"pca.svg","Benjamin R. Madrigal","Administrator","89284501 loc 410","89267631","pca.ofad@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"38","PCIC - Philippine Crop Insurance Corporation","PCIC","6",NULL,NULL,NULL,"pcic.svg","Atty. JB Jovy C. Bernabe","President","85334466","84410667","op@pcic.gov.ph","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"39","Philippine Fisheries Development Authority","PFDA","6",NULL,NULL,NULL,"pfda.svg","Atty. Glenn A. Pangapalan","General Manager","89256141
+/89257901",,"pfda.oed@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"40","PhilRice - Philippine Rice Research Institute","PhilRice","6",NULL,NULL,NULL,"philrice.svg","Dr. John C. De Leon","Executive Director","(044)4565388","444565388","prri.mail@philrice.gov.ph","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"41","SRA - Sugar Regulatory Administration","SRA","6",NULL,NULL,NULL,"sra.svg","Hermenegildo R. Serafica","Administrator","84550446","89296137","srahead@sra.gov.ph","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"42","Rice Program","RICE","2",NULL,NULL,NULL,"rice.svg","Lorna L. Calda","OIC, Chief, FPOPD","2428",,"onaski.c@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"43","Corn Program","CORN","2",NULL,NULL,NULL,"corn.svg","Lorenzo M. Caranguian","Director","9265691","9265691","agripinoycorn@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"44","High-Value Crops Development Program","HVCDP","2",NULL,NULL,NULL,"hvcdp.svg","Evelyn G. Lavi�a","Undersecretary","8926-8444 / 89288741 Loc. 2810","8920-4085","hvccpmo@yahoo.com/agri.hvc.da@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"45","Livestock Program","LIVESTOCK","2",NULL,NULL,NULL,"livestock.svg","Dr. William C. Medrano","Assistant Secretary for Livestock","8929 6860, 2256, 2257","8929 6949","wcm.aseclivestock@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"46","National Organic Agriculture Program","NOAP","2",NULL,NULL,NULL,"noap.svg","Bernadette S. San Juan","National Program Coordinator, NOAP","8941-81-43 Loc. 3321","8941-81-43 Loc. 3321","soam.noap@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"47","FMR - Farm-to-Market Road","FMRDP","2",NULL,NULL,NULL,"fmrdp.svg","Camad A. Edres","Director","89204323","89204323","fmrdp.dacentral@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"48","National Halal Program","HALAL","2",NULL,NULL,NULL,"halal.svg","Clint Hassan","Director","89204068",,"clintk9@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"49","PRDP - Philippine Rural Development Project","PRDP","7",NULL,NULL,NULL,"prdp.svg","Shandy M. Hubilla","OIC, Director","9265682",,"prdpiplan2@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"50","Kabuhayan at Kaunlaran ng kababayang katutubo (4Ks)","4Ks","2",NULL,NULL,NULL,"4ks.svg","Lerey A. Panes","Assistant Secretary for Special Project","(02) 9290148",,"bervanniejay@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"51","Philippine-Sino Center for Agricultural Technology (PhilSCAT)","PhilSCAT","7",NULL,NULL,NULL,"philscat.svg",,,,,,"2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"52","Special Area for Agricultural Development (SAAD)","SAAD","2",NULL,NULL,NULL,"saad.svg","Myer G. Mula","Program Director",,,"mgm81259@gmail .com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"53","Office of the Assistant Secretary for Regulations","OASR","7",NULL,NULL,NULL,"oasr.svg","Atty.Hanzel O. Didulo","Assistant Secretary for Regulation",,,"daoasr@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"54","QUEDANCOR - Quedan and Rural Credit Guarantee Corporation","Quedancor","6",NULL,NULL,NULL,"quedancor.svg","Atty. Armando R. Crobalde Jr.","President",,,"opquedancor@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"55","BAFS - Bureau of Agricultural and Fisheries Standards","BAFS","4",NULL,NULL,NULL,"bafs.svg","Vivencio R. Mamaril Ph.D.","Director IV","2540282/ 9288758 loc 3314","82540282/cisco 3301","bafs.oed@gmail.com/choymamaril@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"56","BAFS-ILD Bureau of Agricultural and Fisheries Standards - Integrated Laboratory Division","BAFS-ILD","4",NULL,NULL,NULL,"bafs-ild.svg","Vivencio R. Mamaril Ph.D.","Director IV","82540282/ 89288758 loc 3317","82540282","bafs.oed@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"57","AMAS - Agribusiness and Marketing Assistance Service","AMAS","1",NULL,NULL,NULL,"amas.svg","Ramon C. Yedra","OIC Director","89202216/CISCO-2140/2169","89266434","bpamas2019@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"58","FOS-SPCMAD (for FAPs and LFPs)","FOS-SPCMAD","1",NULL,NULL,NULL,"fos-spcmad.svg","U-Nichols A. Manalo","OIC, SPCMAD","920 1767 loc 2433","920 1767","da_spcmad@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"59","ICTS - Information Communication Technology Service","ICTS","1",NULL,NULL,NULL,"icts.svg","Xercees R. Remoroza","OIC Director","Local 2542","89204069","xremz@yahoo.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"60","NCI - National Convergence Initiative","NCI","7",NULL,NULL,NULL,"nci.svg","Dr. Silvino Q. Tejada","National Focal Person","9295683","9295683","convergence.secretariat@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"61","PDS - Project Development Service","PDS","1",NULL,NULL,NULL,"pds.svg","Ferdinand D. Flores","OIC Director","920-1407","9201407","osddapds@gmail.com","2020-10-30 09:52:25","2020-10-30 09:52:25",NULL
+"62","Investment Programming Division","IPD",NULL,NULL,NULL,"DA",NULL,"Joseph Manicad","Chief","NA","NA","manicad3480@gmail.com","2020-11-04 22:36:36","2020-11-04 22:36:36",NULL
+"63","Climate Resilient Agriculture Office","CRAO",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+"64","Field Programs Operational Planning Division","FPOPD",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+"65","Policy Research Service","PRS",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL

@@ -1,0 +1,1635 @@
+﻿id,name,label,city_municipality_name,province_id
+1012,Barlig,"Barlig, Mountain Province",Barlig,50
+1013,Bauko,"Bauko, Mountain Province",Bauko,50
+1014,Besao,"Besao, Mountain Province",Besao,50
+1015,Bontoc,"Bontoc, Mountain Province",Bontoc,50
+1016,Natonin,"Natonin, Mountain Province",Natonin,50
+1017,Paracelis,"Paracelis, Mountain Province",Paracelis,50
+1018,Sabangan,"Sabangan, Mountain Province",Sabangan,50
+1019,Sadanga,"Sadanga, Mountain Province",Sadanga,50
+1020,Sagada,"Sagada, Mountain Province",Sagada,50
+1021,Tadian,"Tadian, Mountain Province",Tadian,50
+592,Aguinaldo,"Aguinaldo, Ifugao",Aguinaldo,33
+593,Alfonso Lista (Potia),"Alfonso Lista (Potia), Ifugao",Alfonso Lista (Potia),33
+594,Asipulo,"Asipulo, Ifugao",Asipulo,33
+595,Banaue,"Banaue, Ifugao",Banaue,33
+596,Hingyon,"Hingyon, Ifugao",Hingyon,33
+597,Hungduan,"Hungduan, Ifugao",Hungduan,33
+598,Kiangan,"Kiangan, Ifugao",Kiangan,33
+599,Lagawe,"Lagawe, Ifugao",Lagawe,33
+600,Lamut,"Lamut, Ifugao",Lamut,33
+601,Mayoyao,"Mayoyao, Ifugao",Mayoyao,33
+602,Tinoc,"Tinoc, Ifugao",Tinoc,33
+187,Atok,"Atok, Benguet",Atok,13
+188,Baguio,"Baguio, Benguet",Baguio,13
+189,Bakun,"Bakun, Benguet",Bakun,13
+190,Bokod,"Bokod, Benguet",Bokod,13
+191,Buguias,"Buguias, Benguet",Buguias,13
+192,Itogon,"Itogon, Benguet",Itogon,13
+193,Kabayan,"Kabayan, Benguet",Kabayan,13
+194,Kapangan,"Kapangan, Benguet",Kapangan,13
+195,Kibungan,"Kibungan, Benguet",Kibungan,13
+196,La Trinidad,"La Trinidad, Benguet",La Trinidad,13
+197,Mankayan,"Mankayan, Benguet",Mankayan,13
+198,Sablan,"Sablan, Benguet",Sablan,13
+199,Tuba,"Tuba, Benguet",Tuba,13
+200,Tublay,"Tublay, Benguet",Tublay,13
+1,Bangued,"Bangued, Abra",Bangued,1
+2,Boliney,"Boliney, Abra",Boliney,1
+3,Bucay,"Bucay, Abra",Bucay,1
+4,Bucloc,"Bucloc, Abra",Bucloc,1
+5,Daguioman,"Daguioman, Abra",Daguioman,1
+6,Danglas,"Danglas, Abra",Danglas,1
+7,Dolores,"Dolores, Abra",Dolores,1
+8,La Paz,"La Paz, Abra",La Paz,1
+9,Lacub,"Lacub, Abra",Lacub,1
+10,Lagangilang,"Lagangilang, Abra",Lagangilang,1
+11,Lagayan,"Lagayan, Abra",Lagayan,1
+12,Langiden,"Langiden, Abra",Langiden,1
+13,Licuan-Baay (Licuan),"Licuan-Baay (Licuan), Abra",Licuan-Baay (Licuan),1
+14,Luba,"Luba, Abra",Luba,1
+15,Malibcong,"Malibcong, Abra",Malibcong,1
+16,Manabo,"Manabo, Abra",Manabo,1
+17,Peñarrubia,"Peñarrubia, Abra",Peñarrubia,1
+18,Pidigan,"Pidigan, Abra",Pidigan,1
+19,Pilar,"Pilar, Abra",Pilar,1
+20,Sallapadan,"Sallapadan, Abra",Sallapadan,1
+21,San Isidro,"San Isidro, Abra",San Isidro,1
+22,San Juan,"San Juan, Abra",San Juan,1
+23,San Quintin,"San Quintin, Abra",San Quintin,1
+24,Tayum,"Tayum, Abra",Tayum,1
+25,Tineg,"Tineg, Abra",Tineg,1
+26,Tubo,"Tubo, Abra",Tubo,1
+27,Villaviciosa,"Villaviciosa, Abra",Villaviciosa,1
+107,Calanasan,"Calanasan, Apayao",Calanasan,7
+108,Conner,"Conner, Apayao",Conner,7
+109,Flora,"Flora, Apayao",Flora,7
+110,Kabugao,"Kabugao, Apayao",Kabugao,7
+111,Luna,"Luna, Apayao",Luna,7
+112,Pudtol,"Pudtol, Apayao",Pudtol,7
+113,Santa Marcela,"Santa Marcela, Apayao",Santa Marcela,7
+741,Balbalan,"Balbalan, Kalinga",Balbalan,38
+742,Lubuagan,"Lubuagan, Kalinga",Lubuagan,38
+743,Pasil,"Pasil, Kalinga",Pasil,38
+744,Pinukpuk,"Pinukpuk, Kalinga",Pinukpuk,38
+745,Rizal (Liwan),"Rizal (Liwan), Kalinga",Rizal (Liwan),38
+746,Tabuk,"Tabuk, Kalinga",Tabuk,38
+747,Tanudan,"Tanudan, Kalinga",Tanudan,38
+748,Tinglayan,"Tinglayan, Kalinga",Tinglayan,38
+749,Agoo,"Agoo, La Union",Agoo,39
+750,Aringay,"Aringay, La Union",Aringay,39
+751,Bacnotan,"Bacnotan, La Union",Bacnotan,39
+752,Bagulin,"Bagulin, La Union",Bagulin,39
+753,Balaoan,"Balaoan, La Union",Balaoan,39
+754,Bangar,"Bangar, La Union",Bangar,39
+755,Bauang,"Bauang, La Union",Bauang,39
+756,Burgos,"Burgos, La Union",Burgos,39
+757,Caba,"Caba, La Union",Caba,39
+758,Luna,"Luna, La Union",Luna,39
+759,Naguilian,"Naguilian, La Union",Naguilian,39
+760,Pugo,"Pugo, La Union",Pugo,39
+761,Rosario,"Rosario, La Union",Rosario,39
+762,San Fernando,"San Fernando, La Union",San Fernando,39
+763,San Gabriel,"San Gabriel, La Union",San Gabriel,39
+764,San Juan,"San Juan, La Union",San Juan,39
+765,Santo Tomas,"Santo Tomas, La Union",Santo Tomas,39
+766,Santol,"Santol, La Union",Santol,39
+767,Sudipen,"Sudipen, La Union",Sudipen,39
+768,Tubao,"Tubao, La Union",Tubao,39
+603,Adams,"Adams, Ilocos Norte",Adams,34
+604,Bacarra,"Bacarra, Ilocos Norte",Bacarra,34
+605,Badoc,"Badoc, Ilocos Norte",Badoc,34
+606,Bangui,"Bangui, Ilocos Norte",Bangui,34
+607,Banna (Espiritu),"Banna (Espiritu), Ilocos Norte",Banna (Espiritu),34
+608,Batac,"Batac, Ilocos Norte",Batac,34
+609,Burgos,"Burgos, Ilocos Norte",Burgos,34
+610,Carasi,"Carasi, Ilocos Norte",Carasi,34
+611,Currimao,"Currimao, Ilocos Norte",Currimao,34
+612,Dingras,"Dingras, Ilocos Norte",Dingras,34
+613,Dumalneg,"Dumalneg, Ilocos Norte",Dumalneg,34
+614,Laoag,"Laoag, Ilocos Norte",Laoag,34
+615,Marcos,"Marcos, Ilocos Norte",Marcos,34
+616,Nueva Era,"Nueva Era, Ilocos Norte",Nueva Era,34
+617,Pagudpud,"Pagudpud, Ilocos Norte",Pagudpud,34
+618,Paoay,"Paoay, Ilocos Norte",Paoay,34
+619,Pasuquin,"Pasuquin, Ilocos Norte",Pasuquin,34
+620,Piddig,"Piddig, Ilocos Norte",Piddig,34
+621,Pinili,"Pinili, Ilocos Norte",Pinili,34
+622,San Nicolas,"San Nicolas, Ilocos Norte",San Nicolas,34
+623,Sarrat,"Sarrat, Ilocos Norte",Sarrat,34
+624,Solsona,"Solsona, Ilocos Norte",Solsona,34
+625,Vintar,"Vintar, Ilocos Norte",Vintar,34
+626,Alilem,"Alilem, Ilocos Sur",Alilem,35
+627,Banayoyo,"Banayoyo, Ilocos Sur",Banayoyo,35
+628,Bantay,"Bantay, Ilocos Sur",Bantay,35
+629,Burgos,"Burgos, Ilocos Sur",Burgos,35
+630,Cabugao,"Cabugao, Ilocos Sur",Cabugao,35
+631,Candon,"Candon, Ilocos Sur",Candon,35
+632,Caoayan,"Caoayan, Ilocos Sur",Caoayan,35
+633,Cervantes,"Cervantes, Ilocos Sur",Cervantes,35
+634,Galimuyod,"Galimuyod, Ilocos Sur",Galimuyod,35
+635,Gregorio del Pilar (Concepcion),"Gregorio del Pilar (Concepcion), Ilocos Sur",Gregorio del Pilar (Concepcion),35
+636,Lidlidda,"Lidlidda, Ilocos Sur",Lidlidda,35
+637,Magsingal,"Magsingal, Ilocos Sur",Magsingal,35
+638,Nagbukel,"Nagbukel, Ilocos Sur",Nagbukel,35
+639,Narvacan,"Narvacan, Ilocos Sur",Narvacan,35
+640,Quirino (Angkaki),"Quirino (Angkaki), Ilocos Sur",Quirino (Angkaki),35
+641,Salcedo (Baugen),"Salcedo (Baugen), Ilocos Sur",Salcedo (Baugen),35
+642,San Emilio,"San Emilio, Ilocos Sur",San Emilio,35
+643,San Esteban,"San Esteban, Ilocos Sur",San Esteban,35
+644,San Ildefonso,"San Ildefonso, Ilocos Sur",San Ildefonso,35
+645,San Juan (Lapog),"San Juan (Lapog), Ilocos Sur",San Juan (Lapog),35
+646,San Vicente,"San Vicente, Ilocos Sur",San Vicente,35
+647,Santa,"Santa, Ilocos Sur",Santa,35
+648,Santa Catalina,"Santa Catalina, Ilocos Sur",Santa Catalina,35
+649,Santa Cruz,"Santa Cruz, Ilocos Sur",Santa Cruz,35
+650,Santa Lucia,"Santa Lucia, Ilocos Sur",Santa Lucia,35
+651,Santa Maria,"Santa Maria, Ilocos Sur",Santa Maria,35
+652,Santiago,"Santiago, Ilocos Sur",Santiago,35
+653,Santo Domingo,"Santo Domingo, Ilocos Sur",Santo Domingo,35
+654,Sigay,"Sigay, Ilocos Sur",Sigay,35
+655,Sinait,"Sinait, Ilocos Sur",Sinait,35
+656,Sugpon,"Sugpon, Ilocos Sur",Sugpon,35
+657,Suyo,"Suyo, Ilocos Sur",Suyo,35
+658,Tagudin,"Tagudin, Ilocos Sur",Tagudin,35
+659,Vigan,"Vigan, Ilocos Sur",Vigan,35
+1239,Agno,"Agno, Pangasinan",Agno,60
+1240,Aguilar,"Aguilar, Pangasinan",Aguilar,60
+1241,Alaminos,"Alaminos, Pangasinan",Alaminos,60
+1242,Alcala,"Alcala, Pangasinan",Alcala,60
+1243,Anda,"Anda, Pangasinan",Anda,60
+1244,Asingan,"Asingan, Pangasinan",Asingan,60
+1245,Balungao,"Balungao, Pangasinan",Balungao,60
+1246,Bani,"Bani, Pangasinan",Bani,60
+1247,Basista,"Basista, Pangasinan",Basista,60
+1248,Bautista,"Bautista, Pangasinan",Bautista,60
+1249,Bayambang,"Bayambang, Pangasinan",Bayambang,60
+1250,Binalonan,"Binalonan, Pangasinan",Binalonan,60
+1251,Binmaley,"Binmaley, Pangasinan",Binmaley,60
+1252,Bolinao,"Bolinao, Pangasinan",Bolinao,60
+1253,Bugallon,"Bugallon, Pangasinan",Bugallon,60
+1254,Burgos,"Burgos, Pangasinan",Burgos,60
+1255,Calasiao,"Calasiao, Pangasinan",Calasiao,60
+1256,Dagupan,"Dagupan, Pangasinan",Dagupan,60
+1257,Dasol,"Dasol, Pangasinan",Dasol,60
+1258,Infanta,"Infanta, Pangasinan",Infanta,60
+1259,Labrador,"Labrador, Pangasinan",Labrador,60
+1260,Laoac,"Laoac, Pangasinan",Laoac,60
+1261,Lingayen,"Lingayen, Pangasinan",Lingayen,60
+1262,Mabini,"Mabini, Pangasinan",Mabini,60
+1263,Malasiqui,"Malasiqui, Pangasinan",Malasiqui,60
+1264,Manaoag,"Manaoag, Pangasinan",Manaoag,60
+1265,Mangaldan,"Mangaldan, Pangasinan",Mangaldan,60
+1266,Mangatarem,"Mangatarem, Pangasinan",Mangatarem,60
+1267,Mapandan,"Mapandan, Pangasinan",Mapandan,60
+1268,Natividad,"Natividad, Pangasinan",Natividad,60
+1269,Pozorrubio,"Pozorrubio, Pangasinan",Pozorrubio,60
+1270,Rosales,"Rosales, Pangasinan",Rosales,60
+1271,San Carlos,"San Carlos, Pangasinan",San Carlos,60
+1272,San Fabian,"San Fabian, Pangasinan",San Fabian,60
+1273,San Jacinto,"San Jacinto, Pangasinan",San Jacinto,60
+1274,San Manuel,"San Manuel, Pangasinan",San Manuel,60
+1275,San Nicolas,"San Nicolas, Pangasinan",San Nicolas,60
+1276,San Quintin,"San Quintin, Pangasinan",San Quintin,60
+1277,Santa Barbara,"Santa Barbara, Pangasinan",Santa Barbara,60
+1278,Santa Maria,"Santa Maria, Pangasinan",Santa Maria,60
+1279,Santo Tomas,"Santo Tomas, Pangasinan",Santo Tomas,60
+1280,Sison,"Sison, Pangasinan",Sison,60
+1281,Sual,"Sual, Pangasinan",Sual,60
+1282,Tayug,"Tayug, Pangasinan",Tayug,60
+1283,Umingan,"Umingan, Pangasinan",Umingan,60
+1284,Urbiztondo,"Urbiztondo, Pangasinan",Urbiztondo,60
+1285,Urdaneta,"Urdaneta, Pangasinan",Urdaneta,60
+1286,Villasis,"Villasis, Pangasinan",Villasis,60
+1152,Alfonso Castañeda,"Alfonso Castañeda, Nueva Vizcaya",Alfonso Castañeda,55
+1153,Ambaguio,"Ambaguio, Nueva Vizcaya",Ambaguio,55
+1154,Aritao,"Aritao, Nueva Vizcaya",Aritao,55
+1155,Bagabag,"Bagabag, Nueva Vizcaya",Bagabag,55
+1156,Bambang,"Bambang, Nueva Vizcaya",Bambang,55
+1157,Bayombong,"Bayombong, Nueva Vizcaya",Bayombong,55
+1158,Diadi,"Diadi, Nueva Vizcaya",Diadi,55
+1159,Dupax del Norte,"Dupax del Norte, Nueva Vizcaya",Dupax del Norte,55
+1160,Dupax del Sur,"Dupax del Sur, Nueva Vizcaya",Dupax del Sur,55
+1161,Kasibu,"Kasibu, Nueva Vizcaya",Kasibu,55
+1162,Kayapa,"Kayapa, Nueva Vizcaya",Kayapa,55
+1163,Quezon,"Quezon, Nueva Vizcaya",Quezon,55
+1164,Santa Fe (Imugan),"Santa Fe (Imugan), Nueva Vizcaya",Santa Fe (Imugan),55
+1165,Solano,"Solano, Nueva Vizcaya",Solano,55
+1166,Villaverde (Ibung),"Villaverde (Ibung), Nueva Vizcaya",Villaverde (Ibung),55
+303,Abulug,"Abulug, Cagayan",Abulug,18
+304,Alcala,"Alcala, Cagayan",Alcala,18
+305,Allacapan,"Allacapan, Cagayan",Allacapan,18
+306,Amulung,"Amulung, Cagayan",Amulung,18
+307,Aparri,"Aparri, Cagayan",Aparri,18
+308,Baggao,"Baggao, Cagayan",Baggao,18
+309,Ballesteros,"Ballesteros, Cagayan",Ballesteros,18
+310,Buguey,"Buguey, Cagayan",Buguey,18
+311,Calayan,"Calayan, Cagayan",Calayan,18
+312,Camalaniugan,"Camalaniugan, Cagayan",Camalaniugan,18
+313,Claveria,"Claveria, Cagayan",Claveria,18
+314,Enrile,"Enrile, Cagayan",Enrile,18
+315,Gattaran,"Gattaran, Cagayan",Gattaran,18
+316,Gonzaga,"Gonzaga, Cagayan",Gonzaga,18
+317,Iguig,"Iguig, Cagayan",Iguig,18
+318,Lal-lo,"Lal-lo, Cagayan",Lal-lo,18
+319,Lasam,"Lasam, Cagayan",Lasam,18
+320,Pamplona,"Pamplona, Cagayan",Pamplona,18
+321,Peñablanca,"Peñablanca, Cagayan",Peñablanca,18
+322,Piat,"Piat, Cagayan",Piat,18
+323,Rizal,"Rizal, Cagayan",Rizal,18
+324,Sanchez-Mira,"Sanchez-Mira, Cagayan",Sanchez-Mira,18
+325,Santa Ana,"Santa Ana, Cagayan",Santa Ana,18
+326,Santa Praxedes,"Santa Praxedes, Cagayan",Santa Praxedes,18
+327,Santa Teresita,"Santa Teresita, Cagayan",Santa Teresita,18
+328,Santo Niño (Faire),"Santo Niño (Faire), Cagayan",Santo Niño (Faire),18
+329,Solana,"Solana, Cagayan",Solana,18
+330,Tuao,"Tuao, Cagayan",Tuao,18
+331,Tuguegarao,"Tuguegarao, Cagayan",Tuguegarao,18
+704,Alicia,"Alicia, Isabela",Alicia,37
+705,Angadanan,"Angadanan, Isabela",Angadanan,37
+706,Aurora,"Aurora, Isabela",Aurora,37
+707,Benito Soliven,"Benito Soliven, Isabela",Benito Soliven,37
+708,Burgos,"Burgos, Isabela",Burgos,37
+709,Cabagan,"Cabagan, Isabela",Cabagan,37
+710,Cabatuan,"Cabatuan, Isabela",Cabatuan,37
+711,Cauayan,"Cauayan, Isabela",Cauayan,37
+712,Cordon,"Cordon, Isabela",Cordon,37
+713,Delfin Albano (Magsaysay),"Delfin Albano (Magsaysay), Isabela",Delfin Albano (Magsaysay),37
+714,Dinapigue,"Dinapigue, Isabela",Dinapigue,37
+715,Divilacan,"Divilacan, Isabela",Divilacan,37
+716,Echague,"Echague, Isabela",Echague,37
+717,Gamu,"Gamu, Isabela",Gamu,37
+718,Ilagan,"Ilagan, Isabela",Ilagan,37
+719,Jones,"Jones, Isabela",Jones,37
+720,Luna,"Luna, Isabela",Luna,37
+721,Maconacon,"Maconacon, Isabela",Maconacon,37
+722,Mallig,"Mallig, Isabela",Mallig,37
+723,Naguilian,"Naguilian, Isabela",Naguilian,37
+724,Palanan,"Palanan, Isabela",Palanan,37
+725,Quezon,"Quezon, Isabela",Quezon,37
+726,Quirino,"Quirino, Isabela",Quirino,37
+727,Ramon,"Ramon, Isabela",Ramon,37
+728,Reina Mercedes,"Reina Mercedes, Isabela",Reina Mercedes,37
+729,Roxas,"Roxas, Isabela",Roxas,37
+730,San Agustin,"San Agustin, Isabela",San Agustin,37
+731,San Guillermo,"San Guillermo, Isabela",San Guillermo,37
+732,San Isidro,"San Isidro, Isabela",San Isidro,37
+733,San Manuel (Callang),"San Manuel (Callang), Isabela",San Manuel (Callang),37
+734,San Mariano,"San Mariano, Isabela",San Mariano,37
+735,San Mateo,"San Mateo, Isabela",San Mateo,37
+736,San Pablo,"San Pablo, Isabela",San Pablo,37
+737,Santa Maria,"Santa Maria, Isabela",Santa Maria,37
+738,Santiago,"Santiago, Isabela",Santiago,37
+739,Santo Tomas,"Santo Tomas, Isabela",Santo Tomas,37
+740,Tumauini,"Tumauini, Isabela",Tumauini,37
+1328,Aglipay,"Aglipay, Quirino",Aglipay,62
+1329,Cabarroguis,"Cabarroguis, Quirino",Cabarroguis,62
+1330,Diffun,"Diffun, Quirino",Diffun,62
+1331,Maddela,"Maddela, Quirino",Maddela,62
+1332,Nagtipunan,"Nagtipunan, Quirino",Nagtipunan,62
+1333,Saguday,"Saguday, Quirino",Saguday,62
+147,Basco,"Basco, Batanes",Basco,11
+148,Itbayat,"Itbayat, Batanes",Itbayat,11
+149,Ivana,"Ivana, Batanes",Ivana,11
+150,Mahatao,"Mahatao, Batanes",Mahatao,11
+151,Sabtang,"Sabtang, Batanes",Sabtang,11
+152,Uyugan,"Uyugan, Batanes",Uyugan,11
+135,Abucay,"Abucay, Bataan",Abucay,10
+136,Bagac,"Bagac, Bataan",Bagac,10
+137,Balanga,"Balanga, Bataan",Balanga,10
+138,Dinalupihan,"Dinalupihan, Bataan",Dinalupihan,10
+139,Hermosa,"Hermosa, Bataan",Hermosa,10
+140,Limay,"Limay, Bataan",Limay,10
+141,Mariveles,"Mariveles, Bataan",Mariveles,10
+142,Morong,"Morong, Bataan",Morong,10
+143,Orani,"Orani, Bataan",Orani,10
+144,Orion,"Orion, Bataan",Orion,10
+145,Pilar,"Pilar, Bataan",Pilar,10
+146,Samal,"Samal, Bataan",Samal,10
+1550,Botolan,"Botolan, Zambales",Botolan,77
+1551,Cabangan,"Cabangan, Zambales",Cabangan,77
+1552,Candelaria,"Candelaria, Zambales",Candelaria,77
+1553,Castillejos,"Castillejos, Zambales",Castillejos,77
+1554,Iba,"Iba, Zambales",Iba,77
+1555,Masinloc,"Masinloc, Zambales",Masinloc,77
+1556,Olongapo,"Olongapo, Zambales",Olongapo,77
+1557,Palauig,"Palauig, Zambales",Palauig,77
+1558,San Antonio,"San Antonio, Zambales",San Antonio,77
+1559,San Felipe,"San Felipe, Zambales",San Felipe,77
+1560,San Marcelino,"San Marcelino, Zambales",San Marcelino,77
+1561,San Narciso,"San Narciso, Zambales",San Narciso,77
+1562,Santa Cruz,"Santa Cruz, Zambales",Santa Cruz,77
+1563,Subic,"Subic, Zambales",Subic,77
+1521,Anao,"Anao, Tarlac",Anao,75
+1522,Bamban,"Bamban, Tarlac",Bamban,75
+1523,Camiling,"Camiling, Tarlac",Camiling,75
+1524,Capas,"Capas, Tarlac",Capas,75
+1525,Concepcion,"Concepcion, Tarlac",Concepcion,75
+1526,Gerona,"Gerona, Tarlac",Gerona,75
+1527,La Paz,"La Paz, Tarlac",La Paz,75
+1528,Mayantoc,"Mayantoc, Tarlac",Mayantoc,75
+1529,Moncada,"Moncada, Tarlac",Moncada,75
+1530,Paniqui,"Paniqui, Tarlac",Paniqui,75
+1531,Pura,"Pura, Tarlac",Pura,75
+1532,Ramos,"Ramos, Tarlac",Ramos,75
+1533,San Clemente,"San Clemente, Tarlac",San Clemente,75
+1534,San Jose,"San Jose, Tarlac",San Jose,75
+1535,San Manuel,"San Manuel, Tarlac",San Manuel,75
+1536,Santa Ignacia,"Santa Ignacia, Tarlac",Santa Ignacia,75
+1537,Tarlac City,"Tarlac City, Tarlac",Tarlac City,75
+1538,Victoria,"Victoria, Tarlac",Victoria,75
+1217,Angeles,"Angeles, Pampanga",Angeles,59
+1218,Apalit,"Apalit, Pampanga",Apalit,59
+1219,Arayat,"Arayat, Pampanga",Arayat,59
+1220,Bacolor,"Bacolor, Pampanga",Bacolor,59
+1221,Candaba,"Candaba, Pampanga",Candaba,59
+1222,Floridablanca,"Floridablanca, Pampanga",Floridablanca,59
+1223,Guagua,"Guagua, Pampanga",Guagua,59
+1224,Lubao,"Lubao, Pampanga",Lubao,59
+1225,Mabalacat,"Mabalacat, Pampanga",Mabalacat,59
+1226,Macabebe,"Macabebe, Pampanga",Macabebe,59
+1227,Magalang,"Magalang, Pampanga",Magalang,59
+1228,Masantol,"Masantol, Pampanga",Masantol,59
+1229,Mexico,"Mexico, Pampanga",Mexico,59
+1230,Minalin,"Minalin, Pampanga",Minalin,59
+1231,Porac,"Porac, Pampanga",Porac,59
+1232,San Fernando,"San Fernando, Pampanga",San Fernando,59
+1233,San Luis,"San Luis, Pampanga",San Luis,59
+1234,San Simon,"San Simon, Pampanga",San Simon,59
+1235,Santa Ana,"Santa Ana, Pampanga",Santa Ana,59
+1236,Santa Rita,"Santa Rita, Pampanga",Santa Rita,59
+1237,Santo Tomas,"Santo Tomas, Pampanga",Santo Tomas,59
+1238,Sasmuan,"Sasmuan, Pampanga",Sasmuan,59
+279,Angat,"Angat, Bulacan",Angat,17
+280,Balagtas (Bigaa),"Balagtas (Bigaa), Bulacan",Balagtas (Bigaa),17
+281,Baliuag,"Baliuag, Bulacan",Baliuag,17
+282,Bocaue,"Bocaue, Bulacan",Bocaue,17
+283,Bulakan,"Bulakan, Bulacan",Bulakan,17
+284,Bustos,"Bustos, Bulacan",Bustos,17
+285,Calumpit,"Calumpit, Bulacan",Calumpit,17
+286,Doña Remedios Trinidad,"Doña Remedios Trinidad, Bulacan",Doña Remedios Trinidad,17
+287,Guiguinto,"Guiguinto, Bulacan",Guiguinto,17
+288,Hagonoy,"Hagonoy, Bulacan",Hagonoy,17
+289,Malolos,"Malolos, Bulacan",Malolos,17
+290,Marilao,"Marilao, Bulacan",Marilao,17
+291,Meycauayan,"Meycauayan, Bulacan",Meycauayan,17
+292,Norzagaray,"Norzagaray, Bulacan",Norzagaray,17
+293,Obando,"Obando, Bulacan",Obando,17
+294,Pandi,"Pandi, Bulacan",Pandi,17
+295,Paombong,"Paombong, Bulacan",Paombong,17
+296,Plaridel,"Plaridel, Bulacan",Plaridel,17
+297,Pulilan,"Pulilan, Bulacan",Pulilan,17
+298,San Ildefonso,"San Ildefonso, Bulacan",San Ildefonso,17
+299,San Jose del Monte,"San Jose del Monte, Bulacan",San Jose del Monte,17
+300,San Miguel,"San Miguel, Bulacan",San Miguel,17
+301,San Rafael,"San Rafael, Bulacan",San Rafael,17
+302,Santa Maria,"Santa Maria, Bulacan",Santa Maria,17
+1120,Aliaga,"Aliaga, Nueva Ecija",Aliaga,54
+1121,Bongabon,"Bongabon, Nueva Ecija",Bongabon,54
+1122,Cabanatuan,"Cabanatuan, Nueva Ecija",Cabanatuan,54
+1123,Cabiao,"Cabiao, Nueva Ecija",Cabiao,54
+1124,Carranglan,"Carranglan, Nueva Ecija",Carranglan,54
+1125,Cuyapo,"Cuyapo, Nueva Ecija",Cuyapo,54
+1126,Gabaldon (Bitulok & Sabani),"Gabaldon (Bitulok & Sabani), Nueva Ecija",Gabaldon (Bitulok & Sabani),54
+1127,Gapan,"Gapan, Nueva Ecija",Gapan,54
+1128,General Mamerto Natividad,"General Mamerto Natividad, Nueva Ecija",General Mamerto Natividad,54
+1129,General Tinio (Papaya),"General Tinio (Papaya), Nueva Ecija",General Tinio (Papaya),54
+1130,Guimba,"Guimba, Nueva Ecija",Guimba,54
+1131,Jaen,"Jaen, Nueva Ecija",Jaen,54
+1132,Laur,"Laur, Nueva Ecija",Laur,54
+1133,Licab,"Licab, Nueva Ecija",Licab,54
+1134,Llanera,"Llanera, Nueva Ecija",Llanera,54
+1135,Lupao,"Lupao, Nueva Ecija",Lupao,54
+1136,Muñoz,"Muñoz, Nueva Ecija",Muñoz,54
+1137,Nampicuan,"Nampicuan, Nueva Ecija",Nampicuan,54
+1138,Palayan,"Palayan, Nueva Ecija",Palayan,54
+1139,Pantabangan,"Pantabangan, Nueva Ecija",Pantabangan,54
+1140,Peñaranda,"Peñaranda, Nueva Ecija",Peñaranda,54
+1141,Quezon,"Quezon, Nueva Ecija",Quezon,54
+1142,Rizal,"Rizal, Nueva Ecija",Rizal,54
+1143,San Antonio,"San Antonio, Nueva Ecija",San Antonio,54
+1144,San Isidro,"San Isidro, Nueva Ecija",San Isidro,54
+1145,San Jose,"San Jose, Nueva Ecija",San Jose,54
+1146,San Leonardo,"San Leonardo, Nueva Ecija",San Leonardo,54
+1147,Santa Rosa,"Santa Rosa, Nueva Ecija",Santa Rosa,54
+1148,Santo Domingo,"Santo Domingo, Nueva Ecija",Santo Domingo,54
+1149,Talavera,"Talavera, Nueva Ecija",Talavera,54
+1150,Talugtug,"Talugtug, Nueva Ecija",Talugtug,54
+1151,Zaragoza,"Zaragoza, Nueva Ecija",Zaragoza,54
+114,Baler,"Baler, Aurora",Baler,8
+115,Casiguran,"Casiguran, Aurora",Casiguran,8
+116,Dilasag,"Dilasag, Aurora",Dilasag,8
+117,Dinalungan,"Dinalungan, Aurora",Dinalungan,8
+118,Dingalan,"Dingalan, Aurora",Dingalan,8
+119,Dipaculao,"Dipaculao, Aurora",Dipaculao,8
+120,Maria Aurora,"Maria Aurora, Aurora",Maria Aurora,8
+121,San Luis,"San Luis, Aurora",San Luis,8
+1334,Angono,"Angono, Rizal",Angono,63
+1335,Antipolo,"Antipolo, Rizal",Antipolo,63
+1336,Baras,"Baras, Rizal",Baras,63
+1337,Binangonan,"Binangonan, Rizal",Binangonan,63
+1338,Cainta,"Cainta, Rizal",Cainta,63
+1339,Cardona,"Cardona, Rizal",Cardona,63
+1340,Jalajala,"Jalajala, Rizal",Jalajala,63
+1341,Morong,"Morong, Rizal",Morong,63
+1342,Pililla,"Pililla, Rizal",Pililla,63
+1343,Rodriguez (Montalban),"Rodriguez (Montalban), Rizal",Rodriguez (Montalban),63
+1344,San Mateo,"San Mateo, Rizal",San Mateo,63
+1345,Tanay,"Tanay, Rizal",Tanay,63
+1346,Taytay,"Taytay, Rizal",Taytay,63
+1347,Teresa,"Teresa, Rizal",Teresa,63
+414,Alfonso,"Alfonso, Cavite",Alfonso,24
+415,Amadeo,"Amadeo, Cavite",Amadeo,24
+416,Bacoor,"Bacoor, Cavite",Bacoor,24
+417,Carmona,"Carmona, Cavite",Carmona,24
+418,Cavite City,"Cavite City, Cavite",Cavite City,24
+419,Dasmariñas,"Dasmariñas, Cavite",Dasmariñas,24
+420,General Emilio Aguinaldo,"General Emilio Aguinaldo, Cavite",General Emilio Aguinaldo,24
+421,General Mariano Alvarez,"General Mariano Alvarez, Cavite",General Mariano Alvarez,24
+422,General Trias,"General Trias, Cavite",General Trias,24
+423,Imus,"Imus, Cavite",Imus,24
+424,Indang,"Indang, Cavite",Indang,24
+425,Kawit,"Kawit, Cavite",Kawit,24
+426,Magallanes,"Magallanes, Cavite",Magallanes,24
+427,Maragondon,"Maragondon, Cavite",Maragondon,24
+428,Mendez (Mendez-Nuñez),"Mendez (Mendez-Nuñez), Cavite",Mendez (Mendez-Nuñez),24
+429,Naic,"Naic, Cavite",Naic,24
+430,Noveleta,"Noveleta, Cavite",Noveleta,24
+431,Rosario,"Rosario, Cavite",Rosario,24
+432,Silang,"Silang, Cavite",Silang,24
+433,Tagaytay,"Tagaytay, Cavite",Tagaytay,24
+434,Tanza,"Tanza, Cavite",Tanza,24
+435,Ternate,"Ternate, Cavite",Ternate,24
+436,Trece Martires,"Trece Martires, Cavite",Trece Martires,24
+769,Alaminos,"Alaminos, Laguna",Alaminos,40
+770,Bay,"Bay, Laguna",Bay,40
+771,Biñan,"Biñan, Laguna",Biñan,40
+772,Cabuyao,"Cabuyao, Laguna",Cabuyao,40
+773,Calamba,"Calamba, Laguna",Calamba,40
+774,Calauan,"Calauan, Laguna",Calauan,40
+775,Cavinti,"Cavinti, Laguna",Cavinti,40
+776,Famy,"Famy, Laguna",Famy,40
+777,Kalayaan,"Kalayaan, Laguna",Kalayaan,40
+778,Liliw,"Liliw, Laguna",Liliw,40
+779,Los Baños,"Los Baños, Laguna",Los Baños,40
+780,Luisiana,"Luisiana, Laguna",Luisiana,40
+781,Lumban,"Lumban, Laguna",Lumban,40
+782,Mabitac,"Mabitac, Laguna",Mabitac,40
+783,Magdalena,"Magdalena, Laguna",Magdalena,40
+784,Majayjay,"Majayjay, Laguna",Majayjay,40
+785,Nagcarlan,"Nagcarlan, Laguna",Nagcarlan,40
+786,Paete,"Paete, Laguna",Paete,40
+787,Pagsanjan,"Pagsanjan, Laguna",Pagsanjan,40
+788,Pakil,"Pakil, Laguna",Pakil,40
+789,Pangil,"Pangil, Laguna",Pangil,40
+790,Pila,"Pila, Laguna",Pila,40
+791,Rizal,"Rizal, Laguna",Rizal,40
+792,San Pablo,"San Pablo, Laguna",San Pablo,40
+793,San Pedro,"San Pedro, Laguna",San Pedro,40
+794,Santa Cruz,"Santa Cruz, Laguna",Santa Cruz,40
+795,Santa Maria,"Santa Maria, Laguna",Santa Maria,40
+796,Santa Rosa,"Santa Rosa, Laguna",Santa Rosa,40
+797,Siniloan,"Siniloan, Laguna",Siniloan,40
+798,Victoria,"Victoria, Laguna",Victoria,40
+153,Agoncillo,"Agoncillo, Batangas",Agoncillo,12
+154,Alitagtag,"Alitagtag, Batangas",Alitagtag,12
+155,Balayan,"Balayan, Batangas",Balayan,12
+156,Balete,"Balete, Batangas",Balete,12
+157,Batangas City,"Batangas City, Batangas",Batangas City,12
+158,Bauan,"Bauan, Batangas",Bauan,12
+159,Calaca,"Calaca, Batangas",Calaca,12
+160,Calatagan,"Calatagan, Batangas",Calatagan,12
+161,Cuenca,"Cuenca, Batangas",Cuenca,12
+162,Ibaan,"Ibaan, Batangas",Ibaan,12
+163,Laurel,"Laurel, Batangas",Laurel,12
+164,Lemery,"Lemery, Batangas",Lemery,12
+165,Lian,"Lian, Batangas",Lian,12
+166,Lipa,"Lipa, Batangas",Lipa,12
+167,Lobo,"Lobo, Batangas",Lobo,12
+168,Mabini,"Mabini, Batangas",Mabini,12
+169,Malvar,"Malvar, Batangas",Malvar,12
+170,Mataasnakahoy,"Mataasnakahoy, Batangas",Mataasnakahoy,12
+171,Nasugbu,"Nasugbu, Batangas",Nasugbu,12
+172,Padre Garcia,"Padre Garcia, Batangas",Padre Garcia,12
+173,Rosario,"Rosario, Batangas",Rosario,12
+174,San Jose,"San Jose, Batangas",San Jose,12
+175,San Juan,"San Juan, Batangas",San Juan,12
+176,San Luis,"San Luis, Batangas",San Luis,12
+177,San Nicolas,"San Nicolas, Batangas",San Nicolas,12
+178,San Pascual,"San Pascual, Batangas",San Pascual,12
+179,Santa Teresita,"Santa Teresita, Batangas",Santa Teresita,12
+180,Santo Tomas,"Santo Tomas, Batangas",Santo Tomas,12
+181,Taal,"Taal, Batangas",Taal,12
+182,Talisay,"Talisay, Batangas",Talisay,12
+183,Tanauan,"Tanauan, Batangas",Tanauan,12
+184,Taysan,"Taysan, Batangas",Taysan,12
+185,Tingloy,"Tingloy, Batangas",Tingloy,12
+186,Tuy,"Tuy, Batangas",Tuy,12
+1287,Agdangan,"Agdangan, Quezon",Agdangan,61
+1288,Alabat,"Alabat, Quezon",Alabat,61
+1289,Atimonan,"Atimonan, Quezon",Atimonan,61
+1290,Buenavista,"Buenavista, Quezon",Buenavista,61
+1291,Burdeos,"Burdeos, Quezon",Burdeos,61
+1292,Calauag,"Calauag, Quezon",Calauag,61
+1293,Candelaria,"Candelaria, Quezon",Candelaria,61
+1294,Catanauan,"Catanauan, Quezon",Catanauan,61
+1295,Dolores,"Dolores, Quezon",Dolores,61
+1296,General Luna,"General Luna, Quezon",General Luna,61
+1297,General Nakar,"General Nakar, Quezon",General Nakar,61
+1298,Guinayangan,"Guinayangan, Quezon",Guinayangan,61
+1299,Gumaca,"Gumaca, Quezon",Gumaca,61
+1300,Infanta,"Infanta, Quezon",Infanta,61
+1301,Jomalig,"Jomalig, Quezon",Jomalig,61
+1302,Lopez,"Lopez, Quezon",Lopez,61
+1303,Lucban,"Lucban, Quezon",Lucban,61
+1304,Lucena,"Lucena, Quezon",Lucena,61
+1305,Macalelon,"Macalelon, Quezon",Macalelon,61
+1306,Mauban,"Mauban, Quezon",Mauban,61
+1307,Mulanay,"Mulanay, Quezon",Mulanay,61
+1308,Padre Burgos,"Padre Burgos, Quezon",Padre Burgos,61
+1309,Pagbilao,"Pagbilao, Quezon",Pagbilao,61
+1310,Panukulan,"Panukulan, Quezon",Panukulan,61
+1311,Patnanungan,"Patnanungan, Quezon",Patnanungan,61
+1312,Perez,"Perez, Quezon",Perez,61
+1313,Pitogo,"Pitogo, Quezon",Pitogo,61
+1314,Plaridel,"Plaridel, Quezon",Plaridel,61
+1315,Polillo,"Polillo, Quezon",Polillo,61
+1316,Quezon,"Quezon, Quezon",Quezon,61
+1317,Real,"Real, Quezon",Real,61
+1318,Sampaloc,"Sampaloc, Quezon",Sampaloc,61
+1319,San Andres,"San Andres, Quezon",San Andres,61
+1320,San Antonio,"San Antonio, Quezon",San Antonio,61
+1321,San Francisco (Aurora),"San Francisco (Aurora), Quezon",San Francisco (Aurora),61
+1322,San Narciso,"San Narciso, Quezon",San Narciso,61
+1323,Sariaya,"Sariaya, Quezon",Sariaya,61
+1324,Tagkawayan,"Tagkawayan, Quezon",Tagkawayan,61
+1325,Tayabas,"Tayabas, Quezon",Tayabas,61
+1326,Tiaong,"Tiaong, Quezon",Tiaong,61
+1327,Unisan,"Unisan, Quezon",Unisan,61
+1167,Abra de Ilog,"Abra de Ilog, Occidental Mindoro",Abra de Ilog,56
+1168,Calintaan,"Calintaan, Occidental Mindoro",Calintaan,56
+1169,Looc,"Looc, Occidental Mindoro",Looc,56
+1170,Lubang,"Lubang, Occidental Mindoro",Lubang,56
+1171,Magsaysay,"Magsaysay, Occidental Mindoro",Magsaysay,56
+1172,Mamburao,"Mamburao, Occidental Mindoro",Mamburao,56
+1173,Paluan,"Paluan, Occidental Mindoro",Paluan,56
+1174,Rizal,"Rizal, Occidental Mindoro",Rizal,56
+1175,Sablayan,"Sablayan, Occidental Mindoro",Sablayan,56
+1176,San Jose,"San Jose, Occidental Mindoro",San Jose,56
+1177,Santa Cruz,"Santa Cruz, Occidental Mindoro",Santa Cruz,56
+1178,Baco,"Baco, Oriental Mindoro",Baco,57
+1179,Bansud,"Bansud, Oriental Mindoro",Bansud,57
+1180,Bongabong,"Bongabong, Oriental Mindoro",Bongabong,57
+1181,Bulalacao (San Pedro),"Bulalacao (San Pedro), Oriental Mindoro",Bulalacao (San Pedro),57
+1182,Calapan,"Calapan, Oriental Mindoro",Calapan,57
+1183,Gloria,"Gloria, Oriental Mindoro",Gloria,57
+1184,Mansalay,"Mansalay, Oriental Mindoro",Mansalay,57
+1185,Naujan,"Naujan, Oriental Mindoro",Naujan,57
+1186,Pinamalayan,"Pinamalayan, Oriental Mindoro",Pinamalayan,57
+1187,Pola,"Pola, Oriental Mindoro",Pola,57
+1188,Puerto Galera,"Puerto Galera, Oriental Mindoro",Puerto Galera,57
+1189,Roxas,"Roxas, Oriental Mindoro",Roxas,57
+1190,San Teodoro,"San Teodoro, Oriental Mindoro",San Teodoro,57
+1191,Socorro,"Socorro, Oriental Mindoro",Socorro,57
+1192,Victoria,"Victoria, Oriental Mindoro",Victoria,57
+1348,Alcantara,"Alcantara, Romblon",Alcantara,64
+1349,Banton (Jones),"Banton (Jones), Romblon",Banton (Jones),64
+1350,Cajidiocan,"Cajidiocan, Romblon",Cajidiocan,64
+1351,Calatrava,"Calatrava, Romblon",Calatrava,64
+1352,Concepcion,"Concepcion, Romblon",Concepcion,64
+1353,Corcuera,"Corcuera, Romblon",Corcuera,64
+1354,Ferrol,"Ferrol, Romblon",Ferrol,64
+1355,Looc,"Looc, Romblon",Looc,64
+1356,Magdiwang,"Magdiwang, Romblon",Magdiwang,64
+1357,Odiongan,"Odiongan, Romblon",Odiongan,64
+1358,Romblon,"Romblon, Romblon",Romblon,64
+1359,San Agustin,"San Agustin, Romblon",San Agustin,64
+1360,San Andres,"San Andres, Romblon",San Andres,64
+1361,San Fernando,"San Fernando, Romblon",San Fernando,64
+1362,San Jose,"San Jose, Romblon",San Jose,64
+1363,Santa Fe,"Santa Fe, Romblon",Santa Fe,64
+1364,Santa Maria (Imelda),"Santa Maria (Imelda), Romblon",Santa Maria (Imelda),64
+1193,Aborlan,"Aborlan, Palawan",Aborlan,58
+1194,Agutaya,"Agutaya, Palawan",Agutaya,58
+1195,Araceli,"Araceli, Palawan",Araceli,58
+1196,Balabac,"Balabac, Palawan",Balabac,58
+1197,Bataraza,"Bataraza, Palawan",Bataraza,58
+1198,Brooke's Point,"Brooke's Point, Palawan",Brooke's Point,58
+1199,Busuanga,"Busuanga, Palawan",Busuanga,58
+1200,Cagayancillo,"Cagayancillo, Palawan",Cagayancillo,58
+1201,Coron,"Coron, Palawan",Coron,58
+1202,Culion,"Culion, Palawan",Culion,58
+1203,Cuyo,"Cuyo, Palawan",Cuyo,58
+1204,Dumaran,"Dumaran, Palawan",Dumaran,58
+1205,El Nido (Bacuit),"El Nido (Bacuit), Palawan",El Nido (Bacuit),58
+1206,Kalayaan,"Kalayaan, Palawan",Kalayaan,58
+1207,Linapacan,"Linapacan, Palawan",Linapacan,58
+1208,Magsaysay,"Magsaysay, Palawan",Magsaysay,58
+1209,Narra,"Narra, Palawan",Narra,58
+1210,Puerto Princesa,"Puerto Princesa, Palawan",Puerto Princesa,58
+1211,Quezon,"Quezon, Palawan",Quezon,58
+1212,Rizal (Marcos),"Rizal (Marcos), Palawan",Rizal (Marcos),58
+1213,Roxas,"Roxas, Palawan",Roxas,58
+1214,San Vicente,"San Vicente, Palawan",San Vicente,58
+1215,Sofronio Española,"Sofronio Española, Palawan",Sofronio Española,58
+1216,Taytay,"Taytay, Palawan",Taytay,58
+942,Boac,"Boac, Marinduque",Boac,45
+943,Buenavista,"Buenavista, Marinduque",Buenavista,45
+944,Gasan,"Gasan, Marinduque",Gasan,45
+945,Mogpog,"Mogpog, Marinduque",Mogpog,45
+946,Santa Cruz,"Santa Cruz, Marinduque",Santa Cruz,45
+947,Torrijos,"Torrijos, Marinduque",Torrijos,45
+403,Bagamanoc,"Bagamanoc, Catanduanes",Bagamanoc,23
+404,Baras,"Baras, Catanduanes",Baras,23
+405,Bato,"Bato, Catanduanes",Bato,23
+406,Caramoran,"Caramoran, Catanduanes",Caramoran,23
+407,Gigmoto,"Gigmoto, Catanduanes",Gigmoto,23
+408,Pandan,"Pandan, Catanduanes",Pandan,23
+409,Panganiban (Payo),"Panganiban (Payo), Catanduanes",Panganiban (Payo),23
+410,San Andres (Calolbon),"San Andres (Calolbon), Catanduanes",San Andres (Calolbon),23
+411,San Miguel,"San Miguel, Catanduanes",San Miguel,23
+412,Viga,"Viga, Catanduanes",Viga,23
+413,Virac,"Virac, Catanduanes",Virac,23
+332,Basud,"Basud, Camarines Norte",Basud,19
+333,Capalonga,"Capalonga, Camarines Norte",Capalonga,19
+334,Daet,"Daet, Camarines Norte",Daet,19
+335,Jose Panganiban,"Jose Panganiban, Camarines Norte",Jose Panganiban,19
+336,Labo,"Labo, Camarines Norte",Labo,19
+337,Mercedes,"Mercedes, Camarines Norte",Mercedes,19
+338,Paracale,"Paracale, Camarines Norte",Paracale,19
+339,San Lorenzo Ruiz (Imelda),"San Lorenzo Ruiz (Imelda), Camarines Norte",San Lorenzo Ruiz (Imelda),19
+340,San Vicente,"San Vicente, Camarines Norte",San Vicente,19
+341,Santa Elena,"Santa Elena, Camarines Norte",Santa Elena,19
+342,Talisay,"Talisay, Camarines Norte",Talisay,19
+343,Vinzons,"Vinzons, Camarines Norte",Vinzons,19
+1404,Barcelona,"Barcelona, Sorsogon",Barcelona,68
+1405,Bulan,"Bulan, Sorsogon",Bulan,68
+1406,Bulusan,"Bulusan, Sorsogon",Bulusan,68
+1407,Casiguran,"Casiguran, Sorsogon",Casiguran,68
+1408,Castilla,"Castilla, Sorsogon",Castilla,68
+1409,Donsol,"Donsol, Sorsogon",Donsol,68
+1410,Gubat,"Gubat, Sorsogon",Gubat,68
+1411,Irosin,"Irosin, Sorsogon",Irosin,68
+1412,Juban,"Juban, Sorsogon",Juban,68
+1413,Magallanes,"Magallanes, Sorsogon",Magallanes,68
+1414,Matnog,"Matnog, Sorsogon",Matnog,68
+1415,Pilar,"Pilar, Sorsogon",Pilar,68
+1416,Prieto Diaz,"Prieto Diaz, Sorsogon",Prieto Diaz,68
+1417,Santa Magdalena,"Santa Magdalena, Sorsogon",Santa Magdalena,68
+1418,Sorsogon City,"Sorsogon City, Sorsogon",Sorsogon City,68
+71,Bacacay,"Bacacay, Albay",Bacacay,5
+72,Camalig,"Camalig, Albay",Camalig,5
+73,Daraga (Locsin),"Daraga (Locsin), Albay",Daraga (Locsin),5
+74,Guinobatan,"Guinobatan, Albay",Guinobatan,5
+75,Jovellar,"Jovellar, Albay",Jovellar,5
+76,Legazpi,"Legazpi, Albay",Legazpi,5
+77,Libon,"Libon, Albay",Libon,5
+78,Ligao,"Ligao, Albay",Ligao,5
+79,Malilipot,"Malilipot, Albay",Malilipot,5
+80,Malinao,"Malinao, Albay",Malinao,5
+81,Manito,"Manito, Albay",Manito,5
+82,Oas,"Oas, Albay",Oas,5
+83,Pio Duran,"Pio Duran, Albay",Pio Duran,5
+84,Polangui,"Polangui, Albay",Polangui,5
+85,Rapu-Rapu,"Rapu-Rapu, Albay",Rapu-Rapu,5
+86,Santo Domingo,"Santo Domingo, Albay",Santo Domingo,5
+87,Tabaco,"Tabaco, Albay",Tabaco,5
+88,Tiwi,"Tiwi, Albay",Tiwi,5
+948,Aroroy,"Aroroy, Masbate",Aroroy,46
+949,Baleno,"Baleno, Masbate",Baleno,46
+950,Balud,"Balud, Masbate",Balud,46
+951,Batuan,"Batuan, Masbate",Batuan,46
+952,Cataingan,"Cataingan, Masbate",Cataingan,46
+953,Cawayan,"Cawayan, Masbate",Cawayan,46
+954,Claveria,"Claveria, Masbate",Claveria,46
+955,Dimasalang,"Dimasalang, Masbate",Dimasalang,46
+956,Esperanza,"Esperanza, Masbate",Esperanza,46
+957,Mandaon,"Mandaon, Masbate",Mandaon,46
+958,Masbate City,"Masbate City, Masbate",Masbate City,46
+959,Milagros,"Milagros, Masbate",Milagros,46
+960,Mobo,"Mobo, Masbate",Mobo,46
+961,Monreal,"Monreal, Masbate",Monreal,46
+962,Palanas,"Palanas, Masbate",Palanas,46
+963,Pio V. Corpuz (Limbuhan),"Pio V. Corpuz (Limbuhan), Masbate",Pio V. Corpuz (Limbuhan),46
+964,Placer,"Placer, Masbate",Placer,46
+965,San Fernando,"San Fernando, Masbate",San Fernando,46
+966,San Jacinto,"San Jacinto, Masbate",San Jacinto,46
+967,San Pascual,"San Pascual, Masbate",San Pascual,46
+968,Uson,"Uson, Masbate",Uson,46
+344,Baao,"Baao, Camarines Sur",Baao,20
+345,Balatan,"Balatan, Camarines Sur",Balatan,20
+346,Bato,"Bato, Camarines Sur",Bato,20
+347,Bombon,"Bombon, Camarines Sur",Bombon,20
+348,Buhi,"Buhi, Camarines Sur",Buhi,20
+349,Bula,"Bula, Camarines Sur",Bula,20
+350,Cabusao,"Cabusao, Camarines Sur",Cabusao,20
+351,Calabanga,"Calabanga, Camarines Sur",Calabanga,20
+352,Camaligan,"Camaligan, Camarines Sur",Camaligan,20
+353,Canaman,"Canaman, Camarines Sur",Canaman,20
+354,Caramoan,"Caramoan, Camarines Sur",Caramoan,20
+355,Del Gallego,"Del Gallego, Camarines Sur",Del Gallego,20
+356,Gainza,"Gainza, Camarines Sur",Gainza,20
+357,Garchitorena,"Garchitorena, Camarines Sur",Garchitorena,20
+358,Goa,"Goa, Camarines Sur",Goa,20
+359,Iriga,"Iriga, Camarines Sur",Iriga,20
+360,Lagonoy,"Lagonoy, Camarines Sur",Lagonoy,20
+361,Libmanan,"Libmanan, Camarines Sur",Libmanan,20
+362,Lupi,"Lupi, Camarines Sur",Lupi,20
+363,Magarao,"Magarao, Camarines Sur",Magarao,20
+364,Milaor,"Milaor, Camarines Sur",Milaor,20
+365,Minalabac,"Minalabac, Camarines Sur",Minalabac,20
+366,Nabua,"Nabua, Camarines Sur",Nabua,20
+367,Naga,"Naga, Camarines Sur",Naga,20
+368,Ocampo,"Ocampo, Camarines Sur",Ocampo,20
+369,Pamplona,"Pamplona, Camarines Sur",Pamplona,20
+370,Pasacao,"Pasacao, Camarines Sur",Pasacao,20
+371,Pili,"Pili, Camarines Sur",Pili,20
+372,Presentacion (Parubcan),"Presentacion (Parubcan), Camarines Sur",Presentacion (Parubcan),20
+373,Ragay,"Ragay, Camarines Sur",Ragay,20
+374,Sagñay,"Sagñay, Camarines Sur",Sagñay,20
+375,San Fernando,"San Fernando, Camarines Sur",San Fernando,20
+376,San Jose,"San Jose, Camarines Sur",San Jose,20
+377,Sipocot,"Sipocot, Camarines Sur",Sipocot,20
+378,Siruma,"Siruma, Camarines Sur",Siruma,20
+379,Tigaon,"Tigaon, Camarines Sur",Tigaon,20
+380,Tinambac,"Tinambac, Camarines Sur",Tinambac,20
+386,Cuartero,"Cuartero, Capiz",Cuartero,22
+387,Dao,"Dao, Capiz",Dao,22
+388,Dumalag,"Dumalag, Capiz",Dumalag,22
+389,Dumarao,"Dumarao, Capiz",Dumarao,22
+390,Ivisan,"Ivisan, Capiz",Ivisan,22
+391,Jamindan,"Jamindan, Capiz",Jamindan,22
+392,Maayon,"Maayon, Capiz",Maayon,22
+393,Mambusao,"Mambusao, Capiz",Mambusao,22
+394,Panay,"Panay, Capiz",Panay,22
+395,Panitan,"Panitan, Capiz",Panitan,22
+396,Pilar,"Pilar, Capiz",Pilar,22
+397,Pontevedra,"Pontevedra, Capiz",Pontevedra,22
+398,President Roxas,"President Roxas, Capiz",President Roxas,22
+399,Roxas City,"Roxas City, Capiz",Roxas City,22
+400,Sapian,"Sapian, Capiz",Sapian,22
+401,Sigma,"Sigma, Capiz",Sigma,22
+402,Tapaz,"Tapaz, Capiz",Tapaz,22
+54,Altavas,"Altavas, Aklan",Altavas,4
+55,Balete,"Balete, Aklan",Balete,4
+56,Banga,"Banga, Aklan",Banga,4
+57,Batan,"Batan, Aklan",Batan,4
+58,Buruanga,"Buruanga, Aklan",Buruanga,4
+59,Ibajay,"Ibajay, Aklan",Ibajay,4
+60,Kalibo,"Kalibo, Aklan",Kalibo,4
+61,Lezo,"Lezo, Aklan",Lezo,4
+62,Libacao,"Libacao, Aklan",Libacao,4
+63,Madalag,"Madalag, Aklan",Madalag,4
+64,Makato,"Makato, Aklan",Makato,4
+65,Malay,"Malay, Aklan",Malay,4
+66,Malinao,"Malinao, Aklan",Malinao,4
+67,Nabas,"Nabas, Aklan",Nabas,4
+68,New Washington,"New Washington, Aklan",New Washington,4
+69,Numancia,"Numancia, Aklan",Numancia,4
+70,Tangalan,"Tangalan, Aklan",Tangalan,4
+89,Anini-y,"Anini-y, Antique",Anini-y,6
+90,Barbaza,"Barbaza, Antique",Barbaza,6
+91,Belison,"Belison, Antique",Belison,6
+92,Bugasong,"Bugasong, Antique",Bugasong,6
+93,Caluya,"Caluya, Antique",Caluya,6
+94,Culasi,"Culasi, Antique",Culasi,6
+95,Hamtic,"Hamtic, Antique",Hamtic,6
+96,Laua-an,"Laua-an, Antique",Laua-an,6
+97,Libertad,"Libertad, Antique",Libertad,6
+98,Pandan,"Pandan, Antique",Pandan,6
+99,Patnongon,"Patnongon, Antique",Patnongon,6
+100,San Jose de Buenavista,"San Jose de Buenavista, Antique",San Jose de Buenavista,6
+101,San Remigio,"San Remigio, Antique",San Remigio,6
+102,Sebaste,"Sebaste, Antique",Sebaste,6
+103,Sibalom,"Sibalom, Antique",Sibalom,6
+104,Tibiao,"Tibiao, Antique",Tibiao,6
+105,Tobias Fornier (Dao),"Tobias Fornier (Dao), Antique",Tobias Fornier (Dao),6
+106,Valderrama,"Valderrama, Antique",Valderrama,6
+1039,Bacolod,"Bacolod, Negros Occidental",Bacolod,51
+1040,Bago,"Bago, Negros Occidental",Bago,51
+1041,Binalbagan,"Binalbagan, Negros Occidental",Binalbagan,51
+1042,Cadiz,"Cadiz, Negros Occidental",Cadiz,51
+1043,Calatrava,"Calatrava, Negros Occidental",Calatrava,51
+1044,Candoni,"Candoni, Negros Occidental",Candoni,51
+1045,Cauayan,"Cauayan, Negros Occidental",Cauayan,51
+1046,Enrique B. Magalona (Saravia),"Enrique B. Magalona (Saravia), Negros Occidental",Enrique B. Magalona (Saravia),51
+1047,Escalante,"Escalante, Negros Occidental",Escalante,51
+1048,Himamaylan,"Himamaylan, Negros Occidental",Himamaylan,51
+1049,Hinigaran,"Hinigaran, Negros Occidental",Hinigaran,51
+1050,Hinoba-an (Asia),"Hinoba-an (Asia), Negros Occidental",Hinoba-an (Asia),51
+1051,Ilog,"Ilog, Negros Occidental",Ilog,51
+1052,Isabela,"Isabela, Negros Occidental",Isabela,51
+1053,Kabankalan,"Kabankalan, Negros Occidental",Kabankalan,51
+1054,La Carlota,"La Carlota, Negros Occidental",La Carlota,51
+1055,La Castellana,"La Castellana, Negros Occidental",La Castellana,51
+1056,Manapla,"Manapla, Negros Occidental",Manapla,51
+1057,Moises Padilla (Magallon),"Moises Padilla (Magallon), Negros Occidental",Moises Padilla (Magallon),51
+1058,Murcia,"Murcia, Negros Occidental",Murcia,51
+1059,Pontevedra,"Pontevedra, Negros Occidental",Pontevedra,51
+1060,Pulupandan,"Pulupandan, Negros Occidental",Pulupandan,51
+1061,Sagay,"Sagay, Negros Occidental",Sagay,51
+1062,Salvador Benedicto,"Salvador Benedicto, Negros Occidental",Salvador Benedicto,51
+1063,San Carlos,"San Carlos, Negros Occidental",San Carlos,51
+1064,San Enrique,"San Enrique, Negros Occidental",San Enrique,51
+1065,Silay,"Silay, Negros Occidental",Silay,51
+1066,Sipalay,"Sipalay, Negros Occidental",Sipalay,51
+1067,Talisay,"Talisay, Negros Occidental",Talisay,51
+1068,Toboso,"Toboso, Negros Occidental",Toboso,51
+1069,Valladolid,"Valladolid, Negros Occidental",Valladolid,51
+1070,Victorias,"Victorias, Negros Occidental",Victorias,51
+660,Ajuy,"Ajuy, Iloilo",Ajuy,36
+661,Alimodian,"Alimodian, Iloilo",Alimodian,36
+662,Anilao,"Anilao, Iloilo",Anilao,36
+663,Badiangan,"Badiangan, Iloilo",Badiangan,36
+664,Balasan,"Balasan, Iloilo",Balasan,36
+665,Banate,"Banate, Iloilo",Banate,36
+666,Barotac Nuevo,"Barotac Nuevo, Iloilo",Barotac Nuevo,36
+667,Barotac Viejo,"Barotac Viejo, Iloilo",Barotac Viejo,36
+668,Batad,"Batad, Iloilo",Batad,36
+669,Bingawan,"Bingawan, Iloilo",Bingawan,36
+670,Cabatuan,"Cabatuan, Iloilo",Cabatuan,36
+671,Calinog,"Calinog, Iloilo",Calinog,36
+672,Carles,"Carles, Iloilo",Carles,36
+673,Concepcion,"Concepcion, Iloilo",Concepcion,36
+674,Dingle,"Dingle, Iloilo",Dingle,36
+675,Dueñas,"Dueñas, Iloilo",Dueñas,36
+676,Dumangas,"Dumangas, Iloilo",Dumangas,36
+677,Estancia,"Estancia, Iloilo",Estancia,36
+678,Guimbal,"Guimbal, Iloilo",Guimbal,36
+679,Igbaras,"Igbaras, Iloilo",Igbaras,36
+680,Iloilo City,"Iloilo City, Iloilo",Iloilo City,36
+681,Janiuay,"Janiuay, Iloilo",Janiuay,36
+682,Lambunao,"Lambunao, Iloilo",Lambunao,36
+683,Leganes,"Leganes, Iloilo",Leganes,36
+684,Lemery,"Lemery, Iloilo",Lemery,36
+685,Leon,"Leon, Iloilo",Leon,36
+686,Maasin,"Maasin, Iloilo",Maasin,36
+687,Miagao,"Miagao, Iloilo",Miagao,36
+688,Mina,"Mina, Iloilo",Mina,36
+689,New Lucena,"New Lucena, Iloilo",New Lucena,36
+690,Oton,"Oton, Iloilo",Oton,36
+691,Passi,"Passi, Iloilo",Passi,36
+692,Pavia,"Pavia, Iloilo",Pavia,36
+693,Pototan,"Pototan, Iloilo",Pototan,36
+694,San Dionisio,"San Dionisio, Iloilo",San Dionisio,36
+695,San Enrique,"San Enrique, Iloilo",San Enrique,36
+696,San Joaquin,"San Joaquin, Iloilo",San Joaquin,36
+697,San Miguel,"San Miguel, Iloilo",San Miguel,36
+698,San Rafael,"San Rafael, Iloilo",San Rafael,36
+699,Santa Barbara,"Santa Barbara, Iloilo",Santa Barbara,36
+700,Sara,"Sara, Iloilo",Sara,36
+701,Tigbauan,"Tigbauan, Iloilo",Tigbauan,36
+702,Tubungan,"Tubungan, Iloilo",Tubungan,36
+703,Zarraga,"Zarraga, Iloilo",Zarraga,36
+587,Buenavista,"Buenavista, Guimaras",Buenavista,32
+588,Jordan,"Jordan, Guimaras",Jordan,32
+589,Nueva Valencia,"Nueva Valencia, Guimaras",Nueva Valencia,32
+590,San Lorenzo,"San Lorenzo, Guimaras",San Lorenzo,32
+591,Sibunag,"Sibunag, Guimaras",Sibunag,32
+1071,Amlan (Ayuquitan),"Amlan (Ayuquitan), Negros Oriental",Amlan (Ayuquitan),52
+1072,Ayungon,"Ayungon, Negros Oriental",Ayungon,52
+1073,Bacong,"Bacong, Negros Oriental",Bacong,52
+1074,Bais,"Bais, Negros Oriental",Bais,52
+1075,Basay,"Basay, Negros Oriental",Basay,52
+1076,Bayawan (Tulong),"Bayawan (Tulong), Negros Oriental",Bayawan (Tulong),52
+1077,Bindoy (Payabon),"Bindoy (Payabon), Negros Oriental",Bindoy (Payabon),52
+1078,Canlaon,"Canlaon, Negros Oriental",Canlaon,52
+1079,Dauin,"Dauin, Negros Oriental",Dauin,52
+1080,Dumaguete,"Dumaguete, Negros Oriental",Dumaguete,52
+1081,Guihulngan,"Guihulngan, Negros Oriental",Guihulngan,52
+1082,Jimalalud,"Jimalalud, Negros Oriental",Jimalalud,52
+1083,La Libertad,"La Libertad, Negros Oriental",La Libertad,52
+1084,Mabinay,"Mabinay, Negros Oriental",Mabinay,52
+1085,Manjuyod,"Manjuyod, Negros Oriental",Manjuyod,52
+1086,Pamplona,"Pamplona, Negros Oriental",Pamplona,52
+1087,San Jose,"San Jose, Negros Oriental",San Jose,52
+1088,Santa Catalina,"Santa Catalina, Negros Oriental",Santa Catalina,52
+1089,Siaton,"Siaton, Negros Oriental",Siaton,52
+1090,Sibulan,"Sibulan, Negros Oriental",Sibulan,52
+1091,Tanjay,"Tanjay, Negros Oriental",Tanjay,52
+1092,Tayasan,"Tayasan, Negros Oriental",Tayasan,52
+1093,Valencia (Luzurriaga),"Valencia (Luzurriaga), Negros Oriental",Valencia (Luzurriaga),52
+1094,Vallehermoso,"Vallehermoso, Negros Oriental",Vallehermoso,52
+1095,Zamboanguita,"Zamboanguita, Negros Oriental",Zamboanguita,52
+437,Alcantara,"Alcantara, Cebu",Alcantara,25
+438,Alcoy,"Alcoy, Cebu",Alcoy,25
+439,Alegria,"Alegria, Cebu",Alegria,25
+440,Aloguinsan,"Aloguinsan, Cebu",Aloguinsan,25
+441,Argao,"Argao, Cebu",Argao,25
+442,Asturias,"Asturias, Cebu",Asturias,25
+443,Badian,"Badian, Cebu",Badian,25
+444,Balamban,"Balamban, Cebu",Balamban,25
+445,Bantayan,"Bantayan, Cebu",Bantayan,25
+446,Barili,"Barili, Cebu",Barili,25
+447,Bogo,"Bogo, Cebu",Bogo,25
+448,Boljoon,"Boljoon, Cebu",Boljoon,25
+449,Borbon,"Borbon, Cebu",Borbon,25
+450,Carcar,"Carcar, Cebu",Carcar,25
+451,Carmen,"Carmen, Cebu",Carmen,25
+452,Catmon,"Catmon, Cebu",Catmon,25
+453,Cebu City,"Cebu City, Cebu",Cebu City,25
+454,Compostela,"Compostela, Cebu",Compostela,25
+455,Consolacion,"Consolacion, Cebu",Consolacion,25
+456,Cordova,"Cordova, Cebu",Cordova,25
+457,Daanbantayan,"Daanbantayan, Cebu",Daanbantayan,25
+458,Dalaguete,"Dalaguete, Cebu",Dalaguete,25
+459,Danao,"Danao, Cebu",Danao,25
+460,Dumanjug,"Dumanjug, Cebu",Dumanjug,25
+461,Ginatilan,"Ginatilan, Cebu",Ginatilan,25
+462,Lapu-Lapu (Opon),"Lapu-Lapu (Opon), Cebu",Lapu-Lapu (Opon),25
+463,Liloan,"Liloan, Cebu",Liloan,25
+464,Madridejos,"Madridejos, Cebu",Madridejos,25
+465,Malabuyoc,"Malabuyoc, Cebu",Malabuyoc,25
+466,Mandaue,"Mandaue, Cebu",Mandaue,25
+467,Medellin,"Medellin, Cebu",Medellin,25
+468,Minglanilla,"Minglanilla, Cebu",Minglanilla,25
+469,Moalboal,"Moalboal, Cebu",Moalboal,25
+470,Naga,"Naga, Cebu",Naga,25
+471,Oslob,"Oslob, Cebu",Oslob,25
+472,Pilar,"Pilar, Cebu",Pilar,25
+473,Pinamungajan,"Pinamungajan, Cebu",Pinamungajan,25
+474,Poro,"Poro, Cebu",Poro,25
+475,Ronda,"Ronda, Cebu",Ronda,25
+476,Samboan,"Samboan, Cebu",Samboan,25
+477,San Fernando,"San Fernando, Cebu",San Fernando,25
+478,San Francisco,"San Francisco, Cebu",San Francisco,25
+479,San Remigio,"San Remigio, Cebu",San Remigio,25
+480,Santa Fe,"Santa Fe, Cebu",Santa Fe,25
+481,Santander,"Santander, Cebu",Santander,25
+482,Sibonga,"Sibonga, Cebu",Sibonga,25
+483,Sogod,"Sogod, Cebu",Sogod,25
+484,Tabogon,"Tabogon, Cebu",Tabogon,25
+485,Tabuelan,"Tabuelan, Cebu",Tabuelan,25
+486,Talisay,"Talisay, Cebu",Talisay,25
+487,Toledo,"Toledo, Cebu",Toledo,25
+488,Tuburan,"Tuburan, Cebu",Tuburan,25
+489,Tudela,"Tudela, Cebu",Tudela,25
+209,Alburquerque,"Alburquerque, Bohol",Alburquerque,15
+210,Alicia,"Alicia, Bohol",Alicia,15
+211,Anda,"Anda, Bohol",Anda,15
+212,Antequera,"Antequera, Bohol",Antequera,15
+213,Baclayon,"Baclayon, Bohol",Baclayon,15
+214,Balilihan,"Balilihan, Bohol",Balilihan,15
+215,Batuan,"Batuan, Bohol",Batuan,15
+216,Bien Unido,"Bien Unido, Bohol",Bien Unido,15
+217,Bilar,"Bilar, Bohol",Bilar,15
+218,Buenavista,"Buenavista, Bohol",Buenavista,15
+219,Calape,"Calape, Bohol",Calape,15
+220,Candijay,"Candijay, Bohol",Candijay,15
+221,Carmen,"Carmen, Bohol",Carmen,15
+222,Catigbian,"Catigbian, Bohol",Catigbian,15
+223,Clarin,"Clarin, Bohol",Clarin,15
+224,Corella,"Corella, Bohol",Corella,15
+225,Cortes,"Cortes, Bohol",Cortes,15
+226,Dagohoy,"Dagohoy, Bohol",Dagohoy,15
+227,Danao,"Danao, Bohol",Danao,15
+228,Dauis,"Dauis, Bohol",Dauis,15
+229,Dimiao,"Dimiao, Bohol",Dimiao,15
+230,Duero,"Duero, Bohol",Duero,15
+231,Garcia Hernandez,"Garcia Hernandez, Bohol",Garcia Hernandez,15
+232,Getafe,"Getafe, Bohol",Getafe,15
+233,Guindulman,"Guindulman, Bohol",Guindulman,15
+234,Inabanga,"Inabanga, Bohol",Inabanga,15
+235,Jagna,"Jagna, Bohol",Jagna,15
+236,Lila,"Lila, Bohol",Lila,15
+237,Loay,"Loay, Bohol",Loay,15
+238,Loboc,"Loboc, Bohol",Loboc,15
+239,Loon,"Loon, Bohol",Loon,15
+240,Mabini,"Mabini, Bohol",Mabini,15
+241,Maribojoc,"Maribojoc, Bohol",Maribojoc,15
+242,Panglao,"Panglao, Bohol",Panglao,15
+243,Pilar,"Pilar, Bohol",Pilar,15
+244,President Carlos P. Garcia (Pitogo),"President Carlos P. Garcia (Pitogo), Bohol",President Carlos P. Garcia (Pitogo),15
+245,Sagbayan (Borja),"Sagbayan (Borja), Bohol",Sagbayan (Borja),15
+246,San Isidro,"San Isidro, Bohol",San Isidro,15
+247,San Miguel,"San Miguel, Bohol",San Miguel,15
+248,Sevilla,"Sevilla, Bohol",Sevilla,15
+249,Sierra Bullones,"Sierra Bullones, Bohol",Sierra Bullones,15
+250,Sikatuna,"Sikatuna, Bohol",Sikatuna,15
+251,Tagbilaran,"Tagbilaran, Bohol",Tagbilaran,15
+252,Talibon,"Talibon, Bohol",Talibon,15
+253,Trinidad,"Trinidad, Bohol",Trinidad,15
+254,Tubigon,"Tubigon, Bohol",Tubigon,15
+255,Ubay,"Ubay, Bohol",Ubay,15
+256,Valencia,"Valencia, Bohol",Valencia,15
+1398,Enrique Villanueva,"Enrique Villanueva, Siquijor",Enrique Villanueva,67
+1399,Larena,"Larena, Siquijor",Larena,67
+1400,Lazi,"Lazi, Siquijor",Lazi,67
+1401,Maria,"Maria, Siquijor",Maria,67
+1402,San Juan,"San Juan, Siquijor",San Juan,67
+1403,Siquijor,"Siquijor, Siquijor",Siquijor,67
+1431,Anahawan,"Anahawan, Southern Leyte",Anahawan,70
+1432,Bontoc,"Bontoc, Southern Leyte",Bontoc,70
+1433,Hinunangan,"Hinunangan, Southern Leyte",Hinunangan,70
+1434,Hinundayan,"Hinundayan, Southern Leyte",Hinundayan,70
+1435,Libagon,"Libagon, Southern Leyte",Libagon,70
+1436,Liloan,"Liloan, Southern Leyte",Liloan,70
+1437,Limasawa,"Limasawa, Southern Leyte",Limasawa,70
+1438,Maasin,"Maasin, Southern Leyte",Maasin,70
+1439,Macrohon,"Macrohon, Southern Leyte",Macrohon,70
+1440,Malitbog,"Malitbog, Southern Leyte",Malitbog,70
+1441,Padre Burgos,"Padre Burgos, Southern Leyte",Padre Burgos,70
+1442,Pintuyan,"Pintuyan, Southern Leyte",Pintuyan,70
+1443,Saint Bernard,"Saint Bernard, Southern Leyte",Saint Bernard,70
+1444,San Francisco,"San Francisco, Southern Leyte",San Francisco,70
+1445,San Juan (Cabalian),"San Juan (Cabalian), Southern Leyte",San Juan (Cabalian),70
+1446,San Ricardo,"San Ricardo, Southern Leyte",San Ricardo,70
+1447,Silago,"Silago, Southern Leyte",Silago,70
+1448,Sogod,"Sogod, Southern Leyte",Sogod,70
+1449,Tomas Oppus,"Tomas Oppus, Southern Leyte",Tomas Oppus,70
+564,Arteche,"Arteche, Eastern Samar",Arteche,31
+565,Balangiga,"Balangiga, Eastern Samar",Balangiga,31
+566,Balangkayan,"Balangkayan, Eastern Samar",Balangkayan,31
+567,Borongan,"Borongan, Eastern Samar",Borongan,31
+568,Can-avid,"Can-avid, Eastern Samar",Can-avid,31
+569,Dolores,"Dolores, Eastern Samar",Dolores,31
+570,General MacArthur,"General MacArthur, Eastern Samar",General MacArthur,31
+571,Giporlos,"Giporlos, Eastern Samar",Giporlos,31
+572,Guiuan,"Guiuan, Eastern Samar",Guiuan,31
+573,Hernani,"Hernani, Eastern Samar",Hernani,31
+574,Jipapad,"Jipapad, Eastern Samar",Jipapad,31
+575,Lawaan,"Lawaan, Eastern Samar",Lawaan,31
+576,Llorente,"Llorente, Eastern Samar",Llorente,31
+577,Maslog,"Maslog, Eastern Samar",Maslog,31
+578,Maydolong,"Maydolong, Eastern Samar",Maydolong,31
+579,Mercedes,"Mercedes, Eastern Samar",Mercedes,31
+580,Oras,"Oras, Eastern Samar",Oras,31
+581,Quinapondan,"Quinapondan, Eastern Samar",Quinapondan,31
+582,Salcedo,"Salcedo, Eastern Samar",Salcedo,31
+583,San Julian,"San Julian, Eastern Samar",San Julian,31
+584,San Policarpo,"San Policarpo, Eastern Samar",San Policarpo,31
+585,Sulat,"Sulat, Eastern Samar",Sulat,31
+586,Taft,"Taft, Eastern Samar",Taft,31
+1096,Allen,"Allen, Northern Samar",Allen,53
+1097,Biri,"Biri, Northern Samar",Biri,53
+1098,Bobon,"Bobon, Northern Samar",Bobon,53
+1099,Capul,"Capul, Northern Samar",Capul,53
+1100,Catarman,"Catarman, Northern Samar",Catarman,53
+1101,Catubig,"Catubig, Northern Samar",Catubig,53
+1102,Gamay,"Gamay, Northern Samar",Gamay,53
+1103,Laoang,"Laoang, Northern Samar",Laoang,53
+1104,Lapinig,"Lapinig, Northern Samar",Lapinig,53
+1105,Las Navas,"Las Navas, Northern Samar",Las Navas,53
+1106,Lavezares,"Lavezares, Northern Samar",Lavezares,53
+1107,Lope de Vega,"Lope de Vega, Northern Samar",Lope de Vega,53
+1108,Mapanas,"Mapanas, Northern Samar",Mapanas,53
+1109,Mondragon,"Mondragon, Northern Samar",Mondragon,53
+1110,Palapag,"Palapag, Northern Samar",Palapag,53
+1111,Pambujan,"Pambujan, Northern Samar",Pambujan,53
+1112,Rosario,"Rosario, Northern Samar",Rosario,53
+1113,San Antonio,"San Antonio, Northern Samar",San Antonio,53
+1114,San Isidro,"San Isidro, Northern Samar",San Isidro,53
+1115,San Jose,"San Jose, Northern Samar",San Jose,53
+1116,San Roque,"San Roque, Northern Samar",San Roque,53
+1117,San Vicente,"San Vicente, Northern Samar",San Vicente,53
+1118,Silvino Lobos,"Silvino Lobos, Northern Samar",Silvino Lobos,53
+1119,Victoria,"Victoria, Northern Samar",Victoria,53
+1365,Almagro,"Almagro, Samar",Almagro,65
+1366,Basey,"Basey, Samar",Basey,65
+1367,Calbayog,"Calbayog, Samar",Calbayog,65
+1368,Calbiga,"Calbiga, Samar",Calbiga,65
+1369,Catbalogan,"Catbalogan, Samar",Catbalogan,65
+1370,Daram,"Daram, Samar",Daram,65
+1371,Gandara,"Gandara, Samar",Gandara,65
+1372,Hinabangan,"Hinabangan, Samar",Hinabangan,65
+1373,Jiabong,"Jiabong, Samar",Jiabong,65
+1374,Marabut,"Marabut, Samar",Marabut,65
+1375,Matuguinao,"Matuguinao, Samar",Matuguinao,65
+1376,Motiong,"Motiong, Samar",Motiong,65
+1377,Pagsanghan,"Pagsanghan, Samar",Pagsanghan,65
+1378,Paranas (Wright),"Paranas (Wright), Samar",Paranas (Wright),65
+1379,Pinabacdao,"Pinabacdao, Samar",Pinabacdao,65
+1380,San Jorge,"San Jorge, Samar",San Jorge,65
+1381,San Jose de Buan,"San Jose de Buan, Samar",San Jose de Buan,65
+1382,San Sebastian,"San Sebastian, Samar",San Sebastian,65
+1383,Santa Margarita,"Santa Margarita, Samar",Santa Margarita,65
+1384,Santa Rita,"Santa Rita, Samar",Santa Rita,65
+1385,Santo Niño,"Santo Niño, Samar",Santo Niño,65
+1386,Tagapul-an,"Tagapul-an, Samar",Tagapul-an,65
+1387,Talalora,"Talalora, Samar",Talalora,65
+1388,Tarangnan,"Tarangnan, Samar",Tarangnan,65
+1389,Villareal,"Villareal, Samar",Villareal,65
+1390,Zumarraga,"Zumarraga, Samar",Zumarraga,65
+862,Abuyog,"Abuyog, Leyte",Abuyog,43
+863,Alangalang,"Alangalang, Leyte",Alangalang,43
+864,Albuera,"Albuera, Leyte",Albuera,43
+865,Babatngon,"Babatngon, Leyte",Babatngon,43
+866,Barugo,"Barugo, Leyte",Barugo,43
+867,Bato,"Bato, Leyte",Bato,43
+868,Baybay,"Baybay, Leyte",Baybay,43
+869,Burauen,"Burauen, Leyte",Burauen,43
+870,Calubian,"Calubian, Leyte",Calubian,43
+871,Capoocan,"Capoocan, Leyte",Capoocan,43
+872,Carigara,"Carigara, Leyte",Carigara,43
+873,Dagami,"Dagami, Leyte",Dagami,43
+874,Dulag,"Dulag, Leyte",Dulag,43
+875,Hilongos,"Hilongos, Leyte",Hilongos,43
+876,Hindang,"Hindang, Leyte",Hindang,43
+877,Inopacan,"Inopacan, Leyte",Inopacan,43
+878,Isabel,"Isabel, Leyte",Isabel,43
+879,Jaro,"Jaro, Leyte",Jaro,43
+880,Javier (Bugho),"Javier (Bugho), Leyte",Javier (Bugho),43
+881,Julita,"Julita, Leyte",Julita,43
+882,Kananga,"Kananga, Leyte",Kananga,43
+883,La Paz,"La Paz, Leyte",La Paz,43
+884,Leyte,"Leyte, Leyte",Leyte,43
+885,MacArthur,"MacArthur, Leyte",MacArthur,43
+886,Mahaplag,"Mahaplag, Leyte",Mahaplag,43
+887,Matag-ob,"Matag-ob, Leyte",Matag-ob,43
+888,Matalom,"Matalom, Leyte",Matalom,43
+889,Mayorga,"Mayorga, Leyte",Mayorga,43
+890,Merida,"Merida, Leyte",Merida,43
+891,Ormoc,"Ormoc, Leyte",Ormoc,43
+892,Palo,"Palo, Leyte",Palo,43
+893,Palompon,"Palompon, Leyte",Palompon,43
+894,Pastrana,"Pastrana, Leyte",Pastrana,43
+895,San Isidro,"San Isidro, Leyte",San Isidro,43
+896,San Miguel,"San Miguel, Leyte",San Miguel,43
+897,Santa Fe,"Santa Fe, Leyte",Santa Fe,43
+898,Tabango,"Tabango, Leyte",Tabango,43
+899,Tabontabon,"Tabontabon, Leyte",Tabontabon,43
+900,Tacloban,"Tacloban, Leyte",Tacloban,43
+901,Tanauan,"Tanauan, Leyte",Tanauan,43
+902,Tolosa,"Tolosa, Leyte",Tolosa,43
+903,Tunga,"Tunga, Leyte",Tunga,43
+904,Villaba,"Villaba, Leyte",Villaba,43
+201,Almeria,"Almeria, Biliran",Almeria,14
+202,Biliran,"Biliran, Biliran",Biliran,14
+203,Cabucgayan,"Cabucgayan, Biliran",Cabucgayan,14
+204,Caibiran,"Caibiran, Biliran",Caibiran,14
+205,Culaba,"Culaba, Biliran",Culaba,14
+206,Kawayan,"Kawayan, Biliran",Kawayan,14
+207,Maripipi,"Maripipi, Biliran",Maripipi,14
+208,Naval,"Naval, Biliran",Naval,14
+1619,Alicia,"Alicia, Zamboanga Sibugay",Alicia,80
+1620,Buug,"Buug, Zamboanga Sibugay",Buug,80
+1621,Diplahan,"Diplahan, Zamboanga Sibugay",Diplahan,80
+1622,Imelda,"Imelda, Zamboanga Sibugay",Imelda,80
+1623,Ipil,"Ipil, Zamboanga Sibugay",Ipil,80
+1624,Kabasalan,"Kabasalan, Zamboanga Sibugay",Kabasalan,80
+1625,Mabuhay,"Mabuhay, Zamboanga Sibugay",Mabuhay,80
+1626,Malangas,"Malangas, Zamboanga Sibugay",Malangas,80
+1627,Naga,"Naga, Zamboanga Sibugay",Naga,80
+1628,Olutanga,"Olutanga, Zamboanga Sibugay",Olutanga,80
+1629,Payao,"Payao, Zamboanga Sibugay",Payao,80
+1630,Roseller Lim,"Roseller Lim, Zamboanga Sibugay",Roseller Lim,80
+1631,Siay,"Siay, Zamboanga Sibugay",Siay,80
+1632,Talusan,"Talusan, Zamboanga Sibugay",Talusan,80
+1633,Titay,"Titay, Zamboanga Sibugay",Titay,80
+1634,Tungawan,"Tungawan, Zamboanga Sibugay",Tungawan,80
+1564,Baliguian,"Baliguian, Zamboanga del Norte",Baliguian,78
+1565,Dapitan,"Dapitan, Zamboanga del Norte",Dapitan,78
+1566,Dipolog,"Dipolog, Zamboanga del Norte",Dipolog,78
+1567,Godod,"Godod, Zamboanga del Norte",Godod,78
+1568,Gutalac,"Gutalac, Zamboanga del Norte",Gutalac,78
+1569,Jose Dalman (Ponot),"Jose Dalman (Ponot), Zamboanga del Norte",Jose Dalman (Ponot),78
+1570,Kalawit,"Kalawit, Zamboanga del Norte",Kalawit,78
+1571,Katipunan,"Katipunan, Zamboanga del Norte",Katipunan,78
+1572,La Libertad,"La Libertad, Zamboanga del Norte",La Libertad,78
+1573,Labason,"Labason, Zamboanga del Norte",Labason,78
+1574,Leon B. Postigo (Bacungan),"Leon B. Postigo (Bacungan), Zamboanga del Norte",Leon B. Postigo (Bacungan),78
+1575,Liloy,"Liloy, Zamboanga del Norte",Liloy,78
+1576,Manukan,"Manukan, Zamboanga del Norte",Manukan,78
+1577,Mutia,"Mutia, Zamboanga del Norte",Mutia,78
+1578,Piñan (New Piñan),"Piñan (New Piñan), Zamboanga del Norte",Piñan (New Piñan),78
+1579,Polanco,"Polanco, Zamboanga del Norte",Polanco,78
+1580,President Manuel A. Roxas,"President Manuel A. Roxas, Zamboanga del Norte",President Manuel A. Roxas,78
+1581,Rizal,"Rizal, Zamboanga del Norte",Rizal,78
+1582,Salug,"Salug, Zamboanga del Norte",Salug,78
+1583,Sergio Osmeña Sr.,"Sergio Osmeña Sr., Zamboanga del Norte",Sergio Osmeña Sr.,78
+1584,Siayan,"Siayan, Zamboanga del Norte",Siayan,78
+1585,Sibuco,"Sibuco, Zamboanga del Norte",Sibuco,78
+1586,Sibutad,"Sibutad, Zamboanga del Norte",Sibutad,78
+1587,Sindangan,"Sindangan, Zamboanga del Norte",Sindangan,78
+1588,Siocon,"Siocon, Zamboanga del Norte",Siocon,78
+1589,Sirawai,"Sirawai, Zamboanga del Norte",Sirawai,78
+1590,Tampilisan,"Tampilisan, Zamboanga del Norte",Tampilisan,78
+1591,Aurora,"Aurora, Zamboanga del Sur",Aurora,79
+1592,Bayog,"Bayog, Zamboanga del Sur",Bayog,79
+1593,Dimataling,"Dimataling, Zamboanga del Sur",Dimataling,79
+1594,Dinas,"Dinas, Zamboanga del Sur",Dinas,79
+1595,Dumalinao,"Dumalinao, Zamboanga del Sur",Dumalinao,79
+1596,Dumingag,"Dumingag, Zamboanga del Sur",Dumingag,79
+1597,Guipos,"Guipos, Zamboanga del Sur",Guipos,79
+1598,Josefina,"Josefina, Zamboanga del Sur",Josefina,79
+1599,Kumalarang,"Kumalarang, Zamboanga del Sur",Kumalarang,79
+1600,Labangan,"Labangan, Zamboanga del Sur",Labangan,79
+1601,Lakewood,"Lakewood, Zamboanga del Sur",Lakewood,79
+1602,Lapuyan,"Lapuyan, Zamboanga del Sur",Lapuyan,79
+1603,Mahayag,"Mahayag, Zamboanga del Sur",Mahayag,79
+1604,Margosatubig,"Margosatubig, Zamboanga del Sur",Margosatubig,79
+1605,Midsalip,"Midsalip, Zamboanga del Sur",Midsalip,79
+1606,Molave,"Molave, Zamboanga del Sur",Molave,79
+1607,Pagadian,"Pagadian, Zamboanga del Sur",Pagadian,79
+1608,Pitogo,"Pitogo, Zamboanga del Sur",Pitogo,79
+1609,Ramon Magsaysay (Liargo),"Ramon Magsaysay (Liargo), Zamboanga del Sur",Ramon Magsaysay (Liargo),79
+1610,San Miguel,"San Miguel, Zamboanga del Sur",San Miguel,79
+1611,San Pablo,"San Pablo, Zamboanga del Sur",San Pablo,79
+1612,Sominot (Don Mariano Marcos),"Sominot (Don Mariano Marcos), Zamboanga del Sur",Sominot (Don Mariano Marcos),79
+1613,Tabina,"Tabina, Zamboanga del Sur",Tabina,79
+1614,Tambulig,"Tambulig, Zamboanga del Sur",Tambulig,79
+1615,Tigbao,"Tigbao, Zamboanga del Sur",Tigbao,79
+1616,Tukuran,"Tukuran, Zamboanga del Sur",Tukuran,79
+1617,Vincenzo A. Sagun,"Vincenzo A. Sagun, Zamboanga del Sur",Vincenzo A. Sagun,79
+1618,Zamboanga City,"Zamboanga City, Zamboanga del Sur",Zamboanga City,79
+969,Aloran,"Aloran, Misamis Occidental",Aloran,48
+970,Baliangao,"Baliangao, Misamis Occidental",Baliangao,48
+971,Bonifacio,"Bonifacio, Misamis Occidental",Bonifacio,48
+972,Calamba,"Calamba, Misamis Occidental",Calamba,48
+973,Clarin,"Clarin, Misamis Occidental",Clarin,48
+974,Concepcion,"Concepcion, Misamis Occidental",Concepcion,48
+975,Don Victoriano Chiongbian (Don Mariano Marcos),"Don Victoriano Chiongbian (Don Mariano Marcos), Misamis Occidental",Don Victoriano Chiongbian (Don Mariano Marcos),48
+976,Jimenez,"Jimenez, Misamis Occidental",Jimenez,48
+977,Lopez Jaena,"Lopez Jaena, Misamis Occidental",Lopez Jaena,48
+978,Oroquieta,"Oroquieta, Misamis Occidental",Oroquieta,48
+979,Ozamiz,"Ozamiz, Misamis Occidental",Ozamiz,48
+980,Panaon,"Panaon, Misamis Occidental",Panaon,48
+981,Plaridel,"Plaridel, Misamis Occidental",Plaridel,48
+982,Sapang Dalaga,"Sapang Dalaga, Misamis Occidental",Sapang Dalaga,48
+983,Sinacaban,"Sinacaban, Misamis Occidental",Sinacaban,48
+984,Tangub,"Tangub, Misamis Occidental",Tangub,48
+985,Tudela,"Tudela, Misamis Occidental",Tudela,48
+257,Baungon,"Baungon, Bukidnon",Baungon,16
+258,Cabanglasan,"Cabanglasan, Bukidnon",Cabanglasan,16
+259,Damulog,"Damulog, Bukidnon",Damulog,16
+260,Dangcagan,"Dangcagan, Bukidnon",Dangcagan,16
+261,Don Carlos,"Don Carlos, Bukidnon",Don Carlos,16
+262,Impasugong,"Impasugong, Bukidnon",Impasugong,16
+263,Kadingilan,"Kadingilan, Bukidnon",Kadingilan,16
+264,Kalilangan,"Kalilangan, Bukidnon",Kalilangan,16
+265,Kibawe,"Kibawe, Bukidnon",Kibawe,16
+266,Kitaotao,"Kitaotao, Bukidnon",Kitaotao,16
+267,Lantapan,"Lantapan, Bukidnon",Lantapan,16
+268,Libona,"Libona, Bukidnon",Libona,16
+269,Malaybalay,"Malaybalay, Bukidnon",Malaybalay,16
+270,Malitbog,"Malitbog, Bukidnon",Malitbog,16
+271,Manolo Fortich,"Manolo Fortich, Bukidnon",Manolo Fortich,16
+272,Maramag,"Maramag, Bukidnon",Maramag,16
+273,Pangantucan,"Pangantucan, Bukidnon",Pangantucan,16
+274,Quezon,"Quezon, Bukidnon",Quezon,16
+275,San Fernando,"San Fernando, Bukidnon",San Fernando,16
+276,Sumilao,"Sumilao, Bukidnon",Sumilao,16
+277,Talakag,"Talakag, Bukidnon",Talakag,16
+278,Valencia,"Valencia, Bukidnon",Valencia,16
+799,Bacolod,"Bacolod, Lanao del Norte",Bacolod,41
+800,Baloi,"Baloi, Lanao del Norte",Baloi,41
+801,Baroy,"Baroy, Lanao del Norte",Baroy,41
+802,Iligan,"Iligan, Lanao del Norte",Iligan,41
+803,Kapatagan,"Kapatagan, Lanao del Norte",Kapatagan,41
+804,Kauswagan,"Kauswagan, Lanao del Norte",Kauswagan,41
+805,Kolambugan,"Kolambugan, Lanao del Norte",Kolambugan,41
+806,Lala,"Lala, Lanao del Norte",Lala,41
+807,Linamon,"Linamon, Lanao del Norte",Linamon,41
+808,Magsaysay,"Magsaysay, Lanao del Norte",Magsaysay,41
+809,Maigo,"Maigo, Lanao del Norte",Maigo,41
+810,Matungao,"Matungao, Lanao del Norte",Matungao,41
+811,Munai,"Munai, Lanao del Norte",Munai,41
+812,Nunungan,"Nunungan, Lanao del Norte",Nunungan,41
+813,Pantao Ragat,"Pantao Ragat, Lanao del Norte",Pantao Ragat,41
+814,Pantar,"Pantar, Lanao del Norte",Pantar,41
+815,Poona Piagapo,"Poona Piagapo, Lanao del Norte",Poona Piagapo,41
+816,Salvador,"Salvador, Lanao del Norte",Salvador,41
+817,Sapad,"Sapad, Lanao del Norte",Sapad,41
+818,Sultan Naga Dimaporo (Karomatan),"Sultan Naga Dimaporo (Karomatan), Lanao del Norte",Sultan Naga Dimaporo (Karomatan),41
+819,Tagoloan,"Tagoloan, Lanao del Norte",Tagoloan,41
+820,Tangcal,"Tangcal, Lanao del Norte",Tangcal,41
+821,Tubod,"Tubod, Lanao del Norte",Tubod,41
+986,Alubijid,"Alubijid, Misamis Oriental",Alubijid,49
+987,Balingasag,"Balingasag, Misamis Oriental",Balingasag,49
+988,Balingoan,"Balingoan, Misamis Oriental",Balingoan,49
+989,Binuangan,"Binuangan, Misamis Oriental",Binuangan,49
+990,Cagayan de Oro,"Cagayan de Oro, Misamis Oriental",Cagayan de Oro,49
+991,Claveria,"Claveria, Misamis Oriental",Claveria,49
+992,El Salvador,"El Salvador, Misamis Oriental",El Salvador,49
+993,Gingoog,"Gingoog, Misamis Oriental",Gingoog,49
+994,Gitagum,"Gitagum, Misamis Oriental",Gitagum,49
+995,Initao,"Initao, Misamis Oriental",Initao,49
+996,Jasaan,"Jasaan, Misamis Oriental",Jasaan,49
+997,Kinoguitan,"Kinoguitan, Misamis Oriental",Kinoguitan,49
+998,Lagonglong,"Lagonglong, Misamis Oriental",Lagonglong,49
+999,Laguindingan,"Laguindingan, Misamis Oriental",Laguindingan,49
+1000,Libertad,"Libertad, Misamis Oriental",Libertad,49
+1001,Lugait,"Lugait, Misamis Oriental",Lugait,49
+1002,Magsaysay (Linugos),"Magsaysay (Linugos), Misamis Oriental",Magsaysay (Linugos),49
+1003,Manticao,"Manticao, Misamis Oriental",Manticao,49
+1004,Medina,"Medina, Misamis Oriental",Medina,49
+1005,Naawan,"Naawan, Misamis Oriental",Naawan,49
+1006,Opol,"Opol, Misamis Oriental",Opol,49
+1007,Salay,"Salay, Misamis Oriental",Salay,49
+1008,Sugbongcogon,"Sugbongcogon, Misamis Oriental",Sugbongcogon,49
+1009,Tagoloan,"Tagoloan, Misamis Oriental",Tagoloan,49
+1010,Talisayan,"Talisayan, Misamis Oriental",Talisayan,49
+1011,Villanueva,"Villanueva, Misamis Oriental",Villanueva,49
+381,Catarman,"Catarman, Camiguin",Catarman,21
+382,Guinsiliban,"Guinsiliban, Camiguin",Guinsiliban,21
+383,Mahinog,"Mahinog, Camiguin",Mahinog,21
+384,Mambajao,"Mambajao, Camiguin",Mambajao,21
+385,Sagay,"Sagay, Camiguin",Sagay,21
+546,Baganga,"Baganga, Davao Oriental",Baganga,30
+547,Banaybanay,"Banaybanay, Davao Oriental",Banaybanay,30
+548,Boston,"Boston, Davao Oriental",Boston,30
+549,Caraga,"Caraga, Davao Oriental",Caraga,30
+550,Cateel,"Cateel, Davao Oriental",Cateel,30
+551,Governor Generoso,"Governor Generoso, Davao Oriental",Governor Generoso,30
+552,Lupon,"Lupon, Davao Oriental",Lupon,30
+553,Manay,"Manay, Davao Oriental",Manay,30
+554,Mati,"Mati, Davao Oriental",Mati,30
+555,San Isidro,"San Isidro, Davao Oriental",San Isidro,30
+556,Tarragona,"Tarragona, Davao Oriental",Tarragona,30
+508,Compostela,"Compostela, Compostela Valley",Compostela,26
+509,Laak (San Vicente),"Laak (San Vicente), Compostela Valley",Laak (San Vicente),26
+510,Mabini (Doña Alicia),"Mabini (Doña Alicia), Compostela Valley",Mabini (Doña Alicia),26
+511,Maco,"Maco, Compostela Valley",Maco,26
+512,Maragusan (San Mariano),"Maragusan (San Mariano), Compostela Valley",Maragusan (San Mariano),26
+513,Mawab,"Mawab, Compostela Valley",Mawab,26
+514,Monkayo,"Monkayo, Compostela Valley",Monkayo,26
+515,Montevista,"Montevista, Compostela Valley",Montevista,26
+516,Nabunturan,"Nabunturan, Compostela Valley",Nabunturan,26
+517,New Bataan,"New Bataan, Compostela Valley",New Bataan,26
+518,Pantukan,"Pantukan, Compostela Valley",Pantukan,26
+530,Bansalan,"Bansalan, Davao del Sur",Bansalan,29
+531,Davao City,"Davao City, Davao del Sur",Davao City,29
+532,Digos,"Digos, Davao del Sur",Digos,29
+533,Hagonoy,"Hagonoy, Davao del Sur",Hagonoy,29
+534,Kiblawan,"Kiblawan, Davao del Sur",Kiblawan,29
+535,Magsaysay,"Magsaysay, Davao del Sur",Magsaysay,29
+536,Malalag,"Malalag, Davao del Sur",Malalag,29
+537,Matanao,"Matanao, Davao del Sur",Matanao,29
+538,Padada,"Padada, Davao del Sur",Padada,29
+539,Santa Cruz,"Santa Cruz, Davao del Sur",Santa Cruz,29
+540,Sulop,"Sulop, Davao del Sur",Sulop,29
+541,Don Marcelino,"Don Marcelino, Davao Occidental",Don Marcelino,88
+542,Jose Abad Santos (Trinidad),"Jose Abad Santos (Trinidad), Davao Occidental",Jose Abad Santos (Trinidad),88
+543,Malita,"Malita, Davao Occidental",Malita,88
+544,Santa Maria,"Santa Maria, Davao Occidental",Santa Maria,88
+545,Sarangani,"Sarangani, Davao Occidental",Sarangani,88
+519,Asuncion (Saug),"Asuncion (Saug), Davao del Norte",Asuncion (Saug),28
+520,Braulio E. Dujali,"Braulio E. Dujali, Davao del Norte",Braulio E. Dujali,28
+521,Carmen,"Carmen, Davao del Norte",Carmen,28
+522,Kapalong,"Kapalong, Davao del Norte",Kapalong,28
+523,New Corella,"New Corella, Davao del Norte",New Corella,28
+524,Panabo,"Panabo, Davao del Norte",Panabo,28
+525,Samal,"Samal, Davao del Norte",Samal,28
+526,San Isidro,"San Isidro, Davao del Norte",San Isidro,28
+527,Santo Tomas,"Santo Tomas, Davao del Norte",Santo Tomas,28
+528,Tagum,"Tagum, Davao del Norte",Tagum,28
+529,Talaingod,"Talaingod, Davao del Norte",Talaingod,28
+1419,Banga,"Banga, South Cotabato",Banga,69
+1420,General Santos (Dadiangas),"General Santos (Dadiangas), South Cotabato",General Santos (Dadiangas),69
+1421,Koronadal,"Koronadal, South Cotabato",Koronadal,69
+1422,Lake Sebu,"Lake Sebu, South Cotabato",Lake Sebu,69
+1423,Norala,"Norala, South Cotabato",Norala,69
+1424,Polomolok,"Polomolok, South Cotabato",Polomolok,69
+1425,Santo Niño,"Santo Niño, South Cotabato",Santo Niño,69
+1426,Surallah,"Surallah, South Cotabato",Surallah,69
+1427,T'Boli,"T'Boli, South Cotabato",T'Boli,69
+1428,Tampakan,"Tampakan, South Cotabato",Tampakan,69
+1429,Tantangan,"Tantangan, South Cotabato",Tantangan,69
+1430,Tupi,"Tupi, South Cotabato",Tupi,69
+1450,Bagumbayan,"Bagumbayan, Sultan Kudarat",Bagumbayan,71
+1451,Columbio,"Columbio, Sultan Kudarat",Columbio,71
+1452,Esperanza,"Esperanza, Sultan Kudarat",Esperanza,71
+1453,Isulan,"Isulan, Sultan Kudarat",Isulan,71
+1454,Kalamansig,"Kalamansig, Sultan Kudarat",Kalamansig,71
+1455,Lambayong (Mariano Marcos),"Lambayong (Mariano Marcos), Sultan Kudarat",Lambayong (Mariano Marcos),71
+1456,Lebak,"Lebak, Sultan Kudarat",Lebak,71
+1457,Lutayan,"Lutayan, Sultan Kudarat",Lutayan,71
+1458,Palimbang,"Palimbang, Sultan Kudarat",Palimbang,71
+1459,President Quirino,"President Quirino, Sultan Kudarat",President Quirino,71
+1460,Senator Ninoy Aquino,"Senator Ninoy Aquino, Sultan Kudarat",Senator Ninoy Aquino,71
+1461,Tacurong,"Tacurong, Sultan Kudarat",Tacurong,71
+490,Alamada,"Alamada, Cotabato",Alamada,27
+491,Aleosan,"Aleosan, Cotabato",Aleosan,27
+492,Antipas,"Antipas, Cotabato",Antipas,27
+493,Arakan,"Arakan, Cotabato",Arakan,27
+494,Banisilan,"Banisilan, Cotabato",Banisilan,27
+495,Carmen,"Carmen, Cotabato",Carmen,27
+496,Kabacan,"Kabacan, Cotabato",Kabacan,27
+497,Kidapawan,"Kidapawan, Cotabato",Kidapawan,27
+498,Libungan,"Libungan, Cotabato",Libungan,27
+499,M'lang,"M'lang, Cotabato",M'lang,27
+500,Magpet,"Magpet, Cotabato",Magpet,27
+501,Makilala,"Makilala, Cotabato",Makilala,27
+502,Matalam,"Matalam, Cotabato",Matalam,27
+503,Midsayap,"Midsayap, Cotabato",Midsayap,27
+504,Pigcawayan,"Pigcawayan, Cotabato",Pigcawayan,27
+505,Pikit,"Pikit, Cotabato",Pikit,27
+506,President Roxas,"President Roxas, Cotabato",President Roxas,27
+507,Tulunan,"Tulunan, Cotabato",Tulunan,27
+1391,Alabel,"Alabel, Sarangani",Alabel,66
+1392,Glan,"Glan, Sarangani",Glan,66
+1393,Kiamba,"Kiamba, Sarangani",Kiamba,66
+1394,Maasim,"Maasim, Sarangani",Maasim,66
+1395,Maitum,"Maitum, Sarangani",Maitum,66
+1396,Malapatan,"Malapatan, Sarangani",Malapatan,66
+1397,Malungon,"Malungon, Sarangani",Malungon,66
+28,Buenavista,"Buenavista, Agusan del Norte",Buenavista,2
+29,Butuan,"Butuan, Agusan del Norte",Butuan,2
+30,Cabadbaran,"Cabadbaran, Agusan del Norte",Cabadbaran,2
+31,Carmen,"Carmen, Agusan del Norte",Carmen,2
+32,Jabonga,"Jabonga, Agusan del Norte",Jabonga,2
+33,Kitcharao,"Kitcharao, Agusan del Norte",Kitcharao,2
+34,Las Nieves,"Las Nieves, Agusan del Norte",Las Nieves,2
+35,Magallanes,"Magallanes, Agusan del Norte",Magallanes,2
+36,Nasipit,"Nasipit, Agusan del Norte",Nasipit,2
+37,Remedios T. Romualdez,"Remedios T. Romualdez, Agusan del Norte",Remedios T. Romualdez,2
+38,Santiago,"Santiago, Agusan del Norte",Santiago,2
+39,Tubay,"Tubay, Agusan del Norte",Tubay,2
+40,Bayugan,"Bayugan, Agusan del Sur",Bayugan,3
+41,Bunawan,"Bunawan, Agusan del Sur",Bunawan,3
+42,Esperanza,"Esperanza, Agusan del Sur",Esperanza,3
+43,La Paz,"La Paz, Agusan del Sur",La Paz,3
+44,Loreto,"Loreto, Agusan del Sur",Loreto,3
+45,Prosperidad,"Prosperidad, Agusan del Sur",Prosperidad,3
+46,Rosario,"Rosario, Agusan del Sur",Rosario,3
+47,San Francisco,"San Francisco, Agusan del Sur",San Francisco,3
+48,San Luis,"San Luis, Agusan del Sur",San Luis,3
+49,Santa Josefa,"Santa Josefa, Agusan del Sur",Santa Josefa,3
+50,Sibagat,"Sibagat, Agusan del Sur",Sibagat,3
+51,Talacogon,"Talacogon, Agusan del Sur",Talacogon,3
+52,Trento,"Trento, Agusan del Sur",Trento,3
+53,Veruela,"Veruela, Agusan del Sur",Veruela,3
+1502,Barobo,"Barobo, Surigao del Sur",Barobo,74
+1503,Bayabas,"Bayabas, Surigao del Sur",Bayabas,74
+1504,Bislig,"Bislig, Surigao del Sur",Bislig,74
+1505,Cagwait,"Cagwait, Surigao del Sur",Cagwait,74
+1506,Cantilan,"Cantilan, Surigao del Sur",Cantilan,74
+1507,Carmen,"Carmen, Surigao del Sur",Carmen,74
+1508,Carrascal,"Carrascal, Surigao del Sur",Carrascal,74
+1509,Cortes,"Cortes, Surigao del Sur",Cortes,74
+1510,Hinatuan,"Hinatuan, Surigao del Sur",Hinatuan,74
+1511,Lanuza,"Lanuza, Surigao del Sur",Lanuza,74
+1512,Lianga,"Lianga, Surigao del Sur",Lianga,74
+1513,Lingig,"Lingig, Surigao del Sur",Lingig,74
+1514,Madrid,"Madrid, Surigao del Sur",Madrid,74
+1515,Marihatag,"Marihatag, Surigao del Sur",Marihatag,74
+1516,San Agustin,"San Agustin, Surigao del Sur",San Agustin,74
+1517,San Miguel,"San Miguel, Surigao del Sur",San Miguel,74
+1518,Tagbina,"Tagbina, Surigao del Sur",Tagbina,74
+1519,Tago,"Tago, Surigao del Sur",Tago,74
+1520,Tandag,"Tandag, Surigao del Sur",Tandag,74
+1481,Alegria,"Alegria, Surigao del Norte",Alegria,73
+1482,Bacuag,"Bacuag, Surigao del Norte",Bacuag,73
+1483,Burgos,"Burgos, Surigao del Norte",Burgos,73
+1484,Claver,"Claver, Surigao del Norte",Claver,73
+1485,Dapa,"Dapa, Surigao del Norte",Dapa,73
+1486,Del Carmen,"Del Carmen, Surigao del Norte",Del Carmen,73
+1487,General Luna,"General Luna, Surigao del Norte",General Luna,73
+1488,Gigaquit,"Gigaquit, Surigao del Norte",Gigaquit,73
+1489,Mainit,"Mainit, Surigao del Norte",Mainit,73
+1490,Malimono,"Malimono, Surigao del Norte",Malimono,73
+1491,Pilar,"Pilar, Surigao del Norte",Pilar,73
+1492,Placer,"Placer, Surigao del Norte",Placer,73
+1493,San Benito,"San Benito, Surigao del Norte",San Benito,73
+1494,San Francisco (Anao-Aon),"San Francisco (Anao-Aon), Surigao del Norte",San Francisco (Anao-Aon),73
+1495,San Isidro,"San Isidro, Surigao del Norte",San Isidro,73
+1496,Santa Monica (Sapao),"Santa Monica (Sapao), Surigao del Norte",Santa Monica (Sapao),73
+1497,Sison,"Sison, Surigao del Norte",Sison,73
+1498,Socorro,"Socorro, Surigao del Norte",Socorro,73
+1499,Surigao City,"Surigao City, Surigao del Norte",Surigao City,73
+1500,Tagana-an,"Tagana-an, Surigao del Norte",Tagana-an,73
+1501,Tubod,"Tubod, Surigao del Norte",Tubod,73
+557,Basilisa (Rizal),"Basilisa (Rizal), Dinagat Islands",Basilisa (Rizal),82
+558,Cagdianao,"Cagdianao, Dinagat Islands",Cagdianao,82
+559,Dinagat,"Dinagat, Dinagat Islands",Dinagat,82
+560,Libjo (Albor),"Libjo (Albor), Dinagat Islands",Libjo (Albor),82
+561,Loreto,"Loreto, Dinagat Islands",Loreto,82
+562,San Jose,"San Jose, Dinagat Islands",San Jose,82
+563,Tubajon,"Tubajon, Dinagat Islands",Tubajon,82
+1539,Bongao,"Bongao, Tawi-Tawi",Bongao,76
+1540,Languyan,"Languyan, Tawi-Tawi",Languyan,76
+1541,Mapun (Cagayan de Tawi-Tawi),"Mapun (Cagayan de Tawi-Tawi), Tawi-Tawi",Mapun (Cagayan de Tawi-Tawi),76
+1542,Panglima Sugala (Balimbing),"Panglima Sugala (Balimbing), Tawi-Tawi",Panglima Sugala (Balimbing),76
+1543,Sapa-Sapa,"Sapa-Sapa, Tawi-Tawi",Sapa-Sapa,76
+1544,Sibutu,"Sibutu, Tawi-Tawi",Sibutu,76
+1545,Simunul,"Simunul, Tawi-Tawi",Simunul,76
+1546,Sitangkai,"Sitangkai, Tawi-Tawi",Sitangkai,76
+1547,South Ubian,"South Ubian, Tawi-Tawi",South Ubian,76
+1548,Tandubas,"Tandubas, Tawi-Tawi",Tandubas,76
+1549,Turtle Islands (Taganak),"Turtle Islands (Taganak), Tawi-Tawi",Turtle Islands (Taganak),76
+122,Akbar,"Akbar, Basilan",Akbar,9
+123,Al-Barka,"Al-Barka, Basilan",Al-Barka,9
+124,Hadji Mohammad Ajul,"Hadji Mohammad Ajul, Basilan",Hadji Mohammad Ajul,9
+125,Hadji Muhtamad,"Hadji Muhtamad, Basilan",Hadji Muhtamad,9
+126,Isabela City,"Isabela City, Basilan",Isabela City,9
+127,Lamitan,"Lamitan, Basilan",Lamitan,9
+128,Lantawan,"Lantawan, Basilan",Lantawan,9
+129,Maluso,"Maluso, Basilan",Maluso,9
+130,Sumisip,"Sumisip, Basilan",Sumisip,9
+131,Tabuan-Lasa,"Tabuan-Lasa, Basilan",Tabuan-Lasa,9
+132,Tipo-Tipo,"Tipo-Tipo, Basilan",Tipo-Tipo,9
+133,Tuburan,"Tuburan, Basilan",Tuburan,9
+134,Ungkaya Pukan,"Ungkaya Pukan, Basilan",Ungkaya Pukan,9
+1462,Banguingui (Tongkil),"Banguingui (Tongkil), Sulu",Banguingui (Tongkil),72
+1463,Hadji Panglima Tahil (Marunggas),"Hadji Panglima Tahil (Marunggas), Sulu",Hadji Panglima Tahil (Marunggas),72
+1464,Indanan,"Indanan, Sulu",Indanan,72
+1465,Jolo,"Jolo, Sulu",Jolo,72
+1466,Kalingalan Caluang,"Kalingalan Caluang, Sulu",Kalingalan Caluang,72
+1467,Lugus,"Lugus, Sulu",Lugus,72
+1468,Luuk,"Luuk, Sulu",Luuk,72
+1469,Maimbung,"Maimbung, Sulu",Maimbung,72
+1470,Old Panamao,"Old Panamao, Sulu",Old Panamao,72
+1471,Omar,"Omar, Sulu",Omar,72
+1472,Pandami,"Pandami, Sulu",Pandami,72
+1473,Panglima Estino (New Panamao),"Panglima Estino (New Panamao), Sulu",Panglima Estino (New Panamao),72
+1474,Pangutaran,"Pangutaran, Sulu",Pangutaran,72
+1475,Parang,"Parang, Sulu",Parang,72
+1476,Pata,"Pata, Sulu",Pata,72
+1477,Patikul,"Patikul, Sulu",Patikul,72
+1478,Siasi,"Siasi, Sulu",Siasi,72
+1479,Talipao,"Talipao, Sulu",Talipao,72
+1480,Tapul,"Tapul, Sulu",Tapul,72
+905,Ampatuan,"Ampatuan, Maguindanao",Ampatuan,44
+906,Barira,"Barira, Maguindanao",Barira,44
+907,Buldon,"Buldon, Maguindanao",Buldon,44
+908,Buluan,"Buluan, Maguindanao",Buluan,44
+909,Cotabato City,"Cotabato City, Maguindanao",Cotabato City,44
+910,Datu Abdullah Sangki,"Datu Abdullah Sangki, Maguindanao",Datu Abdullah Sangki,44
+911,Datu Anggal Midtimbang,"Datu Anggal Midtimbang, Maguindanao",Datu Anggal Midtimbang,44
+912,Datu Blah T. Sinsuat,"Datu Blah T. Sinsuat, Maguindanao",Datu Blah T. Sinsuat,44
+913,Datu Hoffer Ampatuan,"Datu Hoffer Ampatuan, Maguindanao",Datu Hoffer Ampatuan,44
+914,Datu Montawal (Pagagawan),"Datu Montawal (Pagagawan), Maguindanao",Datu Montawal (Pagagawan),44
+915,Datu Odin Sinsuat (Dinaig),"Datu Odin Sinsuat (Dinaig), Maguindanao",Datu Odin Sinsuat (Dinaig),44
+916,Datu Paglas,"Datu Paglas, Maguindanao",Datu Paglas,44
+917,Datu Piang (Dulawan),"Datu Piang (Dulawan), Maguindanao",Datu Piang (Dulawan),44
+918,Datu Salibo,"Datu Salibo, Maguindanao",Datu Salibo,44
+919,Datu Saudi-Ampatuan,"Datu Saudi-Ampatuan, Maguindanao",Datu Saudi-Ampatuan,44
+920,Datu Unsay,"Datu Unsay, Maguindanao",Datu Unsay,44
+921,General Salipada K. Pendatun,"General Salipada K. Pendatun, Maguindanao",General Salipada K. Pendatun,44
+922,Guindulungan,"Guindulungan, Maguindanao",Guindulungan,44
+923,Kabuntalan (Tumbao),"Kabuntalan (Tumbao), Maguindanao",Kabuntalan (Tumbao),44
+924,Mamasapano,"Mamasapano, Maguindanao",Mamasapano,44
+925,Mangudadatu,"Mangudadatu, Maguindanao",Mangudadatu,44
+926,Matanog,"Matanog, Maguindanao",Matanog,44
+927,Northern Kabuntalan,"Northern Kabuntalan, Maguindanao",Northern Kabuntalan,44
+928,Pagalungan,"Pagalungan, Maguindanao",Pagalungan,44
+929,Paglat,"Paglat, Maguindanao",Paglat,44
+930,Pandag,"Pandag, Maguindanao",Pandag,44
+931,Parang,"Parang, Maguindanao",Parang,44
+932,Rajah Buayan,"Rajah Buayan, Maguindanao",Rajah Buayan,44
+933,Shariff Aguak (Maganoy),"Shariff Aguak (Maganoy), Maguindanao",Shariff Aguak (Maganoy),44
+934,Shariff Saydona Mustapha,"Shariff Saydona Mustapha, Maguindanao",Shariff Saydona Mustapha,44
+935,South Upi,"South Upi, Maguindanao",South Upi,44
+936,Sultan Kudarat (Nuling),"Sultan Kudarat (Nuling), Maguindanao",Sultan Kudarat (Nuling),44
+937,Sultan Mastura,"Sultan Mastura, Maguindanao",Sultan Mastura,44
+938,Sultan sa Barongis (Lambayong),"Sultan sa Barongis (Lambayong), Maguindanao",Sultan sa Barongis (Lambayong),44
+939,Sultan Sumagka (Talitay),"Sultan Sumagka (Talitay), Maguindanao",Sultan Sumagka (Talitay),44
+940,Talayan,"Talayan, Maguindanao",Talayan,44
+941,Upi,"Upi, Maguindanao",Upi,44
+822,Amai Manabilang (Bumbaran),"Amai Manabilang (Bumbaran), Lanao del Sur",Amai Manabilang (Bumbaran),42
+823,Bacolod-Kalawi (Bacolod-Grande),"Bacolod-Kalawi (Bacolod-Grande), Lanao del Sur",Bacolod-Kalawi (Bacolod-Grande),42
+824,Balabagan,"Balabagan, Lanao del Sur",Balabagan,42
+825,Balindong (Watu),"Balindong (Watu), Lanao del Sur",Balindong (Watu),42
+826,Bayang,"Bayang, Lanao del Sur",Bayang,42
+827,Binidayan,"Binidayan, Lanao del Sur",Binidayan,42
+828,Buadiposo-Buntong,"Buadiposo-Buntong, Lanao del Sur",Buadiposo-Buntong,42
+829,Bubong,"Bubong, Lanao del Sur",Bubong,42
+830,Butig,"Butig, Lanao del Sur",Butig,42
+831,Calanogas,"Calanogas, Lanao del Sur",Calanogas,42
+832,Ditsaan-Ramain,"Ditsaan-Ramain, Lanao del Sur",Ditsaan-Ramain,42
+833,Ganassi,"Ganassi, Lanao del Sur",Ganassi,42
+834,Kapai,"Kapai, Lanao del Sur",Kapai,42
+835,Kapatagan,"Kapatagan, Lanao del Sur",Kapatagan,42
+836,Lumba-Bayabao (Maguing),"Lumba-Bayabao (Maguing), Lanao del Sur",Lumba-Bayabao (Maguing),42
+837,Lumbaca-Unayan,"Lumbaca-Unayan, Lanao del Sur",Lumbaca-Unayan,42
+838,Lumbatan,"Lumbatan, Lanao del Sur",Lumbatan,42
+839,Lumbayanague,"Lumbayanague, Lanao del Sur",Lumbayanague,42
+840,Madalum,"Madalum, Lanao del Sur",Madalum,42
+841,Madamba,"Madamba, Lanao del Sur",Madamba,42
+842,Maguing,"Maguing, Lanao del Sur",Maguing,42
+843,Malabang,"Malabang, Lanao del Sur",Malabang,42
+844,Marantao,"Marantao, Lanao del Sur",Marantao,42
+845,Marawi,"Marawi, Lanao del Sur",Marawi,42
+846,Marogong,"Marogong, Lanao del Sur",Marogong,42
+847,Masiu,"Masiu, Lanao del Sur",Masiu,42
+848,Mulondo,"Mulondo, Lanao del Sur",Mulondo,42
+849,Pagayawan (Tatarikan),"Pagayawan (Tatarikan), Lanao del Sur",Pagayawan (Tatarikan),42
+850,Piagapo,"Piagapo, Lanao del Sur",Piagapo,42
+851,Picong (Sultan Gumander),"Picong (Sultan Gumander), Lanao del Sur",Picong (Sultan Gumander),42
+852,Poona Bayabao (Gata),"Poona Bayabao (Gata), Lanao del Sur",Poona Bayabao (Gata),42
+853,Pualas,"Pualas, Lanao del Sur",Pualas,42
+854,Saguiaran,"Saguiaran, Lanao del Sur",Saguiaran,42
+855,Sultan Dumalondong,"Sultan Dumalondong, Lanao del Sur",Sultan Dumalondong,42
+856,Tagoloan II,"Tagoloan II, Lanao del Sur",Tagoloan II,42
+857,Tamparan,"Tamparan, Lanao del Sur",Tamparan,42
+858,Taraka,"Taraka, Lanao del Sur",Taraka,42
+859,Tubaran,"Tubaran, Lanao del Sur",Tubaran,42
+860,Tugaya,"Tugaya, Lanao del Sur",Tugaya,42
+861,Wao,"Wao, Lanao del Sur",Wao,42
+1027,Manila,"Manila, NCR, City of Manila, 1st district",Manila,84
+1026,Mandaluyong,"Mandaluyong, NCR, 2nd district",Mandaluyong,85
+1028,Marikina,"Marikina, NCR, 2nd district",Marikina,85
+1033,Pasig,"Pasig, NCR, 2nd district",Pasig,85
+1035,Quezon City,"Quezon City, NCR, 2nd district",Quezon City,85
+1036,San Juan,"San Juan, NCR, 2nd district",San Juan,85
+1022,Caloocan,"Caloocan, NCR, 3rd district",Caloocan,86
+1025,Malabon,"Malabon, NCR, 3rd district",Malabon,86
+1030,Navotas,"Navotas, NCR, 3rd district",Navotas,86
+1038,Valenzuela,"Valenzuela, NCR, 3rd district",Valenzuela,86
+1023,Las Piñas,"Las Piñas, NCR, 4th district",Las Piñas,87
+1024,Makati,"Makati, NCR, 4th district",Makati,87
+1029,Muntinlupa,"Muntinlupa, NCR, 4th district",Muntinlupa,87
+1031,Parañaque,"Parañaque, NCR, 4th district",Parañaque,87
+1032,Pasay,"Pasay, NCR, 4th district",Pasay,87
+1034,Pateros,"Pateros, NCR, 4th district",Pateros,87
+1037,Taguig,"Taguig, NCR, 4th district",Taguig,87

@@ -1,0 +1,44 @@
+extend type Query {
+    pdp_chapters: [PdpChapter] @all
+
+    pdp_outcomes: [PdpOutcome] @all
+
+    pdp_suboutcomes: [PdpSuboutcome] @all
+
+    pdp_indicators: [PdpIndicator] @all
+}
+
+type PdpChapter {
+    id: ID!
+    name: String
+    projects: [Project] @belongsToMany
+    children: [PdpOutcome] @hasMany
+    value: ID! @rename(attribute: "id")
+    label: String @rename(attribute: "name")
+}
+
+type PdpOutcome {
+  id: ID!
+  name: String
+  pdp_chapter_id: ID
+  children: [PdpSuboutcome] @hasMany
+  value: ID! @rename(attribute: "id")
+  label: String @rename(attribute: "name")
+}
+
+type PdpSuboutcome {
+  id: ID!
+  name: String
+  pdp_outcome_id: ID
+  children: [PdpIndicator] @hasMany
+  value: ID! @rename(attribute: "id")
+  label: String @rename(attribute: "name")
+}
+
+type PdpIndicator {
+  id: ID!
+  name: String
+  pdp_suboutcome_id: ID
+  value: ID! @rename(attribute: "id")
+  label: String @rename(attribute: "name")
+}

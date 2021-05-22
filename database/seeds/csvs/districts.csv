@@ -1,0 +1,244 @@
+id,name,province_id
+1,"Abra, Lone",1
+2,"Agusan del Norte, 1st",2
+3,"Agusan del Norte, 2nd",2
+4,"Agusan del Sur, 1st",3
+5,"Agusan del Sur, 2nd",3
+6,"Aklan, 1st",4
+7,"Aklan, 2nd",4
+8,"Albay, 1st",5
+9,"Albay, 2nd",5
+10,"Albay, 3rd",5
+11,"Antipolo, 1st",63
+12,"Antipolo, 2nd",63
+13,"Antique, Lone",6
+14,"Apayao, Lone",7
+15,"Aurora, Lone",8
+16,"Bacolod, Lone",52
+17,"Baguio, Lone",13
+18,"Basilan, Lone",9
+19,"Bataan, 1st",10
+20,"Bataan, 2nd",10
+21,"Batanes, Lone",11
+22,"Batangas, 1st",12
+23,"Batangas, 2nd",12
+24,"Batangas, 3rd",12
+25,"Batangas, 4th",12
+26,"Batangas, 5th",12
+27,"Batangas, 6th",12
+28,"Benguet, Lone",13
+29,"Biliran, Lone",14
+30,"Biñan, Lone",40
+31,"Bohol, 1st",15
+32,"Bohol, 2nd",15
+33,"Bohol, 3rd",15
+34,"Bukidnon, 1st",16
+35,"Bukidnon, 2nd",16
+36,"Bukidnon, 3rd",16
+37,"Bukidnon, 4th",16
+38,"Bulacan, 1st",17
+39,"Bulacan, 2nd",17
+40,"Bulacan, 3rd",17
+41,"Bulacan, 4th",17
+42,"Cagayan, 1st",18
+43,"Cagayan, 2nd",18
+44,"Cagayan, 3rd",18
+45,"Cagayan de Oro, 1st",95
+46,"Cagayan de Oro, 2nd",95
+47,"Calamba, Lone",40
+48,"Caloocan, 1st",86
+49,"Caloocan, 2nd",86
+50,"Camarines Norte, 1st",19
+51,"Camarines Norte, 2nd",19
+52,"Camarines Sur, 1st",20
+53,"Camarines Sur, 2nd",20
+54,"Camarines Sur, 3rd",20
+55,"Camarines Sur, 4th",20
+56,"Camarines Sur, 5th",20
+57,"Camiguin, Lone",21
+58,"Capiz, 1st",22
+59,"Capiz, 2nd",22
+60,"Catanduanes, Lone",23
+61,"Cavite, 1st",24
+62,"Cavite, 2nd",24
+63,"Cavite, 3rd",24
+64,"Cavite, 4th",24
+65,"Cavite, 5th",24
+66,"Cavite, 6th",24
+67,"Cavite, 7th",24
+68,"Cavite, 8th",24
+69,"Cebu, 1st",25
+70,"Cebu, 2nd",25
+71,"Cebu, 3rd",25
+72,"Cebu, 4th",25
+73,"Cebu, 5th",25
+74,"Cebu, 6th",25
+75,"Cebu, 7th",25
+76,"Cebu City, 1st",25
+77,"Cebu City, 2nd",25
+78,"Compostela Valley, 1st",26
+79,"Compostela Valley, 2nd",26
+80,"Cotabato, 1st",27
+81,"Cotabato, 2nd",27
+82,"Cotabato, 3rd",27
+83,"Davao City, 1st",90
+84,"Davao City, 2nd",90
+85,"Davao City, 3rd",90
+86,"Davao del Norte, 1st",28
+87,"Davao del Norte, 2nd",28
+88,"Davao del Sur, Lone",29
+89,"Davao Occidental, Lone",88
+90,"Davao Oriental, 1st",30
+91,"Davao Oriental, 2nd",30
+92,"Dinagat Islands, Lone",82
+93,"Eastern Samar, Lone",31
+94,"Guimaras, Lone",32
+95,"Ifugao, Lone",33
+96,"Iligan, Lone",94
+97,"Ilocos Norte, 1st",34
+98,"Ilocos Norte, 2nd",34
+99,"Ilocos Sur, 1st",35
+100,"Ilocos Sur, 2nd",35
+101,"Iloilo, 1st",36
+102,"Iloilo, 2nd",36
+103,"Iloilo, 3rd",36
+104,"Iloilo, 4th",36
+105,"Iloilo, 5th",36
+106,"Iloilo City, Lone",91
+107,"Isabela, 1st",37
+108,"Isabela, 2nd",37
+109,"Isabela, 3rd",37
+110,"Isabela, 4th",37
+111,"Isabela, 5th",37
+112,"Isabela, 6th",37
+113,"Kalinga, Lone",38
+114,"La Union, 1st",39
+115,"La Union, 2nd",39
+116,"Laguna, 1st",40
+117,"Laguna, 2nd",40
+118,"Laguna, 3rd",40
+119,"Laguna, 4th",40
+120,"Lanao del Norte, 1st",41
+121,"Lanao del Norte, 2nd",41
+122,"Lanao del Sur, 1st",42
+123,"Lanao del Sur, 2nd",42
+124,"Lapu-Lapu City, Lone",25
+125,"Las Piñas, Lone",87
+126,"Leyte, 1st",43
+127,"Leyte, 2nd",43
+128,"Leyte, 3rd",43
+129,"Leyte, 4th",43
+130,"Leyte, 5th",43
+131,"Maguindanao, 1st",44
+132,"Maguindanao, 2nd",44
+133,"Makati, 1st",87
+134,"Makati, 2nd",87
+135,"Malabon, Lone",86
+136,"Mandaluyong, Lone",85
+137,"Manila, 1st",84
+138,"Manila, 2nd",84
+139,"Manila, 3rd",84
+140,"Manila, 4th",84
+141,"Manila, 5th",84
+142,"Manila, 6th",84
+143,"Marikina, 1st",84
+144,"Marikina, 2nd",84
+145,"Marinduque, Lone",45
+146,"Masbate, 1st",46
+147,"Masbate, 2nd",46
+148,"Masbate, 3rd",46
+149,"Misamis Occidental, 1st",48
+150,"Misamis Occidental, 2nd",48
+151,"Misamis Oriental, 1st",49
+152,"Misamis Oriental, 2nd",49
+153,"Mountain Province, Lone",50
+154,"Muntinlupa, Lone",87
+155,"Navotas, Lone",86
+156,"Negros Occidental, 1st",51
+157,"Negros Occidental, 2nd",51
+158,"Negros Occidental, 3rd",51
+159,"Negros Occidental, 4th",51
+160,"Negros Occidental, 5th",51
+161,"Negros Occidental, 6th",51
+162,"Negros Oriental, 1st",52
+163,"Negros Oriental, 2nd",52
+164,"Negros Oriental, 3rd",52
+165,"Northern Samar, 1st",53
+166,"Northern Samar, 2nd",53
+167,"Nueva Ecija, 1st",54
+168,"Nueva Ecija, 2nd",54
+169,"Nueva Ecija, 3rd",54
+170,"Nueva Ecija, 4th",54
+171,"Nueva Vizcaya, Lone",55
+172,"Occidental Mindoro, Lone",56
+173,"Oriental Mindoro, 1st",57
+174,"Oriental Mindoro, 2nd",57
+175,"Palawan, 1st",58
+176,"Palawan, 2nd",58
+177,"Palawan, 3rd",58
+178,"Pampanga, 1st",59
+179,"Pampanga, 2nd",59
+180,"Pampanga, 3rd",59
+181,"Pampanga, 4th",59
+182,"Pangasinan, 1st",60
+183,"Pangasinan, 2nd",60
+184,"Pangasinan, 3rd",60
+185,"Pangasinan, 4th",60
+186,"Pangasinan, 5th",60
+187,"Pangasinan, 6th",60
+188,"Parañaque, 1st",87
+189,"Parañaque, 2nd",87
+190,"Pasay, Lone",85
+191,"Pasig, Lone",87
+192,"Quezon, 1st",61
+193,"Quezon, 2nd",61
+194,"Quezon, 3rd",61
+195,"Quezon, 4th",61
+196,"Quezon City, 1st",85
+197,"Quezon City, 2nd",85
+198,"Quezon City, 3rd",85
+199,"Quezon City, 4th",85
+200,"Quezon City, 5th",85
+201,"Quezon City, 6th",85
+202,"Quirino, Lone",62
+203,"Rizal, 1st",63
+204,"Rizal, 2nd",63
+205,"Romblon, Lone",64
+206,"Samar, 1st",65
+207,"Samar, 2nd",65
+208,"San Jose del Monte, Lone",17
+209,"San Juan, Lone",85
+210,"Sarangani, Lone",66
+211,"Siquijor, Lone",67
+212,"Sorsogon, 1st",68
+213,"Sorsogon, 2nd",68
+214,"South Cotabato, 1st",69
+215,"South Cotabato, 2nd",69
+216,"Southern Leyte, Lone",70
+217,"Sultan Kudarat, 1st",71
+218,"Sultan Kudarat, 2nd",71
+219,"Sulu, 1st",72
+220,"Sulu, 2nd",72
+221,"Surigao del Norte, 1st",73
+222,"Surigao del Norte, 2nd",73
+223,"Surigao del Sur, 1st",74
+224,"Surigao del Sur, 2nd",74
+225,"Taguig–Pateros, 1st",87
+226,"Taguig, 2nd",87
+227,"Tarlac, 1st",75
+228,"Tarlac, 2nd",75
+229,"Tarlac, 3rd",75
+230,"Tawi-Tawi, Lone",76
+231,"Valenzuela, 1st",86
+232,"Valenzuela, 2nd",86
+233,"Zambales, 1st",77
+234,"Zambales, 2nd",77
+235,"Zamboanga City, 1st",89
+236,"Zamboanga City, 2nd",89
+237,"Zamboanga del Norte, 1st",78
+238,"Zamboanga del Norte, 2nd",78
+239,"Zamboanga del Norte, 3rd",78
+240,"Zamboanga del Sur, 1st",79
+241,"Zamboanga del Sur, 2nd",79
+242,"Zamboanga Sibugay, 1st",80
+243,"Zamboanga Sibugay, 2nd",80

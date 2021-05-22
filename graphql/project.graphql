@@ -1,0 +1,339 @@
+extend type Query @middleware(checks:["auth:api"]) {
+
+  # "Get all projects"
+  # projects: [Project!]! @all @guard(with:"api") @softDeletes
+
+  "Get paginated list of projects. Accepts page argument"
+  paginatedProjects: [Project]
+    @paginate(type:"paginator", defaultCount:25)
+    @softDeletes
+
+  "Get paginated list of projects based on relay"
+  relayProjects: [Project]
+    @paginate(type:"connection", defaultCount:25)
+    @softDeletes
+
+  draftProjects: [Project] @paginate(scopes:["draft"])
+
+  finalizedProjects: [Project] @all(scopes:["finalized"])
+
+  endorsedProjects: [Project] @paginate(scopes:["endorsed"])
+
+  returnedProjects: [Project] @paginate(scopes:["returned"])
+
+  validatedProjects: [Project] @paginate(scopes:["validated"])
+
+  reviewedProjects: [Project] @paginate(scopes:["reviewed"])
+
+  acceptedProjects: [Project] @paginate(scopes:["accepted"])
+
+  approvedProjects: [Project] @paginate(scopes:["approved"])
+
+  encodedProjects: [Project] @paginate(scopes:["encoded"])
+
+  projects(processing_status_id: ID! @scope(name: "whereProcessingStatus")): [Project] @paginate(type:"paginator", defaultCount: 10, maxCount:25)
+
+  "Gets project information based on id"
+  project(id: ID! @eq): Project
+    @find
+    @can(ability: "view", find: "id")
+    @guard(with:"api")
+
+  allProjects: [Project] @all @softDeletes
+
+  pipol_statuses: [PipolStatus] @all
+
+  ownProjects: [Project] @all(scopes:["own"]) @guard(with: ["api"])
+
+  ouProjects: [Project] @all(scopes:["ou"]) @guard(with: ["api"])
+
+  "Return projects for review by operating unit"
+  projectsForReview(operating_unit_id: ID! @eq): [Project] @all(scopes:["review"]) @guard(with: ["api"])
+}
+
+type Project {
+    id: ID!
+    prexc_program_id: ID
+    prexc_program: PrexcProgram @belongsTo
+    prexc_subprogram_id: ID
+    prexc_subprogram: PrexcSubprogram @belongsTo
+    prexc_activity_id: ID
+    prexc_activity: PrexcActivity @belongsTo
+    banner_program_id: ID
+    banner_program: BannerProgram @belongsTo
+    pipol_code: String
+    uuid: String
+    pip: Boolean
+    cip: Boolean
+    trip: Boolean
+    rdip: Boolean
+    pcip: Boolean
+    afmip: Boolean
+    infrastructure: Boolean
+    title: String!
+    slug: String
+    operating_unit: OperatingUnit @belongsTo
+    main_funding_source_id: ID
+    main_funding_source: FundingSource @belongsTo
+    funding_institution_id: ID
+    funding_institution: FundingInstitution @belongsTo
+    operating_unit_id: ID
+    spatial_coverage_id: ID
+    bases: [Basis] @belongsToMany
+    selected_bases: [ID]
+    description: String
+    components: String
+    goals: String
+    outcomes: String
+    purpose: String
+    expected_outputs: String
+    iccable: Boolean
+    clearinghouse: Boolean
+    clearinghouse_date: Date
+    target_start_year: Int
+    target_end_year: Int
+    implementation_start_date: String
+    implementation_end_date: String
+    typology: Typology @belongsTo
+    typology_id: ID
+    gad_id: ID
+    gad: Gad @belongsTo
+    type: Type @belongsTo
+    type_id: ID
+    regular: Boolean
+    spatial_coverage_id: ID
+    spatial_coverage: SpatialCoverage @belongsTo
+    region_id: ID
+    region: Region @belongsTo
+    province_id: ID
+    province: Province @belongsTo
+    district_id: ID
+    district: District @belongsTo
+    city_municipality_id: ID
+    city_municipality: CityMunicipality @belongsTo
+    districts: [District] @belongsToMany
+    selected_districts: [ID]
+    cities_municipalities: String
+    total_project_cost: Float
+    updates: String
+    updates_date: String
+    project_status_id: ID
+    project_status: ProjectStatus @belongsTo
+    tier_id: ID
+    tier: Tier @belongsTo
+    estimated_project_life: String
+    financial_benefit_cost_ratio: Float
+    financial_internal_rate_return: Float
+    financial_net_present_value: Float
+    economic_benefit_cost_ratio: Float
+    economic_internal_rate_return: Float
+    economic_net_present_value: Float
+    technical_readinesses: [TechnicalReadiness] @belongsToMany
+    selected_technical_readinesses: [ID]
+    implementation_mode_id: ID
+    implementation_mode: ImplementationMode @belongsTo
+    paradigms: [Paradigm] @belongsToMany
+    ten_point_agenda: [TenPointAgenda] @belongsToMany
+    sustainable_development_goals: [SustainableDevelopmentGoal] @belongsToMany
+    regions: [Region] @belongsToMany
+    selected_regions: [ID]
+    provinces: [Province] @belongsToMany
+    selected_provinces: [ID]
+    has_row: Boolean
+    has_rap: Boolean
+    has_fs: Boolean
+    neda_submission: Boolean
+    neda_submission_date: Date
+    neda_secretariat_review: Boolean
+    neda_secretariat_review_date: Date
+    neda_board: Boolean
+    neda_board_date: Date
+    rdc_required: Boolean
+    rdc_endorsed: Boolean
+    rdc_endorsed_date: Date
+    icc_endorsed: Boolean
+    icc_endorsed_date: Date
+    icc_approved: Boolean
+    icc_approved_date: Date
+    fs_target_2017: Float
+    fs_target_2018: Float
+    fs_target_2019: Float
+    fs_target_2020: Float
+    fs_target_2021: Float
+    fs_target_2022: Float
+    fs_target_2023: Float
+    fs_target_2024: Float
+    fs_target_2025: Float
+    fs_target_total: Float
+    row_target_2017: Float
+    row_target_2018: Float
+    row_target_2019: Float
+    row_target_2020: Float
+    row_target_2021: Float
+    row_target_2022: Float
+    row_target_2023: Float
+    row_target_2024: Float
+    row_target_2025: Float
+    row_target_total: Float
+    row_affected: String
+    rap_target_2017: Float
+    rap_target_2018: Float
+    rap_target_2019: Float
+    rap_target_2020: Float
+    rap_target_2021: Float
+    rap_target_2022: Float
+    rap_target_total: Float
+    rap_affected: String
+    investment_target_2016: Float
+    investment_target_2017: Float
+    investment_target_2018: Float
+    investment_target_2019: Float
+    investment_target_2020: Float
+    investment_target_2021: Float
+    investment_target_2022: Float
+    investment_target_2023: Float
+    investment_target_2024: Float
+    investment_target_2025: Float
+    investment_target_total: Float
+    infrastructure_target_2016: Float
+    infrastructure_target_2017: Float
+    infrastructure_target_2018: Float
+    infrastructure_target_2019: Float
+    infrastructure_target_2020: Float
+    infrastructure_target_2021: Float
+    infrastructure_target_2022: Float
+    infrastructure_target_2023: Float
+    infrastructure_target_2024: Float
+    infrastructure_target_2025: Float
+    infrastructure_target_total: Float
+    nep_2016: Float
+    nep_2017: Float
+    nep_2018: Float
+    nep_2019: Float
+    nep_2020: Float
+    nep_2021: Float
+    nep_2022: Float
+    nep_2023: Float
+    nep_total: Float
+    gaa_2016: Float
+    gaa_2017: Float
+    gaa_2018: Float
+    gaa_2019: Float
+    gaa_2020: Float
+    gaa_2021: Float
+    gaa_2022: Float
+    gaa_2023: Float
+    gaa_2024: Float
+    gaa_2025: Float
+    gaa_total: Float
+    disbursement_2016: Float
+    disbursement_2017: Float
+    disbursement_2018: Float
+    disbursement_2019: Float
+    disbursement_2020: Float
+    disbursement_2021: Float
+    disbursement_2022: Float
+    disbursement_2023: Float
+    disbursement_2024: Float
+    disbursement_2025: Float
+    disbursement_total: Float
+    image_url: String
+    priority_ranking: Int
+    income_increase: String
+    beneficiaries: String
+    employment_generated: String
+    implementation_risk: String
+    mitigation_strategy: String
+    created_by: ID
+    creator: User @belongsTo(relation: "creator")
+    updated_by: ID
+    updater: User @belongsTo(relation: "updater")
+    deleted_by: ID
+    deleter: User @belongsTo(relation: "deleter")
+    can_update: Boolean @guard(with:"api")
+    processing_statuses: [ProcessingStatus] @belongsToMany
+    activities: [Activity] @morphMany
+    endorsed_by: ID
+    endorser: User @belongsTo
+    endorsed_at: String
+    endorsement: Endorsement @belongsTo
+    endorsement_id: ID
+    reviewer: User @belongsTo
+    reviewed_by: ID
+    reviewed_at: String
+    created_at: String
+    updated_at: String
+    finalized_by: ID
+    finalizer: User @belongsTo
+    finalized_at: String
+    approved_by: ID
+    approved_at: String
+    createdAt: String @rename(attribute:"created_at")
+    updatedAt: String @rename(attribute:"updated_at")
+    finalizedAt: String @rename(attribute:"finalized_at")
+    reviewedAt: String @rename(attribute:"reviewed_at")
+    endorsedAt: String @rename(attribute:"endorsed_at")
+    deleted_by: ID
+    deleted_at: String
+    deletedAt: String @rename(attribute:"deleted_at")
+    project_processing_statuses: [ProjectProcessingStatus] @hasMany
+    latest_processing_status: ProjectProcessingStatus @hasOne
+    region_financials: [RegionFinancial] @hasMany
+    funding_source_financials: [FundingSourceFinancial] @hasMany
+    pdp_chapter_id: ID
+    pdp_chapter: PdpChapter @belongsTo
+    pdp_chapters: [PdpChapter] @belongsToMany
+    # review: Review @hasOne
+    selected_sustainable_development_goals: [ID]
+    selected_ten_point_agenda: [ID]
+    selected_paradigms: [ID]
+    selected_pdp_chapters: [ID]
+    selected_pdp_indicators: [ID]
+    pdp_indicators: [PdpIndicator] @belongsToMany
+    latest_processing_status: ProjectProcessingStatus
+    latest_status: String
+    latest_processing_status: ProjectProcessingStatus
+    processing_status: ProcessingStatus @belongsTo
+    attachments: [Attachment] @hasMany
+    funding_sources: [FundingSource] @belongsToMany
+    uacs_code: String
+    signed_copy: String
+    validation_data: Boolean
+    validation_signed: Boolean
+    finalized: Boolean
+    endorsed: Boolean
+    reviewed: Boolean
+    approved: Boolean
+    encoded: Boolean
+    version: Int
+    signed_copy_link: String
+    funding_source_infrastructures: [FundingSourceInfrastructure] @hasMany
+    infrastructure_subsectors: [InfrastructureSubsector] @belongsToMany
+    selected_infrastructure_subsectors: [ID]
+    project_preparation_document_id: ID
+    project_preparation_document: ProjectPreparationDocument @belongsTo
+    project_preparation_document_others: String
+    selected_funding_sources: [ID]
+    cip_type_id: ID
+    cip_type: CipType @belongsTo
+    validated: Boolean
+    submission_status: SubmissionStatus @belongsTo
+    submission_status_id: ID
+    # tags: [Tag] @belongsToMany
+    pipol: Boolean
+    pipol_status_id: ID
+    pipol_status: PipolStatus @belongsTo
+}
+
+type CanUpdateResponse {
+  userId: ID
+  created_by: ID
+  check: Boolean
+}
+
+type PipolStatus {
+    id: ID
+    name: String
+    slug: String
+    projects: [Project] @hasMany
+}

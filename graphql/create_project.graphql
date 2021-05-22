@@ -1,0 +1,20 @@
+extend type Mutation @middleware(checks: ["auth:api"]) {
+  "Creates new project."
+  createProject(
+    input: CreateProjectInput! @spread
+    ): Project
+    @create
+    @inject(context: "user.id", name: "created_by")
+    @can(ability: "create")
+    @event(dispatch: "App\\Events\\ProjectProcessed")
+}
+
+"Input to create a new project."
+input CreateProjectInput {
+  prexc_program_id: ID
+  prexc_subprogram_id: ID
+  banner_program_id: ID
+  title: String!
+  uacs_code: String
+  operating_unit_id: ID
+}

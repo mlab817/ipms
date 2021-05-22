@@ -1,0 +1,33 @@
+extend type Query {
+	useful_links: [UsefulLink] @all
+}
+
+extend type Mutation {
+	createUsefulLink(input: CreateUsefulLinkInput! @spread): UsefulLink @create @inject(context: "user.id", name: "user_id") @guard(with: ["api"])
+	updateUsefulLink(input: UpdateUsefulLinkInput! @spread): UsefulLink @update @inject(context: "user.id", name: "user_id") @guard(with: ["api"])
+	deleteUsefulLink(id: ID!): Release @delete @guard(with: ["api"])
+}
+
+type UsefulLink {
+	id: ID
+	title: String
+	description: String
+	to: String
+	user_id: ID
+	user: User @belongsTo
+	created_at: String
+	updated_at: String
+}
+
+input CreateUsefulLinkInput {
+	title: String
+	description: String
+	to: String
+}
+
+input UpdateUsefulLinkInput {
+	id: ID!
+	title: String
+	description: String
+	to: String
+}

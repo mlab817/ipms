@@ -1,0 +1,100 @@
+extend type Query {
+  "Get paginated user list"
+  paginatedUsers: [User!]!
+    @paginate(defaultCount:10, scopes:["notSuperAdmin"])
+    @guard(with:"api")
+
+  "Get all users in a single list"
+  users: [User!]! @all(scopes:["notSuperAdmin"]) @guard(with:"api")
+
+  "Get all reviewers"
+  reviewers: [User] @all(scopes:["reviewer"])
+
+  checkEmailAvailability(email: String!):
+    CheckEmailAvailabilityResponse!
+    @field(resolver:"CheckEmailAvailabilityQuery")
+
+  "Get all encoders"
+  encoders: [User] @all(scopes:["encoder"])
+}
+
+type CheckEmailAvailabilityResponse {
+  status: String!
+  message: String!
+}
+
+type NotificationResponse {
+  status: String
+}
+
+extend type Mutation {
+    "Mark a specific notification as read"
+    markAsRead(id: ID!): Notification!
+        @field(resolver:"NotificationMutator@markAsRead")
+        @guard(with:"api")
+
+    "Mark all unread notifications as read"
+    markAllAsRead: NotificationResponse!
+        @field(resolver:"NotificationMutator@markAllAsRead")
+        @guard(with:"api")
+}
+
+extend type Mutation @middleware(checks:["auth:api"]) {
+  "Update user information"
+  updateUser(
+    input: UpdateUserInput @spread
+    ): User
+    @update
+    @inject(context:"user.id", name:"id")
+
+  updateOu(
+    id: ID!
+    operating_unit_id: ID!
+  ): User
+  @update
+
+  "Assign operating unit to review"
+  assignOperatingUnitToReview(
+      user_id: ID!
+      operating_units: [ID]!
+    ): User
+      @field(resolver:"AssignOperatingUnit")
+      @broadcast(subscription: "assignedOperatingUnitToReview")
+
+  "Assign role to user"
+  assignRole(
+    user_id: ID!
+    role_id: ID
+  ): User!
+    @field(resolver:"AssignRole")
+    @broadcast(subscription: "assignedRole")
+
+  "Upload avatar for the user"
+  uploadUserAvatar(
+    image: Upload!
+  ): User
+    @field(resolver:"UploadUserAvatarMutation")
+    @guard(with:"api")
+
+  chooseAvatar(
+    image_id: ID!
+  ): User
+    @field(resolver:"ChooseAvatarMutation")
+    @guard(with:"api")
+}
+
+extend type Subscription {
+  assignedRole(user_id: ID): User
+
+  assignedOperatingUnitToReview(user_id: ID): User
+}
+
+input UpdateUserInput {
+  name: String
+  nickname: String
+  operating_unit_id: ID
+  unit: String
+  position: String
+  image_url: String
+  contact_number: String
+}

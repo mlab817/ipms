@@ -1,0 +1,21 @@
+extend type Mutation {
+  shareProject(
+    input: ShareProjectInput! @spread
+  ): ShareProjectResponse 
+    @field(resolver:"ShareProjectMutation") 
+    @guard(with:"api")
+}
+
+extend type Query {
+  viewSharedProject(id: ID!, token: String!): Project @field(resolver:"SharedProjectQuery")
+}
+
+input ShareProjectInput {
+  project_id: ID!
+  email: String! @rules(apply: ["email"])
+}
+
+type ShareProjectResponse {
+  message: String
+  status: String
+}

@@ -1,0 +1,238 @@
+extend type Mutation @middleware(checks:["auth:api"]) {
+  "Updates existing project."
+  updateProject(
+    input: UpdateProjectInput! @spread
+    ): Project
+    @update
+    @can(ability: "update", find: "id", injectArgs: true)
+    @event(dispatch: "App\\Events\\ProjectUpdated")
+    # @updateProjectInputValidation
+    # @broadcast(subscription: "projectUpdated")
+}
+
+# extend type Subscription {
+#   projectUpdated: Project
+# }
+
+input UpdateProjectInput {
+  id: ID!
+  prexc_program_id: ID
+  prexc_subprogram_id: ID
+  prexc_activity_id: ID
+  banner_program_id: ID
+  pipol_url: String
+  pipol_code: String
+  pip: Boolean
+  cip: Boolean
+  trip: Boolean
+  rdip: Boolean
+  pcip: Boolean
+  afmip: Boolean
+  title: String
+  type_id: ID
+  infrastructure: Boolean
+  operating_unit_id: ID
+  main_funding_source_id: ID
+  funding_institution_id: ID
+  implementation_mode_id: ID
+  priority_ranking: Int
+  project_status_id: ID
+  typology_id: ID
+  tier_id: ID
+  spatial_coverage_id: ID
+  cities_municipalities: String
+  description: String
+  components: String
+  goals: String
+  outcomes: String
+  purpose: String
+  expected_outputs: String
+  beneficiaries: String
+  employment_generated: String
+  target_start_year: Int
+  target_end_year: Int
+  implementation_start_date: String @date
+  implementation_end_date: String @date
+  clearinghouse: Boolean
+  clearinghouse_date: String @date
+  neda_submission: Boolean
+  neda_submission_date: String @date
+  neda_secretariat_review: Boolean
+  neda_secretariat_review_date: String @date
+  icc_endorsed: Boolean
+  icc_endorsed_date: String @date
+  icc_approved: Boolean
+  icc_approved_date: String @date
+  neda_board: Boolean
+  neda_board_date: String @date
+  total_project_cost: Float
+  currency_id: ID
+  implementation_risk: String
+  mitigation_strategy: String
+  income_increase: String
+  gad_id: ID
+  estimated_project_life: String
+  financial_benefit_cost_ratio: Float
+  financial_internal_rate_return: Float
+  financial_net_present_value: Float
+  economic_benefit_cost_ratio: Float
+  economic_internal_rate_return: Float
+  economic_net_present_value: Float
+  has_fs: Boolean
+  fs_target_2017: Float
+  fs_target_2018: Float
+  fs_target_2019: Float
+  fs_target_2020: Float
+  fs_target_2021: Float
+  fs_target_2022: Float
+  fs_target_2023: Float
+  fs_target_2024: Float
+  fs_target_2025: Float
+  fs_target_total: Float
+  has_row: Boolean
+  row_target_2017: Float
+  row_target_2018: Float
+  row_target_2019: Float
+  row_target_2020: Float
+  row_target_2021: Float
+  row_target_2022: Float
+  row_target_2023: Float
+  row_target_2024: Float
+  row_target_2025: Float
+  row_target_total: Float
+  row_affected: String
+  has_rap: Boolean
+  rap_target_2017: Float
+  rap_target_2018: Float
+  rap_target_2019: Float
+  rap_target_2020: Float
+  rap_target_2021: Float
+  rap_target_2022: Float
+  rap_target_2023: Float
+  rap_target_2024: Float
+  rap_target_2025: Float
+  rap_target_total: Float
+  rap_affected: String
+  investment_target_2016: Float
+  investment_target_2017: Float
+  investment_target_2018: Float
+  investment_target_2019: Float
+  investment_target_2020: Float
+  investment_target_2021: Float
+  investment_target_2022: Float
+  investment_target_2023: Float
+  investment_target_2024: Float
+  investment_target_2025: Float
+  investment_target_total: Float
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+  nep_2016: Float
+  nep_2017: Float
+  nep_2018: Float
+  nep_2019: Float
+  nep_2020: Float
+  nep_2021: Float
+  nep_2022: Float
+  nep_2023: Float
+  nep_2024: Float
+  nep_2025: Float
+  nep_total: Float
+  gaa_2016: Float
+  gaa_2017: Float
+  gaa_2018: Float
+  gaa_2019: Float
+  gaa_2020: Float
+  gaa_2021: Float
+  gaa_2022: Float
+  gaa_2023: Float
+  gaa_2024: Float
+  gaa_2025: Float
+  gaa_total: Float
+  disbursement_2016: Float
+  disbursement_2017: Float
+  disbursement_2018: Float
+  disbursement_2019: Float
+  disbursement_2020: Float
+  disbursement_2021: Float
+  disbursement_2022: Float
+  disbursement_2023: Float
+  disbursement_2024: Float
+  disbursement_2025: Float
+  disbursement_total: Float
+  uacs_code: String
+  updates: String
+  updates_date: String @date
+  region_id: ID
+  province_id: ID
+  district_id: ID
+  city_municipality_id: ID
+  version: Int
+  finalized: Boolean
+  cip_type_id: ID
+  iccable: Boolean
+  pdp_chapter_id: ID
+  project_preparation_document_id: ID
+  project_preparation_document_others: String
+  rdc_endorsed: Boolean
+  rdc_endorsed_date: String
+  rdc_required: Boolean
+
+  ten_point_agenda: UpdateTenPointAgendaBelongsToMany
+  sustainable_development_goals: UpdateSustainableDevelopmentGoalsBelongsToMany
+  technical_readinesses: UpdateTechnicalReadinessesBelongsToMany
+  regions: UpdateRegionsBelongsToMany
+  funding_sources: UpdateFundingSourcesBelongsToMany
+  pdp_chapters: UpdatePdpChaptersBelongsToMany
+  pdp_indicators: UpdatePdpIndicatorsBelongsToMany
+  paradigms: [ID]
+  infrastructure_subsectors: UpdateInfrastructureSubsectorsBelongsToMany
+  provinces: [ID]
+  districts: [ID]
+  bases: UpdateBasesBelongsToMany
+  submission_status_id: ID
+}
+
+input UpdateTenPointAgendaBelongsToMany {
+  sync: [ID]
+}
+
+input UpdateSustainableDevelopmentGoalsBelongsToMany {
+  sync: [ID]
+}
+
+input UpdateTechnicalReadinessesBelongsToMany {
+  sync: [ID]
+}
+
+input UpdateRegionsBelongsToMany {
+  sync: [ID]
+}
+
+input UpdateFundingSourcesBelongsToMany {
+  sync: [ID]
+}
+
+input UpdatePdpChaptersBelongsToMany {
+  sync: [ID]
+}
+
+input UpdatePdpIndicatorsBelongsToMany {
+  sync: [ID]
+}
+
+input UpdateInfrastructureSubsectorsBelongsToMany {
+  sync: [ID]
+}
+
+input UpdateBasesBelongsToMany {
+  sync: [ID]
+}

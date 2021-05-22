@@ -1,0 +1,32 @@
+extend type Query {
+  activities(first: Int!, page: Int, orderBy: _ @orderBy(columns:["created_at"])): 
+    ActivityPaginator
+    @field(resolver: "FetchActivitiesQuery") 
+    @guard(with:"api")
+}
+
+type Activity @modelClass(class: "\\Spatie\\Activitylog\\Models\\Activity") {
+  id: ID
+  description: String
+  subject: Subject @morphTo
+  causer: Causer @morphTo
+  properties: String
+  created_at: String
+  updated_at: String
+}
+
+type Subject {
+  id: ID
+  name: String
+  title: String
+}
+
+type Causer {
+  id: ID
+  name: String
+}
+
+type ActivityPaginator {
+  data: [Activity!]!
+  paginatorInfo: PaginatorInfo!
+}

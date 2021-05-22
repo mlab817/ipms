@@ -1,0 +1,42 @@
+extend type Query {
+	appVersions: [AppVersion] @all
+
+	appVersion(id: ID! @eq): AppVersion @find
+
+	currentAppVersion: AppVersion @field(resolver:"CurrentVersion")
+}
+
+extend type Mutation {
+	createAppVersion(input: CreateAppVersionInput!): AppVersion @create @inject(context:"user.id",name:"user_id")
+
+	updateAppVersion(input: UpdateAppVersionInput!): AppVersion @update @inject(context:"user.id",name:"user_id")
+
+	deleteAppVersion(id: ID!): AppVersion @delete @inject(context:"user.id",name:"user_id")
+}
+
+type AppVersion {
+	id: ID!
+	version: String
+	change_type: String
+	change_log: String
+	notes: String
+	user: User @belongsTo
+	created_at: String
+	updated_at: String
+}
+
+input CreateAppVersionInput {
+	version: String
+	change_type: String
+	change_log: String
+	notes: String
+}
+
+input UpdateAppVersionInput {
+	id: ID!
+	version: String
+	change_type: String
+	change_log: String
+	notes: String
+}
+

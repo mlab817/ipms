@@ -1,0 +1,43 @@
+extend type Mutation {
+	saveReview(input: ReviewProjectInput @spread):
+    ReviewProjectResponse!
+    @field(resolver:"SaveReview")
+    @guard(with:["api"])
+
+  submitReview(
+    id: ID!
+    remarks: String!
+    ): 
+    SubmitReviewResponse 
+    @field(resolver:"SubmitReview")
+    @guard(with:["api"])
+}
+
+input ReviewProjectInput {
+	id: ID!
+  typology_id: ID
+  cip: Boolean
+  cip_type_id: ID
+  trip: Boolean
+  within_period: Boolean
+  readiness_id: ID
+  remarks: String
+  ten_point_agenda: [ID]
+  sustainable_development_goals: [ID]
+  bases: [ID]
+  paradigms: [ID]
+  pdp_chapters: [ID]
+  pdp_indicators: [ID]
+}
+
+type ReviewProjectResponse {
+  review: Review
+  status: String
+  message: String
+}
+
+type SubmitReviewResponse {
+  project: Project
+  status: String
+  message: String
+}

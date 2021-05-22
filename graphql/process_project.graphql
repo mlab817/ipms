@@ -1,0 +1,82 @@
+extend type Mutation {
+  finalizeProject(
+    input: UpdateProjectInput! @spread
+  ): Project
+    @update
+    @can(ability: "update", find: "id", injectArgs: true)
+    @guard(with:["api"])
+    @event(dispatch: "App\\Events\\ProjectFinalized")
+
+  revertToDraftProject(id: ID!): Project @field(resolver:"RevertToDraftProject") @guard(with:["api"])
+
+  uploadSignedCopy(
+      id: ID!
+      signed_copy: Upload
+      remarks: String
+    ): Project
+    @field(resolver:"UploadSignedCopy")
+    @guard(with:["api"])
+    # @event(dispatch: "App\\Events\\ProjectEndorsedEvent")
+
+  validateProject(
+    id: ID!
+    validation_data: Boolean
+    validation_signed: Boolean
+    remarks: String
+  ): Project
+    @field(resolver:"ValidateProjectMutation")
+    @guard(with:["api"])
+    @event(dispatch: "App\\Events\\ProjectProcessed")
+
+  returnProject(
+    project_id: ID!
+    remarks: String
+  ): Project
+    @field(resolver:"ReturnProjectMutation")
+    @guard(with:["api"])
+    @event(dispatch: "App\\Events\\ProjectProcessed")
+
+  encodeProject(
+    input: EncodeProjectInput! @spread
+  ): Project
+    @field(resolver:"EncodeProjectMutation")
+    @guard(with:["api"])
+
+  updatePipolStatus(
+    id: ID!
+    pipol_status_id: ID!
+  ): Project
+    @field(resolver: "UpdatePipolStatus")
+    @guard(with: ["api"])
+
+  reclassifyProject(
+    id: ID!
+    banner_program_id: ID
+  ): Project
+    @field(resolver:"ReclassifyProject")
+}
+
+type Query {
+  project_processing_statuses: [ProjectProcessingStatus] @all
+}
+
+type ProjectProcessingStatus {
+  id: ID
+  project_id: ID!
+  project: Project @belongsTo
+  processing_status_id: ID!
+  processing_status: ProcessingStatus @belongsTo
+  processed_by: ID!
+  processor: User @belongsTo
+  remarks: String
+  processed_at: String
+  created_at: String
+  updated_at: String
+  deleted_at: String
+}
+
+input EncodeProjectInput {
+  id: ID!
+  pipol_code: String
+  # pipol_status_id: ID
+}

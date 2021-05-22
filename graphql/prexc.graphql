@@ -1,0 +1,419 @@
+extend type Query {
+	cost_structures: [CostStructure] @all
+	prexc_programs: [PrexcProgram] @field(resolver: "PrexcProgramsQuery")
+	prexc_program(id: ID! @eq): PrexcProgram @find
+	prexc_subprograms: [PrexcSubprogram] @field(resolver: "PrexcSubprogramsQuery")
+	prexc_subprogram(id: ID! @eq): PrexcSubprogram @find
+	prexc_activities: [PrexcActivity] @field(resolver: "PrexcActivitiesQuery")
+	prexc_activity(id: ID! @eq): PrexcActivity @find
+
+	paginatedPrexcActivities: [PrexcActivity] @paginate(type:"paginator", defaultCount:10, maxCount: 25) @softDeletes
+
+	banner_programs: [BannerProgram] @all
+
+	ouPrexcActivities: [PrexcActivity] @all(scopes: ["ou"]) @guard(with: ["api"])
+
+	"Return projects for review by operating unit"
+	prexcActivitiesForReview(operating_unit_id: ID! @eq): [PrexcActivity] @all(scopes:["review"]) @guard(with: ["api"])
+}
+
+extend type Mutation {
+	createBannerProgram(input: CreateBannerProgramInput! @spread): BannerProgram @create
+	updateBannerProgram(input: UpdateBannerProgramInput! @spread): BannerProgram @update
+	deleteBannerProgram(id: ID!): BannerProgram @delete
+
+	createPrexcProgram(input: CreatePrexcProgramInput! @spread): PrexcProgram @create
+	updatePrexcProgram(input: UpdatePrexcProgramInput! @spread): PrexcProgram @update
+	deletePrexcProgram(id: ID!): PrexcProgram @delete
+
+	createPrexcSubprogram(input: CreatePrexcSubprogramInput! @spread): PrexcSubprogram @create
+	updatePrexcSubprogram(input: UpdatePrexcSubprogramInput! @spread): PrexcSubprogram @update
+	deletePrexcSubprogram(id: ID!): PrexcSubprogram @delete
+
+	createPrexcActivity(input: CreatePrexcActivityInput! @spread): PrexcActivity @create
+	updatePrexcActivity(input: UpdatePrexcActivityInput! @spread): PrexcActivity @update
+	deletePrexcActivity(id: ID!): PrexcActivity @delete
+
+	createPrexcActivityFromProject(id: ID!): PrexcActivity
+		@field(resolver:"CreatePrexcActivityFromProject")
+		@guard(with:["api"])
+
+	syncActivityToProject(id: ID!): PrexcActivity
+		@field(resolver:"SyncProjectToActivity")
+		@guard(with:["api"])
+
+	assignActivityToOus(id: ID!, operating_units: [ID]): PrexcActivity @field(resolver: "AssignActivityToOus")
+	assignProgramToOus(id: ID!, operating_units: [ID]): PrexcProgram @field(resolver: "AssignProgramToOus")
+	assignSubprogramToOus(id: ID!, operating_units: [ID]): PrexcSubprogram @field(resolver: "AssignSubprogramToOus")
+
+	"Finalize a single activity"
+	finalizePrexcActivity(id: ID!): PrexcActivity @field(resolver: "FinalizePrexcActivityMutation")
+
+	"Finalize multiple activities at once"
+	finalizePrexcActivities(id: [ID]!): [PrexcActivity] @field(resolver: "FinalizePrexcActivitiesMutation")
+
+	"Review a single activity"
+	reviewPrexcActivity(id: ID!): [PrexcActivity] @field(resolver: "ReviewPrexcActivityMutation")
+
+	"Review multiple activities at once"
+	reviewPrexcActivities(id: [ID]!): [PrexcActivity] @field(resolver: "ReviewPrexcActivitiesMutation")
+
+	exportExcel(operating_unit_id: ID): Link @field(resolver: "ExportExcelMutation") @guard(with:["api"])
+
+	reclassifyPrexcActivity(
+		id: ID!
+		banner_program_id: ID
+	): PrexcActivity
+		@field(resolver:"ReclassifyPrexcActivity")
+
+  undoFinalizePrexcActivity(
+    id: ID!
+  ): PrexcActivity 
+    @field(resolver: "UndoFinalizePrexcActivity") 
+    @guard(with:["api"])
+}
+
+type Link {
+    link: String
+}
+
+input CreatePrexcProgramInput {
+	name: String!
+	acronym: String!
+	uacs_code: String
+	cost_structure_id: ID
+	title: String
+	organizational_outcome: String
+	objective_statement: String
+	program_strategy: String
+}
+
+input UpdatePrexcProgramInput {
+	id: ID!
+	name: String!
+	acronym: String!
+	uacs_code: String
+	cost_structure_id: ID
+	title: String
+	organizational_outcome: String
+	objective_statement: String
+	program_strategy: String
+}
+
+input CreatePrexcSubprogramInput {
+	name: String!
+	acronym: String!
+	uacs_code: String
+	prexc_program_id: ID!
+	title: String
+	organizational_outcome: String
+	objective_statement: String
+	program_strategy: String
+	outcome_indicators: String
+	output_indicators: String
+}
+
+input UpdatePrexcSubprogramInput {
+	id: ID!
+	name: String
+	acronym: String
+	uacs_code: String
+	prexc_program_id: ID
+	title: String
+	organizational_outcome: String
+	objective_statement: String
+	program_strategy: String
+	outcome_indicators: String
+	output_indicators: String
+}
+
+type CostStructure {
+	id: ID!
+	name: String
+	acronym: String
+	value: ID! @rename(attribute: "id")
+	label: String @rename(attribute: "name")
+	prexc_programs: [PrexcProgram] @hasMany
+	children: [PrexcProgram] @hasMany
+}
+
+type PrexcProgram {
+	id: ID!
+	name: String
+	acronym: String
+	uacs_code: String
+	cost_structure_id: ID
+	title: String
+	organizational_outcome: String
+	objective_statement: String
+	program_strategy: String
+	value: ID! @rename(attribute: "id")
+	label: String
+	cost_structure: CostStructure @belongsTo
+	prexc_subprograms: [PrexcSubprogram] @hasMany
+	children: [PrexcSubprogram] @hasMany
+	operating_units: [OperatingUnit] @belongsToMany
+	prexc_activities: [PrexcActivity] @hasMany
+	count_prexc_activity: Int
+}
+
+type PrexcSubprogram {
+	id: ID!
+	name: String
+	acronym: String
+	uacs_code: String
+	prexc_program_id: ID
+	title: String
+	organizational_outcome: String
+	objective_statement: String
+	program_strategy: String
+	outcome_indicators: String
+	output_indicators: String
+	value: ID! @rename(attribute: "id")
+	label: String
+	prexc_program: PrexcProgram @belongsTo
+	prexc_activities: [PrexcActivity] @hasMany
+	children: [PrexcActivity] @hasMany
+	operating_units: [OperatingUnit] @belongsToMany
+}
+
+type BannerProgram {
+	id: ID
+	name: String
+	acronym: String
+	prexc_activities: [PrexcActivity] @hasMany
+  consolidators: [OperatingUnit] @belongsToMany
+}
+
+input CreateBannerProgramInput {
+	name: String
+	acronym: String
+}
+
+input UpdateBannerProgramInput {
+	id: ID!
+	name: String
+	acronym: String
+}
+
+type PrexcActivity {
+	id: ID!
+	name: String
+	acronym: String
+	operating_unit_id: ID
+	operating_unit: OperatingUnit @belongsTo
+	prexc_program_id: ID
+	prexc_program: PrexcProgram @belongsTo
+	prexc_subprogram_id: ID
+	prexc_subprogram: PrexcSubprogram @belongsTo
+	banner_program_id: ID
+	banner_program: BannerProgram @belongsTo
+	project_id: ID
+	trip: Boolean
+	uacs_code: String
+	investment_target_2016: Float
+  investment_target_2017: Float
+  investment_target_2018: Float
+  investment_target_2019: Float
+  investment_target_2020: Float
+  investment_target_2021: Float
+  investment_target_2022: Float
+  investment_target_2023: Float
+	investment_target_2024: Float
+  investment_target_2025: Float
+  investment_target_total: Float
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+	infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+	gaa_2016: Float
+	gaa_2017: Float
+	gaa_2018: Float
+	gaa_2019: Float
+	gaa_2020: Float
+	gaa_2021: Float
+	gaa_2022: Float
+	gaa_2023: Float
+	gaa_2024: Float
+	gaa_2025: Float
+	gaa_total: Float
+	nep_2016: Float
+	nep_2017: Float
+	nep_2018: Float
+	nep_2019: Float
+	nep_2020: Float
+	nep_2021: Float
+	nep_2022: Float
+	nep_2023: Float
+	nep_2024: Float
+	nep_2025: Float
+	nep_total: Float
+	disbursement_2016: Float
+	disbursement_2017: Float
+	disbursement_2018: Float
+	disbursement_2019: Float
+	disbursement_2020: Float
+	disbursement_2021: Float
+	disbursement_2022: Float
+	disbursement_2023: Float
+	disbursement_2024: Float
+	disbursement_2025: Float
+	disbursement_total: Float
+	created_by: ID
+	creator: User @belongsTo
+	updated_by: ID
+	updater: User @belongsTo
+	created_at: String
+	updated_at: String
+	finalized: Boolean
+	reviewed: Boolean
+	submission_status_id: ID
+	submission_status: SubmissionStatus @belongsTo
+	project: Project @belongsTo
+	# tags: [Tag] @belongsToMany
+	tier: Tier @belongsTo
+  last_updated: String
+}
+
+input CreatePrexcActivityInput {
+	name: String
+	acronym: String
+	operating_unit_id: ID
+	prexc_program_id: ID
+	prexc_subprogram_id: ID
+	banner_program_id: ID
+	trip: Boolean
+	uacs_code: String
+	investment_target_2016: Float
+	investment_target_2017: Float
+	investment_target_2018: Float
+	investment_target_2019: Float
+	investment_target_2020: Float
+	investment_target_2021: Float
+	investment_target_2022: Float
+	investment_target_2023: Float
+	investment_target_2024: Float
+	investment_target_2025: Float
+	investment_target_total: Float
+	infrastructure_target_2016: Float
+	infrastructure_target_2017: Float
+	infrastructure_target_2018: Float
+	infrastructure_target_2019: Float
+	infrastructure_target_2020: Float
+	infrastructure_target_2021: Float
+	infrastructure_target_2022: Float
+	infrastructure_target_2023: Float
+	infrastructure_target_2024: Float
+	infrastructure_target_2025: Float
+	infrastructure_target_total: Float
+	gaa_2016: Float
+	gaa_2017: Float
+	gaa_2018: Float
+	gaa_2019: Float
+	gaa_2020: Float
+	gaa_2021: Float
+	gaa_2022: Float
+	gaa_2023: Float
+	gaa_2024: Float
+	gaa_2025: Float
+	gaa_total: Float
+	nep_2016: Float
+	nep_2017: Float
+	nep_2018: Float
+	nep_2019: Float
+	nep_2020: Float
+	nep_2021: Float
+	nep_2022: Float
+	nep_2023: Float
+	nep_2024: Float
+	nep_2025: Float
+	nep_total: Float
+	disbursement_2016: Float
+	disbursement_2017: Float
+	disbursement_2018: Float
+	disbursement_2019: Float
+	disbursement_2020: Float
+	disbursement_2021: Float
+	disbursement_2022: Float
+	disbursement_2023: Float
+	disbursement_2024: Float
+	disbursement_2025: Float
+	disbursement_total: Float
+	tier_id: ID
+}
+
+input UpdatePrexcActivityInput {
+	id: ID!
+	name: String
+	acronym: String
+	operating_unit_id: ID
+	prexc_program_id: ID
+	prexc_subprogram_id: ID
+	banner_program_id: ID
+	trip: Boolean
+	uacs_code: String
+	investment_target_2016: Float
+	investment_target_2017: Float
+	investment_target_2018: Float
+	investment_target_2019: Float
+	investment_target_2020: Float
+	investment_target_2021: Float
+	investment_target_2022: Float
+	investment_target_2023: Float
+	investment_target_2024: Float
+	investment_target_2025: Float
+	investment_target_total: Float
+	infrastructure_target_2016: Float
+	infrastructure_target_2017: Float
+	infrastructure_target_2018: Float
+	infrastructure_target_2019: Float
+	infrastructure_target_2020: Float
+	infrastructure_target_2021: Float
+	infrastructure_target_2022: Float
+	infrastructure_target_2023: Float
+	infrastructure_target_2024: Float
+	infrastructure_target_2025: Float
+	infrastructure_target_total: Float
+	gaa_2016: Float
+	gaa_2017: Float
+	gaa_2018: Float
+	gaa_2019: Float
+	gaa_2020: Float
+	gaa_2021: Float
+	gaa_2022: Float
+	gaa_2023: Float
+	gaa_2024: Float
+	gaa_2025: Float
+	gaa_total: Float
+	nep_2016: Float
+	nep_2017: Float
+	nep_2018: Float
+	nep_2019: Float
+	nep_2020: Float
+	nep_2021: Float
+	nep_2022: Float
+	nep_2023: Float
+	nep_2024: Float
+	nep_2025: Float
+	nep_total: Float
+	disbursement_2016: Float
+	disbursement_2017: Float
+	disbursement_2018: Float
+	disbursement_2019: Float
+	disbursement_2020: Float
+	disbursement_2021: Float
+	disbursement_2022: Float
+	disbursement_2023: Float
+	disbursement_2024: Float
+	disbursement_2025: Float
+	disbursement_total: Float
+	submission_status_id: ID
+	tier_id: ID
+}

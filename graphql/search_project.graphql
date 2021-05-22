@@ -1,0 +1,4 @@
+extend type Query {
+	"Search projects using their title"
+	searchProjects(search: String!): [Project] @field(resolver:"SearchProject")
+}

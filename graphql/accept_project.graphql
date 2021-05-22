@@ -1,0 +1,15 @@
+extend type Mutation {
+	acceptProject(
+		id: ID!
+		remarks: String!
+	): Project 
+		@field(resolver:"AcceptProject") 
+		@guard(with:["api"])
+
+	approveProject(
+		id: ID!
+		remarks: String!
+	): Project 
+		@field(resolver:"ApproveProject") 
+		@guard(with:["api"])
+}

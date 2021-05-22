@@ -1,0 +1,67 @@
+extend type Query {
+  "Get all contacts."
+  contacts: [Contact] @all @softDeletes
+
+  "Find contact by ID."
+  contact(id: ID @eq): Contact @find
+}
+
+type Contact {
+  id: ID!
+  name: String
+  email: String
+  designation: String
+  operating_unit_id: ID
+  operating_unit: OperatingUnit @belongsTo
+  user_id: ID
+  user: User @belongsTo
+  phone_number: String
+  fax_number: String
+}
+
+extend type Mutation {
+  "Add a contact."
+  createContact(
+    input: CreateContactInput! @spread
+  ): Contact @create
+
+  createContacts(
+    input: CreateContactsInput @spread
+  ): CreateContactsResponse @field(resolver:"CreateContactsMutation")
+
+  "Update a contact."
+  updateContact(input: UpdateContactInput! @spread): Contact @update
+
+  "Delete a contact."
+  deleteContact(id: ID!): Contact @delete
+}
+
+input CreateContactsInput {
+  contacts: [CreateContactInput!]
+}
+
+type CreateContactsResponse {
+  contacts: [Contact]
+  failed: [Contact]  
+}
+
+input CreateContactInput {
+  name: String
+  email: String
+  designation: String
+  operating_unit_id: ID
+  user_id: ID
+  phone_number: String
+  fax_number: String
+}
+
+input UpdateContactInput {
+  id: ID!
+  name: String
+  email: String
+  designation: String
+  operating_unit_id: ID
+  user_id: ID
+  phone_number: String
+  fax_number: String
+}

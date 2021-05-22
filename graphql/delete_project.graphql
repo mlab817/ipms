@@ -1,0 +1,16 @@
+extend type Mutation @middleware(checks:["auth:api"]) {
+  deleteProject(id: ID!):
+  	DeleteProjectResponse!
+    @field(resolver:"DeleteProject")
+    @guard(with:["api"])
+
+  forceDeleteProject(id: ID!):
+    Project
+    @forceDelete
+}
+
+type DeleteProjectResponse {
+	project: Project
+	status: String
+	message: String
+}

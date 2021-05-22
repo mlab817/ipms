@@ -1,0 +1,442 @@
+extend type Mutation {
+  createRegionFinancial(input: CreateRegionFinancialInput! @spread): RegionFinancial @create
+
+  updateRegionFinancial(input: UpdateRegionFinancialInput! @spread): RegionFinancial @update
+
+  deleteRegionFinancial(id: ID!): RegionFinancial @delete
+
+  createFundingSourceFinancial(input: CreateFundingSourceFinancialInput! @spread): FundingSourceFinancial @create
+
+  updateFundingSourceFinancial(input: UpdateFundingSourceFinancialInput! @spread): FundingSourceFinancial @update
+
+  deleteFundingSourceFinancial(id: ID!): FundingSourceFinancial @delete
+
+  createFundingSourceInfrastructure(input: CreateFundingSourceInfrastructureInput! @spread): FundingSourceInfrastructure @create
+
+  updateFundingSourceInfrastructure(input: UpdateFundingSourceInfrastructureInput! @spread): FundingSourceInfrastructure @update
+
+  deleteFundingSourceInfrastructure(id: ID!): FundingSourceInfrastructure @delete
+}
+
+extend type Query {
+  region_financials(project_id: ID! @where(operator:"=")): [RegionFinancial] @all
+
+  funding_source_financials(project_id: ID! @where(operator:"=")): [FundingSourceFinancial] @all
+}
+
+type FundingSourceFinancial {
+  id: ID!
+  project_id: ID!
+  funding_source_id: ID!
+  funding_source: FundingSource @belongsTo
+  investment_target_2016: Float
+  investment_target_2017: Float
+  investment_target_2018: Float
+  investment_target_2019: Float
+  investment_target_2020: Float
+  investment_target_2021: Float
+  investment_target_2022: Float
+  investment_target_2023: Float
+  investment_target_2024: Float
+  investment_target_2025: Float
+  investment_target_total: Float
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+  nep_2016: Float
+  nep_2017: Float
+  nep_2018: Float
+  nep_2019: Float
+  nep_2020: Float
+  nep_2021: Float
+  nep_2022: Float
+  nep_2023: Float
+  nep_2024: Float
+  nep_2025: Float
+  nep_total: Float
+  gaa_2016: Float
+  gaa_2017: Float
+  gaa_2018: Float
+  gaa_2019: Float
+  gaa_2020: Float
+  gaa_2021: Float
+  gaa_2022: Float
+  gaa_2023: Float
+  gaa_2024: Float
+  gaa_2025: Float
+  gaa_total: Float
+  disbursement_2016: Float
+  disbursement_2017: Float
+  disbursement_2018: Float
+  disbursement_2019: Float
+  disbursement_2020: Float
+  disbursement_2021: Float
+  disbursement_2022: Float
+  disbursement_2023: Float
+  disbursement_2024: Float
+  disbursement_2025: Float
+  disbursement_total: Float
+}
+
+input CreateFundingSourceFinancialInput {
+  project_id: ID!
+  funding_source_id: ID!
+  investment_target_2016: Float
+  investment_target_2017: Float
+  investment_target_2018: Float
+  investment_target_2019: Float
+  investment_target_2020: Float
+  investment_target_2021: Float
+  investment_target_2022: Float
+  investment_target_2023: Float
+  investment_target_2024: Float
+  investment_target_2025: Float
+  investment_target_total: Float
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+  nep_2016: Float
+  nep_2017: Float
+  nep_2018: Float
+  nep_2019: Float
+  nep_2020: Float
+  nep_2021: Float
+  nep_2022: Float
+  nep_2023: Float
+  nep_2024: Float
+  nep_2025: Float
+  nep_total: Float
+  gaa_2016: Float
+  gaa_2017: Float
+  gaa_2018: Float
+  gaa_2019: Float
+  gaa_2020: Float
+  gaa_2021: Float
+  gaa_2022: Float
+  gaa_2023: Float
+  gaa_2024: Float
+  gaa_2025: Float
+  gaa_total: Float
+  disbursement_2016: Float
+  disbursement_2017: Float
+  disbursement_2018: Float
+  disbursement_2019: Float
+  disbursement_2020: Float
+  disbursement_2021: Float
+  disbursement_2022: Float
+  disbursement_2023: Float
+  disbursement_2024: Float
+  disbursement_2025: Float
+  disbursement_total: Float
+}
+
+input UpdateFundingSourceFinancialInput {
+  id: ID!
+  project_id: ID!
+  funding_source_id: ID!
+  investment_target_2016: Float
+  investment_target_2017: Float
+  investment_target_2018: Float
+  investment_target_2019: Float
+  investment_target_2020: Float
+  investment_target_2021: Float
+  investment_target_2022: Float
+  investment_target_2023: Float
+  investment_target_2024: Float
+  investment_target_2025: Float
+  investment_target_total: Float
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+  nep_2016: Float
+  nep_2017: Float
+  nep_2018: Float
+  nep_2019: Float
+  nep_2020: Float
+  nep_2021: Float
+  nep_2022: Float
+  nep_2023: Float
+  nep_2024: Float
+  nep_2025: Float
+  nep_total: Float
+  gaa_2016: Float
+  gaa_2017: Float
+  gaa_2018: Float
+  gaa_2019: Float
+  gaa_2020: Float
+  gaa_2021: Float
+  gaa_2022: Float
+  gaa_2023: Float
+  gaa_2024: Float
+  gaa_2025: Float
+  gaa_total: Float
+  disbursement_2016: Float
+  disbursement_2017: Float
+  disbursement_2018: Float
+  disbursement_2019: Float
+  disbursement_2020: Float
+  disbursement_2021: Float
+  disbursement_2022: Float
+  disbursement_2023: Float
+  disbursement_2024: Float
+  disbursement_2025: Float
+  disbursement_total: Float
+}
+
+type RegionFinancial {
+  id: ID!
+  project_id: ID!
+  region_id: ID!
+  region: Region @belongsTo
+  investment_target_2016: Float
+  investment_target_2017: Float
+  investment_target_2018: Float
+  investment_target_2019: Float
+  investment_target_2020: Float
+  investment_target_2021: Float
+  investment_target_2022: Float
+  investment_target_2023: Float
+  investment_target_2024: Float
+  investment_target_2025: Float
+  investment_target_total: Float
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+  nep_2016: Float
+  nep_2017: Float
+  nep_2018: Float
+  nep_2019: Float
+  nep_2020: Float
+  nep_2021: Float
+  nep_2022: Float
+  nep_2023: Float
+  nep_2024: Float
+  nep_2025: Float
+  nep_total: Float
+  gaa_2016: Float
+  gaa_2017: Float
+  gaa_2018: Float
+  gaa_2019: Float
+  gaa_2020: Float
+  gaa_2021: Float
+  gaa_2022: Float
+  gaa_2023: Float
+  gaa_2024: Float
+  gaa_2025: Float
+  gaa_total: Float
+  disbursement_2016: Float
+  disbursement_2017: Float
+  disbursement_2018: Float
+  disbursement_2019: Float
+  disbursement_2020: Float
+  disbursement_2021: Float
+  disbursement_2022: Float
+  disbursement_2023: Float
+  disbursement_2024: Float
+  disbursement_2025: Float
+  disbursement_total: Float
+}
+
+input CreateRegionFinancialInput {
+  project_id: ID!
+  region_id: ID!
+  investment_target_2016: Float
+  investment_target_2017: Float
+  investment_target_2018: Float
+  investment_target_2019: Float
+  investment_target_2020: Float
+  investment_target_2021: Float
+  investment_target_2022: Float
+  investment_target_2023: Float
+  investment_target_2024: Float
+  investment_target_2025: Float
+  investment_target_total: Float
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+  nep_2016: Float
+  nep_2017: Float
+  nep_2018: Float
+  nep_2019: Float
+  nep_2020: Float
+  nep_2021: Float
+  nep_2022: Float
+  nep_2023: Float
+  nep_2024: Float
+  nep_2025: Float
+  nep_total: Float
+  gaa_2016: Float
+  gaa_2017: Float
+  gaa_2018: Float
+  gaa_2019: Float
+  gaa_2020: Float
+  gaa_2021: Float
+  gaa_2022: Float
+  gaa_2023: Float
+  gaa_2024: Float
+  gaa_2025: Float
+  gaa_total: Float
+  disbursement_2016: Float
+  disbursement_2017: Float
+  disbursement_2018: Float
+  disbursement_2019: Float
+  disbursement_2020: Float
+  disbursement_2021: Float
+  disbursement_2022: Float
+  disbursement_2023: Float
+  disbursement_2024: Float
+  disbursement_2025: Float
+  disbursement_total: Float
+}
+
+input UpdateRegionFinancialInput {
+  id: ID!
+  project_id: ID!
+  region_id: ID!
+  investment_target_2016: Float
+  investment_target_2017: Float
+  investment_target_2018: Float
+  investment_target_2019: Float
+  investment_target_2020: Float
+  investment_target_2021: Float
+  investment_target_2022: Float
+  investment_target_2023: Float
+  investment_target_2024: Float
+  investment_target_2025: Float
+  investment_target_total: Float
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+  nep_2016: Float
+  nep_2017: Float
+  nep_2018: Float
+  nep_2019: Float
+  nep_2020: Float
+  nep_2021: Float
+  nep_2022: Float
+  nep_2023: Float
+  nep_2024: Float
+  nep_2025: Float
+  nep_total: Float
+  gaa_2016: Float
+  gaa_2017: Float
+  gaa_2018: Float
+  gaa_2019: Float
+  gaa_2020: Float
+  gaa_2021: Float
+  gaa_2022: Float
+  gaa_2023: Float
+  gaa_2024: Float
+  gaa_2025: Float
+  gaa_total: Float
+  disbursement_2016: Float
+  disbursement_2017: Float
+  disbursement_2018: Float
+  disbursement_2019: Float
+  disbursement_2020: Float
+  disbursement_2021: Float
+  disbursement_2022: Float
+  disbursement_2023: Float
+  disbursement_2024: Float
+  disbursement_2025: Float
+  disbursement_total: Float
+}
+
+type FundingSourceInfrastructure {
+  id: ID!
+  project_id: ID!
+  funding_source_id: ID!
+  funding_source: FundingSource @belongsTo
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+}
+
+input CreateFundingSourceInfrastructureInput {
+  project_id: ID!
+  funding_source_id: ID!
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+}
+
+input UpdateFundingSourceInfrastructureInput {
+  id: ID!
+  project_id: ID!
+  funding_source_id: ID!
+  infrastructure_target_2016: Float
+  infrastructure_target_2017: Float
+  infrastructure_target_2018: Float
+  infrastructure_target_2019: Float
+  infrastructure_target_2020: Float
+  infrastructure_target_2021: Float
+  infrastructure_target_2022: Float
+  infrastructure_target_2023: Float
+  infrastructure_target_2024: Float
+  infrastructure_target_2025: Float
+  infrastructure_target_total: Float
+}

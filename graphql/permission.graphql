@@ -1,0 +1,30 @@
+type Permission {
+	id: ID!
+	name: String!
+	guard_name: String
+
+	roles: [Role] @belongsToMany
+}
+
+extend type Query {
+	permissions: [Permission] @all
+}
+
+extend type Mutation {
+	createPermission(input: CreatePermissionInput! @spread): Permission @create
+
+	updatePermission(input: UpdatePermissionInput! @spread): Permission @update
+
+	deletePermission(id: ID!): Permission @delete
+}
+
+input CreatePermissionInput {
+	name: String!
+	guard_name: String
+}
+
+input UpdatePermissionInput {
+	id: ID!
+	name: String!
+	guard_name: String
+}

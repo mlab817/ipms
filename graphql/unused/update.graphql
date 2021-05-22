@@ -1,0 +1,5 @@
+type Update {
+  id: ID!
+  updates: String
+  update_date: Date
+}
