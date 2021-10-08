@@ -11,17 +11,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 
-class OperatingUnit extends Model implements HasMedia
+class OperatingUnit extends Model
 {
     use HasFactory;
     use Sluggable;
     use Auditable;
     use SoftDeletes;
-    use HasMediaTrait;
 
     protected $fillable = [
         'name',

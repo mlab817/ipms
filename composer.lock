@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3494fb19afc82f41171831df64d0de1",
+    "content-hash": "4e4b9bd8c7ae9aaa4a3b97d4437ede9c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6325,50 +6325,55 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.20.0",
+            "version": "9.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "d650ef5163f5285b7fcc647d789f80f194f3bdb2"
+                "reference": "a73cde4f0438e6e6d6ec8f6d6a7258ba1e281a34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/d650ef5163f5285b7fcc647d789f80f194f3bdb2",
-                "reference": "d650ef5163f5285b7fcc647d789f80f194f3bdb2",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a73cde4f0438e6e6d6ec8f6d6a7258ba1e281a34",
+                "reference": "a73cde4f0438e6e6d6ec8f6d6a7258ba1e281a34",
                 "shasum": ""
             },
             "require": {
+                "ext-exif": "*",
                 "ext-fileinfo": "*",
                 "ext-json": "*",
-                "illuminate/bus": "~5.8.35|^6.0|^7.0|^8.0",
-                "illuminate/console": "~5.8.35|^6.0|^7.0|^8.0",
-                "illuminate/database": "~5.8.35|^6.0|^7.0|^8.0",
-                "illuminate/pipeline": "~5.8.35|^6.0|^7.0|^8.0",
-                "illuminate/support": "~5.8.35|^6.0|^7.0|^8.0",
-                "league/flysystem": "^1.0.8",
+                "illuminate/bus": "^7.0|^8.0",
+                "illuminate/console": "^7.0|^8.0",
+                "illuminate/database": "^7.0|^8.0",
+                "illuminate/pipeline": "^7.0|^8.0",
+                "illuminate/support": "^7.0|^8.0",
+                "league/flysystem": "^1.0.64",
                 "maennchen/zipstream-php": "^1.0|^2.0",
-                "php": "^7.2|^8.0",
-                "spatie/image": "^1.4.0",
-                "spatie/pdf-to-image": "^2.0",
-                "spatie/temporary-directory": "^1.1",
-                "symfony/console": "^4.4|^5.1"
+                "php": "^7.4|^8.0",
+                "spatie/image": "^1.4",
+                "spatie/temporary-directory": "^1.1|^2.0",
+                "symfony/console": "^4.4|^5.0"
             },
             "conflict": {
                 "php-ffmpeg/php-ffmpeg": "<0.6.1"
             },
             "require-dev": {
-                "doctrine/dbal": "^2.5.2",
+                "aws/aws-sdk-php": "^3.133.11",
+                "doctrine/dbal": "^2.12",
                 "ext-pdo_sqlite": "*",
-                "guzzlehttp/guzzle": "^6.3|^7.0.1",
-                "league/flysystem-aws-s3-v3": "^1.0.13",
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^3.8|^4.0|^5.0|^6.0",
-                "phpunit/phpunit": "^8.0|^9.0",
+                "ext-zip": "*",
+                "guzzlehttp/guzzle": "^7.0",
+                "league/flysystem-aws-s3-v3": "^1.0.23",
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^9.3",
+                "spatie/laravel-ray": "^1.24",
+                "spatie/pdf-to-image": "^2.0",
                 "spatie/phpunit-snapshot-assertions": "^4.0"
             },
             "suggest": {
                 "league/flysystem-aws-s3-v3": "Required to use AWS S3 file storage",
-                "php-ffmpeg/php-ffmpeg": "Required for generating video thumbnails"
+                "php-ffmpeg/php-ffmpeg": "Required for generating video thumbnails",
+                "spatie/pdf-to-image": "Required for generating thumbsnails of PDFs and SVGs"
             },
             "type": "library",
             "extra": {
@@ -6391,7 +6396,7 @@
                 {
                     "name": "Freek Van der Herten",
                     "email": "freek@spatie.be",
-                    "homepage": "https://murze.be",
+                    "homepage": "https://spatie.be",
                     "role": "Developer"
                 }
             ],
@@ -6409,7 +6414,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/7.20.0"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/9.8.1"
             },
             "funding": [
                 {
@@ -6421,7 +6426,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-05-26T16:48:02+00:00"
+            "time": "2021-10-08T06:36:33+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -6566,66 +6571,6 @@
                 }
             ],
             "time": "2021-06-24T13:05:38+00:00"
-        },
-        {
-            "name": "spatie/pdf-to-image",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/pdf-to-image.git",
-                "reference": "ea81a2d5f4fb0ca9f4c4fc0d4f8813135e993b2d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/ea81a2d5f4fb0ca9f4c4fc0d4f8813135e993b2d",
-                "reference": "ea81a2d5f4fb0ca9f4c4fc0d4f8813135e993b2d",
-                "shasum": ""
-            },
-            "require": {
-                "ext-imagick": "*",
-                "php": "^7.2|^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.0|^9.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\PdfToImage\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Convert a pdf to an image",
-            "homepage": "https://github.com/spatie/pdf-to-image",
-            "keywords": [
-                "convert",
-                "image",
-                "pdf",
-                "pdf-to-image",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/pdf-to-image/issues",
-                "source": "https://github.com/spatie/pdf-to-image/tree/2.1.0"
-            },
-            "funding": [
-                {
-                    "url": "https://www.patreon.com/spatie",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2020-11-12T11:27:19+00:00"
         },
         {
             "name": "spatie/temporary-directory",
@@ -12877,5 +12822,5 @@
         "php": "^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }
