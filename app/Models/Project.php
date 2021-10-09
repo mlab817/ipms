@@ -126,7 +126,7 @@ class Project extends Model
 
     public function creator(): BelongsTo
     {
-        return $this->belongsTo(User::class,'created_by','id');
+        return $this->belongsTo(User::class,'creator_id','id');
     }
 
     public function funding_source(): BelongsTo

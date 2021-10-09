@@ -93,7 +93,7 @@
                             </svg>
                             <p>
                                 View Own PAPs
-                                <span class="badge badge-info right">{{ \App\Models\Project::where('created_by', auth()->id())->count() }}</span>
+                                <span class="badge badge-info right">{{ \App\Models\Project::where('creator_id', auth()->id())->count() }}</span>
                             </p>
                         </a>
                     </li>

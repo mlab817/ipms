@@ -75,7 +75,7 @@ class User extends Authenticatable
 
     public function projects(): HasMany
     {
-        return $this->hasMany(Project::class,'created_by','id');
+        return $this->hasMany(Project::class,'creator_id','id');
     }
 
     public function reviews(): HasMany
