@@ -219,37 +219,37 @@ class Project extends Model
 
     public function infrastructure_sectors(): BelongsToMany
     {
-        return $this->belongsToMany(RefInfrastructureSector::class,'infrastructure_sector_project','project_id','is_id');
+        return $this->belongsToMany(RefInfrastructureSector::class,'project_infrastructure_sector','project_id','is_id');
     }
 
     public function infrastructure_subsectors(): BelongsToMany
     {
-        return $this->belongsToMany(RefInfrastructureSubsector::class,'infrastructure_subsector_project','project_id','is_id','id','id');
+        return $this->belongsToMany(RefInfrastructureSubsector::class,'project_infrastructure_subsector','project_id','is_id','id','id');
     }
 
     public function pdp_chapters(): BelongsToMany
     {
-        return $this->belongsToMany(RefPdpChapter::class);
+        return $this->belongsToMany(RefPdpChapter::class, 'project_pdp_chapter', 'project_id', 'ref_pdp_chapter_id');
     }
 
     public function pdp_indicators(): BelongsToMany
     {
-        return $this->belongsToMany(RefPdpIndicator::class,'pdp_indicator_project','project_id','pi_id');
+        return $this->belongsToMany(RefPdpIndicator::class,'project_pdp_indicator','project_id','pi_id');
     }
 
     public function prerequisites(): BelongsToMany
     {
-        return $this->belongsToMany(RefPrerequisite::class);
+        return $this->belongsToMany(RefPrerequisite::class,'project_prerequisite', 'project_id', 'ref_prerequisite_id');
     }
 
     public function regions(): BelongsToMany
     {
-        return $this->belongsToMany(RefRegion::class);
+        return $this->belongsToMany(RefRegion::class, 'project_region', 'project_id', 'ref_region_id');
     }
 
     public function sdgs(): BelongsToMany
     {
-        return $this->belongsToMany(RefSdg::class);
+        return $this->belongsToMany(RefSdg::class, 'project_sdg', 'project_id','ref_sdg_id');
     }
 
     public function ten_point_agendas(): BelongsToMany
