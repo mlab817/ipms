@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Sdg;
+use App\Models\RefSdg;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class SdgsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Sdg $model
+     * @param \App\Models\RefSdg $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Sdg $model)
+    public function query(RefSdg $model)
     {
         return $model->newQuery();
     }

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Gad;
+use App\Models\RefGad;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class GadsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Gad $model
+     * @param \App\Models\RefGad $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Gad $model)
+    public function query(RefGad $model)
     {
         return $model->newQuery();
     }

@@ -2,7 +2,7 @@
 
 namespace Tests\Browser;
 
-use App\Models\Sdg;
+use App\Models\RefSdg;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -41,7 +41,7 @@ class SdgsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser
                 ->loginAs(1)
-                ->visit(route('admin.sdgs.edit', Sdg::find(1)))
+                ->visit(route('admin.sdgs.edit', RefSdg::find(1)))
                 ->assertSee('Edit SDG')
                 ->screenshot('admin/sdgs-edit');
         });

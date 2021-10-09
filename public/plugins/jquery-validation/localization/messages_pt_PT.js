@@ -11,7 +11,7 @@
 /*
  * Translated default messages for the jQuery validation plugin.
  * Locale: PT (Portuguese; português)
- * Region: PT (Portugal)
+ * RefRegion: PT (Portugal)
  */
 $.extend( $.validator.messages, {
 	required: "Campo de preenchimento obrigat&oacute;rio.",

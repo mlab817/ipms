@@ -32,7 +32,7 @@ class OfficesTableSeeder extends Seeder
             ],
             1 => [
                 'id' => 2,
-                'name' => 'RFO CAR - Cordillera Administrative Region',
+                'name' => 'RFO CAR - Cordillera Administrative RefRegion',
                 'acronym' => 'RFO CAR',
                 'address' => '',
                 'agency_head_name' => 'Cameron P. Odsey',
@@ -44,7 +44,7 @@ class OfficesTableSeeder extends Seeder
             ],
             2 => [
                 'id' => 3,
-                'name' => 'RFO I - Ilocos Region',
+                'name' => 'RFO I - Ilocos RefRegion',
                 'acronym' => 'RFO 1',
                 'address' => '',
                 'agency_head_name' => 'Lucresio R. Alviar, Jr.',
@@ -104,7 +104,7 @@ class OfficesTableSeeder extends Seeder
             ],
             7 => [
                 'id' => 8,
-                'name' => 'RFO V - Bicol Region',
+                'name' => 'RFO V - Bicol RefRegion',
                 'acronym' => 'RFO 5',
                 'address' => '',
                 'agency_head_name' => 'Rodel P. Tornilla',
@@ -176,7 +176,7 @@ class OfficesTableSeeder extends Seeder
             ],
             13 => [
                 'id' => 14,
-                'name' => 'RFO XI - Davao Region',
+                'name' => 'RFO XI - Davao RefRegion',
                 'acronym' => 'RFO 11',
                 'address' => 'Davao',
                 'agency_head_name' => 'Engr. Ricardi M. Oñate Jr.',
@@ -212,7 +212,7 @@ class OfficesTableSeeder extends Seeder
             ],
             16 => [
                 'id' => 17,
-                'name' => 'RFO DAF-ARMM - Department of Agriculture and Fisheries in the Autonomous Region in Muslim Mindanao',
+                'name' => 'RFO DAF-ARMM - Department of Agriculture and Fisheries in the Autonomous RefRegion in Muslim Mindanao',
                 'acronym' => 'DAF-ARMM',
                 'address' => '',
                 'agency_head_name' => 'Alexander G. Alonto, Jr.',

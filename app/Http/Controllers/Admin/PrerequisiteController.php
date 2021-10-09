@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\PrerequisitesDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Prerequisite;
+use App\Models\RefPrerequisite;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -30,7 +30,7 @@ class PrerequisiteController extends Controller
     public function create()
     {
         return view('admin.prerequisites.create', [
-            'pageTitle' => 'Add Prerequisite'
+            'pageTitle' => 'Add RefPrerequisite'
         ]);
     }
 
@@ -46,7 +46,7 @@ class PrerequisiteController extends Controller
             'name' => 'required'
         ]);
 
-        Prerequisite::create($request->all());
+        RefPrerequisite::create($request->all());
 
         Alert::success('Success','Successfully added item');
 
@@ -70,10 +70,10 @@ class PrerequisiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prerequisite $prerequisite)
+    public function edit(RefPrerequisite $prerequisite)
     {
         return view('admin.prerequisites.edit', [
-            'pageTitle' => 'Edit Prerequisite',
+            'pageTitle' => 'Edit RefPrerequisite',
             'prerequisite' => $prerequisite
         ]);
     }
@@ -85,7 +85,7 @@ class PrerequisiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prerequisite $prerequisite)
+    public function update(Request $request, RefPrerequisite $prerequisite)
     {
         $request->validate([
             'name' => 'required'
@@ -104,7 +104,7 @@ class PrerequisiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prerequisite $prerequisite)
+    public function destroy(RefPrerequisite $prerequisite)
     {
         $prerequisite->delete();
 

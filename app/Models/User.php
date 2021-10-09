@@ -80,7 +80,7 @@ class User extends Authenticatable
 
     public function reviews(): HasMany
     {
-        return $this->hasMany(Review::class,'user_id','id');
+        return $this->hasMany(ProjectReview::class,'user_id','id');
     }
 
     public function assigned_projects(): BelongsToMany

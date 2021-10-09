@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\TenPointAgendasDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\TenPointAgenda;
+use App\Models\RefTenPointAgenda;
 use Illuminate\Http\Request;
 
 class TenPointAgendaController extends Controller
@@ -45,7 +45,7 @@ class TenPointAgendaController extends Controller
             'name' => 'required',
         ]);
 
-        TenPointAgenda::create($request->all());
+        RefTenPointAgenda::create($request->all());
 
         return redirect()->route('admin.ten_point_agendas.index');
     }
@@ -67,7 +67,7 @@ class TenPointAgendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(TenPointAgenda $tenPointAgenda)
+    public function edit(RefTenPointAgenda $tenPointAgenda)
     {
         return view('admin.ten_point_agendas.edit', compact('tenPointAgenda'));
     }
@@ -79,7 +79,7 @@ class TenPointAgendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TenPointAgenda $tenPointAgenda)
+    public function update(Request $request, RefTenPointAgenda $tenPointAgenda)
     {
         $tenPointAgenda->update($request->all());
 
@@ -92,7 +92,7 @@ class TenPointAgendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TenPointAgenda $tenPointAgenda)
+    public function destroy(RefTenPointAgenda $tenPointAgenda)
     {
         $tenPointAgenda->delete();
     }

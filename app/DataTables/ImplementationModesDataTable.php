@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ImplementationMode;
+use App\Models\RefImplementationMode;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class ImplementationModesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ImplementationMode $model
+     * @param \App\Models\RefImplementationMode $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ImplementationMode $model)
+    public function query(RefImplementationMode $model)
     {
         return $model->newQuery();
     }

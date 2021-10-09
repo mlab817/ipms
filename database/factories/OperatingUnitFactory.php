@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\OperatingUnit;
+use App\Models\RefOperatingUnit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class OperatingUnitFactory extends Factory
      *
      * @var string
      */
-    protected $model = OperatingUnit::class;
+    protected $model = RefOperatingUnit::class;
 
     /**
      * Define the model's default state.

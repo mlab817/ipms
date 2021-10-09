@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Pipol;
 use App\Models\Project;
-use App\Models\Review;
+use App\Models\ProjectReview;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -33,7 +33,7 @@ class PipolsTableSeeder extends Seeder
                 'submission_status' => $pipol['Status of Submission'],
             ]);
 
-            $review = Review::where('pipol_code', $pipol->pipol_code)->first();
+            $review = ProjectReview::where('pipol_code', $pipol->pipol_code)->first();
 
             if ($review) {
                 $pipol->pipol_url = $this->removeUrl($review->pipol_url);

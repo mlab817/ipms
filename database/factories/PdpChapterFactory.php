@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\PdpChapter;
+use App\Models\RefPdpChapter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class PdpChapterFactory extends Factory
      *
      * @var string
      */
-    protected $model = PdpChapter::class;
+    protected $model = RefPdpChapter::class;
 
     /**
      * Define the model's default state.

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Prerequisite;
+use App\Models\RefPrerequisite;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class PrerequisitesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Prerequisite $model
+     * @param \App\Models\RefPrerequisite $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Prerequisite $model)
+    public function query(RefPrerequisite $model)
     {
         return $model->newQuery();
     }

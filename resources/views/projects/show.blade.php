@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        @include('projects.project-details', ['project' => $project , 'pdp_indicators' => \App\Models\PdpIndicator::with('children.children')->whereNull('parent_id')->get()])
+        @include('projects.project-details', ['project' => $project , 'pdp_indicators' => \App\Models\RefPdpIndicator::with('children.children')->whereNull('parent_id')->get()])
 
         @includeWhen($project->has_infra, 'projects.trip-info', ['project' => $project])
 

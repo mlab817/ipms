@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\FsStatus;
+use App\Models\RefFsStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class FsStatusFactory extends Factory
      *
      * @var string
      */
-    protected $model = FsStatus::class;
+    protected $model = RefFsStatus::class;
 
     /**
      * Define the model's default state.

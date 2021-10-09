@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ReadinessLevel;
+use App\Models\RefReadinessLevel;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class ReadinessLevelsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ReadinessLevel $model
+     * @param \App\Models\RefReadinessLevel $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ReadinessLevel $model)
+    public function query(RefReadinessLevel $model)
     {
         return $model->newQuery();
     }

@@ -11,7 +11,7 @@
 /*
  * Translated default messages for the jQuery validation plugin.
  * Locale: ES (Spanish; Español)
- * Region: PE (Perú)
+ * RefRegion: PE (Perú)
  */
 $.extend( $.validator.messages, {
 	required: "Este campo es obligatorio.",

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\FundingInstitutionsDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\FundingInstitution;
+use App\Models\RefFundingInstitution;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class FundingInstitutionController extends Controller
             'name' => 'required|unique:funding_institutions,name',
         ]);
 
-        FundingInstitution::create($request->all());
+        RefFundingInstitution::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -70,7 +70,7 @@ class FundingInstitutionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(FundingInstitution $fundingInstitution)
+    public function edit(RefFundingInstitution $fundingInstitution)
     {
         return view('admin.funding_institutions.edit', compact('fundingInstitution'))->with([
             'pageTitle' => 'Edit Funding Institution',
@@ -84,7 +84,7 @@ class FundingInstitutionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FundingInstitution $fundingInstitution)
+    public function update(Request $request, RefFundingInstitution $fundingInstitution)
     {
         $request->validate([
             'name' => 'required|unique:funding_institutions,name,' . $request->id,
@@ -103,7 +103,7 @@ class FundingInstitutionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FundingInstitution $fundingInstitution)
+    public function destroy(RefFundingInstitution $fundingInstitution)
     {
         $fundingInstitution->delete();
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\PapTypesDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\PapType;
+use App\Models\RefPapType;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class PapTypeController extends Controller
             'name' => 'required',
         ]);
 
-        $papType = PapType::create($request->all());
+        $papType = RefPapType::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -70,7 +70,7 @@ class PapTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PapType $papType)
+    public function edit(RefPapType $papType)
     {
         return view('admin.pap_types.edit', compact('papType'))->with([
             'pageTitle' => 'Edit PAP Type',
@@ -84,7 +84,7 @@ class PapTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PapType $papType)
+    public function update(Request $request, RefPapType $papType)
     {
         $request->validate([
             'name' => 'required',
@@ -103,7 +103,7 @@ class PapTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PapType $papType)
+    public function destroy(RefPapType $papType)
     {
         $papType->delete();
 

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\PipTypology;
+use App\Models\RefPipTypology;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class PipTypologiesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\PipTypology $model
+     * @param \App\Models\RefPipTypology $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(PipTypology $model)
+    public function query(RefPipTypology $model)
     {
         return $model->newQuery();
     }

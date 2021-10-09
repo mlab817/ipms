@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\PreparationDocumentsDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\PreparationDocument;
+use App\Models\RefPreparationDocument;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class PreparationDocumentController extends Controller
             'name' => 'required',
         ]);
 
-        PreparationDocument::create($request->all());
+        RefPreparationDocument::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -70,7 +70,7 @@ class PreparationDocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PreparationDocument $preparationDocument)
+    public function edit(RefPreparationDocument $preparationDocument)
     {
         return view('admin.preparation_documents.edit', compact('preparationDocument'));
     }
@@ -82,7 +82,7 @@ class PreparationDocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PreparationDocument $preparationDocument)
+    public function update(Request $request, RefPreparationDocument $preparationDocument)
     {
         $request->validate([
             'name' => 'required',
@@ -101,7 +101,7 @@ class PreparationDocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PreparationDocument $preparationDocument)
+    public function destroy(RefPreparationDocument $preparationDocument)
     {
         $preparationDocument->delete();
 

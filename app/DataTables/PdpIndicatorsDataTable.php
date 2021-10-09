@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\PdpIndicator;
+use App\Models\RefPdpIndicator;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -34,10 +34,10 @@ class PdpIndicatorsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\PdpIndicator $model
+     * @param \App\Models\RefPdpIndicator $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(PdpIndicator $model)
+    public function query(RefPdpIndicator $model)
     {
         return $model->with('parent')->newQuery();
     }

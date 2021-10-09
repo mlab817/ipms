@@ -47,7 +47,7 @@ class ProjectRegionExport implements FromQuery, WithMapping, WithHeadings
     {
         return [
             'Project Title',
-            'Region',
+            'RefRegion',
         ];
     }
 }

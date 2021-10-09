@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\PapType;
+use App\Models\RefPapType;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class PapTypesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\PapType $model
+     * @param \App\Models\RefPapType $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(PapType $model)
+    public function query(RefPapType $model)
     {
         return $model->newQuery();
     }

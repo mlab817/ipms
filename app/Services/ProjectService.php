@@ -6,9 +6,9 @@ use App\Http\Resources\FundingSourceCollection;
 use App\Http\Resources\FundingSourceResource;
 use App\Http\Resources\RegionCollection;
 use App\Http\Resources\RegionResource;
-use App\Models\FundingSource;
+use App\Models\RefFundingSource;
 use App\Models\Project;
-use App\Models\Region;
+use App\Models\RefRegion;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProjectService
@@ -56,11 +56,11 @@ class ProjectService
 
     public function getInvestmentByFundingSource(): FundingSourceCollection
     {
-        return new FundingSourceCollection(FundingSource::with('investment','infrastructure')->get());
+        return new FundingSourceCollection(RefFundingSource::with('investment','infrastructure')->get());
     }
 
     public function getInvestmentByRegion(): RegionCollection
     {
-        return new RegionCollection(Region::with('investment','infrastructure')->get());
+        return new RegionCollection(RefRegion::with('investment','infrastructure')->get());
     }
 }

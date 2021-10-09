@@ -6,7 +6,7 @@ use App\DataTables\PdpIndicatorsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PdpIndicatorStoreRequest;
 use App\Http\Requests\PdpIndicatorUpdateRequest;
-use App\Models\PdpIndicator;
+use App\Models\RefPdpIndicator;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -39,7 +39,7 @@ class PdpIndicatorController extends Controller
                 3 => 'Suboutcome',
                 4 => 'Output',
             ],
-            'pdp_indicators'    => PdpIndicator::all(),
+            'pdp_indicators'    => RefPdpIndicator::all(),
         ]);
     }
 
@@ -51,7 +51,7 @@ class PdpIndicatorController extends Controller
      */
     public function store(PdpIndicatorStoreRequest $request)
     {
-        $pdpIndicator = PdpIndicator::create($request->all());
+        $pdpIndicator = RefPdpIndicator::create($request->all());
 
         Alert::success('Success','Successfully saved item');
 
@@ -75,7 +75,7 @@ class PdpIndicatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PdpIndicator $pdpIndicator)
+    public function edit(RefPdpIndicator $pdpIndicator)
     {
         return view('admin.pdp_indicators.edit', compact('pdpIndicator'))->with([
             'pageTitle' => 'Edit PDP RM Indicator',
@@ -85,7 +85,7 @@ class PdpIndicatorController extends Controller
                 3 => 'Suboutcome',
                 4 => 'Output',
             ],
-            'pdp_indicators'    => PdpIndicator::all(),
+            'pdp_indicators'    => RefPdpIndicator::all(),
         ]);
     }
 
@@ -96,7 +96,7 @@ class PdpIndicatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PdpIndicatorUpdateRequest $request, PdpIndicator $pdpIndicator)
+    public function update(PdpIndicatorUpdateRequest $request, RefPdpIndicator $pdpIndicator)
     {
         $pdpIndicator->update($request->all());
 
@@ -111,7 +111,7 @@ class PdpIndicatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PdpIndicator $pdpIndicator)
+    public function destroy(RefPdpIndicator $pdpIndicator)
     {
         $pdpIndicator->delete();
 

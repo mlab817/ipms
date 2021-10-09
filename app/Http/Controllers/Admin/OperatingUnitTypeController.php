@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\OperatingUnitTypesDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\OperatingUnitType;
+use App\Models\RefOperatingUnitType;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class OperatingUnitTypeController extends Controller
             'name' => 'required',
         ]);
 
-        OperatingUnitType::create($request->all());
+        RefOperatingUnitType::create($request->all());
 
         Alert::success('Success','Successfully saved item');
 
@@ -70,7 +70,7 @@ class OperatingUnitTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(OperatingUnitType $operatingUnitType)
+    public function edit(RefOperatingUnitType $operatingUnitType)
     {
         return view('admin.operating_unit_types.edit', compact('operatingUnitType'))->with([
             'pageTitle' => 'Edit OU Type',
@@ -84,7 +84,7 @@ class OperatingUnitTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OperatingUnitType $operatingUnitType)
+    public function update(Request $request, RefOperatingUnitType $operatingUnitType)
     {
         $request->validate([
             'name' => 'required',
@@ -103,7 +103,7 @@ class OperatingUnitTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OperatingUnitType $operatingUnitType)
+    public function destroy(RefOperatingUnitType $operatingUnitType)
     {
         $operatingUnitType->delete();
 

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Region;
+use App\Models\RefRegion;
 use App\Models\RegionInfrastructure;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +23,7 @@ class RegionInfrastructureFactory extends Factory
     public function definition(): array
     {
         return [
-            'region_id' => Region::all()->random()->id,
+            'region_id' => RefRegion::all()->random()->id,
             'y2016'     => $this->faker->randomFloat() * 1000,
             'y2017'     => $this->faker->randomFloat() * 1000,
             'y2018'     => $this->faker->randomFloat() * 1000,

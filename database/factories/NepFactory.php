@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Nep;
+use App\Models\ProjectNep;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class NepFactory extends Factory
@@ -12,7 +12,7 @@ class NepFactory extends Factory
      *
      * @var string
      */
-    protected $model = Nep::class;
+    protected $model = ProjectNep::class;
 
     /**
      * Define the model's default state.

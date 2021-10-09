@@ -63,7 +63,7 @@ class ProjectsExport implements FromQuery, WithMapping, WithHeadings
             'Main PDP Chapter',
             'Main Funding Source',
             'Implementation Mode',
-            'Budget Tier',
+            'Budget RefTier',
             'Total Project Cost (PhP)',
         ];
     }

@@ -2,7 +2,7 @@
 
 namespace Tests\Browser;
 
-use App\Models\ReadinessLevel;
+use App\Models\RefReadinessLevel;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -39,7 +39,7 @@ class ReadinessLevelsTest extends DuskTestCase
     public function test_it_shows_edit_readiness_levels_page()
     {
         $this->browse(function (Browser $browser) {
-            $readinessLevel = ReadinessLevel::find(1);
+            $readinessLevel = RefReadinessLevel::find(1);
             $browser
                 ->loginAs(1)
                 ->visit(route('admin.readiness_levels.edit', $readinessLevel))

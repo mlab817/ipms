@@ -7,10 +7,10 @@ use App\Events\ProjectReviewedEvent;
 use App\Http\Requests\ReviewStoreRequest;
 use App\Http\Requests\ReviewUpdateRequest;
 use App\Models\RefCipType;
-use App\Models\PipTypology;
+use App\Models\RefPipTypology;
 use App\Models\Project;
-use App\Models\ReadinessLevel;
-use App\Models\Review;
+use App\Models\RefReadinessLevel;
+use App\Models\ProjectReview;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -18,7 +18,7 @@ class ReviewController extends Controller
 {
     public function __construct(Request $request)
     {
-        $this->authorizeResource(Review::class);
+        $this->authorizeResource(ProjectReview::class);
     }
 
     /**
@@ -44,15 +44,15 @@ class ReviewController extends Controller
         }
 
         return view('reviews.index')->with([
-            'pipCount' => Review::where('pip', true)->count(),
-            'tripCount'=> Review::where('trip', true)->count(),
+            'pipCount' => ProjectReview::where('pip', true)->count(),
+            'tripCount'=> ProjectReview::where('trip', true)->count(),
             'reviewedCount' => Project::whereHas('review')->count(),
             'projectCount'  => Project::count(),
             'projects'      => $query->paginate(),
         ]);
     }
 
-    public function show(Review $review)
+    public function show(ProjectReview $review)
     {
         // can pass project and review
         return view('reviews.show')
@@ -65,17 +65,17 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\review  $review
+     * @param  \App\Models\ProjectReview  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review)
+    public function edit(ProjectReview $review)
     {
         return view('reviews.edit', [
             'pageTitle'         => 'Reviewing: ' . $review->project->title,
             'review'            => $review,
             'cip_types'         => RefCipType::all(),
-            'pip_typologies'    => PipTypology::all(),
-            'readiness_levels'  => ReadinessLevel::all(),
+            'pip_typologies'    => RefPipTypology::all(),
+            'readiness_levels'  => RefReadinessLevel::all(),
             'project'           => $review->project,
         ]);
     }
@@ -84,10 +84,10 @@ class ReviewController extends Controller
      * Update the specified resource in storage.
      *
      * @param ReviewStoreRequest $request
-     * @param \App\Models\Review $review
+     * @param \App\Models\ProjectReview $review
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ReviewUpdateRequest $request, Review $review): \Illuminate\Http\RedirectResponse
+    public function update(ReviewUpdateRequest $request, ProjectReview $review): \Illuminate\Http\RedirectResponse
     {
         $review->update($request->all());
 
@@ -99,10 +99,10 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\review  $review
+     * @param  \App\Models\ProjectReview  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(ProjectReview $review)
     {
         $review->forceDelete();
 

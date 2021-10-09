@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\GadsDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Gad;
+use App\Models\RefGad;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class GadController extends Controller
             'name' => 'required',
         ]);
 
-        Gad::create($request->all());
+        RefGad::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -70,7 +70,7 @@ class GadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gad $gad)
+    public function edit(RefGad $gad)
     {
         return view('admin.gads.edit', [
             'pageTitle' => 'Edit GAD Classification',
@@ -85,7 +85,7 @@ class GadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gad $gad)
+    public function update(Request $request, RefGad $gad)
     {
         $request->validate([
             'name' => 'required',
@@ -104,7 +104,7 @@ class GadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gad $gad)
+    public function destroy(RefGad $gad)
     {
         $gad->delete();
 

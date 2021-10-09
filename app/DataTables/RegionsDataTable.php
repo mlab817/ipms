@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Region;
+use App\Models\RefRegion;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -34,10 +34,10 @@ class RegionsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Region $model
+     * @param \App\Models\RefRegion $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Region $model)
+    public function query(RefRegion $model)
     {
         return $model->newQuery();
     }

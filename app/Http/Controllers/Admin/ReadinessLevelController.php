@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\ReadinessLevelsDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\ReadinessLevel;
+use App\Models\RefReadinessLevel;
 use Illuminate\Http\Request;
 
 class ReadinessLevelController extends Controller
@@ -45,7 +45,7 @@ class ReadinessLevelController extends Controller
             'name' => 'required',
         ]);
 
-        ReadinessLevel::create($request->all());
+        RefReadinessLevel::create($request->all());
 
         return redirect()->route('admin.readiness_levels.index');
     }
@@ -67,7 +67,7 @@ class ReadinessLevelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReadinessLevel $readinessLevel)
+    public function edit(RefReadinessLevel $readinessLevel)
     {
         return view('admin.readiness_levels.edit', [
             'pageTitle' => 'Edit Readiness Level',
@@ -82,7 +82,7 @@ class ReadinessLevelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReadinessLevel $readinessLevel)
+    public function update(Request $request, RefReadinessLevel $readinessLevel)
     {
         $request->validate([
             'name' => 'required',

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\TenPointAgenda;
+use App\Models\RefTenPointAgenda;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class TenPointAgendasDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\TenPointAgenda $model
+     * @param \App\Models\RefTenPointAgenda $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(TenPointAgenda $model)
+    public function query(RefTenPointAgenda $model)
     {
         return $model->newQuery();
     }

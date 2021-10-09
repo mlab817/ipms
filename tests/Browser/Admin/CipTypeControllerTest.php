@@ -3,7 +3,7 @@
 namespace Tests\Browser\Admin;
 
 use App\Models\RefCipType;
-use App\Models\ImplementationMode;
+use App\Models\RefImplementationMode;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;

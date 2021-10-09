@@ -35,7 +35,7 @@ class ReviewerTest extends DuskTestCase
                     ->loginAs($reviewer->id)
                     ->visit('/dashboard')
                     ->assertSee('Dashboard')
-                    ->assertSee('Review PAPs')
+                    ->assertSee('ProjectReview PAPs')
                     ->screenshot('reviewer/dashboard');
         });
     }
@@ -68,7 +68,7 @@ class ReviewerTest extends DuskTestCase
                 ->visit('/dashboard')
                 ->click('a[href="' . route('reviews.index') .'"]')
                 ->assertPathIs('/reviews')
-                ->assertSee('Review PAPs')
+                ->assertSee('ProjectReview PAPs')
                 ->screenshot('reviewer/reviews/index');
         });
     }
@@ -93,7 +93,7 @@ class ReviewerTest extends DuskTestCase
                 ->visit('/reviews')
                 ->click('a[href="' . route('reviews.create', $project) .'"]')
                 ->assertPathIs('/projects/' . $project->uuid . '/review/create')
-                ->assertSee('Review PAPs')
+                ->assertSee('ProjectReview PAPs')
                 ->screenshot('reviewer/reviews/create');
         });
     }

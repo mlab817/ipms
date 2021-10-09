@@ -596,7 +596,7 @@
 <!-- Regional Breakdown -->
 <div class="card card-primary card-outline">
     <div class="card-header">
-        <h3 class="card-title">{{ __("Total Investment Required by Region") }} </h3>
+        <h3 class="card-title">{{ __("Total Investment Required by RefRegion") }} </h3>
     </div>
     <div class="card-body table-responsive p-0">
         <table class="table table-hover table-valign-middle">

@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\FundingSource;
-use App\Models\Region;
+use App\Models\RefFundingSource;
+use App\Models\RefRegion;
 use App\Models\RegionInvestment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -26,7 +26,7 @@ class RegionInvestmentFactory extends Factory
     {
         return [
             'uuid'  => Str::uuid(),
-            'region_id' => Region::all()->random()->id,
+            'region_id' => RefRegion::all()->random()->id,
             'y2016' => $this->faker->randomFloat() * 1000000,
             'y2017' => $this->faker->randomFloat() * 1000000,
             'y2018' => $this->faker->randomFloat() * 1000000,

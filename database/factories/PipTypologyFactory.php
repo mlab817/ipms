@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\PipTypology;
+use App\Models\RefPipTypology;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class PipTypologyFactory extends Factory
      *
      * @var string
      */
-    protected $model = PipTypology::class;
+    protected $model = RefPipTypology::class;
 
     /**
      * Define the model's default state.

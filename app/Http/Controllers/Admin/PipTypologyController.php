@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\PipTypologiesDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\PipTypology;
+use App\Models\RefPipTypology;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class PipTypologyController extends Controller
             'name' => 'required',
         ]);
 
-        $pipTypology = PipTypology::create($request->all());
+        $pipTypology = RefPipTypology::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -70,7 +70,7 @@ class PipTypologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PipTypology $pipTypology)
+    public function edit(RefPipTypology $pipTypology)
     {
         return view('admin.pip_typologies.edit', compact('pipTypology'))->with([
             'pageTitle' => 'Add PIP Typology',
@@ -84,7 +84,7 @@ class PipTypologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PipTypology $pipTypology)
+    public function update(Request $request, RefPipTypology $pipTypology)
     {
         $request->validate(['name' => 'required']);
 
@@ -99,7 +99,7 @@ class PipTypologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PipTypology $pipTypology)
+    public function destroy(RefPipTypology $pipTypology)
     {
         $pipTypology->delete();
 

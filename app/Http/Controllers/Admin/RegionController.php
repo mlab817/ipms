@@ -6,7 +6,7 @@ use App\DataTables\RegionsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegionStoreRequest;
 use App\Http\Requests\RegionUpdateRequest;
-use App\Models\Region;
+use App\Models\RefRegion;
 use Illuminate\Http\Request;
 
 class RegionController extends Controller
@@ -31,7 +31,7 @@ class RegionController extends Controller
     public function create()
     {
         return view('admin.regions.create', [
-            'pageTitle' => 'Add Region',
+            'pageTitle' => 'Add RefRegion',
         ]);
     }
 
@@ -43,7 +43,7 @@ class RegionController extends Controller
      */
     public function store(RegionStoreRequest $request)
     {
-        Region::create($request->all());
+        RefRegion::create($request->all());
 
         return redirect()->route('admin.regions.index');
     }
@@ -62,13 +62,13 @@ class RegionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Region $region
+     * @param RefRegion $region
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(Region $region)
+    public function edit(RefRegion $region)
     {
         return view('admin.regions.edit', [
-            'pageTitle' => 'Edit Region',
+            'pageTitle' => 'Edit RefRegion',
             'region'    => $region,
             'method'    => 'PUT',
             'route'     => route('admin.regions.update', $region->slug),
@@ -79,10 +79,10 @@ class RegionController extends Controller
      * Update the specified resource in storage.
      *
      * @param RegionUpdateRequest $request
-     * @param Region $region
+     * @param RefRegion $region
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(RegionUpdateRequest $request, Region $region): \Illuminate\Http\RedirectResponse
+    public function update(RegionUpdateRequest $request, RefRegion $region): \Illuminate\Http\RedirectResponse
     {
         $region->update($request->all());
 

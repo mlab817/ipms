@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Pipol;
-use App\Models\Review;
+use App\Models\ProjectReview;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
@@ -53,7 +53,7 @@ class MigratePipolCommand extends Command
                     'submission_status' => $pipol['Status of Submission'],
                 ]);
 
-                $review = Review::where('pipol_code', $pipol->pipol_code)->first();
+                $review = ProjectReview::where('pipol_code', $pipol->pipol_code)->first();
 
                 if ($review) {
                     $pipol->pipol_url = $this->removeUrl($review->pipol_url);

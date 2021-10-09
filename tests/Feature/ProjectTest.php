@@ -8,31 +8,31 @@ use App\Models\Allocation;
 use App\Models\RefApprovalLevel;
 use App\Models\RefBasis;
 use App\Models\RefCipType;
-use App\Models\Disbursement;
-use App\Models\FeasibilityStudy;
-use App\Models\FsStatus;
-use App\Models\FundingInstitution;
-use App\Models\FundingSource;
-use App\Models\Gad;
-use App\Models\ImplementationMode;
-use App\Models\Nep;
-use App\Models\OperatingUnit;
-use App\Models\PapType;
-use App\Models\PdpChapter;
+use App\Models\ProjectDisbursement;
+use App\Models\ProjectFeasibilityStudy;
+use App\Models\RefFsStatus;
+use App\Models\RefFundingInstitution;
+use App\Models\RefFundingSource;
+use App\Models\RefGad;
+use App\Models\RefImplementationMode;
+use App\Models\ProjectNep;
+use App\Models\RefOperatingUnit;
+use App\Models\RefPapType;
+use App\Models\RefPdpChapter;
 use App\Models\Permission;
-use App\Models\PipTypology;
-use App\Models\PreparationDocument;
+use App\Models\RefPipTypology;
+use App\Models\RefPreparationDocument;
 use App\Models\Project;
 use App\Models\ProjectAudit;
 use App\Models\ProjectStatus;
-use App\Models\ReadinessLevel;
-use App\Models\Region;
+use App\Models\RefReadinessLevel;
+use App\Models\RefRegion;
 use App\Models\RegionInvestment;
-use App\Models\ResettlementActionPlan;
-use App\Models\RightOfWay;
+use App\Models\ProjectResettlementActionPlan;
+use App\Models\ProjectRightOfWay;
 use App\Models\Role;
-use App\Models\SpatialCoverage;
-use App\Models\Tier;
+use App\Models\RefSpatialCoverage;
+use App\Models\RefTier;
 use App\Models\User;
 use Database\Seeders\ApprovalLevelsTableSeeder;
 use Database\Seeders\DatabaseSeeder;
@@ -63,14 +63,14 @@ class ProjectTest extends TestCase
         return [
             'code'                      => '',
             'title'                     => 'new project',
-            'pap_type_id'               => PapType::factory()->create()->id,
+            'pap_type_id'               => RefPapType::factory()->create()->id,
             'regular_program'           => $this->faker->boolean,
             'description'               => $this->faker->paragraph(10),
             'expected_outputs'          => $this->faker->paragraph(10),
-            'spatial_coverage_id'       => SpatialCoverage::factory()->create()->id,
+            'spatial_coverage_id'       => RefSpatialCoverage::factory()->create()->id,
             'iccable'                   => $this->faker->boolean,
             'pip'                       => $this->faker->boolean,
-            'pip_typology_id'           => PipTypology::factory()->create()->id,
+            'pip_typology_id'           => RefPipTypology::factory()->create()->id,
             'research'                  => $this->faker->boolean,
             'cip'                       => $this->faker->boolean,
             'cip_type_id'               => RefCipType::factory()->create()->id,
@@ -81,32 +81,32 @@ class ProjectTest extends TestCase
             'rdc_endorsed_date'         => $this->faker->date(),
             'other_infrastructure'      => $this->faker->word,
             'risk'                      => $this->faker->paragraph,
-            'pdp_chapter_id'            => PdpChapter::factory()->create()->id,
+            'pdp_chapter_id'            => RefPdpChapter::factory()->create()->id,
             'no_pdp_indicator'          => $this->faker->boolean,
-            'gad_id'                    => Gad::factory()->create()->id,
+            'gad_id'                    => RefGad::factory()->create()->id,
             'target_start_year'         => $startYear,
             'target_end_year'           => $startYear + $this->faker->randomDigit,
             'has_fs'                    => $this->faker->boolean,
             'has_row'                   => $this->faker->boolean,
             'has_rap'                   => $this->faker->boolean,
             'employment_generated'      => $this->faker->word,
-            'funding_source_id'         => FundingSource::factory()->create()->id,
-            'implementation_mode_id'    => ImplementationMode::factory()->create()->id,
+            'funding_source_id'         => RefFundingSource::factory()->create()->id,
+            'implementation_mode_id'    => RefImplementationMode::factory()->create()->id,
             'other_fs'                  => $this->faker->word,
             'project_status_id'         => ProjectStatus::factory()->create()->id,
             'updates'                   => $this->faker->paragraph,
             'updates_date'              => $this->faker->date(),
             'uacs_code'                 => $this->faker->isbn13,
-            'tier_id'                   => Tier::factory()->create()->id,
+            'tier_id'                   => RefTier::factory()->create()->id,
             'approval_level_id'         => RefApprovalLevel::factory()->create()->id,
             'approval_date'             => $this->faker->date(),
-            'regions'                   => Region::factory()->count(3)->create()->pluck('id'),
-            'funding_sources'           => FundingSource::factory()->count(1)->create()->pluck('id'),
-            'funding_institutions'      => FundingInstitution::factory()->count(1)->create()->pluck('id'),
-            'implementing_agencies'     => OperatingUnit::factory()->count(1)->create()->pluck('id'),
+            'regions'                   => RefRegion::factory()->count(3)->create()->pluck('id'),
+            'funding_sources'           => RefFundingSource::factory()->count(1)->create()->pluck('id'),
+            'funding_institutions'      => RefFundingInstitution::factory()->count(1)->create()->pluck('id'),
+            'implementing_agencies'     => RefOperatingUnit::factory()->count(1)->create()->pluck('id'),
             'region_investments'        => [
                 [
-                    'region_id'         => Region::factory()->create()->id,
+                    'region_id'         => RefRegion::factory()->create()->id,
                     'y2016'                 => 0,
                     'y2017'                 => 0,
                     'y2018'                 => 0,
@@ -121,7 +121,7 @@ class ProjectTest extends TestCase
             ],
             'fs_investments'            => [
                 [
-                    'fs_id'                 => FundingSource::factory()->create()->id,
+                    'fs_id'                 => RefFundingSource::factory()->create()->id,
                     'y2016'                 => 0,
                     'y2017'                 => 0,
                     'y2018'                 => 0,
@@ -136,7 +136,7 @@ class ProjectTest extends TestCase
             ],
             'ou_investments'            => [
                 [
-                    'ou_id'                 => OperatingUnit::factory()->create()->id,
+                    'ou_id'                 => RefOperatingUnit::factory()->create()->id,
                     'y2016'                 => 0,
                     'y2017'                 => 0,
                     'y2018'                 => 0,
@@ -150,7 +150,7 @@ class ProjectTest extends TestCase
                 ]
             ],
             'feasibility_study'         => [
-                'fs_status_id'          => FsStatus::factory()->create()->id,
+                'fs_status_id'          => RefFsStatus::factory()->create()->id,
                 'needs_assistance'      => false,
                 'y2017'                 => 0,
                 'y2018'                 => 0,

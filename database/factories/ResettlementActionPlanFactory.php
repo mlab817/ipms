@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\ResettlementActionPlan;
+use App\Models\ProjectResettlementActionPlan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ResettlementActionPlanFactory extends Factory
@@ -12,7 +12,7 @@ class ResettlementActionPlanFactory extends Factory
      *
      * @var string
      */
-    protected $model = ResettlementActionPlan::class;
+    protected $model = ProjectResettlementActionPlan::class;
 
     /**
      * Define the model's default state.

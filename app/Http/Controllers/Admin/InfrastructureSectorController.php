@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\InfrastructureSectorsDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\InfrastructureSector;
+use App\Models\RefInfrastructureSector;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class InfrastructureSectorController extends Controller
             'name' => 'required',
         ]);
 
-        InfrastructureSector::create($request->all());
+        RefInfrastructureSector::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -70,7 +70,7 @@ class InfrastructureSectorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(InfrastructureSector $infrastructureSector)
+    public function edit(RefInfrastructureSector $infrastructureSector)
     {
         return view('admin.infrastructure_sectors.edit', compact('infrastructureSector'))->with([
             'pageTitle' => 'Edit Infrastructure Sector',
@@ -84,7 +84,7 @@ class InfrastructureSectorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, InfrastructureSector $infrastructureSector)
+    public function update(Request $request, RefInfrastructureSector $infrastructureSector)
     {
         $request->validate([
             'name' => 'required',
@@ -103,7 +103,7 @@ class InfrastructureSectorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(InfrastructureSector $infrastructureSector)
+    public function destroy(RefInfrastructureSector $infrastructureSector)
     {
         $infrastructureSector->delete();
 

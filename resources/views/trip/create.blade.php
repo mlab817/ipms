@@ -408,7 +408,7 @@
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title">{{ __("Infrastructure Cost by Region") }} </h3>
+                                <h3 class="card-title">{{ __("Infrastructure Cost by RefRegion") }} </h3>
                             </div>
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover table-sm table-valign-middle" id="region_infrastructures_table">

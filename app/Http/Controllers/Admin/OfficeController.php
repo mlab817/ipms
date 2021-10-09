@@ -6,7 +6,7 @@ use App\DataTables\OfficesDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfficeStoreRequest;
 use App\Models\Office;
-use App\Models\OperatingUnit;
+use App\Models\RefOperatingUnit;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -30,7 +30,7 @@ class OfficeController extends Controller
     public function create()
     {
         return view('admin.offices.create', [
-           'operating_units' => OperatingUnit::all(),
+           'operating_units' => RefOperatingUnit::all(),
         ]);
     }
 
@@ -69,7 +69,7 @@ class OfficeController extends Controller
     public function edit(Office $office)
     {
         return view('admin.offices.edit', compact('office'))->with([
-            'operating_units' => OperatingUnit::all(),
+            'operating_units' => RefOperatingUnit::all(),
         ]);
     }
 

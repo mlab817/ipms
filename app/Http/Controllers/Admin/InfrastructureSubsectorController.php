@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\InfrastructureSubsectorsDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\InfrastructureSector;
-use App\Models\InfrastructureSubsector;
+use App\Models\RefInfrastructureSector;
+use App\Models\RefInfrastructureSubsector;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -32,7 +32,7 @@ class InfrastructureSubsectorController extends Controller
     {
         return view('admin.infrastructure_subsectors.create', [
             'pageTitle' => 'Add Infrastructure Subsector',
-            'infrastructure_sectors' => InfrastructureSector::all(),
+            'infrastructure_sectors' => RefInfrastructureSector::all(),
         ]);
     }
 
@@ -49,7 +49,7 @@ class InfrastructureSubsectorController extends Controller
             'infrastructure_sector_id' => 'required',
         ]);
 
-        InfrastructureSubsector::create($request->all());
+        RefInfrastructureSubsector::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -73,11 +73,11 @@ class InfrastructureSubsectorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(InfrastructureSubsector $infrastructureSubsector)
+    public function edit(RefInfrastructureSubsector $infrastructureSubsector)
     {
         return view('admin.infrastructure_subsectors.edit', compact('infrastructureSubsector'))->with([
             'pageTitle' => 'Edit Infrastructure Subsector',
-            'infrastructure_sectors' => InfrastructureSector::all(),
+            'infrastructure_sectors' => RefInfrastructureSector::all(),
         ]);
     }
 
@@ -88,7 +88,7 @@ class InfrastructureSubsectorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InfrastructureSubsector $infrastructureSubsector)
+    public function update(Request $request, RefInfrastructureSubsector $infrastructureSubsector)
     {
         $request->validate([
             'name' => 'required',
@@ -108,7 +108,7 @@ class InfrastructureSubsectorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InfrastructureSubsector $infrastructureSubsector)
+    public function destroy(RefInfrastructureSubsector $infrastructureSubsector)
     {
         $infrastructureSubsector->delete();
 

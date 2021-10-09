@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\PapType;
+use App\Models\RefPapType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class PapTypeFactory extends Factory
      *
      * @var string
      */
-    protected $model = PapType::class;
+    protected $model = RefPapType::class;
 
     /**
      * Define the model's default state.

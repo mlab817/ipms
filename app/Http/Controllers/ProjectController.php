@@ -21,32 +21,32 @@ use App\Models\RefApprovalLevel;
 use App\Models\RefBasis;
 use App\Models\RefCipType;
 use App\Models\RefCovidIntervention;
-use App\Models\FsInvestment;
-use App\Models\FsStatus;
-use App\Models\FundingInstitution;
-use App\Models\FundingSource;
-use App\Models\Gad;
-use App\Models\ImplementationMode;
-use App\Models\InfrastructureSector;
+use App\Models\ProjectFsInvestment;
+use App\Models\RefFsStatus;
+use App\Models\RefFundingInstitution;
+use App\Models\RefFundingSource;
+use App\Models\RefGad;
+use App\Models\RefImplementationMode;
+use App\Models\RefInfrastructureSector;
 use App\Models\Office;
-use App\Models\OperatingUnit;
-use App\Models\OperatingUnitType;
-use App\Models\PapType;
-use App\Models\PdpChapter;
-use App\Models\PdpIndicator;
-use App\Models\PipTypology;
-use App\Models\PreparationDocument;
+use App\Models\RefOperatingUnit;
+use App\Models\RefOperatingUnitType;
+use App\Models\RefPapType;
+use App\Models\RefPdpChapter;
+use App\Models\RefPdpIndicator;
+use App\Models\RefPipTypology;
+use App\Models\RefPreparationDocument;
 use App\Models\Project;
 use App\Models\ProjectStatus;
-use App\Models\ReadinessLevel;
-use App\Models\Region;
+use App\Models\RefReadinessLevel;
+use App\Models\RefRegion;
 use App\Models\RegionInvestment;
-use App\Models\Review;
-use App\Models\Sdg;
-use App\Models\SpatialCoverage;
-use App\Models\SubmissionStatus;
-use App\Models\TenPointAgenda;
-use App\Models\Tier;
+use App\Models\ProjectReview;
+use App\Models\RefSdg;
+use App\Models\RefSpatialCoverage;
+use App\Models\RefSubmissionStatus;
+use App\Models\RefTenPointAgenda;
+use App\Models\RefTier;
 use App\Models\User;
 use App\Notifications\ProjectDeletedNotification;
 use Barryvdh\Snappy\Facades\SnappyPdf;
@@ -97,27 +97,27 @@ class ProjectController extends Controller
             ->with('pageTitle', 'Add New Project')
             ->with([
                 'offices'                   => Office::all(),
-                'pap_types'                 => PapType::all(),
+                'pap_types'                 => RefPapType::all(),
                 'bases'                     => RefBasis::all(),
                 'project_statuses'          => ProjectStatus::all(),
-                'spatial_coverages'         => SpatialCoverage::all(),
-                'regions'                   => Region::all(),
-                'gads'                      => Gad::all(),
+                'spatial_coverages'         => RefSpatialCoverage::all(),
+                'regions'                   => RefRegion::all(),
+                'gads'                      => RefGad::all(),
                 'years'                     => config('ipms.editor.years'),
                 'approval_levels'           => RefApprovalLevel::all(),
-                'pdp_chapters'              => PdpChapter::orderBy('name')->get(),
-                'sdgs'                      => Sdg::all(),
-                'ten_point_agendas'         => TenPointAgenda::all(),
-                'pdp_indicators'            => PdpIndicator::with('children.children.children')
+                'pdp_chapters'              => RefPdpChapter::orderBy('name')->get(),
+                'sdgs'                      => RefSdg::all(),
+                'ten_point_agendas'         => RefTenPointAgenda::all(),
+                'pdp_indicators'            => RefPdpIndicator::with('children.children.children')
                                                     ->where('level',1)
                                                     ->select('id','name')->get(),
-                'funding_sources'           => FundingSource::all(),
-                'funding_institutions'      => FundingInstitution::all(),
-                'implementation_modes'      => ImplementationMode::all(),
-                'tiers'                     => Tier::all(),
-                'preparation_documents'     => PreparationDocument::all(),
-                'fs_statuses'               => FsStatus::all(),
-                'ou_types'                  => OperatingUnitType::with('operating_units')->get(),
+                'funding_sources'           => RefFundingSource::all(),
+                'funding_institutions'      => RefFundingInstitution::all(),
+                'implementation_modes'      => RefImplementationMode::all(),
+                'tiers'                     => RefTier::all(),
+                'preparation_documents'     => RefPreparationDocument::all(),
+                'fs_statuses'               => RefFsStatus::all(),
+                'ou_types'                  => RefOperatingUnitType::with('operating_units')->get(),
                 'covidInterventions'        => RefCovidIntervention::all(),
             ]);
     }
@@ -216,30 +216,30 @@ class ProjectController extends Controller
             ->with('pageTitle', 'Edit Project')
             ->with([
                 'offices'                   => Office::all(),
-                'pap_types'                 => PapType::all(),
+                'pap_types'                 => RefPapType::all(),
                 'bases'                     => RefBasis::all(),
                 'project_statuses'          => ProjectStatus::all(),
-                'spatial_coverages'         => SpatialCoverage::all(),
-                'regions'                   => Region::all(),
-                'gads'                      => Gad::all(),
-                'pip_typologies'            => PipTypology::all(),
+                'spatial_coverages'         => RefSpatialCoverage::all(),
+                'regions'                   => RefRegion::all(),
+                'gads'                      => RefGad::all(),
+                'pip_typologies'            => RefPipTypology::all(),
                 'cip_types'                 => RefCipType::all(),
                 'years'                     => config('ipms.editor.years'),
                 'approval_levels'           => RefApprovalLevel::all(),
-                'infrastructure_sectors'    => InfrastructureSector::with('children')->get(),
-                'pdp_chapters'              => PdpChapter::orderBy('name')->get(),
-                'sdgs'                      => Sdg::all(),
-                'ten_point_agendas'         => TenPointAgenda::all(),
-                'pdp_indicators'            => PdpIndicator::with('children.children.children')
+                'infrastructure_sectors'    => RefInfrastructureSector::with('children')->get(),
+                'pdp_chapters'              => RefPdpChapter::orderBy('name')->get(),
+                'sdgs'                      => RefSdg::all(),
+                'ten_point_agendas'         => RefTenPointAgenda::all(),
+                'pdp_indicators'            => RefPdpIndicator::with('children.children.children')
                     ->where('level',1)
                     ->select('id','name')->get(),
-                'funding_sources'           => FundingSource::all(),
-                'funding_institutions'      => FundingInstitution::all(),
-                'implementation_modes'      => ImplementationMode::all(),
-                'tiers'                     => Tier::all(),
-                'preparation_documents'     => PreparationDocument::all(),
-                'fs_statuses'               => FsStatus::all(),
-                'ou_types'                  => OperatingUnitType::with('operating_units')->get(),
+                'funding_sources'           => RefFundingSource::all(),
+                'funding_institutions'      => RefFundingInstitution::all(),
+                'implementation_modes'      => RefImplementationMode::all(),
+                'tiers'                     => RefTier::all(),
+                'preparation_documents'     => RefPreparationDocument::all(),
+                'fs_statuses'               => RefFsStatus::all(),
+                'ou_types'                  => RefOperatingUnitType::with('operating_units')->get(),
                 'covidInterventions'        => RefCovidIntervention::all(),
             ]);
     }
@@ -266,7 +266,7 @@ class ProjectController extends Controller
         $project->covid_interventions()->sync($request->covid_interventions);
 
         foreach ($request->fs_investments as $fs_investment) {
-            $fsToEdit = FsInvestment::where('project_id', $project->id)->where('fs_id', $fs_investment['fs_id'])->first();
+            $fsToEdit = ProjectFsInvestment::where('project_id', $project->id)->where('fs_id', $fs_investment['fs_id'])->first();
             $fsToEdit->update($fs_investment);
 //            update(['id' => $fs_investment['id']], $fs_investment);
         }
@@ -292,14 +292,14 @@ class ProjectController extends Controller
         $project->disbursement()->update($request->disbursement);
 
         if ($request->has('draft')) {
-            $project->submission_status_id = SubmissionStatus::findByName('Draft')->id;
+            $project->submission_status_id = RefSubmissionStatus::findByName('Draft')->id;
             $project->save();
             Alert::success('Success', 'Successfully saved as draft');
         }
 
         if ($request->has('endorse')) {
             $this->authorize('endorse', $project);
-            $project->submission_status_id = SubmissionStatus::findByName('Endorsed')->id;
+            $project->submission_status_id = RefSubmissionStatus::findByName('Endorsed')->id;
             $project->save();
             Alert::success('Success', 'Successfully saved as endorsed');
         }
@@ -340,9 +340,9 @@ class ProjectController extends Controller
         return view('reviews.create', [
             'pageTitle' => 'Reviewing ' . $project->title,
             'project' => $project,
-            'pip_typologies' => PipTypology::all(),
+            'pip_typologies' => RefPipTypology::all(),
             'cip_types' => RefCipType::all(),
-            'readiness_levels' => ReadinessLevel::all(),
+            'readiness_levels' => RefReadinessLevel::all(),
         ]);
     }
 
@@ -350,11 +350,11 @@ class ProjectController extends Controller
     {
         abort_if(!(auth()->user()->can('reviews.create') || auth()->user()->can('projects.review', $project)), 403);
 
-        $review = Review::create($request->all());
+        $review = ProjectReview::create($request->all());
 
         event(new ProjectReviewedEvent($review));
 
-        Alert::success('Success', 'Review successfully saved');
+        Alert::success('Success', 'ProjectReview successfully saved');
 
         return redirect()->route('reviews.index')->with('message', 'Successfully added review');
     }
@@ -506,7 +506,7 @@ class ProjectController extends Controller
     {
         $project->reason_id             = $request->reason_id;
         $project->other_reason          = $request->other_reason;
-        $project->submission_status_id  = SubmissionStatus::findByName(SubmissionStatus::DROPPED)->id;
+        $project->submission_status_id  = RefSubmissionStatus::findByName(RefSubmissionStatus::DROPPED)->id;
         $project->save();
 
         Alert::success('Success','Project successfully dropped');

@@ -50,7 +50,7 @@ Route::middleware(['auth','password.changed'])->group(function () {
     Route::post('/projects/{uuid}/restore', [\App\Http\Controllers\ProjectController::class,'restore'])->name('projects.restore');
 
     Route::post('/projects/{project}/endorse', [\App\Http\Controllers\ProjectController::class,'endorse'])->name('reviews.endorse');
-    // Review
+    // ProjectReview
     Route::post('/projects/{project}/review', [\App\Http\Controllers\ProjectController::class,'storeReview'])->name('reviews.store');
     Route::get('/projects/{project}/review/create', [\App\Http\Controllers\ProjectController::class,'review'])->name('reviews.create');
 

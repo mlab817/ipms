@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Disbursement;
+use App\Models\ProjectDisbursement;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DisbursementFactory extends Factory
@@ -12,7 +12,7 @@ class DisbursementFactory extends Factory
      *
      * @var string
      */
-    protected $model = Disbursement::class;
+    protected $model = ProjectDisbursement::class;
 
     /**
      * Define the model's default state.

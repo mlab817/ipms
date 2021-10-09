@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Pipol;
-use App\Models\Reason;
+use App\Models\RefReason;
 use Illuminate\Database\Seeder;
 
 class ReasonsTableSeeder extends Seeder
@@ -16,7 +16,7 @@ class ReasonsTableSeeder extends Seeder
     public function run()
     {
         foreach (Pipol::REASON_FOR_DROPPING as $key => $reason) {
-            Reason::create([
+            RefReason::create([
                 'name' => $reason
             ]);
         }
