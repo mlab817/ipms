@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\CovidIntervention;
+use App\Models\RefCovidIntervention;
 use Illuminate\Database\Seeder;
 
 class CovidInterventionsTableSeeder extends Seeder
@@ -25,7 +25,7 @@ class CovidInterventionsTableSeeder extends Seeder
         ];
 
         foreach ($seeds as $seed) {
-            CovidIntervention::create([
+            RefCovidIntervention::create([
                 'name' => $seed,
             ]);
         }

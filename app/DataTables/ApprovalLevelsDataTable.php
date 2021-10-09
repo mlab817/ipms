@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ApprovalLevel;
+use App\Models\RefApprovalLevel;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class ApprovalLevelsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ApprovalLevel $model
+     * @param \App\Models\RefApprovalLevel $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ApprovalLevel $model)
+    public function query(RefApprovalLevel $model)
     {
         return $model->newQuery();
     }

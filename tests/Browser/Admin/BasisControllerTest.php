@@ -2,7 +2,7 @@
 
 namespace Tests\Browser\Admin;
 
-use App\Models\Basis;
+use App\Models\RefBasis;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
@@ -26,7 +26,7 @@ class BasisControllerTest extends DuskTestCase
             $browser
                 ->loginAs($user->id)
                 ->visit(route('admin.bases.index'))
-                ->assertSee('Basis')
+                ->assertSee('RefBasis')
                 ->screenshot('admin/basis-index');
         });
     }
@@ -47,13 +47,13 @@ class BasisControllerTest extends DuskTestCase
             $browser
                 ->loginAs($user->id)
                 ->visit(route('admin.bases.create'))
-                ->type('name', 'New Basis')
+                ->type('name', 'New RefBasis')
                 ->press('Submit')
-                ->assertSee('Basis')
+                ->assertSee('RefBasis')
                 ->screenshot('admin/basis-create');
         });
 
-        $this->assertDatabaseHas('bases', ['name' => 'New Basis']);
+        $this->assertDatabaseHas('bases', ['name' => 'New RefBasis']);
     }
 
     /**
@@ -69,13 +69,13 @@ class BasisControllerTest extends DuskTestCase
         $user->assignRole('admin');
 
         $this->browse(function (Browser $browser) use ($user) {
-            $basis = Basis::create(['name' => 'New Basis']);
+            $basis = RefBasis::create(['name' => 'New RefBasis']);
 
             $browser
                 ->loginAs($user->id)
                 ->visit(route('admin.bases.edit', 'new-basis'))
                 ->assertSee('Edit')
-                ->type('name', 'New Basis 2')
+                ->type('name', 'New RefBasis 2')
                 ->type('description', 'second basis')
                 ->screenshot('admin/basis-edit')
                 ->press('Submit')
@@ -83,7 +83,7 @@ class BasisControllerTest extends DuskTestCase
         });
 
         $this->assertDatabaseHas('bases', [
-            'name' => 'New Basis 2',
+            'name' => 'New RefBasis 2',
             'description'   => 'second basis'
         ]);
     }

@@ -5,9 +5,9 @@ namespace Tests\Feature;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectResource;
 use App\Models\Allocation;
-use App\Models\ApprovalLevel;
-use App\Models\Basis;
-use App\Models\CipType;
+use App\Models\RefApprovalLevel;
+use App\Models\RefBasis;
+use App\Models\RefCipType;
 use App\Models\Disbursement;
 use App\Models\FeasibilityStudy;
 use App\Models\FsStatus;
@@ -73,7 +73,7 @@ class ProjectTest extends TestCase
             'pip_typology_id'           => PipTypology::factory()->create()->id,
             'research'                  => $this->faker->boolean,
             'cip'                       => $this->faker->boolean,
-            'cip_type_id'               => CipType::factory()->create()->id,
+            'cip_type_id'               => RefCipType::factory()->create()->id,
             'trip'                      => $this->faker->boolean,
             'rdip'                      => $this->faker->boolean,
             'rdc_endorsement_required'  => $this->faker->boolean,
@@ -98,7 +98,7 @@ class ProjectTest extends TestCase
             'updates_date'              => $this->faker->date(),
             'uacs_code'                 => $this->faker->isbn13,
             'tier_id'                   => Tier::factory()->create()->id,
-            'approval_level_id'         => ApprovalLevel::factory()->create()->id,
+            'approval_level_id'         => RefApprovalLevel::factory()->create()->id,
             'approval_date'             => $this->faker->date(),
             'regions'                   => Region::factory()->count(3)->create()->pluck('id'),
             'funding_sources'           => FundingSource::factory()->count(1)->create()->pluck('id'),

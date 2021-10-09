@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Allocation;
-use App\Models\ApprovalLevel;
-use App\Models\Basis;
-use App\Models\CipType;
+use App\Models\RefApprovalLevel;
+use App\Models\RefBasis;
+use App\Models\RefCipType;
 use App\Models\Disbursement;
 use App\Models\FeasibilityStudy;
 use App\Models\FundingInstitution;
@@ -63,13 +63,13 @@ class ProjectFactory extends Factory
             'expected_outputs'              => $this->faker->paragraph,
             'spatial_coverage_id'           => SpatialCoverage::all()->random()->id,
             'iccable'                       => $this->faker->boolean,
-            'approval_level_id'             => ApprovalLevel::all()->random()->id,
+            'approval_level_id'             => RefApprovalLevel::all()->random()->id,
             'approval_date'                 => $this->faker->date(),
             'pip'                           => $this->faker->boolean,
             'pip_typology_id'               => PipTypology::all()->random()->id,
             'research'                      => $this->faker->boolean,
             'cip'                           => $this->faker->boolean,
-            'cip_type_id'                   => CipType::all()->random()->id,
+            'cip_type_id'                   => RefCipType::all()->random()->id,
             'trip'                          => $this->faker->boolean,
             'rdip'                          => $this->faker->boolean,
             'rdc_endorsement_required'      => $this->faker->boolean,

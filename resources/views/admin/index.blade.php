@@ -25,7 +25,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\ApprovalLevel::count() }}</h3>
+                            <h3>{{ \App\Models\RefApprovalLevel::count() }}</h3>
 
                             <p>Approval Levels</p>
                         </div>
@@ -43,7 +43,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\Basis::count() }}</h3>
+                            <h3>{{ \App\Models\RefBasis::count() }}</h3>
 
                             <p>Bases for Implementation</p>
                         </div>
@@ -61,7 +61,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\CipType::count() }}</h3>
+                            <h3>{{ \App\Models\RefCipType::count() }}</h3>
 
                             <p>Types of CIP</p>
                         </div>
@@ -79,7 +79,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\CovidIntervention::count() }}</h3>
+                            <h3>{{ \App\Models\RefCovidIntervention::count() }}</h3>
 
                             <p>COVID Interventions</p>
                         </div>

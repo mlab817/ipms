@@ -17,10 +17,10 @@ use App\Http\Requests\ProjectUpdateRequest;
 use App\Http\Requests\ReviewStoreRequest;
 use App\Http\Requests\UploadAttachmentRequest;
 use App\Http\Resources\ProjectResource;
-use App\Models\ApprovalLevel;
-use App\Models\Basis;
-use App\Models\CipType;
-use App\Models\CovidIntervention;
+use App\Models\RefApprovalLevel;
+use App\Models\RefBasis;
+use App\Models\RefCipType;
+use App\Models\RefCovidIntervention;
 use App\Models\FsInvestment;
 use App\Models\FsStatus;
 use App\Models\FundingInstitution;
@@ -98,13 +98,13 @@ class ProjectController extends Controller
             ->with([
                 'offices'                   => Office::all(),
                 'pap_types'                 => PapType::all(),
-                'bases'                     => Basis::all(),
+                'bases'                     => RefBasis::all(),
                 'project_statuses'          => ProjectStatus::all(),
                 'spatial_coverages'         => SpatialCoverage::all(),
                 'regions'                   => Region::all(),
                 'gads'                      => Gad::all(),
                 'years'                     => config('ipms.editor.years'),
-                'approval_levels'           => ApprovalLevel::all(),
+                'approval_levels'           => RefApprovalLevel::all(),
                 'pdp_chapters'              => PdpChapter::orderBy('name')->get(),
                 'sdgs'                      => Sdg::all(),
                 'ten_point_agendas'         => TenPointAgenda::all(),
@@ -118,7 +118,7 @@ class ProjectController extends Controller
                 'preparation_documents'     => PreparationDocument::all(),
                 'fs_statuses'               => FsStatus::all(),
                 'ou_types'                  => OperatingUnitType::with('operating_units')->get(),
-                'covidInterventions'        => CovidIntervention::all(),
+                'covidInterventions'        => RefCovidIntervention::all(),
             ]);
     }
 
@@ -217,15 +217,15 @@ class ProjectController extends Controller
             ->with([
                 'offices'                   => Office::all(),
                 'pap_types'                 => PapType::all(),
-                'bases'                     => Basis::all(),
+                'bases'                     => RefBasis::all(),
                 'project_statuses'          => ProjectStatus::all(),
                 'spatial_coverages'         => SpatialCoverage::all(),
                 'regions'                   => Region::all(),
                 'gads'                      => Gad::all(),
                 'pip_typologies'            => PipTypology::all(),
-                'cip_types'                 => CipType::all(),
+                'cip_types'                 => RefCipType::all(),
                 'years'                     => config('ipms.editor.years'),
-                'approval_levels'           => ApprovalLevel::all(),
+                'approval_levels'           => RefApprovalLevel::all(),
                 'infrastructure_sectors'    => InfrastructureSector::with('children')->get(),
                 'pdp_chapters'              => PdpChapter::orderBy('name')->get(),
                 'sdgs'                      => Sdg::all(),
@@ -240,7 +240,7 @@ class ProjectController extends Controller
                 'preparation_documents'     => PreparationDocument::all(),
                 'fs_statuses'               => FsStatus::all(),
                 'ou_types'                  => OperatingUnitType::with('operating_units')->get(),
-                'covidInterventions'        => CovidIntervention::all(),
+                'covidInterventions'        => RefCovidIntervention::all(),
             ]);
     }
 
@@ -341,7 +341,7 @@ class ProjectController extends Controller
             'pageTitle' => 'Reviewing ' . $project->title,
             'project' => $project,
             'pip_typologies' => PipTypology::all(),
-            'cip_types' => CipType::all(),
+            'cip_types' => RefCipType::all(),
             'readiness_levels' => ReadinessLevel::all(),
         ]);
     }

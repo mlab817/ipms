@@ -46,7 +46,7 @@ class ProjectCreateTest extends DuskTestCase
                 ->select('pap_type_id', '1')
                 ->radio('regular_program','1')
                 ->check('bases[]', '2')
-                ->type('description','Description of the PAP')
+                ->type('description','ProjectDescription of the PAP')
                 ->type('expected_outputs', 'Expected outputs of the PAP')
                 ->type('total_project_cost', 10000000)
                 ->radio('has_infra', 1)

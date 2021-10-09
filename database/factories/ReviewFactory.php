@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\CipType;
+use App\Models\RefCipType;
 use App\Models\PipTypology;
 use App\Models\Project;
 use App\Models\Review;
@@ -33,7 +33,7 @@ class ReviewFactory extends Factory
             'pip'               => $pip,
             'pip_typology_id'   => $pip ? PipTypology::all()->random()->id : null,
             'cip'               => $cip,
-            'cip_type_id'       => $cip ? CipType::all()->random()->id : null,
+            'cip_type_id'       => $cip ? RefCipType::all()->random()->id : null,
             'trip'              => $trip,
         ];
     }

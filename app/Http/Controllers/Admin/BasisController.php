@@ -6,7 +6,7 @@ use App\DataTables\BasesDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BasisStoreRequest;
 use App\Http\Requests\BasisUpdateRequest;
-use App\Models\Basis;
+use App\Models\RefBasis;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -20,7 +20,7 @@ class BasisController extends Controller
     public function index(BasesDataTable $dataTable)
     {
         return $dataTable->render('admin.bases.index', [
-            'pageTitle' => 'Basis for Implementation',
+            'pageTitle' => 'RefBasis for Implementation',
         ]);
     }
 
@@ -32,7 +32,7 @@ class BasisController extends Controller
     public function create()
     {
         return view('admin.bases.create', [
-            'pageTitle' => 'Create Implementation Basis',
+            'pageTitle' => 'Create Implementation RefBasis',
         ]);
     }
 
@@ -44,7 +44,7 @@ class BasisController extends Controller
      */
     public function store(BasisStoreRequest $request)
     {
-        Basis::create($request->all());
+        RefBasis::create($request->all());
 
         Alert::success('Success', 'Successfully saved item.');
 
@@ -68,10 +68,10 @@ class BasisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Basis $basis)
+    public function edit(RefBasis $basis)
     {
         return view('admin.bases.edit', [
-            'pageTitle' => 'Edit Implementation Basis',
+            'pageTitle' => 'Edit Implementation RefBasis',
             'basis'     => $basis,
         ]);
     }
@@ -80,10 +80,10 @@ class BasisController extends Controller
      * Update the specified resource in storage.
      *
      * @param BasisUpdateRequest $request
-     * @param Basis $basis
+     * @param RefBasis $basis
      * @return \Illuminate\Http\Response
      */
-    public function update(BasisUpdateRequest $request, Basis $basis)
+    public function update(BasisUpdateRequest $request, RefBasis $basis)
     {
         $basis->update($request->all());
 
@@ -98,7 +98,7 @@ class BasisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Basis $basis)
+    public function destroy(RefBasis $basis)
     {
         $basis->delete();
 

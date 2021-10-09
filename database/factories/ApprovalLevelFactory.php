@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\ApprovalLevel;
+use App\Models\RefApprovalLevel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class ApprovalLevelFactory extends Factory
      *
      * @var string
      */
-    protected $model = ApprovalLevel::class;
+    protected $model = RefApprovalLevel::class;
 
     /**
      * Define the model's default state.

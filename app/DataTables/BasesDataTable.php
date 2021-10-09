@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Basis;
+use App\Models\RefBasis;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -34,10 +34,10 @@ class BasesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Basis $model
+     * @param \App\Models\RefBasis $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Basis $model)
+    public function query(RefBasis $model)
     {
         return $model->newQuery();
     }

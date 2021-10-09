@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\ApprovalLevelsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApprovalLevelRequest;
-use App\Models\ApprovalLevel;
+use App\Models\RefApprovalLevel;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class ApprovalLevelController extends Controller
           'name'  => 'required|string|unique:approval_levels',
         ]);
 
-        ApprovalLevel::create($validatedData);
+        RefApprovalLevel::create($validatedData);
 
         if ($request->ajax()) {
             return response()->json(['message' => 'Successfully added item'], 200);
@@ -74,7 +74,7 @@ class ApprovalLevelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ApprovalLevel $approvalLevel)
+    public function edit(RefApprovalLevel $approvalLevel)
     {
       return view('admin.approval_levels.edit')
         ->with('pageTitle', 'Edit Approval Level')
@@ -88,7 +88,7 @@ class ApprovalLevelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ApprovalLevel $approvalLevel)
+    public function update(Request $request, RefApprovalLevel $approvalLevel)
     {
         $validatedData = $request->validate([
           'name'  => 'required|string',
@@ -111,7 +111,7 @@ class ApprovalLevelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(ApprovalLevel $approvalLevel)
+    public function destroy(RefApprovalLevel $approvalLevel)
     {
         $approvalLevel->delete();
 

@@ -6,7 +6,7 @@ use App\DataTables\ReviewsDataTable;
 use App\Events\ProjectReviewedEvent;
 use App\Http\Requests\ReviewStoreRequest;
 use App\Http\Requests\ReviewUpdateRequest;
-use App\Models\CipType;
+use App\Models\RefCipType;
 use App\Models\PipTypology;
 use App\Models\Project;
 use App\Models\ReadinessLevel;
@@ -73,7 +73,7 @@ class ReviewController extends Controller
         return view('reviews.edit', [
             'pageTitle'         => 'Reviewing: ' . $review->project->title,
             'review'            => $review,
-            'cip_types'         => CipType::all(),
+            'cip_types'         => RefCipType::all(),
             'pip_typologies'    => PipTypology::all(),
             'readiness_levels'  => ReadinessLevel::all(),
             'project'           => $review->project,

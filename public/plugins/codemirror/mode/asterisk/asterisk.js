@@ -6,7 +6,7 @@
  *
  *       Filename:  mode/asterisk/asterisk.js
  *
- *    Description:  CodeMirror mode for Asterisk dialplan
+ *    ProjectDescription:  CodeMirror mode for Asterisk dialplan
  *
  *        Created:  05/17/2012 09:20:25 PM
  *       Revision:  08/05/2019 AstLinux Project: Support block-comments

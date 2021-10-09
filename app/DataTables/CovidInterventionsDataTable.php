@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\CovidIntervention;
+use App\Models\RefCovidIntervention;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class CovidInterventionsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\CovidIntervention $model
+     * @param \App\Models\RefCovidIntervention $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(CovidIntervention $model)
+    public function query(RefCovidIntervention $model)
     {
         return $model->newQuery();
     }

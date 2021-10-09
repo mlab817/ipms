@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\CipType;
+use App\Models\RefCipType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class CipTypeFactory extends Factory
      *
      * @var string
      */
-    protected $model = CipType::class;
+    protected $model = RefCipType::class;
 
     /**
      * Define the model's default state.

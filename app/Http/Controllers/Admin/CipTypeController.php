@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\CipTypesDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\CipType;
+use App\Models\RefCipType;
 use Illuminate\Http\Request;
 
 class CipTypeController extends Controller
@@ -45,7 +45,7 @@ class CipTypeController extends Controller
             'name' => 'required',
         ]);
 
-        CipType::create($request->all());
+        RefCipType::create($request->all());
 
         return redirect()->route('admin.cip_types.index');
     }
@@ -67,7 +67,7 @@ class CipTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CipType $cipType)
+    public function edit(RefCipType $cipType)
     {
         return view('admin.cip_types.edit', [
             'pageTitle' => 'Edit CIP Type',
@@ -82,7 +82,7 @@ class CipTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CipType $cipType)
+    public function update(Request $request, RefCipType $cipType)
     {
         $request->validate([
             'name' => 'required',
@@ -99,7 +99,7 @@ class CipTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CipType $cipType)
+    public function destroy(RefCipType $cipType)
     {
         $cipType->delete();
 

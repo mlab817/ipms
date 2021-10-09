@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Basis;
+use App\Models\RefBasis;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BasisFactory extends Factory
@@ -12,7 +12,7 @@ class BasisFactory extends Factory
      *
      * @var string
      */
-    protected $model = Basis::class;
+    protected $model = RefBasis::class;
 
     /**
      * Define the model's default state.

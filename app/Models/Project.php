@@ -121,7 +121,7 @@ class Project extends Model
      */
     public function approval_level(): BelongsTo
     {
-        return $this->belongsTo(ApprovalLevel::class)->withDefault();
+        return $this->belongsTo(RefApprovalLevel::class)->withDefault();
     }
 
     public function creator(): BelongsTo
@@ -199,12 +199,12 @@ class Project extends Model
      */
     public function bases(): BelongsToMany
     {
-        return $this->belongsToMany(Basis::class);
+        return $this->belongsToMany(RefBasis::class);
     }
 
     public function covid_interventions(): BelongsToMany
     {
-        return $this->belongsToMany(CovidIntervention::class);
+        return $this->belongsToMany(RefCovidIntervention::class);
     }
 
     public function funding_institutions(): BelongsToMany
@@ -267,7 +267,7 @@ class Project extends Model
 
     public function description(): HasOne
     {
-        return $this->hasOne(Description::class)->withDefault();
+        return $this->hasOne(ProjectDescription::class)->withDefault();
     }
 
     public function disbursement(): HasOne

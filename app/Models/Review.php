@@ -43,7 +43,7 @@ class Review extends Model
 
     public function cip_type(): BelongsTo
     {
-        return $this->belongsTo(CipType::class)->withDefault();
+        return $this->belongsTo(RefCipType::class)->withDefault();
     }
 
     public function user(): BelongsTo
