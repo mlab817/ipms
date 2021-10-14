@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\InfrastructureSector;
+use App\Models\RefInfrastructureSector;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -179,7 +179,7 @@ class InfrastructureSectorsTableSeeder extends Seeder
         ];
 
         foreach ($seeds as $seed) {
-            $is                 = new InfrastructureSector;
+            $is                 = new RefInfrastructureSector;
             $is->name           = $seed['name'];
             $is->slug           = $seed['slug'];
             $is->description    = $seed['description'];

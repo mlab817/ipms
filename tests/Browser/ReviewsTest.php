@@ -21,7 +21,7 @@ class ReviewsTest extends DuskTestCase
             $browser
                 ->loginAs(1)
                 ->visit(route('reviews.index'))
-                ->assertSee('Review PAPs')
+                ->assertSee('ProjectReview PAPs')
                 ->screenshot('reviews/index');
         });
     }
@@ -36,7 +36,7 @@ class ReviewsTest extends DuskTestCase
             $browser
                 ->loginAs(1)
                 ->visit(route('reviews.create', ['project' => $project]))
-                ->assertSee('Add Review')
+                ->assertSee('Add ProjectReview')
                 ->screenshot('reviews/create');
         });
     }
@@ -51,7 +51,7 @@ class ReviewsTest extends DuskTestCase
             $browser
                 ->loginAs(1)
                 ->visit(route('reviews.edit', ['project' => $project]))
-                ->assertSee('Edit Review')
+                ->assertSee('Edit ProjectReview')
                 ->screenshot('reviews/edit');
         });
     }

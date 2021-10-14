@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\FundingInstitution;
+use App\Models\RefFundingInstitution;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FundingInstitutionFactory extends Factory
@@ -12,7 +12,7 @@ class FundingInstitutionFactory extends Factory
      *
      * @var string
      */
-    protected $model = FundingInstitution::class;
+    protected $model = RefFundingInstitution::class;
 
     /**
      * Define the model's default state.

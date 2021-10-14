@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Project;
-use App\Models\SubmissionStatus;
+use App\Models\RefSubmissionStatus;
 
 class ProjectObserver
 {

@@ -57933,7 +57933,7 @@ function findIdx(table, val) {
 "use strict";
 
 
-// Description of supported double byte encodings and aliases.
+// ProjectDescription of supported double byte encodings and aliases.
 // Tables are not require()-d until they are needed to speed up library load.
 // require()-s are direct to support Browserify.
 

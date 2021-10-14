@@ -52,13 +52,13 @@ use App\Http\Resources\PipTypologyResource;
 use App\Http\Resources\PrerequisiteResource;
 use App\Http\Resources\ProjectStatusResource;
 use App\Http\Resources\RegionResource;
-use App\Models\Gad;
+use App\Models\RefGad;
 use App\Models\Office;
-use App\Models\PdpIndicator;
-use App\Models\PipTypology;
-use App\Models\Prerequisite;
+use App\Models\RefPdpIndicator;
+use App\Models\RefPipTypology;
+use App\Models\RefPrerequisite;
 use App\Models\ProjectStatus;
-use App\Models\Region;
+use App\Models\RefRegion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

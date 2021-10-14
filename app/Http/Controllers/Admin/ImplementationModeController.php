@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\ImplementationModesDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\ImplementationMode;
+use App\Models\RefImplementationMode;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class ImplementationModeController extends Controller
             'name' => 'required',
         ]);
 
-        ImplementationMode::create($request->all());
+        RefImplementationMode::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -70,7 +70,7 @@ class ImplementationModeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ImplementationMode $implementationMode)
+    public function edit(RefImplementationMode $implementationMode)
     {
         return view('admin.implementation_modes.edit', compact('implementationMode'))->with([
             'pageTitle' => 'Edit Implemenetation Mode',
@@ -84,7 +84,7 @@ class ImplementationModeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ImplementationMode $implementationMode)
+    public function update(Request $request, RefImplementationMode $implementationMode)
     {
         $request->validate([
             'name' => 'required',
@@ -103,7 +103,7 @@ class ImplementationModeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ImplementationMode $implementationMode)
+    public function destroy(RefImplementationMode $implementationMode)
     {
         $implementationMode->delete();
 

@@ -30,8 +30,8 @@ class SpatialCoveragesTableSeeder extends Seeder
             ],
             [
                 'id'            => 3,
-                'name'          => 'Region-Specific',
-                'slug'          => Str::slug('Region-Specific'),
+                'name'          => 'RefRegion-Specific',
+                'slug'          => Str::slug('RefRegion-Specific'),
                 'description'   => 'If spatial coverage/impact of a program or a project pertains to one region (in parts or as a whole).',
             ],
             [

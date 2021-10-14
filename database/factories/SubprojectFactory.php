@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\OperatingUnit;
+use App\Models\RefOperatingUnit;
 use App\Models\Project;
 use App\Models\Subproject;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -25,7 +25,7 @@ class SubprojectFactory extends Factory
     {
         return [
             'project_id'        => Project::all()->random(1)->first()->id,
-            'operating_unit_id' => OperatingUnit::all()->random(1)->first()->id,
+            'operating_unit_id' => RefOperatingUnit::all()->random(1)->first()->id,
             'title'             => $this->faker->sentence, // $this->faker->words,
             'description'       => $this->faker->paragraph, // $this->faker->paragraph(3),
             'expected_outputs'  => $this->faker->paragraph, // $this->faker->paragraph(2),

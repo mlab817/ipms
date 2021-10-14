@@ -17,7 +17,7 @@ class Pipol extends Model
     const SPATIAL_COVERAGE = [
         'NATIONWIDE'        => 'Nationwide',
         'INTERREGIONAL'     => 'Interregional',
-        'REGIONSPECIFIC'    => 'Region Specific',
+        'REGIONSPECIFIC'    => 'RefRegion Specific',
         'ABROAD'            => 'Abroad',
     ];
 
@@ -62,7 +62,7 @@ class Pipol extends Model
 
     public function reason(): BelongsTo
     {
-        return $this->belongsTo(Reason::class);
+        return $this->belongsTo(RefReason::class);
     }
 
     public function user(): BelongsTo

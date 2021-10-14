@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\SpatialCoverage;
+use App\Models\RefSpatialCoverage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class SpatialCoverageFactory extends Factory
      *
      * @var string
      */
-    protected $model = SpatialCoverage::class;
+    protected $model = RefSpatialCoverage::class;
 
     /**
      * Define the model's default state.

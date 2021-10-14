@@ -2,12 +2,12 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Region;
+use App\Models\RefRegion;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class RegionCollection extends ResourceCollection
 {
-    public $collects = Region::class;
+    public $collects = RefRegion::class;
 
     /**
      * Transform the resource collection into an array.
@@ -18,7 +18,7 @@ class RegionCollection extends ResourceCollection
     public function toArray($request): array
     {
         return [
-            'data' => $this->collection->transform(function (Region $region) {
+            'data' => $this->collection->transform(function (RefRegion $region) {
                 return [
                     'id'                => $region->id,
                     'name'              => $region->name,

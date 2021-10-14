@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\FundingInstitution;
+use App\Models\RefFundingInstitution;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class FundingInstitutionsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\FundingInstitution $model
+     * @param \App\Models\RefFundingInstitution $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(FundingInstitution $model)
+    public function query(RefFundingInstitution $model)
     {
         return $model->newQuery();
     }

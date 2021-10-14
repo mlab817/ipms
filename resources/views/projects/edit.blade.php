@@ -1307,7 +1307,7 @@
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title">{{ __("Investment Required by Region") }} </h3>
+                                <h3 class="card-title">{{ __("Investment Required by RefRegion") }} </h3>
                             </div>
                             <div class="card-body">
                                 <table class="table-responsive">
@@ -1648,7 +1648,7 @@
                             <label class="col-form-label required">Reason for dropping</label>
                             <select id="reason_id" name="reason_id" required class="form-control @error('reason_id') is-invalid @enderror">
                                 <option value="" selected disabled>Select reason</option>
-                                @foreach(\App\Models\Reason::all() as $reason)
+                                @foreach(\App\Models\RefReason::all() as $reason)
                                     <option value="{{ $reason->id }}" @if(old('reason_id') == $reason->id) selected @endif>{{ $reason->name }}</option>
                                 @endforeach
                             </select>

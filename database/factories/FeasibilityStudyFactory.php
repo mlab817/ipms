@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\FeasibilityStudy;
-use App\Models\FsStatus;
+use App\Models\ProjectFeasibilityStudy;
+use App\Models\RefFsStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FeasibilityStudyFactory extends Factory
@@ -13,7 +13,7 @@ class FeasibilityStudyFactory extends Factory
      *
      * @var string
      */
-    protected $model = FeasibilityStudy::class;
+    protected $model = ProjectFeasibilityStudy::class;
 
     /**
      * Define the model's default state.
@@ -24,7 +24,7 @@ class FeasibilityStudyFactory extends Factory
     {
         return [
             'needs_assistance'  => $this->faker->boolean,
-            'fs_status_id'      => FsStatus::all()->random()->id,
+            'fs_status_id'      => RefFsStatus::all()->random()->id,
             'y2016'             => $this->faker->randomFloat() * 1000,
             'y2017'             => $this->faker->randomFloat() * 1000,
             'y2018'             => $this->faker->randomFloat() * 1000,

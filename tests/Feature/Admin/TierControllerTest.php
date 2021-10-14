@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Models\Tier;
+use App\Models\RefTier;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -35,7 +35,7 @@ class TierControllerTest extends TestCase
         $response = $this->get(route('admin.tiers.create'))
             ->assertStatus(200)
             ->assertViewIs('admin.tiers.create')
-            ->assertSee('Add Budget Tier');
+            ->assertSee('Add Budget RefTier');
     }
 
     public function test_it_stores_tier()
@@ -45,13 +45,13 @@ class TierControllerTest extends TestCase
         $this->actingAs($this->user);
 
         $response = $this->post(route('admin.tiers.store'), [
-            'name' => 'Tier 3',
+            'name' => 'RefTier 3',
         ])
             ->assertStatus(302)
             ->assertRedirect(route('admin.tiers.index'));
 
         $this->assertDatabaseHas('tiers', [
-            'name' => 'Tier 3'
+            'name' => 'RefTier 3'
         ]);
     }
 
@@ -61,12 +61,12 @@ class TierControllerTest extends TestCase
 
         $this->actingAs($this->user);
 
-        $tier = Tier::factory()->create();
+        $tier = RefTier::factory()->create();
 
         $response = $this->get(route('admin.tiers.edit', $tier))
             ->assertStatus(200)
             ->assertViewIs('admin.tiers.edit')
-            ->assertSee('Edit Budget Tier');
+            ->assertSee('Edit Budget RefTier');
     }
 
     public function test_it_updates_tier()
@@ -75,19 +75,19 @@ class TierControllerTest extends TestCase
 
         $this->actingAs($this->user);
 
-        $tier = Tier::factory()->create();
+        $tier = RefTier::factory()->create();
 
         $response = $this
             ->from(route('admin.tiers.edit', $tier))
             ->put(route('admin.tiers.update', $tier), [
-                'name' => 'Tier 4',
+                'name' => 'RefTier 4',
             ])
             ->assertStatus(302)
             ->assertRedirect(route('admin.tiers.edit', $tier));
 
         $this->assertDatabaseHas('tiers', [
             'id'    => $tier->id,
-            'name'  => 'Tier 4',
+            'name'  => 'RefTier 4',
         ]);
     }
 
@@ -97,7 +97,7 @@ class TierControllerTest extends TestCase
 
         $this->actingAs($this->user);
 
-        $tier = Tier::factory()->create();
+        $tier = RefTier::factory()->create();
 
         $response = $this->delete(route('admin.tiers.destroy', $tier))
             ->assertStatus(302)

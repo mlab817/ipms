@@ -69,18 +69,18 @@
 
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="office_id" class="col-form-label col-sm-3 required">Office </label>
+                                <label for="ref_office_id" class="col-form-label col-sm-3 required">Office </label>
                                 <div class="col-sm-9">
                                     <select type="text"
-                                            class="form-control select2 @error('office_id') is-invalid @enderror"
-                                            id="office_id" name="office_id">
+                                            class="form-control select2 @error('ref_office_id') is-invalid @enderror"
+                                            id="ref_office_id" name="ref_office_id">
                                         <option value="" disabled selected>Select Office</option>
                                         @foreach($offices as $option)
                                             <option value="{{ $option->id }}"
                                                     @if(old('office_id') == $option->id) selected @endif>{{ $option->acronym }}</option>
                                         @endforeach
                                     </select>
-                                    @error('office_id')<span
+                                    @error('ref_office_id')<span
                                         class="error invalid-feedback">{{ $message }}</span>@enderror
                                 </div>
                             </div>
@@ -96,23 +96,23 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="pap_type_id" class="col-form-label col-sm-3 required">PAP Type </label>
+                                <label for="ref_pap_type_id" class="col-form-label col-sm-3 required">PAP Type </label>
                                 <div class="col-sm-9">
-                                    <select class="form-control @error('pap_type_id') is-invalid @enderror"
-                                            name="pap_type_id">
+                                    <select class="form-control @error('ref_pap_type_id') is-invalid @enderror"
+                                            name="ref_pap_type_id">
                                         <option value="" selected disabled>Select PAP Type</option>
                                         @foreach($pap_types as $option)
                                             <option value="{{ $option->id }}"
-                                                    @if(old('pap_type_id') == $option->id) selected @endif>{{ $option->name }}</option>
+                                                    @if(old('ref_pap_type_id') == $option->id) selected @endif>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('pap_type_id')<span
+                                    @error('ref_pap_type_id')<span
                                         class="error invalid-feedback">{{ $message }}</span>@enderror
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="pap_type_id" class="col-form-label col-sm-3 required">Is this a regular
+                                <label for="ref_pap_type_id" class="col-form-label col-sm-3 required">Is this a regular
                                     program? </label>
                                 <div class="col-sm-9">
                                     <div class="form-check-inline">
@@ -228,18 +228,18 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="project_status_id" class="col-form-label col-sm-3 required">Project
+                                <label for="ref_project_status_id" class="col-form-label col-sm-3 required">Project
                                     Status </label>
                                 <div class="col-sm-9">
-                                    <select class="form-control @error('project_status_id') is-invalid @enderror"
-                                            id="project_status_id" name="project_status_id">
+                                    <select class="form-control @error('ref_project_status_id') is-invalid @enderror"
+                                            id="ref_project_status_id" name="ref_project_status_id">
                                         <option value="" selected disabled>Select Project Status</option>
                                         @foreach($project_statuses as $option)
                                             <option value="{{ $option->id }}"
-                                                    @if(old('project_status_id') == $option->id) selected @endif>{{ $option->name }}</option>
+                                                    @if(old('ref_project_status_id') == $option->id) selected @endif>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('project_status_id')<span
+                                    @error('ref_project_status_id')<span
                                         class="error invalid-feedback">{{ $message }}</span>@enderror
                                 </div>
                             </div>
@@ -381,18 +381,18 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="spatial_coverage_id" class="col-form-label col-sm-3 required">Spatial
+                                <label for="ref_spatial_coverage_id" class="col-form-label col-sm-3 required">Spatial
                                     Coverage </label>
                                 <div class="col-sm-9">
-                                    <select name="spatial_coverage_id" id="spatial_coverage_id"
-                                            class="form-control select2 @error('spatial_coverage_id') is-invalid @enderror">
+                                    <select name="ref_spatial_coverage_id" id="ref_spatial_coverage_id"
+                                            class="form-control select2 @error('ref_spatial_coverage_id') is-invalid @enderror">
                                         <option value="" selected disabled>Select Spatial Coverage</option>
                                         @foreach($spatial_coverages as $option)
                                             <option value="{{ $option->id }}"
-                                                    @if(old('spatial_coverage_id') == $option->id) selected @endif>{{ $option->name }}</option>
+                                                    @if(old('ref_spatial_coverage_id') == $option->id) selected @endif>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('spatial_coverage_id')<span
+                                    @error('ref_spatial_coverage_id')<span
                                         class="error invalid-feedback">{{ $message }}</span>@enderror
                                 </div>
                             </div>
@@ -503,18 +503,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="approval_level_id" class="col-form-label col-sm-3">Level of Approval (For
+                                <label for="ref_approval_level_id" class="col-form-label col-sm-3">Level of Approval (For
                                     ICCable only)</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control @error('approval_level_id') is-invalid @enderror"
-                                            name="approval_level_id">
+                                    <select class="form-control @error('ref_approval_level_id') is-invalid @enderror"
+                                            name="ref_approval_level_id">
                                         <option value="" disabled selected>Select Approval Level</option>
                                         @foreach($approval_levels as $option)
                                             <option
-                                                value="{{ $option->id }}" {{ old('approval_level_id') == $option->id ? 'selected' : '' }}>{{ $option->name }}</option>
+                                                value="{{ $option->id }}" {{ old('ref_approval_level_id') == $option->id ? 'selected' : '' }}>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('approval_level_id')<span
+                                    @error('ref_approval_level_id')<span
                                         class="error invalid-feedback">{{ $message }}</span>@enderror
                                 </div>
                             </div>
@@ -530,17 +530,17 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="gad_id" class="col-form-label col-sm-3 required">Gender
+                                <label for="ref_gad_id" class="col-form-label col-sm-3 required">Gender
                                     Responsiveness </label>
                                 <div class="col-sm-9">
-                                    <select class="form-control @error('gad_id') is-invalid @enderror" name="gad_id">
+                                    <select class="form-control @error('ref_gad_id') is-invalid @enderror" name="ref_gad_id">
                                         <option value="" disabled selected>Select GAD Classification</option>
                                         @foreach($gads as $option)
                                             <option
-                                                value="{{ $option->id }}" {{ old('gad_id') == $option->id ? 'selected' : '' }}>{{ $option->name }}</option>
+                                                value="{{ $option->id }}" {{ old('ref_gad_id') == $option->id ? 'selected' : '' }}>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('gad_id')<span class="error invalid-feedback">{{ $message }}</span>@enderror
+                                    @error('ref_gad_id')<span class="error invalid-feedback">{{ $message }}</span>@enderror
                                 </div>
                             </div>
                         </div>
@@ -647,17 +647,17 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="preparation_document_id" class="col-form-label col-sm-3">Project Preparation
+                                <label for="ref_preparation_document_id" class="col-form-label col-sm-3">Project Preparation
                                     Document</label>
                                 <div class="col-sm-9">
-                                    <select name="preparation_document_id" id="preparation_document_id"
-                                            class="form-control select2 @error('preparation_document_id') is-invalid @enderror">
+                                    <select name="ref_preparation_document_id" id="ref_preparation_document_id"
+                                            class="form-control select2 @error('ref_preparation_document_id') is-invalid @enderror">
                                         <option value="" selected disabled>Select document</option>
                                         @foreach($preparation_documents as $option)
-                                            <option value="{{ $option->id }}" @if($option->id == old('preparation_document_id')) selected @endif>{{ $option->name }}</option>
+                                            <option value="{{ $option->id }}" @if($option->id == old('ref_preparation_document_id')) selected @endif>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('preparation_document_id')
+                                    @error('ref_preparation_document_id')
                                     <span class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -683,10 +683,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="fs_status_id" class="col-form-label col-sm-3">Status of Feasibility
+                                <label for="ref_fs_status_id" class="col-form-label col-sm-3">Status of Feasibility
                                     Study</label>
                                 <div class="col-sm-9">
-                                    <select name="feasibility_study[fs_status_id]" id="fs_status_id"
+                                    <select name="feasibility_study[ref_fs_status_id]" id="ref_fs_status_id"
                                             class="form-control select2">
                                         <option value="" selected disabled>Select Status</option>
                                         @foreach($fs_statuses as $option)
@@ -822,18 +822,18 @@
                         <div class="card-body">
                             <div class="form-group row">
                                 <div class="col-sm-3">
-                                    <label for="pdp_chapter_id" class="col-form-label required">Main philippine
+                                    <label for="ref_pdp_chapter_id" class="col-form-label required">Main philippine
                                         Development Chapter </label>
                                     <p class="text-sm text-muted">Note: Selected PDP indicators will be cleared if you
                                         select another PDP chapter.</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <select id="pdp_chapter_id" name="pdp_chapter_id"
-                                            class="form-control select2 @error('pdp_chapter_id') is-invalid @enderror">
+                                    <select id="ref_pdp_chapter_id" name="ref_pdp_chapter_id"
+                                            class="form-control select2 @error('ref_pdp_chapter_id') is-invalid @enderror">
                                         <option value="" disabled selected>Select Main PDP Chapter</option>
                                         @foreach($pdp_chapters as $option)
                                             <option value="{{ $option->id }}"
-                                                    @if(old('pdp_chapter_id') == $option->id) selected @endif>{{ $option->name }}</option>
+                                                    @if(old('ref_pdp_chapter_id') == $option->id) selected @endif>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -841,14 +841,14 @@
 
                             <div class="form-group row">
                                 <div class="col-sm-3">
-                                    <label for="pdp_chapter_id" class="col-form-label required">Other PDP
+                                    <label for="ref_pdp_chapter_id" class="col-form-label required">Other PDP
                                         Chapters </label>
                                     <p class="text-sm @error('pdp_chapters') text-danger @enderror">Note: Please re-select the main PDP chapter.</p>
                                 </div>
                                 <div class="col-sm-9">
                                     @foreach($pdp_chapters as $option)
                                         <div class="form-check">
-                                            <label class="form-check-label @error('pdp_chapter_id') text-danger @enderror" for="pdp_chapter_{{ $option->id }}">
+                                            <label class="form-check-label @error('ref_pdp_chapter_id') text-danger @enderror" for="pdp_chapter_{{ $option->id }}">
                                                 <input id="pdp_chapter_{{ $option->id }}" type="checkbox"
                                                        value="{{ $option->id }}" class="form-check-input"
                                                        name="pdp_chapters[]"
@@ -1005,15 +1005,15 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="funding_source_id" class="col-form-label col-sm-3 required">Main Funding
+                                <label for="ref_funding_source_id" class="col-form-label col-sm-3 required">Main Funding
                                     Source </label>
                                 <div class="col-sm-9">
-                                    <select class="form-control @error('funding_source_id') is-invalid @enderror"
-                                            name="funding_source_id">
+                                    <select class="form-control @error('ref_funding_source_id') is-invalid @enderror"
+                                            name="ref_funding_source_id">
                                         <option value="" disabled selected>Select Funding Source</option>
                                         @foreach($funding_sources as $option)
                                             <option value="{{ $option->id }}"
-                                                    @if(old('funding_source_id') == $option->id) selected @endif>{{ $option->name }}</option>
+                                                    @if(old('ref_funding_source_id') == $option->id) selected @endif>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -1053,46 +1053,46 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="implementation_mode_id" class="col-form-label col-sm-3 required">Mode of
+                                <label for="ref_implementation_mode_id" class="col-form-label col-sm-3 required">Mode of
                                     Implementation </label>
                                 <div class="col-sm-9">
-                                    <select class="form-control @error('implementation_mode_id') is-invalid @enderror"
-                                            name="implementation_mode_id">
+                                    <select class="form-control @error('ref_implementation_mode_id') is-invalid @enderror"
+                                            name="ref_implementation_mode_id">
                                         <option value="" disabled selected>Select Implementation Mode</option>
                                         @foreach($implementation_modes as $option)
                                             <option value="{{ $option->id }}"
-                                                    @if(old('implementation_mode_id') == $option->id) selected @endif>{{ $option->name }}</option>
+                                                    @if(old('ref_implementation_mode_id') == $option->id) selected @endif>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('implementation_mode_id')<span
+                                    @error('ref_implementation_mode_id')<span
                                         class="error invalid-feedback">{{ $message }}</span>@enderror
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="funding_institution_id" class="col-form-label col-sm-3">Funding
+                                <label for="ref_funding_institution_id" class="col-form-label col-sm-3">Funding
                                     Institution</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control select2" name="funding_institution_id"
-                                            @error('funding_institution_id') is-invalid @enderror>
+                                    <select class="form-control select2" name="ref_funding_institution_id"
+                                            @error('ref_funding_institution_id') is-invalid @enderror>
                                         <option value="" disabled selected>Select Funding Institution</option>
                                         @foreach($funding_institutions as $option)
                                             <option value="{{ $option->id }}"
-                                                    @if(old('funding_institution_id') == $option->id) selected @endif>{{ $option->name }}</option>
+                                                    @if(old('ref_funding_institution_id') == $option->id) selected @endif>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="tier_id" class="col-form-label col-sm-3 required">Budget Tier </label>
+                                <label for="ref_tier_id" class="col-form-label col-sm-3 required">Budget Tier </label>
                                 <div class="col-sm-9">
-                                    <select class="form-control @error('tier_id') is-invalid @enderror" name="tier_id">
+                                    <select class="form-control @error('ref_tier_id') is-invalid @enderror" name="ref_tier_id">
                                         <option value="" disabled selected>Select Budget Tier</option>
                                         @foreach($tiers as $option)
                                             <option value="{{ $option->id }}"
-                                                    @if(old('tier_id') == $option->id) selected @enderror>{{ $option->name }}</option>
+                                                    @if(old('ref_tier_id') == $option->id) selected @enderror>{{ $option->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('tier_id')<span class="error invalid-feedback">{{ $message }}</span>@enderror
+                                    @error('ref_tier_id')<span class="error invalid-feedback">{{ $message }}</span>@enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -1168,7 +1168,7 @@
                                 @foreach ($funding_sources as $fs)
                                     <tr>
                                         <th class="text-sm">
-                                            <input type="hidden" name="fs_investments[{{$fs->id}}][fs_id]"
+                                            <input type="hidden" name="fs_investments[{{$fs->id}}][ref_fs_id]"
                                                    value="{{ $fs->id }}">
                                             {{ $fs->name }}
                                         </th>
@@ -1260,7 +1260,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">{{ __("Investment Required by Region") }} </h3>
+                            <h3 class="card-title">{{ __("Investment Required by RefRegion") }} </h3>
                         </div>
                         <div class="card-body p-0">
                             <table class="table table-responsive table-sm">
@@ -1284,7 +1284,7 @@
                                     @if($fs->id !== 100)
                                         <tr>
                                             <th class="text-sm">
-                                                <input type="hidden" name="region_investments[{{$fs->id}}][region_id]"
+                                                <input type="hidden" name="region_investments[{{$fs->id}}][ref_region_id]"
                                                        value="{{ $fs->id }}">
                                                 {{ $fs->name }}
                                             </th>
@@ -1475,7 +1475,7 @@
 
                 <div class="row">
                     <div class="col-12 mb-3 ml-1">
-                        <button type="submit" class="btn btn-success">Create PAP</button>
+                        <button type="submit" class="btn btn-success">Crefate PAP</button>
                         <a href="{{ route('projects.own') }}" class="btn">Back to List</a>
                     </div>
                 </div>

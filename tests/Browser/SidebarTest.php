@@ -68,7 +68,7 @@ class SidebarTest extends DuskTestCase
                 ->visit('/dashboard')
                 ->assertSee('Dashboard')
                 ->assertSee('reviewer main')
-                ->assertSee('Review PAPs')
+                ->assertSee('ProjectReview PAPs')
                 ->assertSee('Settings')
                 ->assertSee('Logout')
                 ->screenshot('sidebar/reviewer-sidebar');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Charts\SampleChart;
 use App\Models\Project;
-use App\Models\Review;
+use App\Models\ProjectReview;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,9 +41,9 @@ class DashboardController extends Controller
             'tripCount'      => Project::whereHas('review', function ($q) {
                 $q->where('trip', 1);
             })->count(),
-//            'encodedCount'  => Review::where('pipol_encoded', true)->count(),
-//            'validatedCount'=> Review::where('pipol_validated', true)->count(),
-//            'finalizedCount'=> Review::where('pipol_finalized', true)->count(),
+//            'encodedCount'  => ProjectReview::where('pipol_encoded', true)->count(),
+//            'validatedCount'=> ProjectReview::where('pipol_validated', true)->count(),
+//            'finalizedCount'=> ProjectReview::where('pipol_finalized', true)->count(),
             'endorsedCount' => Project::whereHas('review', function ($q) {
                 $q->where('pip', 1);
             })->whereHas('pipol', function ($q) {
@@ -56,7 +56,7 @@ class DashboardController extends Controller
             })->count(),
             'userCount'     => User::count(),
             'chart'         => $chart,
-            'reviews'       => Review::with('user')->has('project')->latest()->take(5)->get(),
+            'reviews'       => ProjectReview::with('user')->has('project')->latest()->take(5)->get(),
             'latestProjects'=> Project::with('pap_type','project_status','creator.office','office')->latest()->take(5)->get(),
             'users'         => User::whereHas('roles', function ($q) {
                 $q->where('name','reviewer.main')

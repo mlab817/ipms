@@ -120,32 +120,32 @@ class Project extends Model
      */
     public function approval_level(): BelongsTo
     {
-        return $this->belongsTo(ApprovalLevel::class)->withDefault();
+        return $this->belongsTo(RefApprovalLevel::class)->withDefault();
     }
 
     public function creator(): BelongsTo
     {
-        return $this->belongsTo(User::class,'created_by','id');
+        return $this->belongsTo(User::class,'creator_id','id');
     }
 
     public function funding_source(): BelongsTo
     {
-        return $this->belongsTo(FundingSource::class)->withDefault();
+        return $this->belongsTo(RefFundingSource::class)->withDefault();
     }
 
     public function funding_institution(): BelongsTo
     {
-        return $this->belongsTo(FundingInstitution::class)->withDefault();
+        return $this->belongsTo(RefFundingInstitution::class)->withDefault();
     }
 
     public function gad(): BelongsTo
     {
-        return $this->belongsTo(Gad::class)->withDefault();
+        return $this->belongsTo(RefGad::class)->withDefault();
     }
 
     public function implementation_mode(): BelongsTo
     {
-        return $this->belongsTo(ImplementationMode::class)->withDefault();
+        return $this->belongsTo(RefImplementationMode::class)->withDefault();
     }
 
     public function office(): BelongsTo
@@ -155,17 +155,17 @@ class Project extends Model
 
     public function pap_type(): BelongsTo
     {
-        return $this->belongsTo(PapType::class)->withDefault();
+        return $this->belongsTo(RefPapType::class)->withDefault();
     }
 
     public function pdp_chapter(): BelongsTo
     {
-        return $this->belongsTo(PdpChapter::class)->withDefault();
+        return $this->belongsTo(RefPdpChapter::class)->withDefault();
     }
 
     public function preparation_document(): BelongsTo
     {
-        return $this->belongsTo(PreparationDocument::class)->withDefault();
+        return $this->belongsTo(RefPreparationDocument::class)->withDefault();
     }
 
     public function project_status(): BelongsTo
@@ -175,22 +175,22 @@ class Project extends Model
 
     public function reason(): BelongsTo
     {
-        return $this->belongsTo(Reason::class)->withDefault();
+        return $this->belongsTo(RefReason::class)->withDefault();
     }
 
     public function spatial_coverage(): BelongsTo
     {
-        return $this->belongsTo(SpatialCoverage::class)->withDefault();
+        return $this->belongsTo(RefSpatialCoverage::class)->withDefault();
     }
 
     public function submission_status(): BelongsTo
     {
-        return $this->belongsTo(SubmissionStatus::class);
+        return $this->belongsTo(RefSubmissionStatus::class);
     }
 
     public function tier(): BelongsTo
     {
-        return $this->belongsTo(Tier::class)->withDefault();
+        return $this->belongsTo(RefTier::class)->withDefault();
     }
 
     /**
@@ -198,62 +198,62 @@ class Project extends Model
      */
     public function bases(): BelongsToMany
     {
-        return $this->belongsToMany(Basis::class);
+        return $this->belongsToMany(RefBasis::class);
     }
 
     public function covid_interventions(): BelongsToMany
     {
-        return $this->belongsToMany(CovidIntervention::class);
+        return $this->belongsToMany(RefCovidIntervention::class);
     }
 
     public function funding_institutions(): BelongsToMany
     {
-        return $this->belongsToMany(FundingInstitution::class);
+        return $this->belongsToMany(RefFundingInstitution::class);
     }
 
     public function funding_sources(): BelongsToMany
     {
-        return $this->belongsToMany(FundingSource::class);
+        return $this->belongsToMany(RefFundingSource::class);
     }
 
     public function infrastructure_sectors(): BelongsToMany
     {
-        return $this->belongsToMany(InfrastructureSector::class,'infrastructure_sector_project','project_id','is_id');
+        return $this->belongsToMany(RefInfrastructureSector::class,'project_infrastructure_sector','project_id','is_id');
     }
 
     public function infrastructure_subsectors(): BelongsToMany
     {
-        return $this->belongsToMany(InfrastructureSubsector::class,'infrastructure_subsector_project','project_id','is_id','id','id');
+        return $this->belongsToMany(RefInfrastructureSubsector::class,'project_infrastructure_subsector','project_id','is_id','id','id');
     }
 
     public function pdp_chapters(): BelongsToMany
     {
-        return $this->belongsToMany(PdpChapter::class);
+        return $this->belongsToMany(RefPdpChapter::class, 'project_pdp_chapter', 'project_id', 'ref_pdp_chapter_id');
     }
 
     public function pdp_indicators(): BelongsToMany
     {
-        return $this->belongsToMany(PdpIndicator::class,'pdp_indicator_project','project_id','pi_id');
+        return $this->belongsToMany(RefPdpIndicator::class,'project_pdp_indicator','project_id','pi_id');
     }
 
     public function prerequisites(): BelongsToMany
     {
-        return $this->belongsToMany(Prerequisite::class);
+        return $this->belongsToMany(RefPrerequisite::class,'project_prerequisite', 'project_id', 'ref_prerequisite_id');
     }
 
     public function regions(): BelongsToMany
     {
-        return $this->belongsToMany(Region::class);
+        return $this->belongsToMany(RefRegion::class, 'project_region', 'project_id', 'ref_region_id');
     }
 
     public function sdgs(): BelongsToMany
     {
-        return $this->belongsToMany(Sdg::class);
+        return $this->belongsToMany(RefSdg::class, 'project_sdg', 'project_id','ref_sdg_id');
     }
 
     public function ten_point_agendas(): BelongsToMany
     {
-        return $this->belongsToMany(TenPointAgenda::class,'project_ten_point_agenda','project_id','tpa_id','id','id');
+        return $this->belongsToMany(RefTenPointAgenda::class,'project_ten_point_agenda','project_id','tpa_id','id','id');
     }
 
     /**
@@ -266,22 +266,22 @@ class Project extends Model
 
     public function description(): HasOne
     {
-        return $this->hasOne(Description::class)->withDefault();
+        return $this->hasOne(ProjectDescription::class)->withDefault();
     }
 
     public function disbursement(): HasOne
     {
-        return $this->hasOne(Disbursement::class)->withDefault();
+        return $this->hasOne(ProjectDisbursement::class)->withDefault();
     }
 
     public function expected_output(): HasOne
     {
-        return $this->hasOne(ExpectedOutput::class)->withDefault();
+        return $this->hasOne(ProjectExpectedOutput::class)->withDefault();
     }
 
     public function feasibility_study(): HasOne
     {
-        return $this->hasOne(FeasibilityStudy::class)->withDefault();
+        return $this->hasOne(ProjectFeasibilityStudy::class)->withDefault();
     }
 
     public function pipol(): HasOne
@@ -291,22 +291,22 @@ class Project extends Model
 
     public function resettlement_action_plan(): HasOne
     {
-        return $this->hasOne(ResettlementActionPlan::class, 'project_id', 'id')->withDefault();
+        return $this->hasOne(ProjectResettlementActionPlan::class, 'project_id', 'id')->withDefault();
     }
 
     public function right_of_way(): HasOne
     {
-        return $this->hasOne(RightOfWay::class, 'project_id', 'id')->withDefault();
+        return $this->hasOne(ProjectRightOfWay::class, 'project_id', 'id')->withDefault();
     }
 
     public function risk(): HasOne
     {
-        return $this->hasOne(Risk::class)->withDefault();
+        return $this->hasOne(ProjectRisk::class)->withDefault();
     }
 
     public function review(): HasOne
     {
-        return $this->hasOne(Review::class,'project_id','id');
+        return $this->hasOne(ProjectReview::class,'project_id','id');
     }
 
     public function project_update(): HasOne
@@ -319,22 +319,22 @@ class Project extends Model
      */
     public function fs_investments(): HasMany
     {
-        return $this->hasMany(FsInvestment::class);
+        return $this->hasMany(ProjectFsInvestment::class);
     }
 
     public function fs_infrastructures(): HasMany
     {
-        return $this->hasMany(FsInfrastructure::class);
+        return $this->hasMany(ProjectFsInfrastructure::class);
     }
 
     public function nep(): HasOne
     {
-        return $this->hasOne(Nep::class)->withDefault();
+        return $this->hasOne(ProjectNep::class)->withDefault();
     }
 
     public function operating_units(): BelongsToMany
     {
-        return $this->belongsToMany(OperatingUnit::class);
+        return $this->belongsToMany(RefOperatingUnit::class);
     }
 
     public function ou_investments(): HasMany
@@ -377,7 +377,7 @@ class Project extends Model
 
     public function investment(): HasOne
     {
-        return $this->hasOne(FsInvestment::class,'project_id')
+        return $this->hasOne(ProjectFsInvestment::class,'project_id')
             ->selectRaw('sum(y2016) as "y2016"')
             ->selectRaw('sum(y2017) as "y2017"')
             ->selectRaw('sum(y2018) as "y2018"')
@@ -394,7 +394,7 @@ class Project extends Model
 
     public function infrastructure(): HasOne
     {
-        return $this->hasOne(FsInfrastructure::class,'project_id')
+        return $this->hasOne(ProjectFsInfrastructure::class,'project_id')
             ->selectRaw('sum(y2016) as "y2016"')
             ->selectRaw('sum(y2017) as "y2017"')
             ->selectRaw('sum(y2018) as "y2018"')

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\FundingSourcesDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\FundingSource;
+use App\Models\RefFundingSource;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class FundingSourceController extends Controller
             'name' => 'required',
         ]);
 
-        FundingSource::create($request->all());
+        RefFundingSource::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -70,7 +70,7 @@ class FundingSourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(FundingSource $fundingSource)
+    public function edit(RefFundingSource $fundingSource)
     {
         return view('admin.funding_sources.edit', compact('fundingSource'))->with([
             'pageTitle' => 'Edit Funding Source',
@@ -84,7 +84,7 @@ class FundingSourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FundingSource $fundingSource)
+    public function update(Request $request, RefFundingSource $fundingSource)
     {
         $request->validate([
             'name' => 'required',
@@ -103,7 +103,7 @@ class FundingSourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FundingSource $fundingSource)
+    public function destroy(RefFundingSource $fundingSource)
     {
         $fundingSource->delete();
 

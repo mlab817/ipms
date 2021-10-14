@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Models\FundingSource;
+use App\Models\RefFundingSource;
 use App\Models\Project;
-use App\Models\Region;
+use App\Models\RefRegion;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -122,7 +122,7 @@ class SetupProjectsCommand extends Command
 
         $createdProject->prerequisites()->sync(collect($project->technical_readinesses)->pluck('id'));
 
-        $fsources = FundingSource::all();
+        $fsources = RefFundingSource::all();
 
         foreach ($fsources as $fs) {
             $createdProject->fs_investments()->create([
@@ -134,7 +134,7 @@ class SetupProjectsCommand extends Command
         }
 
         // exlude N/A
-        $regions = Region::where('id','<>',100)->get();
+        $regions = RefRegion::where('id','<>',100)->get();
 
         foreach ($regions as $region) {
             $createdProject->region_investments()->create([

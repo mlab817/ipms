@@ -2,18 +2,18 @@
 
 namespace App\Jobs;
 
-use App\Models\FundingInstitution;
-use App\Models\FundingSource;
-use App\Models\Gad;
-use App\Models\ImplementationMode;
+use App\Models\RefFundingInstitution;
+use App\Models\RefFundingSource;
+use App\Models\RefGad;
+use App\Models\RefImplementationMode;
 use App\Models\Office;
-use App\Models\PdpChapter;
-use App\Models\PreparationDocument;
+use App\Models\RefPdpChapter;
+use App\Models\RefPreparationDocument;
 use App\Models\Project;
 use App\Models\ProjectStatus;
-use App\Models\Region;
-use App\Models\SpatialCoverage;
-use App\Models\Tier;
+use App\Models\RefRegion;
+use App\Models\RefSpatialCoverage;
+use App\Models\RefTier;
 use App\Notifications\ProjectImportFailedNotification;
 use App\Notifications\ProjectImportSuccessNotification;
 use Exception;
@@ -111,8 +111,8 @@ class ProjectImportJob implements ShouldQueue
         $fs_infrastructures = collect($data['funding_source_infrastructures']);
         $fs_investments = collect($data['funding_source_financials']);
         $region_investments = collect($data['region_financials']);
-        $fundingSources = FundingSource::select('id')->get();
-        $regions = Region::where('id', '<>', 100)->select('id')->get();
+        $fundingSources = RefFundingSource::select('id')->get();
+        $regions = RefRegion::where('id', '<>', 100)->select('id')->get();
 
         return [
             'ipms_id' => $data['id'],
@@ -123,31 +123,31 @@ class ProjectImportJob implements ShouldQueue
             'regular_program' => $data['regular'],
             'expected_outputs' => $data['expected_outputs'],
             'description' => $data['description'],
-            'spatial_coverage_id' => !in_array($data['spatial_coverage_id'], SpatialCoverage::all()->pluck('id')->toArray()) ? null : $data['spatial_coverage_id'],
-            'funding_source_id' => !in_array($data['main_funding_source_id'], FundingSource::all()->pluck('id')->toArray()) ? null : $data['main_funding_source_id'],
-            'funding_institution_id' => !in_array($data['funding_institution_id'], FundingInstitution::all()->pluck('id')->toArray()) ? null : $data['funding_institution_id'],
+            'spatial_coverage_id' => !in_array($data['spatial_coverage_id'], RefSpatialCoverage::all()->pluck('id')->toArray()) ? null : $data['spatial_coverage_id'],
+            'funding_source_id' => !in_array($data['main_funding_source_id'], RefFundingSource::all()->pluck('id')->toArray()) ? null : $data['main_funding_source_id'],
+            'funding_institution_id' => !in_array($data['funding_institution_id'], RefFundingInstitution::all()->pluck('id')->toArray()) ? null : $data['funding_institution_id'],
             'iccable' => $data['iccable'],
             'project_status_id' => !in_array($data['project_status_id'], ProjectStatus::all()->pluck('id')->toArray()) ? null : $data['project_status_id'],
             'updates' => $data['updates'],
             'updates_date' => $data['updates_date'],
-            'gad_id' => !in_array($data['gad_id'], Gad::all()->pluck('id')->toArray()) ? null : $data['gad_id'],
+            'gad_id' => !in_array($data['gad_id'], RefGad::all()->pluck('id')->toArray()) ? null : $data['gad_id'],
             'has_infra' => $data['trip'],
             'rdip' => $data['rdip'],
             'rdc_endorsement_required' => $data['rdc_required'],
             'rdc_endorsed' => $data['rdc_endorsed'],
             'rdc_endorsement_date' => $data['rdc_endorsed_date'],
-            'preparation_document_id' => !in_array($data['project_preparation_document_id'], PreparationDocument::all()->pluck('id')->toArray()) ? null : $data['project_preparation_document_id'],
+            'preparation_document_id' => !in_array($data['project_preparation_document_id'], RefPreparationDocument::all()->pluck('id')->toArray()) ? null : $data['project_preparation_document_id'],
             'has_fs' => $data['has_fs'],
             'has_row' => $data['has_row'],
             'has_rap' => $data['has_rap'],
             'risk' => $data['implementation_risk'],
             'employment_generated' => $data['employment_generated'],
             'uacs_code' => $data['uacs_code'],
-            'tier_id' => !in_array($data['tier_id'], Tier::all()->pluck('id')->toArray()) ? null : $data['tier_id'],
+            'tier_id' => !in_array($data['tier_id'], RefTier::all()->pluck('id')->toArray()) ? null : $data['tier_id'],
             'target_start_year' => $data['target_start_year'],
             'target_end_year' => $data['target_end_year'],
-            'pdp_chapter_id' => !in_array($data['pdp_chapter_id'], PdpChapter::all()->pluck('id')->toArray()) ? null : $data['pdp_chapter_id'],
-            'implementation_mode_id' => !in_array($data['implementation_mode_id'], ImplementationMode::all()->pluck('id')->toArray()) ? null : $data['implementation_mode_id'],
+            'pdp_chapter_id' => !in_array($data['pdp_chapter_id'], RefPdpChapter::all()->pluck('id')->toArray()) ? null : $data['pdp_chapter_id'],
+            'implementation_mode_id' => !in_array($data['implementation_mode_id'], RefImplementationMode::all()->pluck('id')->toArray()) ? null : $data['implementation_mode_id'],
             'office_id' => !in_array($data['operating_unit_id'], Office::all()->pluck('id')->toArray()) ? null : $data['operating_unit_id'],
             'total_project_cost' => round(floatval($data['investment_target_total'] ?? 0)),
             'trip_info' => $data['trip'],

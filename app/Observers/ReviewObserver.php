@@ -2,27 +2,27 @@
 
 namespace App\Observers;
 
-use App\Models\Review;
+use App\Models\ProjectReview;
 
 class ReviewObserver
 {
-    public function creating(Review $review)
+    public function creating(ProjectReview $review)
     {
         $review->user()->associate(auth()->user());
     }
 
     /**
-     * Handle the Review "created" event.
+     * Handle the ProjectReview "created" event.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\ProjectReview  $review
      * @return void
      */
-    public function created(Review $review)
+    public function created(ProjectReview $review)
     {
         //
     }
 
-    public function updating(Review $review)
+    public function updating(ProjectReview $review)
     {
         if (is_null($review->user_id)) {
             $review->user_id = auth()->id();
@@ -30,45 +30,45 @@ class ReviewObserver
     }
 
     /**
-     * Handle the Review "updated" event.
+     * Handle the ProjectReview "updated" event.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\ProjectReview  $review
      * @return void
      */
-    public function updated(Review $review)
+    public function updated(ProjectReview $review)
     {
         //
     }
 
     /**
-     * Handle the Review "deleted" event.
+     * Handle the ProjectReview "deleted" event.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\ProjectReview  $review
      * @return void
      */
-    public function deleted(Review $review)
+    public function deleted(ProjectReview $review)
     {
         //
     }
 
     /**
-     * Handle the Review "restored" event.
+     * Handle the ProjectReview "restored" event.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\ProjectReview  $review
      * @return void
      */
-    public function restored(Review $review)
+    public function restored(ProjectReview $review)
     {
         //
     }
 
     /**
-     * Handle the Review "force deleted" event.
+     * Handle the ProjectReview "force deleted" event.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\ProjectReview  $review
      * @return void
      */
-    public function forceDeleted(Review $review)
+    public function forceDeleted(ProjectReview $review)
     {
         //
     }

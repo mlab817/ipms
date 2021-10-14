@@ -3,7 +3,7 @@
 
 /***
     |''Name''|tiddlywiki.js|
-    |''Description''|Enables TiddlyWikiy syntax highlighting using CodeMirror|
+    |''ProjectDescription''|Enables TiddlyWikiy syntax highlighting using CodeMirror|
     |''Author''|PMario|
     |''Version''|0.1.7|
     |''Status''|''stable''|

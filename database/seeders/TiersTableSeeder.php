@@ -18,20 +18,20 @@ class TiersTableSeeder extends Seeder
         $seeds = [
             [
                 'id'            => 1,
-                'name'          => 'Tier 1 (Ongoing)',
-                'slug'          => Str::slug('Tier 1 (Ongoing)'),
+                'name'          => 'RefTier 1 (Ongoing)',
+                'slug'          => Str::slug('RefTier 1 (Ongoing)'),
                 'description'   => ''
             ],
             [
                 'id'            => 2,
-                'name'          => 'Tier 2 (New)',
-                'slug'          => Str::slug('Tier 2 (New)'),
+                'name'          => 'RefTier 2 (New)',
+                'slug'          => Str::slug('RefTier 2 (New)'),
                 'description'   => ''
             ],
             [
                 'id'            => 3,
-                'name'          => 'Tier 2 (Expanded)',
-                'slug'          => Str::slug('Tier 2 (Expanded)'),
+                'name'          => 'RefTier 2 (Expanded)',
+                'slug'          => Str::slug('RefTier 2 (Expanded)'),
                 'description'   => ''
             ],
             [

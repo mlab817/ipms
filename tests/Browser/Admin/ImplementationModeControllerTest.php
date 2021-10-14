@@ -2,7 +2,7 @@
 
 namespace Tests\Browser\Admin;
 
-use App\Models\ImplementationMode;
+use App\Models\RefImplementationMode;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
@@ -40,7 +40,7 @@ class ImplementationModeControllerTest extends DuskTestCase
             'activated_at' => now(),
         ])->create();
         $user->assignRole('admin');
-        $mode = ImplementationMode::factory()->make();
+        $mode = RefImplementationMode::factory()->make();
 
         $this->browse(function (Browser $browser) use ($user, $mode) {
             $browser
@@ -73,7 +73,7 @@ class ImplementationModeControllerTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser
                 ->loginAs($user->id)
-                ->visit(route('admin.implementation_modes.edit', ImplementationMode::all()->first()))
+                ->visit(route('admin.implementation_modes.edit', RefImplementationMode::all()->first()))
                 ->assertSee('Edit Mode of Implementation')
                 ->screenshot('implementation_modes/edit');
         });
@@ -87,7 +87,7 @@ class ImplementationModeControllerTest extends DuskTestCase
         ])->create();
         $user->assignRole('admin');
 
-        $mode = ImplementationMode::factory()->create();
+        $mode = RefImplementationMode::factory()->create();
 
         $this->browse(function (Browser $browser) use ($user, $mode) {
             $browser

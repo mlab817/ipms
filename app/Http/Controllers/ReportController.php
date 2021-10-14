@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Charts\SampleChart;
-use App\Models\FundingSource;
-use App\Models\ImplementationMode;
+use App\Models\RefFundingSource;
+use App\Models\RefImplementationMode;
 use App\Models\Office;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -159,7 +159,7 @@ class ReportController extends Controller
 
         return view('reports.reports', compact('items'))
             ->with([
-                'reportVar' => 'Budget Tier (Categorization)',
+                'reportVar' => 'Budget RefTier (Categorization)',
                 'note'  => 'The number of PAP here is invalid as the system has assigned a complete list of regions per PAP. There are ' . Project::whereNull('tier_id')->count() . ' PAPs with no funding source identified',
                 'projectsMissingData' => Project::with('creator','office')->whereNull('tier_id')->get(),
             ]);

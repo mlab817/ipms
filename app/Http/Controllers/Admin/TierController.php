@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\TiersDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Tier;
+use App\Models\RefTier;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -30,7 +30,7 @@ class TierController extends Controller
     public function create()
     {
         return view('admin.tiers.create', [
-            'pageTitle' => 'Add Budget Tier'
+            'pageTitle' => 'Add Budget RefTier'
         ]);
     }
 
@@ -46,7 +46,7 @@ class TierController extends Controller
             'name' => 'required'
         ]);
 
-        Tier::create($request->all());
+        RefTier::create($request->all());
 
         Alert::success('Success','Successfully saved item');
 
@@ -70,10 +70,10 @@ class TierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tier $tier)
+    public function edit(RefTier $tier)
     {
         return view('admin.tiers.edit', [
-            'pageTitle' => 'Edit Budget Tier',
+            'pageTitle' => 'Edit Budget RefTier',
             'tier' => $tier,
         ]);
     }
@@ -85,7 +85,7 @@ class TierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tier $tier)
+    public function update(Request $request, RefTier $tier)
     {
         $request->validate([
             'name' => 'required'
@@ -104,7 +104,7 @@ class TierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tier $tier)
+    public function destroy(RefTier $tier)
     {
         $tier->delete();
 

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Region;
+use App\Models\RefRegion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RegionFactory extends Factory
@@ -12,7 +12,7 @@ class RegionFactory extends Factory
      *
      * @var string
      */
-    protected $model = Region::class;
+    protected $model = RefRegion::class;
 
     /**
      * Define the model's default state.

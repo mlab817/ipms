@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\PreparationDocument;
+use App\Models\RefPreparationDocument;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class PreparationDocumentsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\PreparationDocument $model
+     * @param \App\Models\RefPreparationDocument $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(PreparationDocument $model)
+    public function query(RefPreparationDocument $model)
     {
         return $model->newQuery();
     }

@@ -2,7 +2,7 @@
 
 namespace Tests\Browser;
 
-use App\Models\InfrastructureSector;
+use App\Models\RefInfrastructureSector;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -47,7 +47,7 @@ class InfrastructureSectorsTest extends DuskTestCase
     public function test_it_shows_update_infrastructure_sector_form()
     {
         $this->browse(function (Browser $browser) {
-            $infraSector = InfrastructureSector::find(1);
+            $infraSector = RefInfrastructureSector::find(1);
             $browser
                 ->loginAs(1)
                 ->visit(route('admin.infrastructure_sectors.edit', $infraSector))
@@ -66,7 +66,7 @@ class InfrastructureSectorsTest extends DuskTestCase
     public function test_it_deletes_infrastructure_sector()
     {
         $this->browse(function (Browser $browser) {
-            $infraSector = InfrastructureSector::find(1);
+            $infraSector = RefInfrastructureSector::find(1);
             $browser
                 ->loginAs(1)
                 ->visit(route('admin.infrastructure_sectors.edit', $infraSector))

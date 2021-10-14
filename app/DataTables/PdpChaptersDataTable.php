@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\PdpChapter;
+use App\Models\RefPdpChapter;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class PdpChaptersDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\PdpChapter $model
+     * @param \App\Models\RefPdpChapter $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(PdpChapter $model)
+    public function query(RefPdpChapter $model)
     {
         return $model->newQuery();
     }

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\FsStatus;
+use App\Models\RefFsStatus;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class FsStatusesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\FsStatus $model
+     * @param \App\Models\RefFsStatus $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(FsStatus $model)
+    public function query(RefFsStatus $model)
     {
         return $model->newQuery();
     }

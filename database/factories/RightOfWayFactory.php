@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\RightOfWay;
+use App\Models\ProjectRightOfWay;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RightOfWayFactory extends Factory
@@ -12,7 +12,7 @@ class RightOfWayFactory extends Factory
      *
      * @var string
      */
-    protected $model = RightOfWay::class;
+    protected $model = ProjectRightOfWay::class;
 
     /**
      * Define the model's default state.

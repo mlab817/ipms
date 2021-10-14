@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\FsStatusesDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\FsStatus;
+use App\Models\RefFsStatus;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class FsStatusController extends Controller
             'name' => 'required',
         ]);
 
-        FsStatus::create($request->all());
+        RefFsStatus::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -70,7 +70,7 @@ class FsStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(FsStatus $fsStatus)
+    public function edit(RefFsStatus $fsStatus)
     {
         return view('admin.fs_statuses.edit', [
             'fs_status' => $fsStatus,
@@ -85,7 +85,7 @@ class FsStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FsStatus $fsStatus)
+    public function update(Request $request, RefFsStatus $fsStatus)
     {
         $request->validate([
             'name' => 'required',
@@ -104,7 +104,7 @@ class FsStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FsStatus $fsStatus)
+    public function destroy(RefFsStatus $fsStatus)
     {
         $fsStatus->delete();
 

@@ -2,8 +2,8 @@
 
 namespace Tests\Browser\Admin;
 
-use App\Models\CipType;
-use App\Models\ImplementationMode;
+use App\Models\RefCipType;
+use App\Models\RefImplementationMode;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
@@ -84,7 +84,7 @@ class CipTypeControllerTest extends DuskTestCase
             'activated_at' => now(),
         ])->create();
         $user->assignRole('admin');
-        $cipType = CipType::factory()->create();
+        $cipType = RefCipType::factory()->create();
 
         $this->browse(function (Browser $browser) use ($user, $cipType) {
             $browser
@@ -116,7 +116,7 @@ class CipTypeControllerTest extends DuskTestCase
         ])->create();
         $user->assignRole('admin');
 
-        $cipType = CipType::create(['name' => 'test cip type']);
+        $cipType = RefCipType::create(['name' => 'test cip type']);
 
         $this->browse(function (Browser $browser) use ($user, $cipType) {
             $browser

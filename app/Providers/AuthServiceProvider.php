@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Models\Permission;
 use App\Models\Project;
-use App\Models\Review;
+use App\Models\ProjectReview;
 use App\Models\Role;
 use App\Models\Subproject;
 use App\Models\User;
@@ -27,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Project::class      => ProjectPolicy::class,
-        Review::class       => ReviewPolicy::class,
+        ProjectReview::class       => ReviewPolicy::class,
         Subproject::class   => SubprojectPolicy::class,
         User::class         => UserPolicy::class,
         Role::class         => RolePolicy::class,

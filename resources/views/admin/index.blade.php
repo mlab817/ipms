@@ -25,7 +25,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\ApprovalLevel::count() }}</h3>
+                            <h3>{{ \App\Models\RefApprovalLevel::count() }}</h3>
 
                             <p>Approval Levels</p>
                         </div>
@@ -43,7 +43,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\Basis::count() }}</h3>
+                            <h3>{{ \App\Models\RefBasis::count() }}</h3>
 
                             <p>Bases for Implementation</p>
                         </div>
@@ -61,7 +61,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\CipType::count() }}</h3>
+                            <h3>{{ \App\Models\RefCipType::count() }}</h3>
 
                             <p>Types of CIP</p>
                         </div>
@@ -79,7 +79,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\CovidIntervention::count() }}</h3>
+                            <h3>{{ \App\Models\RefCovidIntervention::count() }}</h3>
 
                             <p>COVID Interventions</p>
                         </div>
@@ -97,7 +97,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\FsStatus::count() }}</h3>
+                            <h3>{{ \App\Models\RefFsStatus::count() }}</h3>
 
                             <p>Status of FS</p>
                         </div>
@@ -115,7 +115,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\FundingInstitution::count() }}</h3>
+                            <h3>{{ \App\Models\RefFundingInstitution::count() }}</h3>
 
                             <p>Funding Institutions</p>
                         </div>
@@ -133,7 +133,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\FundingSource::count() }}</h3>
+                            <h3>{{ \App\Models\RefFundingSource::count() }}</h3>
 
                             <p>Funding Sources</p>
                         </div>
@@ -151,7 +151,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\Gad::count() }}</h3>
+                            <h3>{{ \App\Models\RefGad::count() }}</h3>
 
                             <p>GAD Classification</p>
                         </div>
@@ -169,7 +169,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\ImplementationMode::count() }}</h3>
+                            <h3>{{ \App\Models\RefImplementationMode::count() }}</h3>
 
                             <p>Modes of Implementation</p>
                         </div>
@@ -187,7 +187,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\InfrastructureSector::count() }}</h3>
+                            <h3>{{ \App\Models\RefInfrastructureSector::count() }}</h3>
 
                             <p>Infrastructure Sectors</p>
                         </div>
@@ -205,7 +205,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\InfrastructureSubsector::count() }}</h3>
+                            <h3>{{ \App\Models\RefInfrastructureSubsector::count() }}</h3>
 
                             <p>Infrastructure Subsectors</p>
                         </div>
@@ -241,7 +241,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\OperatingUnit::count() }}</h3>
+                            <h3>{{ \App\Models\RefOperatingUnit::count() }}</h3>
 
                             <p>Operating Units</p>
                         </div>
@@ -259,7 +259,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\OperatingUnitType::count() }}</h3>
+                            <h3>{{ \App\Models\RefOperatingUnitType::count() }}</h3>
 
                             <p>Operating Unit Types</p>
                         </div>
@@ -277,7 +277,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\PapType::count() }}</h3>
+                            <h3>{{ \App\Models\RefPapType::count() }}</h3>
 
                             <p>PAP Types</p>
                         </div>
@@ -295,7 +295,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\PdpChapter::count() }}</h3>
+                            <h3>{{ \App\Models\RefPdpChapter::count() }}</h3>
 
                             <p>PDP Chapters</p>
                         </div>
@@ -313,7 +313,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\PdpIndicator::count() }}</h3>
+                            <h3>{{ \App\Models\RefPdpIndicator::count() }}</h3>
 
                             <p>PDP RM Indicators</p>
                         </div>
@@ -331,7 +331,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\PipTypology::count() }}</h3>
+                            <h3>{{ \App\Models\RefPipTypology::count() }}</h3>
 
                             <p>PIP Typologies</p>
                         </div>
@@ -349,7 +349,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\PreparationDocument::count() }}</h3>
+                            <h3>{{ \App\Models\RefPreparationDocument::count() }}</h3>
 
                             <p>Preparation Documents</p>
                         </div>
@@ -367,7 +367,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\Prerequisite::count() }}</h3>
+                            <h3>{{ \App\Models\RefPrerequisite::count() }}</h3>
 
                             <p>Prerequisites</p>
                         </div>
@@ -403,7 +403,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\ReadinessLevel::count() }}</h3>
+                            <h3>{{ \App\Models\RefReadinessLevel::count() }}</h3>
 
                             <p>Readiness Levels</p>
                         </div>
@@ -421,7 +421,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\Region::count() }}</h3>
+                            <h3>{{ \App\Models\RefRegion::count() }}</h3>
 
                             <p>Regions</p>
                         </div>
@@ -439,7 +439,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\SpatialCoverage::count() }}</h3>
+                            <h3>{{ \App\Models\RefSpatialCoverage::count() }}</h3>
 
                             <p>Spatial Coverages</p>
                         </div>
@@ -457,7 +457,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\Sdg::count() }}</h3>
+                            <h3>{{ \App\Models\RefSdg::count() }}</h3>
 
                             <p>Sustainable Development Goals</p>
                         </div>
@@ -475,7 +475,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\TenPointAgenda::count() }}</h3>
+                            <h3>{{ \App\Models\RefTenPointAgenda::count() }}</h3>
 
                             <p>Ten Point Agenda</p>
                         </div>
@@ -493,7 +493,7 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ \App\Models\Tier::count() }}</h3>
+                            <h3>{{ \App\Models\RefTier::count() }}</h3>
 
                             <p>Budget Tier</p>
                         </div>

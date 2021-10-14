@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\ImplementationMode;
+use App\Models\RefImplementationMode;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class ImplementationModeFactory extends Factory
      *
      * @var string
      */
-    protected $model = ImplementationMode::class;
+    protected $model = RefImplementationMode::class;
 
     /**
      * Define the model's default state.

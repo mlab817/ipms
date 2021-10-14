@@ -2,13 +2,13 @@
 
 namespace App\Http\Resources;
 
-use App\Models\FundingSource;
+use App\Models\RefFundingSource;
 use App\Models\Project;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class FundingSourceCollection extends ResourceCollection
 {
-    public $collects = FundingSource::class;
+    public $collects = RefFundingSource::class;
 
     /**
      * Transform the resource collection into an array.
@@ -19,7 +19,7 @@ class FundingSourceCollection extends ResourceCollection
     public function toArray($request): array
     {
         return [
-            'data'  => $this->collection->transform(function (FundingSource $fundingSource) {
+            'data'  => $this->collection->transform(function (RefFundingSource $fundingSource) {
                 return [
                     'id'                => $fundingSource->id,
                     'name'             => $fundingSource->name,

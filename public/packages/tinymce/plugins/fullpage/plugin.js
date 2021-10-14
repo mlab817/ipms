@@ -327,7 +327,7 @@
             {
               name: 'description',
               type: 'input',
-              label: 'Description'
+              label: 'ProjectDescription'
             },
             {
               name: 'robots',

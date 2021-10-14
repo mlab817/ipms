@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Pipol;
-use App\Models\Reason;
+use App\Models\RefReason;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProjectDropRequest extends FormRequest
@@ -27,7 +27,7 @@ class ProjectDropRequest extends FormRequest
     {
         return [
             'reason_id'     => 'required|exists:reasons,id',
-            'other_reason'  => 'nullable|required_if:reason_id,' . Reason::where('name','Other')->first()->id,
+            'other_reason'  => 'nullable|required_if:reason_id,' . RefReason::where('name','Other')->first()->id,
         ];
     }
 }

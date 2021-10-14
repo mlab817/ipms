@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\CovidInterventionsDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\CovidIntervention;
+use App\Models\RefCovidIntervention;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -42,7 +42,7 @@ class CovidInterventionController extends Controller
             'name' => 'required',
         ]);
 
-        $covidIntervention = CovidIntervention::create($request->all());
+        $covidIntervention = RefCovidIntervention::create($request->all());
 
         Alert::success('Success','Successfully saved item');
 
@@ -66,7 +66,7 @@ class CovidInterventionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CovidIntervention $covidIntervention)
+    public function edit(RefCovidIntervention $covidIntervention)
     {
         return view('admin.covid_interventions.edit', compact('covidIntervention'));
     }
@@ -78,7 +78,7 @@ class CovidInterventionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CovidIntervention $covidIntervention)
+    public function update(Request $request, RefCovidIntervention $covidIntervention)
     {
         $request->validate([
             'name' => 'required',
@@ -97,7 +97,7 @@ class CovidInterventionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CovidIntervention $covidIntervention)
+    public function destroy(RefCovidIntervention $covidIntervention)
     {
         $covidIntervention->delete();
 

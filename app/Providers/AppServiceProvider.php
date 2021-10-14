@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Project;
-use App\Models\Review;
+use App\Models\ProjectReview;
 use App\Models\User;
 use App\Observers\ProjectObserver;
 use App\Observers\ReviewObserver;
@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(125);
 
         Project::observe(ProjectObserver::class);
-        Review::observe(ReviewObserver::class);
+        ProjectReview::observe(ReviewObserver::class);
         User::observe(UserObserver::class);
 
         Paginator::useBootstrap();

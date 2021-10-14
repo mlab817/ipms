@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\InfrastructureSubsector;
+use App\Models\RefInfrastructureSubsector;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -36,10 +36,10 @@ class InfrastructureSubsectorsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\InfrastructureSubsector $model
+     * @param \App\Models\RefInfrastructureSubsector $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(InfrastructureSubsector $model)
+    public function query(RefInfrastructureSubsector $model)
     {
         return $model->newQuery();
     }

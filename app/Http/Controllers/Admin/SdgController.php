@@ -6,7 +6,7 @@ use App\DataTables\SdgsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SdgStoreRequest;
 use App\Http\Requests\SdgUpdateRequest;
-use App\Models\Sdg;
+use App\Models\RefSdg;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -44,7 +44,7 @@ class SdgController extends Controller
      */
     public function store(SdgStoreRequest $request)
     {
-        Sdg::create($request->all());
+        RefSdg::create($request->all());
 
         Alert::success('Success', 'Successfully saved item');
 
@@ -68,7 +68,7 @@ class SdgController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sdg $sdg)
+    public function edit(RefSdg $sdg)
     {
         return view('admin.sdgs.edit', [
             'pageTitle' => 'Edit SDG',
@@ -83,7 +83,7 @@ class SdgController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SdgUpdateRequest $request, Sdg $sdg)
+    public function update(SdgUpdateRequest $request, RefSdg $sdg)
     {
         $sdg->update($request->all());
 
@@ -98,7 +98,7 @@ class SdgController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sdg $sdg)
+    public function destroy(RefSdg $sdg)
     {
         $sdg->delete();
 

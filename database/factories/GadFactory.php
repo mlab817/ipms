@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Gad;
+use App\Models\RefGad;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class GadFactory extends Factory
      *
      * @var string
      */
-    protected $model = Gad::class;
+    protected $model = RefGad::class;
 
     /**
      * Define the model's default state.

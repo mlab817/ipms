@@ -37,7 +37,7 @@ class ProjectStoreRequest extends FormRequest
             ],
             'region_investments'    => collect($this->region_investments)->map(function($ri) {
                 return [
-                    'region_id' => $ri['region_id'],
+                    'region_id' => $ri['ref_region_id'],
                     'y2016'     => str_replace(',', '', $ri['y2016']),
                     'y2017'     => str_replace(',', '', $ri['y2017']),
                     'y2018'     => str_replace(',', '', $ri['y2018']),
@@ -50,7 +50,7 @@ class ProjectStoreRequest extends FormRequest
             }),
             'fs_investments'        => collect($this->fs_investments)->map(function($fi) {
                 return [
-                    'fs_id'     => $fi['fs_id'],
+                    'fs_id'     => $fi['ref_fs_id'],
                     'y2016'     => str_replace(',', '', $fi['y2016']),
                     'y2017'     => str_replace(',', '', $fi['y2017']),
                     'y2018'     => str_replace(',', '', $fi['y2018']),

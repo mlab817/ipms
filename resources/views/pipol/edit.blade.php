@@ -100,7 +100,7 @@
                             <div class="col-sm-9">
                                 <select class="form-control @error('reason_id') is-invalid @enderror" name="reason_id" id="reason_id">
                                     <option value="" selected disabled>Select Reason for Dropping</option>
-                                    @foreach(\App\Models\Reason::all() as $option)
+                                    @foreach(\App\Models\RefReason::all() as $option)
                                         <option value="{{ $option->id }}" @if(old('reason_id', $pipol->reason_id) == $option->id) selected @endif>{{ $option->name }}</option>
                                     @endforeach
                                 </select>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\SpatialCoveragesDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\SpatialCoverage;
+use App\Models\RefSpatialCoverage;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,7 +46,7 @@ class SpatialCoverageController extends Controller
             'name' => 'required',
         ]);
 
-        SpatialCoverage::create($request->all());
+        RefSpatialCoverage::create($request->all());
 
         Alert::success('Success', 'Succesfully saved item');
 
@@ -67,10 +67,10 @@ class SpatialCoverageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param SpatialCoverage $spatialCoverage
+     * @param RefSpatialCoverage $spatialCoverage
      * @return \Illuminate\Http\Response
      */
-    public function edit(SpatialCoverage $spatialCoverage)
+    public function edit(RefSpatialCoverage $spatialCoverage)
     {
         return view('admin.spatial_coverages.edit', compact('spatialCoverage'));
     }
@@ -82,7 +82,7 @@ class SpatialCoverageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SpatialCoverage $spatialCoverage)
+    public function update(Request $request, RefSpatialCoverage $spatialCoverage)
     {
         $request->validate([
             'name' => 'required',
@@ -101,7 +101,7 @@ class SpatialCoverageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SpatialCoverage $spatialCoverage)
+    public function destroy(RefSpatialCoverage $spatialCoverage)
     {
         $spatialCoverage->delete();
 

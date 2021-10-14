@@ -6,7 +6,7 @@ use App\DataTables\Scopes\ProjectDataTableScope;
 use App\DataTables\SubprojectsDataTable;
 use App\Http\Requests\SubprojectStoreRequest;
 use App\Http\Requests\SubprojectUpdateRequest;
-use App\Models\OperatingUnit;
+use App\Models\RefOperatingUnit;
 use App\Models\Project;
 use App\Models\Subproject;
 use Illuminate\Http\Request;
@@ -41,7 +41,7 @@ class SubprojectController extends Controller
     {
         return view('subprojects.create', [
             'pageTitle'         => 'Add Subproject',
-            'operating_units'   => OperatingUnit::all(),
+            'operating_units'   => RefOperatingUnit::all(),
             'years'             => config('ipms.editor.years'),
             // TODO: This can be scoped
             'projects'          => Project::hasSubprojects()->get(),

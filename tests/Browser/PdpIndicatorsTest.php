@@ -2,7 +2,7 @@
 
 namespace Tests\Browser;
 
-use App\Models\PdpIndicator;
+use App\Models\RefPdpIndicator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -36,7 +36,7 @@ class PdpIndicatorsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser
                 ->loginAs(1)
-                ->visit(route('admin.pdp_indicators.edit', PdpIndicator::whereNotNull('name')->first()))
+                ->visit(route('admin.pdp_indicators.edit', RefPdpIndicator::whereNotNull('name')->first()))
                 ->assertSee('Edit PDP RM Indicator')
                 ->screenshot('admin/pdp_indicators-edit');
         });

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\OperatingUnitType;
+use App\Models\RefOperatingUnitType;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class OperatingUnitTypesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\OperatingUnitType $model
+     * @param \App\Models\RefOperatingUnitType $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(OperatingUnitType $model)
+    public function query(RefOperatingUnitType $model)
     {
         return $model->newQuery();
     }

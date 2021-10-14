@@ -50,7 +50,7 @@ class ProjectRegionInvestmentsExport implements FromQuery, WithHeadings, WithMap
     {
         return [
             'Title',
-            'Region',
+            'RefRegion',
             '2016',
             '2017',
             '2018',

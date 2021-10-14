@@ -662,7 +662,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
 
           var match;
           if (style !== undefined) {
-            // Region line.
+            // RefRegion line.
             style += " " + tlvScopeStyle(state, 0, "scope-ident")
           } else if (((stream.pos / tlvIndentUnit) < state.tlvIndentationStyle.length) &&
                      (match = stream.match(stream.sol() ? tlvFirstLevelIndentMatch : /^   /))) {

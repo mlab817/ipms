@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Basis;
+use App\Models\RefBasis;
 use Database\Seeders\BasesTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -25,7 +25,7 @@ class BasesTest extends TestCase
 
         $response->assertStatus(200);
 
-        $response->assertSee('Basis for Implementation');
+        $response->assertSee('RefBasis for Implementation');
     }
 
     public function test_it_shows_edit_implementation_basis()
@@ -34,7 +34,7 @@ class BasesTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $basis = Basis::factory()->create();
+        $basis = RefBasis::factory()->create();
 
         $response = $this->get(route('admin.bases.edit', ['basis' => $basis->slug]));
 
@@ -46,7 +46,7 @@ class BasesTest extends TestCase
         $this->loginAsAdmin();
 
         $data = [
-            'name' => 'New Basis'
+            'name' => 'New RefBasis'
         ];
 
         $response = $this->post(route('admin.bases.store'), $data);
@@ -60,10 +60,10 @@ class BasesTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $basis = Basis::factory()->create();
+        $basis = RefBasis::factory()->create();
 
         $data = [
-            'name' => 'New Basis'
+            'name' => 'New RefBasis'
         ];
 
         $response = $this->put(route('admin.bases.update', $basis->slug), $data);
@@ -77,7 +77,7 @@ class BasesTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $basis = Basis::factory()->create();
+        $basis = RefBasis::factory()->create();
 
         $response = $this->delete(route('admin.bases.destroy', ['basis' => $basis->slug]));
 

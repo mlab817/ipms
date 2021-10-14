@@ -24,8 +24,8 @@ class ApprovalLevelsTableSeeder extends Seeder
             ],
             [
                 'id'            => 2,
-                'name'          => 'Under the NEDA Secretariat Review',
-                'slug'          => Str::slug('Under the NEDA Secretariat Review'),
+                'name'          => 'Under the NEDA Secretariat ProjectReview',
+                'slug'          => Str::slug('Under the NEDA Secretariat ProjectReview'),
                 'description'   => '',
             ],
             [

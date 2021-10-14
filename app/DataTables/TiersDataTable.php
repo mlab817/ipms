@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Tier;
+use App\Models\RefTier;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class TiersDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Tier $model
+     * @param \App\Models\RefTier $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Tier $model)
+    public function query(RefTier $model)
     {
         return $model->newQuery();
     }

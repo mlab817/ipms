@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\FSInvestment;
-use App\Models\FundingSource;
+use App\Models\ProjectFsInvestment;
+use App\Models\RefFundingSource;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FsInvestmentFactory extends Factory
@@ -13,7 +13,7 @@ class FsInvestmentFactory extends Factory
      *
      * @var string
      */
-    protected $model = FSInvestment::class;
+    protected $model = ProjectFsInvestment::class;
 
     /**
      * Define the model's default state.
@@ -23,7 +23,7 @@ class FsInvestmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'fs_id' => FundingSource::all()->random()->id,
+            'fs_id' => RefFundingSource::all()->random()->id,
             'y2016' => $this->faker->randomFloat() * 1000000,
             'y2017' => $this->faker->randomFloat() * 1000000,
             'y2018' => $this->faker->randomFloat() * 1000000,

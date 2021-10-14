@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\CipType;
+use App\Models\RefCipType;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class CipTypesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\CipType $model
+     * @param \App\Models\RefCipType $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(CipType $model)
+    public function query(RefCipType $model)
     {
         return $model->newQuery();
     }

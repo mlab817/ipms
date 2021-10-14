@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\PdpChaptersDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\PdpChapter;
+use App\Models\RefPdpChapter;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -31,26 +31,26 @@ class PdpChapterController extends Controller
             'name' => 'required'
         ]);
 
-        $pdpChapter = PdpChapter::create($request->all());
+        $pdpChapter = RefPdpChapter::create($request->all());
 
         Alert::success('Success','Successfully saved item');
 
         return redirect()->route('admin.pdp_chapters.index');
     }
 
-    public function show(PdpChapter $pdpChapter)
+    public function show(RefPdpChapter $pdpChapter)
     {
 
     }
 
-    public function edit(Request $request, PdpChapter $pdpChapter)
+    public function edit(Request $request, RefPdpChapter $pdpChapter)
     {
         return view('admin.pdp_chapters.edit', compact('pdpChapter'))->with([
             'pageTitle' => 'Edit PDP Chapter',
         ]);
     }
 
-    public function update(Request $request, PdpChapter $pdpChapter)
+    public function update(Request $request, RefPdpChapter $pdpChapter)
     {
         $request->validate([
             'name' => 'required'
@@ -63,7 +63,7 @@ class PdpChapterController extends Controller
         return back();
     }
 
-    public function destroy(PdpChapter $pdpChapter)
+    public function destroy(RefPdpChapter $pdpChapter)
     {
         $pdpChapter->delete();
 
