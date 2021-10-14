@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            {!! $dataTable->table(['class' => 'projects-table table-valign-middle table table-bordered table-hover table-striped', 'role' => 'grid', 'width' => '100%'], false) !!}
+
                         </div>
                         <div class="card-footer">
                             <p class="text-muted text-sm">
@@ -42,8 +42,6 @@
 @endsection
 
 @push('scripts')
-    {!! $dataTable->scripts() !!}
-
     <script>
         function confirmDelete(slug) {
             let response = confirm('Are you sure you want to delete this project?')

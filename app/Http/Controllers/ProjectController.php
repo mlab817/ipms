@@ -69,20 +69,23 @@ class ProjectController extends Controller
         $this->authorizeResource(Project::class);
     }
 
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @param Request $request
-//     * @return Response
-//     */
-//    public function index(Request $request)
-//    {
-//        $projectQuery = Project::query()->with(['office','creator.office','project_status','pipol']);
-//
-//        $projects = $this->filter($projectQuery, $request);
-//
-//        return view('projects.index2', compact('projects'));
-//    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $projectQuery = Project::query()->with(['office','creator.office','project_status','pipol']);
+
+        $projects = $this->filter($projectQuery, $request);
+
+        return view('projects.index', compact('projects'))
+            ->with([
+                'pageTitle' => 'Projects'
+            ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -98,71 +101,20 @@ class ProjectController extends Controller
             ->with([
                 'offices'                   => Office::all(),
                 'pap_types'                 => RefPapType::all(),
-                'bases'                     => RefBasis::all(),
-                'project_statuses'          => ProjectStatus::all(),
-                'spatial_coverages'         => RefSpatialCoverage::all(),
-                'regions'                   => RefRegion::all(),
-                'gads'                      => RefGad::all(),
-                'years'                     => config('ipms.editor.years'),
-                'approval_levels'           => RefApprovalLevel::all(),
-                'pdp_chapters'              => RefPdpChapter::orderBy('name')->get(),
-                'sdgs'                      => RefSdg::all(),
-                'ten_point_agendas'         => RefTenPointAgenda::all(),
-                'pdp_indicators'            => RefPdpIndicator::with('children.children.children')
-                                                    ->where('level',1)
-                                                    ->select('id','name')->get(),
-                'funding_sources'           => RefFundingSource::all(),
-                'funding_institutions'      => RefFundingInstitution::all(),
-                'implementation_modes'      => RefImplementationMode::all(),
-                'tiers'                     => RefTier::all(),
-                'preparation_documents'     => RefPreparationDocument::all(),
-                'fs_statuses'               => RefFsStatus::all(),
-                'ou_types'                  => RefOperatingUnitType::with('operating_units')->get(),
-                'covidInterventions'        => RefCovidIntervention::all(),
             ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreProjectRequest $request
+     * @param ProjectStoreRequest $request
      * @return Response
      * @throws \Exception
      */
     public function store(ProjectStoreRequest $request)
     {
         $project = Project::create($request->validated());
-
-        $project->bases()->sync($request->bases);
-        $project->regions()->sync($request->regions);
-        $project->funding_sources()->sync($request->funding_sources);
-        $project->sdgs()->sync($request->sdgs);
-        $project->pdp_chapters()->sync($request->pdp_chapters);
-        $project->pdp_indicators()->sync($request->pdp_indicators);
-        $project->ten_point_agendas()->sync($request->ten_point_agendas);
-        $project->operating_units()->sync($request->operating_units);
-        $project->covid_interventions()->sync($request->covid_interventions);
-
-        $project->fs_investments()->createMany($request->fs_investments);
-        $project->region_investments()->createMany($request->region_investments);
-
-        $project->project_update()->create([
-            'updates'   => $request->updates,
-            'updates_date' => $request->updates_date,
-        ]);
-        $project->expected_output()->create([
-            'expected_outputs' => $request->expected_outputs
-        ]);
-        $project->description()->create([
-            'description' => $request->description,
-        ]);
-
-        $project->feasibility_study()->create($request->feasibility_study);
-        $project->nep()->create($request->nep);
-        $project->allocation()->create($request->allocation);
-        $project->disbursement()->create($request->disbursement);
-
-        $project->created_by = Auth::id();
+        $project->creator()->associate(Auth::user());
         $project->save();
 
         event(new ProjectCreatedEvent($project));
@@ -331,75 +283,6 @@ class ProjectController extends Controller
         Alert::success('Success', 'Successfully deleted project');
 
         return redirect()->route('projects.own');
-    }
-
-    public function review(Request $request, Project $project)
-    {
-        abort_if(!(auth()->user()->can('reviews.create') || auth()->user()->can('review', $project)), 403);
-
-        return view('reviews.create', [
-            'pageTitle' => 'Reviewing ' . $project->title,
-            'project' => $project,
-            'pip_typologies' => RefPipTypology::all(),
-            'cip_types' => RefCipType::all(),
-            'readiness_levels' => RefReadinessLevel::all(),
-        ]);
-    }
-
-    public function storeReview(ReviewStoreRequest $request, Project $project)
-    {
-        abort_if(!(auth()->user()->can('reviews.create') || auth()->user()->can('projects.review', $project)), 403);
-
-        $review = ProjectReview::create($request->all());
-
-        event(new ProjectReviewedEvent($review));
-
-        Alert::success('Success', 'ProjectReview successfully saved');
-
-        return redirect()->route('reviews.index')->with('message', 'Successfully added review');
-    }
-
-    public function upload(UploadAttachmentRequest $request, Project $project)
-    {
-        $attachment = $request->file('attachment');
-
-        $fileName = $attachment->getClientOriginalName();
-
-        if ($request->file('attachment')->storeAs('projects', $fileName)) {
-            $project->attachments()->create([
-                'title' => $fileName,
-                'download_url' => 'projects/' . $fileName,
-                'user_id' => auth()->id()
-            ]);
-            Alert::success('Success', 'Successfully uploaded file');
-        }
-
-        return back();
-    }
-
-    /**
-     * Return user's own projects
-     */
-    public function own(Request $request)
-    {
-        abort_if(! auth()->user()->can('projects.view_own'), 403);
-
-//        $projectQuery = Project::query()->own()->with(['office','creator.office','project_status','pipol']);
-//
-//        $projects = $this->filter($projectQuery, $request);
-
-        return view('projects.own');
-    }
-
-    public function office(Request $request)
-    {
-        abort_if(! auth()->user()->can('projects.view_office'), 403);
-
-//        $projectQuery = Project::query()->office()->with(['office','creator.office','project_status','pipol']);
-//
-//        $projects = $this->filter($projectQuery, $request);
-
-        return view('projects.office');
     }
 
     public function filter($projectQuery, $request)

@@ -472,7 +472,7 @@ class Project extends Model
     {
         $userId = auth() ? auth()->id() : null;
 
-        return $query->where('created_by', $userId);
+        return $query->where('creator_id', $userId);
     }
 
     public function scopeOffice($query)

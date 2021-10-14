@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Inertia\Inertia;
 
 class LoginController extends Controller
 {
@@ -51,5 +52,10 @@ class LoginController extends Controller
         if (! config('ipms.allow_multiple_login')) {
             Auth::logoutOtherDevices($request->password);
         }
+    }
+
+    public function showLoginForm()
+    {
+        return Inertia::render('Auth/Login');
     }
 }
