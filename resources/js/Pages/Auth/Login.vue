@@ -1,4 +1,5 @@
 <template>
+  <div class="Box"></div>
   <div class="p-6 bg-indigo-800 min-h-screen flex justify-center items-center">
     <div class="w-full max-w-md">
       <form class="mt-8 bg-white rounded-lg shadow-xl overflow-hidden" @submit.prevent="login">
@@ -13,7 +14,7 @@
           </label>
         </div>
         <div class="px-10 py-4 bg-gray-100 border-t border-gray-100 flex">
-          <input class="ml-auto btn-indigo" type="submit" name="Login">
+          <button class="ml-auto btn-success" type="submit">Login</button>
         </div>
       </form>
     </div>
