@@ -27,7 +27,7 @@ class Project extends Model
         'uuid',
         'code', // pipol code
         'title',
-        'pap_type_id',
+        'ref_pap_type_id',
         'regular_program',
         'has_infra',
         // implementation bases
@@ -36,15 +36,15 @@ class Project extends Model
 //        'expected_outputs',
         'total_project_cost',
         // implementing_agencies
-        'spatial_coverage_id',
+        'ref_spatial_coverage_id',
         'iccable',
-        'approval_level_id',
+        'ref_approval_level_id',
         'approval_level_date',
         'pip',
-        'pip_typology_id',
+        'ref_pip_typology_id',
         'research',
         'cip',
-        'cip_type_id',
+        'ref_cip_type_id',
         'trip',
         'rdip',
         'rdc_endorsement_required',
@@ -56,16 +56,16 @@ class Project extends Model
 //        'risk',
 //        'mitigation_strategy',
         // infra cost
-        'pdp_chapter_id',
+        'ref_pdp_chapter_id',
         // pdp_chapters
         // pdp_indicators
         'no_pdp_indicator',
         // ten point agenda
         // sdg
-        'gad_id',
+        'ref_gad_id',
         'target_start_year',
         'target_end_year',
-        'preparation_document_id',
+        'ref_preparation_document_id',
         // feasibility study
         'preparation_document_others',
         'has_fs',
@@ -75,16 +75,16 @@ class Project extends Model
         // resettlement
         'employment_generated',
         // costs
-        'funding_source_id',
-        'funding_institution_id',
-        'implementation_mode_id',
+        'ref_funding_source_id',
+        'ref_funding_institution_id',
+        'ref_implementation_mode_id',
         'other_fs',
-        'project_status_id',
-        'readiness_level_id',
+        'ref_project_status_id',
+        'ref_readiness_level_id',
 //        'updates',
 //        'updates_date',
         'uacs_code',
-        'tier_id',
+        'ref_tier_id',
         // nep
         // allocation
         // disbursement
@@ -95,8 +95,8 @@ class Project extends Model
         'ict',
         'office_id',
         'trip_info',
-        'submission_status_id',
-        'reason_id',
+        'ref_submission_status_id',
+        'ref_reason_id',
         'other_reason',
     ];
 
@@ -120,7 +120,7 @@ class Project extends Model
      */
     public function approval_level(): BelongsTo
     {
-        return $this->belongsTo(RefApprovalLevel::class)->withDefault();
+        return $this->belongsTo(RefApprovalLevel::class, 'ref_approval_level_id')->withDefault(['name' => '_']);
     }
 
     public function creator(): BelongsTo
@@ -130,22 +130,22 @@ class Project extends Model
 
     public function funding_source(): BelongsTo
     {
-        return $this->belongsTo(RefFundingSource::class)->withDefault();
+        return $this->belongsTo(RefFundingSource::class, 'ref_funding_source_id')->withDefault(['name' => '_']);
     }
 
     public function funding_institution(): BelongsTo
     {
-        return $this->belongsTo(RefFundingInstitution::class)->withDefault();
+        return $this->belongsTo(RefFundingInstitution::class, 'ref_funding_institution_id')->withDefault();
     }
 
     public function gad(): BelongsTo
     {
-        return $this->belongsTo(RefGad::class)->withDefault();
+        return $this->belongsTo(RefGad::class, 'ref_gad_id')->withDefault();
     }
 
     public function implementation_mode(): BelongsTo
     {
-        return $this->belongsTo(RefImplementationMode::class)->withDefault();
+        return $this->belongsTo(RefImplementationMode::class, 'ref_implementation_mode_id')->withDefault();
     }
 
     public function office(): BelongsTo
@@ -155,42 +155,42 @@ class Project extends Model
 
     public function pap_type(): BelongsTo
     {
-        return $this->belongsTo(RefPapType::class)->withDefault();
+        return $this->belongsTo(RefPapType::class, 'ref_pap_type_id')->withDefault();
     }
 
     public function pdp_chapter(): BelongsTo
     {
-        return $this->belongsTo(RefPdpChapter::class)->withDefault();
+        return $this->belongsTo(RefPdpChapter::class, 'ref_pdp_chapter_id')->withDefault();
     }
 
     public function preparation_document(): BelongsTo
     {
-        return $this->belongsTo(RefPreparationDocument::class)->withDefault();
+        return $this->belongsTo(RefPreparationDocument::class, 'ref_preparation_document_id')->withDefault(['name' => '_']);
     }
 
     public function project_status(): BelongsTo
     {
-        return $this->belongsTo(ProjectStatus::class)->withDefault();
+        return $this->belongsTo(ProjectStatus::class, 'ref_project_status_id')->withDefault();
     }
 
     public function reason(): BelongsTo
     {
-        return $this->belongsTo(RefReason::class)->withDefault();
+        return $this->belongsTo(RefReason::class, 'ref_reason_id')->withDefault();
     }
 
     public function spatial_coverage(): BelongsTo
     {
-        return $this->belongsTo(RefSpatialCoverage::class)->withDefault();
+        return $this->belongsTo(RefSpatialCoverage::class, 'ref_spatial_coverage_id')->withDefault();
     }
 
     public function submission_status(): BelongsTo
     {
-        return $this->belongsTo(RefSubmissionStatus::class);
+        return $this->belongsTo(RefSubmissionStatus::class, 'ref_submission_status_id')->withDefault();
     }
 
     public function tier(): BelongsTo
     {
-        return $this->belongsTo(RefTier::class)->withDefault();
+        return $this->belongsTo(RefTier::class, 'ref_tier_id')->withDefault();
     }
 
     /**
@@ -234,11 +234,6 @@ class Project extends Model
     public function pdp_indicators(): BelongsToMany
     {
         return $this->belongsToMany(RefPdpIndicator::class,'project_pdp_indicator','project_id','pi_id');
-    }
-
-    public function prerequisites(): BelongsToMany
-    {
-        return $this->belongsToMany(RefPrerequisite::class,'project_prerequisite', 'project_id', 'ref_prerequisite_id');
     }
 
     public function regions(): BelongsToMany

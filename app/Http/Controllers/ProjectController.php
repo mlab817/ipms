@@ -119,8 +119,6 @@ class ProjectController extends Controller
 
         event(new ProjectCreatedEvent($project));
 
-        Alert::success('Success','Successfully saved project');
-
         return redirect()->route('projects.show', $project);
     }
 

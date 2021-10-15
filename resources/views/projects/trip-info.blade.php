@@ -33,17 +33,6 @@
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-sm-3">Prerequisite/s</label>
-            <div class="col-sm-9">
-                @forelse($project->prerequisites as $item)
-                    <span class="badge badge-primary">{{ $item->name }}</span>
-                @empty
-                    <span>None selected</span>
-                @endforelse
-            </div>
-        </div>
-
-        <div class="form-group row">
             <label class="col-form-label col-sm-3">Implementation Risk & Mitigation Strategy</label>
             <div class="col-sm-9">
                 {{ $project->risk->risk }}

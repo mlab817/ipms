@@ -13,7 +13,7 @@
 @include('partials.header')
 
 <div class="Layout Layout--flowRow-until-md">
-    <div class="Layout-main py-3">
+    <div class="Layout-main py-3 pr-3">
         @yield('content')
     </div>
     <div class="Layout-sidebar border" style="min-height: calc(100vh - 64px)">

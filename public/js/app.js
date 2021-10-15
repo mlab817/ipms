@@ -1,6 +1,426 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@github/clipboard-copy-element/dist/index.esm.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@github/clipboard-copy-element/dist/index.esm.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function createNode(text) {
+  const node = document.createElement('pre');
+  node.style.width = '1px';
+  node.style.height = '1px';
+  node.style.position = 'fixed';
+  node.style.top = '5px';
+  node.textContent = text;
+  return node;
+}
+
+function copyNode(node) {
+  if ('clipboard' in navigator) {
+    // eslint-disable-next-line flowtype/no-flow-fix-me-comments
+    // $FlowFixMe Clipboard is not defined in Flow yet.
+    return navigator.clipboard.writeText(node.textContent);
+  }
+
+  const selection = getSelection();
+
+  if (selection == null) {
+    return Promise.reject(new Error());
+  }
+
+  selection.removeAllRanges();
+  const range = document.createRange();
+  range.selectNodeContents(node);
+  selection.addRange(range);
+  document.execCommand('copy');
+  selection.removeAllRanges();
+  return Promise.resolve();
+}
+function copyText(text) {
+  if ('clipboard' in navigator) {
+    // eslint-disable-next-line flowtype/no-flow-fix-me-comments
+    // $FlowFixMe Clipboard is not defined in Flow yet.
+    return navigator.clipboard.writeText(text);
+  }
+
+  const body = document.body;
+
+  if (!body) {
+    return Promise.reject(new Error());
+  }
+
+  const node = createNode(text);
+  body.appendChild(node);
+  copyNode(node);
+  body.removeChild(node);
+  return Promise.resolve();
+}
+
+function copy(button) {
+  const id = button.getAttribute('for');
+  const text = button.getAttribute('value');
+
+  function trigger() {
+    button.dispatchEvent(new CustomEvent('clipboard-copy', {
+      bubbles: true
+    }));
+  }
+
+  if (text) {
+    copyText(text).then(trigger);
+  } else if (id) {
+    const root = 'getRootNode' in Element.prototype ? button.getRootNode() : button.ownerDocument;
+    if (!(root instanceof Document || 'ShadowRoot' in window && root instanceof ShadowRoot)) return;
+    const node = root.getElementById(id);
+    if (node) copyTarget(node).then(trigger);
+  }
+}
+
+function copyTarget(content) {
+  if (content instanceof HTMLInputElement || content instanceof HTMLTextAreaElement) {
+    return copyText(content.value);
+  } else if (content instanceof HTMLAnchorElement && content.hasAttribute('href')) {
+    return copyText(content.href);
+  } else {
+    return copyNode(content);
+  }
+}
+
+function clicked(event) {
+  const button = event.currentTarget;
+
+  if (button instanceof HTMLElement) {
+    copy(button);
+  }
+}
+
+function keydown(event) {
+  if (event.key === ' ' || event.key === 'Enter') {
+    const button = event.currentTarget;
+
+    if (button instanceof HTMLElement) {
+      event.preventDefault();
+      copy(button);
+    }
+  }
+}
+
+function focused(event) {
+  event.currentTarget.addEventListener('keydown', keydown);
+}
+
+function blurred(event) {
+  event.currentTarget.removeEventListener('keydown', keydown);
+}
+
+class ClipboardCopyElement extends HTMLElement {
+  constructor() {
+    super();
+    this.addEventListener('click', clicked);
+    this.addEventListener('focus', focused);
+    this.addEventListener('blur', blurred);
+  }
+
+  connectedCallback() {
+    if (!this.hasAttribute('tabindex')) {
+      this.setAttribute('tabindex', '0');
+    }
+
+    if (!this.hasAttribute('role')) {
+      this.setAttribute('role', 'button');
+    }
+  }
+
+  get value() {
+    return this.getAttribute('value') || '';
+  }
+
+  set value(text) {
+    this.setAttribute('value', text);
+  }
+
+}
+
+if (!window.customElements.get('clipboard-copy')) {
+  window.ClipboardCopyElement = ClipboardCopyElement;
+  window.customElements.define('clipboard-copy', ClipboardCopyElement);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ClipboardCopyElement);
+
+
+/***/ }),
+
+/***/ "./node_modules/@github/details-dialog-element/dist/index.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@github/details-dialog-element/dist/index.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const CLOSE_ATTR = 'data-close-dialog';
+const CLOSE_SELECTOR = `[${CLOSE_ATTR}]`;
+function autofocus(el) {
+    let autofocusElement = Array.from(el.querySelectorAll('[autofocus]')).filter(focusable)[0];
+    if (!autofocusElement) {
+        autofocusElement = el;
+        el.setAttribute('tabindex', '-1');
+    }
+    autofocusElement.focus();
+}
+function keydown(event) {
+    const details = event.currentTarget;
+    if (!(details instanceof Element))
+        return;
+    if (event.key === 'Escape' || event.key === 'Esc') {
+        toggleDetails(details, false);
+        event.stopPropagation();
+    }
+    else if (event.key === 'Tab') {
+        restrictTabBehavior(event);
+    }
+}
+function focusable(el) {
+    return el.tabIndex >= 0 && !el.disabled && visible(el);
+}
+function visible(el) {
+    return (!el.hidden &&
+        (!el.type || el.type !== 'hidden') &&
+        (el.offsetWidth > 0 || el.offsetHeight > 0));
+}
+function restrictTabBehavior(event) {
+    if (!(event.currentTarget instanceof Element))
+        return;
+    const dialog = event.currentTarget.querySelector('details-dialog');
+    if (!dialog)
+        return;
+    event.preventDefault();
+    const elements = Array.from(dialog.querySelectorAll('*')).filter(focusable);
+    if (elements.length === 0)
+        return;
+    const movement = event.shiftKey ? -1 : 1;
+    const root = dialog.getRootNode();
+    const currentFocus = dialog.contains(root.activeElement) ? root.activeElement : null;
+    let targetIndex = movement === -1 ? -1 : 0;
+    if (currentFocus instanceof HTMLElement) {
+        const currentIndex = elements.indexOf(currentFocus);
+        if (currentIndex !== -1) {
+            targetIndex = currentIndex + movement;
+        }
+    }
+    if (targetIndex < 0) {
+        targetIndex = elements.length - 1;
+    }
+    else {
+        targetIndex = targetIndex % elements.length;
+    }
+    elements[targetIndex].focus();
+}
+function allowClosingDialog(details) {
+    const dialog = details.querySelector('details-dialog');
+    if (!(dialog instanceof DetailsDialogElement))
+        return true;
+    return dialog.dispatchEvent(new CustomEvent('details-dialog-close', {
+        bubbles: true,
+        cancelable: true
+    }));
+}
+function onSummaryClick(event) {
+    if (!(event.currentTarget instanceof Element))
+        return;
+    const details = event.currentTarget.closest('details');
+    if (!details || !details.hasAttribute('open'))
+        return;
+    if (!allowClosingDialog(details)) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+}
+function toggle(event) {
+    const details = event.currentTarget;
+    if (!(details instanceof Element))
+        return;
+    const dialog = details.querySelector('details-dialog');
+    if (!(dialog instanceof DetailsDialogElement))
+        return;
+    if (details.hasAttribute('open')) {
+        const root = 'getRootNode' in dialog ? dialog.getRootNode() : document;
+        if (root.activeElement instanceof HTMLElement) {
+            initialized.set(dialog, { details, activeElement: root.activeElement });
+        }
+        autofocus(dialog);
+        details.addEventListener('keydown', keydown);
+    }
+    else {
+        for (const form of dialog.querySelectorAll('form')) {
+            form.reset();
+        }
+        const focusElement = findFocusElement(details, dialog);
+        if (focusElement)
+            focusElement.focus();
+        details.removeEventListener('keydown', keydown);
+    }
+}
+function findFocusElement(details, dialog) {
+    const state = initialized.get(dialog);
+    if (state && state.activeElement instanceof HTMLElement) {
+        return state.activeElement;
+    }
+    else {
+        return details.querySelector('summary');
+    }
+}
+function toggleDetails(details, open) {
+    if (open === details.hasAttribute('open'))
+        return;
+    if (open) {
+        details.setAttribute('open', '');
+    }
+    else if (allowClosingDialog(details)) {
+        details.removeAttribute('open');
+    }
+}
+function loadIncludeFragment(event) {
+    const details = event.currentTarget;
+    if (!(details instanceof Element))
+        return;
+    const dialog = details.querySelector('details-dialog');
+    if (!(dialog instanceof DetailsDialogElement))
+        return;
+    const loader = dialog.querySelector('include-fragment:not([src])');
+    if (!loader)
+        return;
+    const src = dialog.src;
+    if (src === null)
+        return;
+    loader.addEventListener('loadend', () => {
+        if (details.hasAttribute('open'))
+            autofocus(dialog);
+    });
+    loader.setAttribute('src', src);
+    removeIncludeFragmentEventListeners(details);
+}
+function updateIncludeFragmentEventListeners(details, src, preload) {
+    removeIncludeFragmentEventListeners(details);
+    if (src) {
+        details.addEventListener('toggle', loadIncludeFragment, { once: true });
+    }
+    if (src && preload) {
+        details.addEventListener('mouseover', loadIncludeFragment, { once: true });
+    }
+}
+function removeIncludeFragmentEventListeners(details) {
+    details.removeEventListener('toggle', loadIncludeFragment);
+    details.removeEventListener('mouseover', loadIncludeFragment);
+}
+const initialized = new WeakMap();
+class DetailsDialogElement extends HTMLElement {
+    static get CLOSE_ATTR() {
+        return CLOSE_ATTR;
+    }
+    static get CLOSE_SELECTOR() {
+        return CLOSE_SELECTOR;
+    }
+    constructor() {
+        super();
+        initialized.set(this, { details: null, activeElement: null });
+        this.addEventListener('click', function ({ target }) {
+            if (!(target instanceof Element))
+                return;
+            const details = target.closest('details');
+            if (details && target.closest(CLOSE_SELECTOR)) {
+                toggleDetails(details, false);
+            }
+        });
+    }
+    get src() {
+        return this.getAttribute('src');
+    }
+    set src(value) {
+        this.setAttribute('src', value || '');
+    }
+    get preload() {
+        return this.hasAttribute('preload');
+    }
+    set preload(value) {
+        value ? this.setAttribute('preload', '') : this.removeAttribute('preload');
+    }
+    connectedCallback() {
+        this.setAttribute('role', 'dialog');
+        this.setAttribute('aria-modal', 'true');
+        const state = initialized.get(this);
+        if (!state)
+            return;
+        const details = this.parentElement;
+        if (!details)
+            return;
+        const summary = details.querySelector('summary');
+        if (summary) {
+            if (!summary.hasAttribute('role'))
+                summary.setAttribute('role', 'button');
+            summary.addEventListener('click', onSummaryClick, { capture: true });
+        }
+        details.addEventListener('toggle', toggle);
+        state.details = details;
+        updateIncludeFragmentEventListeners(details, this.src, this.preload);
+    }
+    disconnectedCallback() {
+        const state = initialized.get(this);
+        if (!state)
+            return;
+        const { details } = state;
+        if (!details)
+            return;
+        details.removeEventListener('toggle', toggle);
+        removeIncludeFragmentEventListeners(details);
+        const summary = details.querySelector('summary');
+        if (summary) {
+            summary.removeEventListener('click', onSummaryClick, { capture: true });
+        }
+        state.details = null;
+    }
+    toggle(open) {
+        const state = initialized.get(this);
+        if (!state)
+            return;
+        const { details } = state;
+        if (!details)
+            return;
+        toggleDetails(details, open);
+    }
+    static get observedAttributes() {
+        return ['src', 'preload'];
+    }
+    attributeChangedCallback() {
+        const state = initialized.get(this);
+        if (!state)
+            return;
+        const { details } = state;
+        if (!details)
+            return;
+        updateIncludeFragmentEventListeners(details, this.src, this.preload);
+    }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailsDialogElement);
+if (!window.customElements.get('details-dialog')) {
+    window.DetailsDialogElement = DetailsDialogElement;
+    window.customElements.define('details-dialog', DetailsDialogElement);
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -1802,9 +2222,15 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _github_details_dialog_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @github/details-dialog-element */ "./node_modules/@github/details-dialog-element/dist/index.js");
+/* harmony import */ var _github_clipboard_copy_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @github/clipboard-copy-element */ "./node_modules/@github/clipboard-copy-element/dist/index.esm.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This

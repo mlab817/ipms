@@ -34,7 +34,8 @@ class ProjectStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.unique'      => 'The PAP title you have submitted has already been taken.',
+            'title.unique'              => 'The PAP title you have submitted has already been taken.',
+            'ref_pap_type_id.required'  => 'The PAP Type is required.'
         ];
     }
 }

@@ -109,7 +109,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/consoletvs/charts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/realrashid/sweet-alert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nunomaduro/collision" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/maatwebsite/excel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/binarytorch/larecipe" />
@@ -121,7 +120,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-webdriver/webdriver" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/type-resolver" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/laravelcollective/html" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/graham-campbell/result-type" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/socialiteproviders/discord" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/socialiteproviders/manager" />
@@ -144,14 +142,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nette/utils" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nette/schema" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/yajra/laravel-datatables-html" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/yajra/laravel-datatables-fractal" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/yajra/laravel-datatables-editor" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/yajra/laravel-datatables" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/yajra/laravel-datatables-buttons" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/defuse/php-encryption" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/yajra/laravel-datatables-oracle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/erusev/parsedown-extra" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/erusev/parsedown" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/facade/ignition" />
@@ -165,7 +157,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/mime-type-detection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/config" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/commonmark" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/league/fractal" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth1-client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/collection" />

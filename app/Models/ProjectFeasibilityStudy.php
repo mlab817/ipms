@@ -35,7 +35,7 @@ class ProjectFeasibilityStudy extends Model
 
     public function fs_status(): BelongsTo
     {
-        return $this->belongsTo(RefFsStatus::class);
+        return $this->belongsTo(RefFsStatus::class, 'ref_fs_status_id');
     }
 
     public function project(): BelongsTo
