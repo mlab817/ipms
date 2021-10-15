@@ -8,8 +8,8 @@ use App\Models\ProjectFsInvestment;
 use App\Models\OuInfrastructure;
 use App\Models\OuInvestment;
 use App\Models\Project;
-use App\Models\RegionInfrastructure;
-use App\Models\RegionInvestment;
+use App\Models\ProjectRegionInfrastructure;
+use App\Models\ProjectRegionInvestment;
 use App\Models\ProjectResettlementActionPlan;
 use App\Models\ProjectRightOfWay;
 use Database\Factories\OuInvestmentFactory;
@@ -32,8 +32,8 @@ class ProjectsTableSeeder extends Seeder
             ->has(ProjectFeasibilityStudy::factory(), 'feasibility_study')
 //            ->has(OuInvestment::factory()->count(2), 'ou_investments')
 //            ->has(OuInfrastructure::factory()->count(2), 'ou_infrastructures')
-            ->has(RegionInvestment::factory()->count(2), 'region_investments')
-            ->has(RegionInfrastructure::factory()->count(2), 'region_infrastructures')
+            ->has(ProjectRegionInvestment::factory()->count(2), 'region_investments')
+            ->has(ProjectRegionInfrastructure::factory()->count(2), 'region_infrastructures')
             ->has(ProjectFsInvestment::factory()->count(2), 'fs_investments')
             ->has(ProjectFsInfrastructure::factory()->count(2), 'fs_infrastructures')
             ->count(50)

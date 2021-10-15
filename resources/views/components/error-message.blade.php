@@ -2,4 +2,6 @@
     'name',
 ])
 
-@error($name)<span class="error invalid-feedback">{{ $message }}</span>@enderror
+@error($name)
+<p class="note error" {{ $attributes }}>{{ $message }}</p>
+@enderror

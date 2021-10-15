@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\RefRegion;
-use App\Models\RegionInfrastructure;
+use App\Models\ProjectRegionInfrastructure;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RegionInfrastructureFactory extends Factory
@@ -13,7 +13,7 @@ class RegionInfrastructureFactory extends Factory
      *
      * @var string
      */
-    protected $model = RegionInfrastructure::class;
+    protected $model = ProjectRegionInfrastructure::class;
 
     /**
      * Define the model's default state.

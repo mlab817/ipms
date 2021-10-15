@@ -40,7 +40,7 @@ use App\Models\Project;
 use App\Models\ProjectStatus;
 use App\Models\RefReadinessLevel;
 use App\Models\RefRegion;
-use App\Models\RegionInvestment;
+use App\Models\ProjectRegionInvestment;
 use App\Models\ProjectReview;
 use App\Models\RefSdg;
 use App\Models\RefSpatialCoverage;
@@ -224,7 +224,7 @@ class ProjectController extends Controller
         }
 //
         foreach ($request->region_investments as $region_investment) {
-            $itemToEdit = RegionInvestment::where('project_id', $project->id)->where('region_id', $region_investment['region_id'])->first();
+            $itemToEdit = ProjectRegionInvestment::where('project_id', $project->id)->where('region_id', $region_investment['region_id'])->first();
             $itemToEdit->update($region_investment);
         }
 

@@ -27,7 +27,7 @@ use App\Models\ProjectAudit;
 use App\Models\ProjectStatus;
 use App\Models\RefReadinessLevel;
 use App\Models\RefRegion;
-use App\Models\RegionInvestment;
+use App\Models\ProjectRegionInvestment;
 use App\Models\ProjectResettlementActionPlan;
 use App\Models\ProjectRightOfWay;
 use App\Models\Role;

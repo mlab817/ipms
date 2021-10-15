@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\RefFundingSource;
 use App\Models\RefRegion;
-use App\Models\RegionInvestment;
+use App\Models\ProjectRegionInvestment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -15,7 +15,7 @@ class RegionInvestmentFactory extends Factory
      *
      * @var string
      */
-    protected $model = RegionInvestment::class;
+    protected $model = ProjectRegionInvestment::class;
 
     /**
      * Define the model's default state.

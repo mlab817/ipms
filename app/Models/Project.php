@@ -198,7 +198,7 @@ class Project extends Model
      */
     public function bases(): BelongsToMany
     {
-        return $this->belongsToMany(RefBasis::class);
+        return $this->belongsToMany(RefBasis::class, 'project_basis', 'project_id', 'ref_basis_id');
     }
 
     public function covid_interventions(): BelongsToMany
@@ -213,7 +213,7 @@ class Project extends Model
 
     public function funding_sources(): BelongsToMany
     {
-        return $this->belongsToMany(RefFundingSource::class);
+        return $this->belongsToMany(RefFundingSource::class, 'project_funding_source', 'project_id', 'ref_funding_source_id');
     }
 
     public function infrastructure_sectors(): BelongsToMany
@@ -261,7 +261,7 @@ class Project extends Model
      */
     public function allocation(): HasOne
     {
-        return $this->hasOne(Allocation::class,'project_id')->withDefault();
+        return $this->hasOne(ProjectAllocation::class,'project_id')->withDefault();
     }
 
     public function description(): HasOne
@@ -334,27 +334,17 @@ class Project extends Model
 
     public function operating_units(): BelongsToMany
     {
-        return $this->belongsToMany(RefOperatingUnit::class);
-    }
-
-    public function ou_investments(): HasMany
-    {
-        return $this->hasMany(OuInvestment::class);
-    }
-
-    public function ou_infrastructures(): HasMany
-    {
-        return $this->hasMany(OuInfrastructure::class);
+        return $this->belongsToMany(RefOperatingUnit::class, 'project_operating_unit', 'project_id', 'ref_operating_unit_id');
     }
 
     public function region_investments(): HasMany
     {
-        return $this->hasMany(RegionInvestment::class);
+        return $this->hasMany(ProjectRegionInvestment::class);
     }
 
     public function region_infrastructures(): HasMany
     {
-        return $this->hasMany(RegionInfrastructure::class);
+        return $this->hasMany(ProjectRegionInfrastructure::class);
     }
 
 

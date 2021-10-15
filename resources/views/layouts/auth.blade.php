@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>{{ config('app.name') }}</title>
 
-    <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 <body>
-    @inertia
-
-    <script src="{{ mix('/js/app.js') }}" defer></script>
+<div class="col-12">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8 col-xs-12 mx-auto">
+        @yield('content')
+    </div>
+</div>
 </body>
 </html>

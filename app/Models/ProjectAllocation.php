@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Allocation extends Model
+class ProjectAllocation extends Model
 {
     use HasFactory;
     use HasUuid;

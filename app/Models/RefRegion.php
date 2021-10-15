@@ -37,17 +37,17 @@ class RefRegion extends Model
 
     public function region_investments(): HasMany
     {
-        return $this->hasMany(RegionInvestment::class);
+        return $this->hasMany(ProjectRegionInvestment::class);
     }
 
     public function region_infrastructures(): HasMany
     {
-        return $this->hasMany(RegionInfrastructure::class);
+        return $this->hasMany(ProjectRegionInfrastructure::class);
     }
 
     public function investment(): HasOne
     {
-        return $this->hasOne(RegionInvestment::class,'region_id')
+        return $this->hasOne(ProjectRegionInvestment::class,'region_id')
             ->selectRaw('region_id')
             ->selectRaw('count(id) as count')
             ->selectRaw('sum(y2016) as "y2016"')
@@ -66,7 +66,7 @@ class RefRegion extends Model
 
     public function infrastructure(): HasOne
     {
-        return $this->hasOne(RegionInfrastructure::class,'region_id')
+        return $this->hasOne(ProjectRegionInfrastructure::class,'region_id')
             ->selectRaw('region_id')
             ->selectRaw('count(id) as count')
             ->selectRaw('sum(y2016) as "y2016"')

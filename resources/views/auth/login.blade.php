@@ -1,15 +1,16 @@
 @extends('layouts.auth')
 
 @section('content')
-    <div class="login-box">
-        <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-header text-center">
-                <img src="{{ asset('images/logo_with_da.svg') }}" width="100px" alt="ipms-logo">
-            </div>
+    <div class="login-box mt-6">
+        <div class="text-center">
+            <img src="{{ asset('images/logo_with_da.svg') }}" width="100px" alt="ipms-logo">
+        </div>
 
-            <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+        <!-- /.login-logo -->
+        <div class="Box mt-3">
+
+            <div class="Box-body">
+                <p class="text-center">Sign in to start your session</p>
 
                 <form action="{{ route('login') }}" method="post">
                     @csrf
@@ -21,57 +22,35 @@
                         </div>
                     @endif
 
-                    <div class="input-group mb-3">
-                        <input type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-sm" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                    </svg>
-                                </span>
-                            </div>
+                    <div class="form-group @error('email') errored mb-6 @enderror">
+                        <div class="input-group">
+                            <input type="email" placeholder="Email" aria-describedby="email-validation" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            @error('email')
+                            <p class="note error" role="alert" id="email-validation">
+                                <strong>{{ $message }}</strong>
+                            </p>
+                            @enderror
+                            <span class="input-group-button">
+                                <button class="btn" type="button" aria-label="Email">
+                                    <!-- <%= octicon "mail" %> -->
+                                    <svg class="octicon octicon-mail" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.75 2A1.75 1.75 0 000 3.75v.736a.75.75 0 000 .027v7.737C0 13.216.784 14 1.75 14h12.5A1.75 1.75 0 0016 12.25v-8.5A1.75 1.75 0 0014.25 2H1.75zM14.5 4.07v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88l6.5-3.81zm-13 1.74v6.441c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809z"></path></svg>
+                                </button>
+                            </span>
                         </div>
                     </div>
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
 
-                    <div class="input-group mb-3">
-                        <input type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-sm" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </span>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <div class="input-group-button">
+                                <button class="btn" type="button" aria-label="Email">
+                                    <svg class="octicon octicon-lock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M4 4v2h-.25A1.75 1.75 0 002 7.75v5.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-5.5A1.75 1.75 0 0012.25 6H12V4a4 4 0 10-8 0zm6.5 2V4a2.5 2.5 0 00-5 0v2h5zM12 7.5h.25a.25.25 0 01.25.25v5.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-5.5a.25.25 0 01.25-.25H12z"></path></svg>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                 </form>
 
                 @if(config('ipms.allow_google_login'))
@@ -85,12 +64,12 @@
                 <!-- /.social-auth-links -->
                 @if (Route::has('password.request'))
                 <p class="mb-1 text-sm">
-                    <a href="{{ route('password.request') }}">I forgot my password</a>
+                    <a href="{{ route('password.request') }}" class="btn-link no-underline">I forgot my password</a>
                 </p>
                 @endif
             </div>
             <!-- /.card-body -->
-            <div class="card-footer text-center">
+            <div class="Box-footer text-center">
                 <span class="text-muted text-sm">
                     &copy; 2021 Investment Programming Division
                 </span>

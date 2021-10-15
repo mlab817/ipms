@@ -19,7 +19,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "h4cc/wkhtmltoimage-amd64": "0.12.x",
         "h4cc/wkhtmltopdf-amd64": "0.12.x",
-        "inertiajs/inertia-laravel": "^0.4.4",
+        "hidehalo/nanoid-php": "^1.1",
         "laravel/framework": "^8.12",
         "laravel/passport": "^10.1",
         "laravel/scout": "^8.5",
@@ -67,7 +67,13 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ],
+        "exclude-from-classmap": [
+            "/vendor/erusev/parsedown-extra/test"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

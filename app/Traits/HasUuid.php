@@ -9,12 +9,12 @@ trait HasUuid
     protected static function bootHasUuid()
     {
         static::creating(function ($model) {
-            $model->uuid = Str::uuid();
+            $model->uuid = nanoid();
         });
 
         static::saving(function ($model) {
             if (! $model->uuid) {
-                $model->uuid = Str::uuid();
+                $model->uuid = nanoid();
             }
         });
     }

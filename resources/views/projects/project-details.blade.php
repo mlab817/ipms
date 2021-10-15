@@ -813,31 +813,3 @@
     </div>
     @endcan
 </div>
-
-@push('scripts')
-<script>
-    function deleteAttachment(id) {
-        let response = confirm('Are you sure you want to delete this attachment? This action cannot be undone.')
-
-        if (response) {
-            // go delete
-            // alert(`delete ${id}`)
-            let placeholderUrl = "{{ route('attachments.destroy', ':url' ) }}"
-            let deleteUrl = placeholderUrl.replace(':url', id)
-            // alert(deleteUrl)
-
-            $.ajax({
-                url: deleteUrl,
-                type: 'DELETE',
-                data: {
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function(result) {
-                    console.log(result)
-                    window.location.reload()
-                }
-            })
-        }
-    }
-</script>
-@endpush

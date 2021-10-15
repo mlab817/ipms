@@ -23,7 +23,6 @@ class ProjectStoreRequest extends FormRequest
      */
     public function rules()
     {
-        dd($this);
         return [
             'office_id'                         => 'required|exists:offices,id',
             'title'                             => 'required|max:255|unique:projects,title',

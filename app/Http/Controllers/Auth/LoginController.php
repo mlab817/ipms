@@ -53,9 +53,4 @@ class LoginController extends Controller
             Auth::logoutOtherDevices($request->password);
         }
     }
-
-    public function showLoginForm()
-    {
-        return Inertia::render('Auth/Login');
-    }
 }
