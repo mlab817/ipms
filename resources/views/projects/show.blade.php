@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div x-model="{ tab: 'profile' }">
+    <div x-data="{ tab: 'profile' }">
         <div class="tabnav">
             <nav class="tabnav-tabs" aria-label="Foo bar">
-                <a class="tabnav-tab" @click="tab = 'profile'; $nextTick(() => console.log('profile'))" aria-current="page" style="cursor:pointer;">Profile</a>
-                <a class="tabnav-tab" @click="tab = 'history'; $nextTick(() => console.log('history'))" style="cursor:pointer;">History</a>
+                <a class="tabnav-tab" @click="tab = 'profile'" :aria-current="tab === 'profile' ? 'page' : null" style="cursor:pointer;">Profile</a>
+                <a class="tabnav-tab" @click="tab = 'history'" :aria-current="tab === 'history' ? 'page' : null" style="cursor:pointer;">History</a>
             </nav>
         </div>
 
@@ -19,9 +19,24 @@
                             </summary>
 
                             <ul class="dropdown-menu dropdown-menu-e">
-                                <li><a class="dropdown-item" href="#url">Dropdown item</a></li>
-                                <li><a class="dropdown-item" href="#url">Dropdown item</a></li>
-                                <li><a class="dropdown-item" href="#url">Dropdown item</a></li>
+                                <li><a class="dropdown-item" href="#general-information">General Information</a></li>
+                                <li><a class="dropdown-item" href="#implementing-agencies">Implementing Agencies</a></li>
+                                <li><a class="dropdown-item" href="#spatial-coverage">Spatial Coverage</a></li>
+                                <li><a class="dropdown-item" href="#approval-status">Approval Status</a></li>
+                                <li><a class="dropdown-item" href="#programming-document">Project for Inclusion in Which Programming Document</a></li>
+                                <li><a class="dropdown-item" href="#physical-and-financial-status">Physical and Financial Status</a></li>
+                                <li><a class="dropdown-item" href="#implementation-period">Implementation Period</a></li>
+                                <li><a class="dropdown-item" href="#pdp">Philippine Development Plan</a></li>
+                                <li><a class="dropdown-item" href="#pdp-rm-indicators">Philippine Development Results Matrices (PDP-RM) Indicators</a></li>
+                                <li><a class="dropdown-item" href="#sdgs">Sustainable Development Goals</a></li>
+                                <li><a class="dropdown-item" href="#ten-point-agenda">Ten Point Agenda</a></li>
+                                <li><a class="dropdown-item" href="#project-preparation-details">Project Preparation Details</a></li>
+                                <li><a class="dropdown-item" href="#preconstruction-costs">Pre-construction Costs</a></li>
+                                <li><a class="dropdown-item" href="#employment-generation">Employment Generation</a></li>
+                                <li><a class="dropdown-item" href="#funding-source">Funding Source and Mode of Implementation</a></li>
+                                <li><a class="dropdown-item" href="#project-costs">Project Costs</a></li>
+                                <li><a class="dropdown-item" href="#financial-accomplishments">Financial Accomplishments</a></li>
+                                <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
                             </ul>
                         </details>
 
@@ -48,7 +63,7 @@
                     </div>
                 </div>
                 <div class="Box-body">
-                    <x-subhead subhead="General Information"></x-subhead>
+                    <x-subhead subhead="General Information" id="general-information"></x-subhead>
 
                     <dl>
                         <dt><label>Title</label></dt>
@@ -88,7 +103,7 @@
                         <dd>PhP {{ number_format($project->total_project_cost, 2) }}</dd>
                     </dl>
 
-                    <x-subhead subhead="Implementing Agencies">
+                    <x-subhead subhead="Implementing Agencies" id="implementing-agencies">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -110,7 +125,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Spatial Coverage">
+                    <x-subhead subhead="Spatial Coverage" id="spatial-coverage">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -134,7 +149,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Approval Status"></x-subhead>
+                    <x-subhead subhead="Approval Status" id="approval-status"></x-subhead>
 
                     <dl>
                         <dt><label>Is the Project ICC-able?</label></dt>
@@ -157,7 +172,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Project for Inclusion in Which Programming Document">
+                    <x-subhead subhead="Project for Inclusion in Which Programming Document" id="programming-document">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -265,7 +280,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Physical and Financial Status">
+                    <x-subhead subhead="Physical and Financial Status" id="physical-and-financial-status">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -297,7 +312,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Implementation Period">
+                    <x-subhead subhead="Implementation Period" id="implementation-period">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -315,7 +330,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Philippine Development Plan">
+                    <x-subhead subhead="Philippine Development Plan" id="pdp">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -341,7 +356,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Philippine Development Results Matrices (PDP-RM) Indicators">
+                    <x-subhead subhead="Philippine Development Results Matrices (PDP-RM) Indicators" id="pdp-rm-indicators">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -363,7 +378,7 @@
                         <dd>{{ strip_tags($project->expected_output->expected_outputs) }}</dd>
                     </dl>
 
-                    <x-subhead subhead="Sustainable Development Goals">
+                    <x-subhead subhead="Sustainable Development Goals" id="sdgs">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -380,7 +395,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Ten Point Agenda">
+                    <x-subhead subhead="Ten Point Agenda" id="ten-point-agenda">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -397,7 +412,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Project Preparation Details">
+                    <x-subhead subhead="Project Preparation Details" id="project-preparation-details">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -466,13 +481,107 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Pre-construction Costs">
+                    <x-subhead subhead="Pre-construction Costs" id="preconstruction-costs">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
                     <!-- TODO: Row and Resettlement -->
+                    <dl>
+                        <dt><label>With ROWA Component?</label></dt>
+                        <dd>
+                            {{ $project->has_row ? 'Yes': 'No' }}
+                        </dd>
+                    </dl>
 
-                    <x-subhead subhead="Employment Generation">
+                    <dl>
+                        <dt><label>Schedule of ROWA Cost (in absolute PhP)</label></dt>
+                        <dd>
+                            <table class="col-12 d-table border">
+                                <thead>
+                                <tr class="border-bottom">
+                                    <th class="p-2 text-right">2017</th>
+                                    <th class="p-2 text-right">2018</th>
+                                    <th class="p-2 text-right">2019</th>
+                                    <th class="p-2 text-right">2020</th>
+                                    <th class="p-2 text-right">2021</th>
+                                    <th class="p-2 text-right">2022</th>
+                                    <th class="p-2 text-right">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="p-2 text-right">{{ $project->right_of_way->y2017 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->right_of_way->y2018 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->right_of_way->y2019 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->right_of_way->y2020 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->right_of_way->y2021 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->right_of_way->y2022 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->right_of_way->total ?? 0 }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label>Affected Households</label></dt>
+                        <dd>
+                            {{ $project->right_of_way->affected_households ?? '_' }}
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label>With Resettlement  Component?</label></dt>
+                        <dd>
+                            {{ $project->has_rap ? 'Yes': 'No' }}
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label>Schedule of Resettlement Cost (in absolute PhP)</label></dt>
+                        <dd>
+                            <table class="col-12 d-table border">
+                                <thead>
+                                <tr class="border-bottom">
+                                    <th class="p-2 text-right">2017</th>
+                                    <th class="p-2 text-right">2018</th>
+                                    <th class="p-2 text-right">2019</th>
+                                    <th class="p-2 text-right">2020</th>
+                                    <th class="p-2 text-right">2021</th>
+                                    <th class="p-2 text-right">2022</th>
+                                    <th class="p-2 text-right">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2017 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2018 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2019 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2020 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2021 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2022 ?? 0 }}</td>
+                                    <td class="p-2 text-right">{{ $project->resettlement_action_plan->total ?? 0 }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label>Affected Households</label></dt>
+                        <dd>
+                            {{ $project->resettlement_action_plan->affected_households ?? '_' }}
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label>With ROWA and Resettlement Action Plan?</label></dt>
+                        <dd>
+                            {{ $project->has_row_rap ? 'Yes': 'No' }}
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Employment Generation" id="employment-generation">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -483,7 +592,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Funding Source and Mode of Implementation">
+                    <x-subhead subhead="Funding Source and Mode of Implementation" id="funding-source">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -521,7 +630,7 @@
                         </dd>
                     </dl>
 
-                    <x-subhead subhead="Project Costs">
+                    <x-subhead subhead="Project Costs" id="project-costs">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -572,51 +681,56 @@
                         </dd>
                     </dl>
 
-                    <table class="col-12 d-table border">
-                        <thead>
-                        <tr class="border-bottom">
-                            <th class="col p-2">Region</th>
-                            <th class="col p-2 text-right">2022 &amp; Prior</th>
-                            <th class="col p-2 text-right">2023</th>
-                            <th class="col p-2 text-right">2024</th>
-                            <th class="col p-2 text-right">2025</th>
-                            <th class="col p-2 text-right">2026 &amp; Prior</th>
-                            <th class="col p-2 text-right">Total</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($project->region_investments->sortBy('region.order') as $region_investment)
-                            <tr class="border-bottom">
-                                <td class="p-2">{{ $region_investment->region->name ?? '_' }}</td>
-                                <td class="p-2 text-right">{{ number_format($region_investment->y2022 ?? 0.00, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($region_investment->y2023 ?? 0.00, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($region_investment->y2024 ?? 0.00, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($region_investment->y2025 ?? 0.00, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($region_investment->y2026 ?? 0.00, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($region_investment->y2022 + $region_investment->y2023 + $region_investment->y2024 + $region_investment->y2025 + $region_investment->y2026, 2) }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th class="p-2 text-left">Total</th>
-                            <th class="p-2 text-right">{{ number_format($project->region_investments->sum('y2022'), 2) }}</th>
-                            <th class="p-2 text-right">{{ number_format($project->region_investments->sum('y2023'), 2) }}</th>
-                            <th class="p-2 text-right">{{ number_format($project->region_investments->sum('y2024'), 2) }}</th>
-                            <th class="p-2 text-right">{{ number_format($project->region_investments->sum('y2025'), 2) }}</th>
-                            <th class="p-2 text-right">{{ number_format($project->region_investments->sum('y2026'), 2) }}</th>
-                            <th class="p-2 text-right">
-                                {{ number_format($project->region_investments->sum('y2022')
-                                    + $project->region_investments->sum('y2023')
-                                    + $project->region_investments->sum('y2024')
-                                    + $project->region_investments->sum('y2025')
-                                    + $project->region_investments->sum('y2026'), 2) }}
-                            </th>
-                        </tr>
-                        </tfoot>
-                    </table>
+                    <dl>
+                        <dt><label>Total Investment Required by Region</label></dt>
+                        <dd>
+                            <table class="col-12 d-table border">
+                                <thead>
+                                <tr class="border-bottom">
+                                    <th class="col p-2">Region</th>
+                                    <th class="col p-2 text-right">2022 &amp; Prior</th>
+                                    <th class="col p-2 text-right">2023</th>
+                                    <th class="col p-2 text-right">2024</th>
+                                    <th class="col p-2 text-right">2025</th>
+                                    <th class="col p-2 text-right">2026 &amp; Prior</th>
+                                    <th class="col p-2 text-right">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($project->region_investments->sortBy('region.order') as $region_investment)
+                                    <tr class="border-bottom">
+                                        <td class="p-2">{{ $region_investment->region->name ?? '_' }}</td>
+                                        <td class="p-2 text-right">{{ number_format($region_investment->y2022 ?? 0.00, 2) }}</td>
+                                        <td class="p-2 text-right">{{ number_format($region_investment->y2023 ?? 0.00, 2) }}</td>
+                                        <td class="p-2 text-right">{{ number_format($region_investment->y2024 ?? 0.00, 2) }}</td>
+                                        <td class="p-2 text-right">{{ number_format($region_investment->y2025 ?? 0.00, 2) }}</td>
+                                        <td class="p-2 text-right">{{ number_format($region_investment->y2026 ?? 0.00, 2) }}</td>
+                                        <td class="p-2 text-right">{{ number_format($region_investment->y2022 + $region_investment->y2023 + $region_investment->y2024 + $region_investment->y2025 + $region_investment->y2026, 2) }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th class="p-2 text-left">Total</th>
+                                    <th class="p-2 text-right">{{ number_format($project->region_investments->sum('y2022'), 2) }}</th>
+                                    <th class="p-2 text-right">{{ number_format($project->region_investments->sum('y2023'), 2) }}</th>
+                                    <th class="p-2 text-right">{{ number_format($project->region_investments->sum('y2024'), 2) }}</th>
+                                    <th class="p-2 text-right">{{ number_format($project->region_investments->sum('y2025'), 2) }}</th>
+                                    <th class="p-2 text-right">{{ number_format($project->region_investments->sum('y2026'), 2) }}</th>
+                                    <th class="p-2 text-right">
+                                        {{ number_format($project->region_investments->sum('y2022')
+                                            + $project->region_investments->sum('y2023')
+                                            + $project->region_investments->sum('y2024')
+                                            + $project->region_investments->sum('y2025')
+                                            + $project->region_investments->sum('y2026'), 2) }}
+                                    </th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </dd>
+                    </dl>
 
-                    <x-subhead subhead="Financial Accomplishments">
+                    <x-subhead subhead="Financial Accomplishments" id="financial-accomplishments">
                         <x-back-to-top></x-back-to-top>
                     </x-subhead>
 
@@ -738,7 +852,7 @@
             </div>
 
             @if($project->has_infra)
-                <div class="Box my-5">
+                <div class="Box my-5" id="trip-information">
                     <div class="Box-header">
                         <h1 class="Box-title">TRIP Information</h1>
                     </div>
@@ -747,6 +861,41 @@
                         <x-subhead subhead="Total Infrastructure Cost by Funding Source">
                             <x-back-to-top></x-back-to-top>
                         </x-subhead>
+
+                        <dl>
+                            <dt><label>Infrastructure Sector</label></dt>
+                            <dd>
+                                <ul class="pl-4">
+                                @forelse($project->infrastructure_sectors as $sector)
+                                    <li>{{ $sector->name }}</li>
+                                    @empty
+                                    <li>None selected.</li>
+                                @endforelse
+                                </ul>
+                            </dd>
+                        </dl>
+
+                        <dl>
+                            <dt><label>Status of Implementation Readiness</label></dt>
+                            <dd>
+                                <ul class="pl-4">
+                                    @forelse($project->prerequisites as $prerequisite)
+                                        <li>{{ $prerequisite->name }}</li>
+                                    @empty
+                                        <li>None selected.</li>
+                                    @endforelse
+                                </ul>
+                            </dd>
+                        </dl>
+
+                        <dl>
+                            <dt><label>Implementation Risks and Mitigation Strategies</label></dt>
+                            <dd>
+                                {{ $project->risk->risk }}
+                            </dd>
+                        </dl>
+
+
 
                         <dl>
                             <dt><label>Total Infrastructure Cost by Funding Source</label></dt>
@@ -857,6 +1006,13 @@
                 <div class="Box-header">
                     <h2 class="Box-title">{{ $project->title }}</h2>
                 </div>
+                <ul>
+                    @foreach($project->audit_logs->sortByDesc('created_at') as $log)
+                        <li class="Box-row">
+                            {{ ucfirst($log->description) }} by {{ $log->user->full_name }} on {{ $log->created_at }}
+                        </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>

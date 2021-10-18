@@ -246,6 +246,11 @@ class Project extends Model
         return $this->belongsToMany(RefPdpIndicator::class,'project_pdp_indicator','project_id','pi_id');
     }
 
+    public function prerequisites(): BelongsToMany
+    {
+        return $this->belongsToMany(RefPrerequisite::class,'project_prerequisite','project_id','ref_prerequisite_id');
+    }
+
     public function regions(): BelongsToMany
     {
         return $this->belongsToMany(RefRegion::class, 'project_region', 'project_id', 'ref_region_id');
