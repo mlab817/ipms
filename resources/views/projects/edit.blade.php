@@ -98,7 +98,7 @@
 
                     <dl class="form-group @error('ref_pap_type_id') errored mb-6 @enderror">
                         <dt class="form-group-header">
-                            <label for="ref_pap_type_id" class="required">Title </label>
+                            <label for="ref_pap_type_id" class="required">Program or Project </label>
                         </dt>
                         <dd class="form-group-body">
                             <x-select :options="$pap_types" name="ref_pap_type_id" selected="{{ old('ref_pap_type_id', $project->ref_pap_type_id) }}" aria-describedby="pap-type-validation"></x-select>
@@ -136,6 +136,186 @@
                         </dd>
                     </dl>
 
+                    <x-subhead subhead="Implementing Agencies"></x-subhead>
+
+                    <dl class="form-group @error('office_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="office_id" class="required">Office </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="office_id" :options="$offices" :selected="old('office_id', $project->office_id)" aria-describedby="office-id-validation"></x-select>
+                            <x-error-message name="office_id" id="office-id-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('operating_units') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="operating_units" class="required">Basis for Implementation </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.checkbox :options="$operating_units" name="operating_units[]" :selected="old('operating_units', $project->operating_units->pluck('id')->toArray() ?? [])" aria-describedby="operating-units-validation"></x-input.checkbox>
+                            <x-error-message name="operating_units[]" id="operating-units-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Spatial Coverage"></x-subhead>
+
+                    <dl class="form-group @error('ref_spatial_coverage_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_spatial_coverage_id" class="required">Spatial Coverage </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="ref_spatial_coverage_id" :options="$spatial_coverages" :selected="old('ref_spatial_coverage_id', $project->ref_spatial_coverage_id)" aria-describedby="spatial-coverage-validation"></x-select>
+                            <x-error-message name="ref_spatial_coverage_id" id="spatial-coverage-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('regions') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="regions" class="required">Regions </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.checkbox :options="$regions" name="regions[]" :selected="old('regions', $project->regions->pluck('id')->toArray() ?? [])" aria-describedby="regions-validation"></x-input.checkbox>
+                            <x-error-message name="regions[]" id="regions-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Level of Approval"></x-subhead>
+
+                    <dl class="form-group @error('iccable') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="iccable" class="required">Will require Investment Coordination Committee/NEDA Board Approval (ICC-able)? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="iccable" selected="{{ old('iccable', $project->iccable) }}" aria-describedby="iccable-validation"></x-input.radio>
+                            <x-error-message name="iccable" id="iccable-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('ref_approval_level_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_approval_level_id">Level of Approval (only if ICC-able) </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="ref_approval_level_id" :options="$approval_levels" :selected="old('ref_approval_level_id', $project->ref_approval_level_id)" aria-describedby="approval-level-validation"></x-select>
+                            <x-error-message name="ref_approval_level_id" id="approval-level-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('approval_date') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="approval_date">
+                                Date of Submission / Approval
+                            </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <input id="approval_date" name="approval_date" type="date" class="form-control" aria-describedby="approval-date-validation" value="{{ old('approval_date', $project->approval_date) }}">
+                            <x-error-message name="approval_date" id="approval-date-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Project for Inclusion in Which Programming Document"></x-subhead>
+
+                    <dl class="form-group @error('pip') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="pip" class="required">Public Investment Program (PIP) </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="pip" selected="{{ old('pip', $project->pip) }}" aria-describedby="pip-validation"></x-input.radio>
+                            <x-error-message name="pip" id="pip-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('ref_pip_typology_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_pip_typology_id" class="required">Typology </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="ref_pip_typology_id" :options="$pip_typologies" :selected="old('ref_pip_typology_id', $project->ref_pip_typology_id)" aria-describedby="pip-typology-validation"></x-select>
+                            <x-error-message name="ref_pip_typology_id" id="pip-typology-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('cip') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="cip" class="required">Core Investment Programs/Projects (CIP) </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="cip" selected="{{ old('cip', $project->cip) }}" aria-describedby="cip-validation"></x-input.radio>
+                            <x-error-message name="cip" id="cip-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('ref_cip_type_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_cip_type_id" class="required">Type of CIP </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="ref_cip_type_id" :options="$cip_types" :selected="old('ref_cip_type_id', $project->ref_cip_type_id)" aria-describedby="cip-type-validation"></x-select>
+                            <x-error-message name="ref_cip_type_id" id="cip-type-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('trip') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="trip" class="required">Three-Year Rolling Infrastructure Program (TRIP) </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="trip" selected="{{ old('trip', $project->trip) }}" aria-describedby="trip-validation"></x-input.radio>
+                            <x-error-message name="trip" id="trip-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('research') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="research" class="required">Is it a Research and Development Program/Project? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="research" selected="{{ old('research', $project->research) }}" aria-describedby="research-validation"></x-input.radio>
+                            <x-error-message name="research" id="research-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('ifp') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ifp" class="required">Is it an Infrastructure Flagship Project(IFP)? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="ifp" selected="{{ old('ifp', $project->ifp) }}" aria-describedby="ifp-validation"></x-input.radio>
+                            <x-error-message name="ifp" id="ifp-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('ict') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ict" class="required">Is it an ICT program/project? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="ict" selected="{{ old('ict', $project->ict) }}" aria-describedby="ict-validation"></x-input.radio>
+                            <x-error-message name="ict" id="ict-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('covid') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="covid" class="required">Is it responsive to COVID-19/New Normal Intervention? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="covid" selected="{{ old('covid', $project->covid) }}" aria-describedby="covid-validation"></x-input.radio>
+                            <x-error-message name="covid" id="covid-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('covid_interventions') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="covid_interventions" class="required">Included in the following documents: </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.checkbox :options="$covid_interventions" name="covid_interventions[]" :selected="old('covid_interventions', $project->covid_interventions->pluck('id')->toArray() ?? [])" aria-describedby="covid-interventions-validation"></x-input.checkbox>
+                            <x-error-message name="covid_interventions[]" id="covid-interventions-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-primary card-outline">
@@ -157,25 +337,6 @@
                                                 @endforeach
                                             </select>
                                             @error('office_id')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="bases" class="col-form-label col-sm-3 required">Implementation Bases </label>
-                                        <div class="col-sm-9">
-                                            @foreach($bases as $option)
-                                                <div class="form-check">
-                                                    <label class="form-check-label @error('bases') text-danger @enderror">
-                                                        <input type="checkbox"
-                                                               class="form-check-input @error('bases') text-danger @enderror"
-                                                               name="bases[]" value="{{ $option->id }}"
-                                                               @if(in_array($option->id, old('bases', $project->bases->pluck('id')->toArray() ?? []))) checked @endif>
-                                                        {{ $option->name }}
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                            @error('bases')<span
                                                     class="error invalid-feedback">{{ $message }}</span>@enderror
                                         </div>
                                     </div>
@@ -349,7 +510,7 @@
                                         <label for="covid_interventions" class="col-form-label col-sm-3">Included in which
                                             of the following document: </label>
                                         <div class="col-sm-9">
-                                            @foreach($covidInterventions as $option)
+                                            @foreach($covid_interventions as $option)
                                                 <div class="form-check">
                                                     <label class="form-check-label" for="covid_{{ $option->id }}">
                                                         <input

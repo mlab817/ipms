@@ -12,4 +12,14 @@ class Role extends \Spatie\Permission\Models\Role
 {
     use HasFactory;
     use Auditable;
+
+    /*
+     * Roles:
+     * admin - all
+     * ipd - all
+     * pds - proposed && project
+     * spcmad - ongoing && project
+     * ouri - all trip
+     * encoder - own only/same office
+     */
 }

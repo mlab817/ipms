@@ -198,8 +198,9 @@ class ProjectController extends Controller
                 'preparation_documents'     => RefPreparationDocument::all(),
                 'fs_statuses'               => RefFsStatus::all(),
                 'ou_types'                  => RefOperatingUnitType::with('operating_units')->get(),
-                'covidInterventions'        => RefCovidIntervention::all(),
-                'boolean'                   => $boolean
+                'covid_interventions'        => RefCovidIntervention::all(),
+                'boolean'                   => $boolean,
+                'operating_units'           => RefOperatingUnit::all(),
             ]);
     }
 

@@ -15,6 +15,16 @@
         </a>
     </div>
     <div class="Header-item mr-0">
-        <img class="avatar" height="20" alt="@octocat" src="https://github.com/octocat.png" width="20">
+        <details class="dropdown details-reset details-overlay d-inline-block">
+            <summary class="Header-link" role="button" aria-haspopup="menu">
+                <img class="avatar" height="20" alt="@octocat" src="https://github.com/octocat.png" width="20">
+                <span class="dropdown-caret"></span>
+            </summary>
+            <ul class="dropdown-menu dropdown-menu-sw mt-2">
+                <li><a class="dropdown-item" href="#url">Dropdown item</a></li>
+                <li><a class="dropdown-item" href="#url">Dropdown item</a></li>
+                <li><a class="dropdown-item" href="#url">Dropdown item</a></li>
+            </ul>
+        </details>
     </div>
 </div>
