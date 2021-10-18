@@ -37,7 +37,7 @@ use App\Models\RefPdpIndicator;
 use App\Models\RefPipTypology;
 use App\Models\RefPreparationDocument;
 use App\Models\Project;
-use App\Models\ProjectStatus;
+use App\Models\RefProjectStatus;
 use App\Models\RefReadinessLevel;
 use App\Models\RefRegion;
 use App\Models\ProjectRegionInvestment;
@@ -168,7 +168,7 @@ class ProjectController extends Controller
                 'offices'                   => Office::all(),
                 'pap_types'                 => RefPapType::all(),
                 'bases'                     => RefBasis::all(),
-                'project_statuses'          => ProjectStatus::all(),
+                'project_statuses'          => RefProjectStatus::all(),
                 'spatial_coverages'         => RefSpatialCoverage::all(),
                 'regions'                   => RefRegion::all(),
                 'gads'                      => RefGad::all(),
@@ -287,9 +287,9 @@ class ProjectController extends Controller
     {
         $projects = collect();
 
-        if ($request->has('search')) {
+        if ($request->has('q')) {
             $query = $request->query();
-            $searchTerm = '%' .  $query['search'] . '%' ?? '';
+            $searchTerm = '%' .  $query['q'] . '%' ?? '';
             $orderBy = $query['orderBy']  ?? 'id';
             $sortOrder = $query['sortOrder'] ?? 'ASC';
 

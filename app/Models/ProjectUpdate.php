@@ -15,8 +15,13 @@ class ProjectUpdate extends Model
         'updates_date',
     ];
 
+    protected $casts = [
+        'updates_date',
+    ];
+
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
     }
+
 }

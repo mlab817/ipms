@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ProjectStatus;
+use App\Models\RefProjectStatus;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -31,10 +31,10 @@ class ProjectStatusesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ProjectStatus $model
+     * @param \App\Models\RefProjectStatus $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ProjectStatus $model)
+    public function query(RefProjectStatus $model)
     {
         return $model->newQuery();
     }

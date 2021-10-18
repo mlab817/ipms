@@ -24,7 +24,7 @@ use App\Models\RefPipTypology;
 use App\Models\RefPreparationDocument;
 use App\Models\Project;
 use App\Models\ProjectAudit;
-use App\Models\ProjectStatus;
+use App\Models\RefProjectStatus;
 use App\Models\RefReadinessLevel;
 use App\Models\RefRegion;
 use App\Models\ProjectRegionInvestment;
@@ -93,7 +93,7 @@ class ProjectTest extends TestCase
             'funding_source_id'         => RefFundingSource::factory()->create()->id,
             'implementation_mode_id'    => RefImplementationMode::factory()->create()->id,
             'other_fs'                  => $this->faker->word,
-            'project_status_id'         => ProjectStatus::factory()->create()->id,
+            'project_status_id'         => RefProjectStatus::factory()->create()->id,
             'updates'                   => $this->faker->paragraph,
             'updates_date'              => $this->faker->date(),
             'uacs_code'                 => $this->faker->isbn13,

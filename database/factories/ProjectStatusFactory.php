@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\ProjectStatus;
+use App\Models\RefProjectStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class ProjectStatusFactory extends Factory
      *
      * @var string
      */
-    protected $model = ProjectStatus::class;
+    protected $model = RefProjectStatus::class;
 
     /**
      * Define the model's default state.

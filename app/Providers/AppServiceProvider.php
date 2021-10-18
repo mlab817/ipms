@@ -48,5 +48,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('admin', function () {
             return auth()->check() && auth()->user()->isAdmin();
         });
+
+        Paginator::defaultView('includes.primer-pagination');
+        Paginator::defaultSimpleView('includes.primer-simple-pagination');
     }
 }

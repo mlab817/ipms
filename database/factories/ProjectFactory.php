@@ -21,7 +21,7 @@ use App\Models\RefPipTypology;
 use App\Models\RefPreparationDocument;
 use App\Models\RefPrerequisite;
 use App\Models\Project;
-use App\Models\ProjectStatus;
+use App\Models\RefProjectStatus;
 use App\Models\RefReadinessLevel;
 use App\Models\RefRegion;
 use App\Models\ProjectResettlementActionPlan;
@@ -91,7 +91,7 @@ class ProjectFactory extends Factory
             'funding_source_id'             => RefFundingSource::all()->random()->id,
             'implementation_mode_id'        => RefImplementationMode::all()->random()->id,
             'other_fs'                      => $this->faker->word,
-            'project_status_id'             => ProjectStatus::all()->random()->id,
+            'project_status_id'             => RefProjectStatus::all()->random()->id,
             'readiness_level_id'            => RefReadinessLevel::all()->random()->id,
             'updates'                       => $this->faker->paragraph,
             'updates_date'                  => $this->faker->date(),

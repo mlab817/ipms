@@ -123,6 +123,11 @@ class Project extends Model
         return $this->belongsTo(RefApprovalLevel::class, 'ref_approval_level_id')->withDefault(['name' => '_']);
     }
 
+    public function cip_type(): BelongsTo
+    {
+        return $this->belongsTo(RefCipType::class,'ref_cip_type_id');
+    }
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class,'creator_id','id');
@@ -163,6 +168,11 @@ class Project extends Model
         return $this->belongsTo(RefPdpChapter::class, 'ref_pdp_chapter_id')->withDefault();
     }
 
+    public function pip_typology(): BelongsTo
+    {
+        return $this->belongsTo(RefPipTypology::class,'ref_pip_typology_id');
+    }
+
     public function preparation_document(): BelongsTo
     {
         return $this->belongsTo(RefPreparationDocument::class, 'ref_preparation_document_id')->withDefault(['name' => '_']);
@@ -170,7 +180,7 @@ class Project extends Model
 
     public function project_status(): BelongsTo
     {
-        return $this->belongsTo(ProjectStatus::class, 'ref_project_status_id')->withDefault();
+        return $this->belongsTo(RefProjectStatus::class, 'ref_project_status_id')->withDefault();
     }
 
     public function reason(): BelongsTo
@@ -203,7 +213,7 @@ class Project extends Model
 
     public function covid_interventions(): BelongsToMany
     {
-        return $this->belongsToMany(RefCovidIntervention::class);
+        return $this->belongsToMany(RefCovidIntervention::class, 'project_covid_intervention', 'project_id', 'ref_covid_intervention_id');
     }
 
     public function funding_institutions(): BelongsToMany

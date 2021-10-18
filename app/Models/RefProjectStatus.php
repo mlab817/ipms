@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ProjectStatus extends Model
+class RefProjectStatus extends Model
 {
     use HasFactory;
     use Sluggable;

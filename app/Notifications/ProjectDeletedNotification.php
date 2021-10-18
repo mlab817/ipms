@@ -17,18 +17,15 @@ class ProjectDeletedNotification extends Notification
 
     public $user;
 
-    public $reason;
-
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($project, User $user, string $reason)
+    public function __construct($project, User $user)
     {
         $this->project  = $project;
         $this->user     = $user;
-        $this->reason   = $reason;
     }
 
     /**

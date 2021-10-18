@@ -10,7 +10,7 @@ use App\Models\Office;
 use App\Models\RefPdpChapter;
 use App\Models\RefPreparationDocument;
 use App\Models\Project;
-use App\Models\ProjectStatus;
+use App\Models\RefProjectStatus;
 use App\Models\RefRegion;
 use App\Models\RefSpatialCoverage;
 use App\Models\RefTier;
@@ -127,7 +127,7 @@ class ProjectImportJob implements ShouldQueue
             'funding_source_id' => !in_array($data['main_funding_source_id'], RefFundingSource::all()->pluck('id')->toArray()) ? null : $data['main_funding_source_id'],
             'funding_institution_id' => !in_array($data['funding_institution_id'], RefFundingInstitution::all()->pluck('id')->toArray()) ? null : $data['funding_institution_id'],
             'iccable' => $data['iccable'],
-            'project_status_id' => !in_array($data['project_status_id'], ProjectStatus::all()->pluck('id')->toArray()) ? null : $data['project_status_id'],
+            'project_status_id' => !in_array($data['project_status_id'], RefProjectStatus::all()->pluck('id')->toArray()) ? null : $data['project_status_id'],
             'updates' => $data['updates'],
             'updates_date' => $data['updates_date'],
             'gad_id' => !in_array($data['gad_id'], RefGad::all()->pluck('id')->toArray()) ? null : $data['gad_id'],

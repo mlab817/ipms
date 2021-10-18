@@ -1,0 +1,12 @@
+.required ::after {
+    content: " *";
+    color: red;
+}
+
+.protip {
+    margin-top: 20px;
+    color: var(--color-fg-muted);
+    text-align: center;
+}
+
+[x-cloak] { display: none !important; }
