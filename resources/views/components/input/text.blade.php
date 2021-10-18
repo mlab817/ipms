@@ -1,1 +1,1 @@
-<input type="text" class="form-control @error($name) is-invalid @enderror" {{ $attributes }}>
+<input type="text" class="form-control width-full @error($name) is-invalid @enderror" {{ $attributes }}>

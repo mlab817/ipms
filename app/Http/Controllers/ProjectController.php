@@ -162,6 +162,14 @@ class ProjectController extends Controller
     {
         $project->load('bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','funding_sources','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study');
 
+        $yes = new \stdClass();
+        $yes->id = 1;
+        $yes->name = 'Yes';
+        $no = new \stdClass();
+        $no->id = 0;
+        $no->name = 'No';
+        $boolean = array($yes, $no);
+
         return view('projects.edit', compact('project'))
             ->with('pageTitle', 'Edit Project')
             ->with([
@@ -191,6 +199,7 @@ class ProjectController extends Controller
                 'fs_statuses'               => RefFsStatus::all(),
                 'ou_types'                  => RefOperatingUnitType::with('operating_units')->get(),
                 'covidInterventions'        => RefCovidIntervention::all(),
+                'boolean'                   => $boolean
             ]);
     }
 
@@ -244,14 +253,12 @@ class ProjectController extends Controller
         if ($request->has('draft')) {
             $project->submission_status_id = RefSubmissionStatus::findByName('Draft')->id;
             $project->save();
-            Alert::success('Success', 'Successfully saved as draft');
         }
 
         if ($request->has('endorse')) {
             $this->authorize('endorse', $project);
             $project->submission_status_id = RefSubmissionStatus::findByName('Endorsed')->id;
             $project->save();
-            Alert::success('Success', 'Successfully saved as endorsed');
         }
 
         return back();
@@ -277,8 +284,6 @@ class ProjectController extends Controller
         if ($creator) {
             $creator->notify(new ProjectDeletedNotification($projectArray, auth()->user(), $request->reason));
         }
-
-        Alert::success('Success', 'Successfully deleted project');
 
         return redirect()->route('projects.own');
     }
@@ -340,8 +345,6 @@ class ProjectController extends Controller
 
         $project->restore();
 
-        Alert::success('Success','Project successfully restored');
-
         return redirect()->route('projects.deleted');
     }
 
@@ -389,8 +392,6 @@ class ProjectController extends Controller
         $project->other_reason          = $request->other_reason;
         $project->submission_status_id  = RefSubmissionStatus::findByName(RefSubmissionStatus::DROPPED)->id;
         $project->save();
-
-        Alert::success('Success','Project successfully dropped');
 
         return redirect()->route('projects.own');
     }

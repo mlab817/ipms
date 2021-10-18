@@ -33,7 +33,7 @@ class RefInfrastructureSubsector extends Model
 
     public function infrastructure_sector(): BelongsTo
     {
-        return $this->belongsTo(RefInfrastructureSector::class);
+        return $this->belongsTo(RefInfrastructureSector::class, 'ref_infrastructure_sector_id');
     }
 
     public function projects(): BelongsToMany

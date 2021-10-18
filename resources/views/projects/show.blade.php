@@ -62,6 +62,7 @@
                         </form>
                     </div>
                 </div>
+
                 <div class="Box-body">
                     <x-subhead subhead="General Information" id="general-information"></x-subhead>
 
@@ -851,7 +852,7 @@
                 </div>
             </div>
 
-            @if($project->has_infra)
+            @if($project->trip)
                 <div class="Box my-5" id="trip-information">
                     <div class="Box-header">
                         <h1 class="Box-title">TRIP Information</h1>
