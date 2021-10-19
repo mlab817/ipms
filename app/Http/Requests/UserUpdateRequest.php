@@ -25,8 +25,9 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'first_name'=> 'required|string',
-            'last_name'=> 'required|string',
-            'roles.*'   => 'required'
+            'last_name' => 'required|string',
+            'office_id' => 'required|exists:offices,id',
+            'role_id'   => 'required|exists:roles,id',
         ];
     }
 }

@@ -1,0 +1,78 @@
+@extends('layouts.app')
+
+@section('page-header')
+    <x-page-header header="Create a User"></x-page-header>
+@endsection
+
+@section('content')
+    <div class="Box">
+        <div class="Box-header">
+            <h2 class="Box-title">Create a User</h2>
+        </div>
+
+        <form action="{{ route('users.store') }}" method="POST" accept-charset="utf-8">
+            @csrf
+            <div class="Box-body">
+                <p class="note">Note: Username and password will be automatically generated.</p>
+
+                <dl class="form-group">
+                    <dt class="form-group-header">
+                        <label for="" class="required">First Name</label>
+                    </dt>
+                    <dd class="form-group-body">
+                        <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" placeholder="First name (e.g. Juan)" class="form-control">
+                    </dd>
+                </dl>
+
+                <dl class="form-group">
+                    <dt class="form-group-header">
+                        <label for="last_name" class="required">Last Name</label>
+                    </dt>
+                    <dd class="form-group-body">
+                        <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}" placeholder="Last name (e.g. dela Cruz)" class="form-control">
+                    </dd>
+                </dl>
+
+                <dl class="form-group">
+                    <dt class="form-group-header">
+                        <label for="email" class="required">Email</label>
+                    </dt>
+                    <dd class="form-group-body" x-data="{
+                        email: '',
+                        checkEmailAvailability() {
+                            const email = this.email;
+                            axios.post('{{ route('api.checkEmailAvailability') }}', {
+                                email: email
+                            }).then(res => {
+                                console.log(res);
+                            });
+                        }
+                    }">
+                        <input x-on:input="checkEmailAvailability" type="email" name="email" id="email" placeholder="Email (e.g. juandelacruz@gmail.com)" class="form-control" x-model.debounce="email">
+                    </dd>
+                </dl>
+
+                <dl class="form-group">
+                    <dt class="form-group-header">
+                        <label for="office_id" class="required">Office</label>
+                    </dt>
+                    <dd class="form-group-body">
+                        <x-select name="office_id" id="office_id" :options="$offices" :selected="old('office_id')"></x-select>
+                    </dd>
+                </dl>
+
+                <dl class="form-group">
+                    <dt class="form-group-header">
+                        <label for="office_id" class="required">Role</label>
+                    </dt>
+                    <dd class="form-group-body">
+                        <x-select name="role_id" id="role_id" :options="$roles" :selected="old('role_id')"></x-select>
+                    </dd>
+                </dl>
+            </div>
+            <div class="Box-footer">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+@endsection

@@ -86,4 +86,16 @@ Route::get('/projects/{project}', function (\App\Models\Project $project) {
     return response()->json($project->load('bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study'));
 });
 
-Route::post('/projects/search', [ProjectController::class,'search'])->name('api.projects.search');
+//Route::post('/projects/search', [ProjectController::class,'search'])->name('api.projects.search');
+
+Route::post('/checkEmailAvailability', function (Request $request) {
+    if ($request->email) {
+        $exists = \App\Models\User::where('email', $request->email)->exists();
+
+        if ($exists) {
+            return response()->json(['error' => 'Email address is already taken'], 200);
+        } else {
+            return response()->json(['success' => 'Email address is available'], 200);
+        }
+    }
+})->name('api.checkEmailAvailability');

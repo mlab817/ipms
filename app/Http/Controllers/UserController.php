@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserCreated;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Models\Office;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -24,7 +31,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $offices = Office::all();
+        $roles = Role::all();
+
+        return view('users.create', compact('offices','roles'));
     }
 
     /**
@@ -33,9 +43,19 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
-        //
+        $password = 'password';
+
+        $user = new User($request->validated());
+        $user->password = Hash::make($password);
+        $user->save();
+
+        $user->activate();
+
+        event(new UserCreated($user, $password));
+
+        return back()->with('success','Successfully created user');
     }
 
     /**
@@ -55,9 +75,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'))
+            ->with(['offices'=> Office::all(), 'roles' => Role::all()]);
     }
 
     /**
@@ -67,9 +88,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        //
+        $user->update($request->validated());
+
+        return redirect()->route('users.index');
     }
 
     /**

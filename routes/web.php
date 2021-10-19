@@ -109,3 +109,12 @@ Route::fallback(function () {
 Route::get('/debug', function () {
     \Log::debug('Test debug message');
 });
+
+Route::get('/generate_username', function () {
+    $users = \App\Models\User::all();
+
+    foreach ($users as $item) {
+        $item->username = generate_username($item->email);
+        $item->save();
+    }
+});
