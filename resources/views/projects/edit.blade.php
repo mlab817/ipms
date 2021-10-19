@@ -36,19 +36,18 @@
                 </h2>
             </div>
 
-            <div class="d-flex py-1 py-md-0 flex-auto flex-order-1 flex-md-order-2 flex-sm-grow-0 flex-justify-between hide-sm hide-md">
-                <form class="inline-form" action="{{ route('projects.destroy', $project) }}" accept-charset="UTF-8" method="post">
-                    @csrf
-                    @method('delete')
-                    <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn-octicon btn-octicon-danger tooltipped tooltipped-nw" type="submit" aria-label="Delete this PAP" data-disable-with="">
-                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-trash">
-                            <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
-                        </svg>
-                    </button>
-                </form>
-            </div>
+            <form class="inline-form" action="{{ route('projects.destroy', $project) }}" accept-charset="UTF-8" method="post">
+                @csrf
+                @method('delete')
+                <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn-octicon btn-octicon-danger tooltipped tooltipped-nw" type="submit" aria-label="Delete this PAP">
+                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-trash">
+                        <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
+                    </svg>
+                    <span>Delete</span>
+                </button>
+            </form>
         </div>
-        <form action="{{ route('projects.update', $project->uuid) }}" method="POST">
+        <form action="{{ route('projects.update', $project) }}" method="POST" id="editProjectForm">
             @csrf
             @method('PUT')
 
@@ -326,1200 +325,1108 @@
                         </dd>
                     </dl>
 
-                    <div class="row">
+                    <dl class="form-group @error('rdc_endorsement_required') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="rdc_endorsement_required" class="required">Will require Regional Development Council (RDC) Endorsement? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="rdc_endorsement_required" selected="{{ old('rdc_endorsement_required', $project->rdc_endorsement_required) }}" aria-describedby="rdc_endorsement_required-validation"></x-input.radio>
+                            <x-error-message name="rdc_endorsement_required" id="rdc_endorsement_required-validation"></x-error-message>
+                        </dd>
+                    </dl>
 
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Spatial Coverage") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <label for="spatial_coverage_id" class="col-form-label col-sm-3 required">Spatial
-                                            Coverage </label>
-                                        <div class="col-sm-9">
-                                            <select name="spatial_coverage_id" id="spatial_coverage_id"
-                                                    class="form-control @error('spatial_coverage_id') is-invalid @enderror">
-                                                <option value="" selected disabled>Select Spatial Coverage</option>
-                                                @foreach($spatial_coverages as $option)
-                                                    <option value="{{ $option->id }}"
-                                                            @if(old('spatial_coverage_id', $project->spatial_coverage_id) == $option->id) selected @endif>{{ $option->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('spatial_coverage_id')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
+                    <dl class="form-group @error('rdc_endorsed') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="rdc_endorsed">Already endorsed by RDC? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="rdc_endorsed" selected="{{ old('rdc_endorsed', $project->rdc_endorsed) }}" aria-describedby="rdc_endorsed-validation"></x-input.radio>
+                            <x-error-message name="rdc_endorsed" id="rdc_endorsed-validation"></x-error-message>
+                        </dd>
+                    </dl>
 
-                                    <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <label for="regions" class="col-form-label required">Regions </label>
-                                            <p>
-                                                <button type="button" id="selectRegions" class="btn btn-sm btn-secondary">
-                                                    Check All
-                                                </button>
-                                                <button type="button" id="clearRegions" class="btn btn-sm btn-danger">
-                                                    Clear
-                                                </button>
-                                            </p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            @foreach($regions->sortBy('order') as $option)
-                                                @if($option->id !== 99)
-                                                    <div class="form-check">
-                                                        <label
-                                                                class="form-check-label @error('regions') text-danger @enderror">
-                                                            <input
-                                                                    class="regions-checkboxes form-check-input"
-                                                                    type="checkbox" name="regions[]"
-                                                                    value="{{ $option->id }}" {{ in_array($option->id, old('regions', $project->regions->pluck('id')->toArray() ?? [])) ? 'checked' : '' }}>
-                                                            {{ $option->name }}
+                    <dl class="form-group @error('rdc_endorsed_date') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="rdc_endorsed_date">
+                                Date of Endorsement
+                            </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <input id="rdc_endorsed_date" name="rdc_endorsed_date" type="date" class="form-control" aria-describedby="ardc_endorseddate-validation" value="{{ old('rdc_endorsed_date', $project->rdc_endorsed_date) }}">
+                            <x-error-message name="rdc_endorsed_date" id="rdc_endorsed-date-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Physical and Financial Status"></x-subhead>
+
+                    <dl class="form-group @error('ref_project_status_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_project_status_id" class="required">Status of Implementation Readiness </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="ref_project_status_id" :options="$project_statuses" :selected="old('ref_project_status_id', $project->ref_project_status_id)" aria-describedby="project-status-validation"></x-select>
+                            <x-error-message name="ref_project_status_id" id="project-status-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('updates') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="updates" class="required">Updates </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-textarea name="updates" :value="old('updates', $project->project_update->updates ?? '')"></x-textarea>
+                            <x-error-message name="updates" id="updates-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('updates_date') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="updates_date" class="required">
+                                As of
+                            </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <input id="updates_date" name="updates_date" type="date" class="form-control" aria-describedby="updates-date-validation" value="{{ old('updates_date', $project->project_update->updates_date) }}">
+                            <x-error-message name="updates_date" id="updates-date-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('icc_resubmission') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="icc_resubmission" class="required">Will this require resubmission to the ICC? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="icc_resubmission" selected="{{ old('icc_resubmission', $project->icc_resubmission) }}" aria-describedby="icc_resubmission-validation"></x-input.radio>
+                            <x-error-message name="icc_resubmission" id="rdc_endorsed-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Implementation Period"></x-subhead>
+
+                    <dl class="form-group @error('target_start_year') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="target_start_year" class="required">Start of Project Implementation </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="target_start_year" :options="$years" :selected="old('target_start_year', $project->target_start_year ?? '')" aria-describedby="target-start-year-validation"></x-select>
+                            <x-error-message name="target_start_year" id="target-start-year-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('target_end_year') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="target_start_year" class="required">Year of Project Completion </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="target_end_year" :options="$years" :selected="old('target_end_year', $project->target_end_year ?? '')" aria-describedby="target-end-year-validation"></x-select>
+                            <x-error-message name="target_end_year" id="target-end-year-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Philippine Development Plan (PDP) Chapter"></x-subhead>
+
+                    <dl class="form-group @error('ref_pdp_chapter_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_pdp_chapter_id" class="required">Main PDP Midterm Update Chapter </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="ref_pdp_chapter_id" :options="$pdp_chapters" :selected="old('ref_pdp_chapter_id', $project->ref_pdp_chapter_id ?? '')" aria-describedby="ref_pdp_chapter_id-validation"></x-select>
+                            <x-error-message name="ref_pdp_chapter_id" id="ref_pdp_chapter_id-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('pdp_chapters') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="pdp_chapters">Other PDP Midterm Update Chapters </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.checkbox :options="$pdp_chapters" name="pdp_chapters[]" :selected="old('pdp_chapters', $project->pdp_chapters->pluck('id')->toArray() ?? [])" aria-describedby="pdp_chapters-validation"></x-input.checkbox>
+                            <x-error-message name="pdp_chapters[]" id="pdp_chapters-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Main PDP Chapter Outcome Statements/Outputs"></x-subhead>
+
+                    <h1 class="color-text-danger">TODO<!-- TODO: add indicators --></h1>
+
+                    <div class="Box">
+
+                        <div class="Box-header">
+                            <h2 class="Box-title">TRIP Information</h2>
+                        </div>
+
+                        <div class="Box-body">
+
+                            <dl class="form-group">
+                                <dt class="form-group-header">
+                                    <label for="" class="required">Infrastructure Sectors</label>
+                                </dt>
+                                <dd class="form-group-body">
+                                    @foreach ($infrastructure_sectors as $key => $is)
+                                        <div class="form-checkbox my-0">
+                                            <label for="">
+                                                <input type="checkbox" value="{{ $is->id }}" name="infrastructure_sectors[]"
+                                                       @if(in_array($is->id, old('$infrastructure_sectors', $project->infrastructure_sectors->pluck('id')->toArray()))) checked @endif>
+                                                {{ $is->name }}
+                                            </label>
+                                            @if ($is->infrastructure_subsectors)
+                                                @foreach($is->infrastructure_subsectors as $key => $iss)
+                                                    <div class="form-checkbox my-0">
+                                                        <label for="">
+                                                            <input type="checkbox" value="{{ $iss->id }}" name="infrastructure_sectors[]"
+                                                                   @if(in_array($is->id, old('$infrastructure_sectors', $project->infrastructure_sectors->pluck('id')->toArray()))) checked @endif>
+                                                            {{ $iss->name }}
                                                         </label>
                                                     </div>
-                                                @endif
-                                            @endforeach
-                                            @error('regions')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Implementation Period -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Implementation Period") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label for="target_start_year" class="col-form-label col-sm-6 required">Start
-                                                    of Implementation </label>
-                                                <div class="col-sm-6">
-                                                    <select
-                                                            class="form-control @error('target_start_year') is-invalid @enderror"
-                                                            name="target_start_year">
-                                                        <option value="" disabled selected>Select Year</option>
-                                                        @foreach($years as $option)
-                                                            <option
-                                                                    value="{{ $option }}"
-                                                                    @if(old('target_start_year', $project->target_start_year) == $option) selected @endif>{{ $option }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('target_start_year')<span
-                                                            class="error invalid-feedback">{{ $message }}</span>@enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label for="target_end_year" class="col-form-label col-sm-6 required">Year
-                                                    of Project Completion </label>
-                                                <div class="col-sm-6">
-                                                    <select
-                                                            class="form-control @error('target_end_year') is-invalid @enderror"
-                                                            name="target_end_year">
-                                                        <option value="" disabled selected>Select Year</option>
-                                                        @foreach($years as $option)
-                                                            <option
-                                                                    value="{{ $option }}"
-                                                                    @if(old('target_end_year', $project->target_end_year) == $option) selected @endif>{{ $option }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('target_end_year')<span
-                                                            class="error invalid-feedback">{{ $message }}</span>@enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Implementation Period -->
-
-                        <!-- Approval Status -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Approval Status") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <label for="iccable" class="col-form-label col-sm-3 required">Is the Project ICC-able? </label>
-                                        <div class="col-sm-9">
-                                            <div class="form-check-inline">
-                                                <input type="radio" class="form-check-input" value="1"
-                                                       name="iccable"
-                                                       @if(old('iccable', $project->iccable) == 1) checked @endif>
-                                                <label class="form-check-label">Yes</label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <input type="radio" class="form-check-input" value="0"
-                                                       name="iccable"
-                                                       @if(old('iccable', $project->iccable) == 0) checked @endif>
-                                                <label class="form-check-label">No</label>
-                                            </div>
-                                            @error('iccable')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="target_start_year" class="col-form-label col-sm-3">Level of Approval
-                                            (For ICCable only)</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control @error('approval_level_id') is-invalid @enderror"
-                                                    name="approval_level_id">
-                                                <option value="" disabled selected>Select Approval Level</option>
-                                                @foreach($approval_levels as $option)
-                                                    <option
-                                                            value="{{ $option->id }}"
-                                                            @if(old('approval_level_id', $project->approval_level_id) == $option->id) selected @endif>{{ $option->name }}</option>
                                                 @endforeach
-                                            </select>
-                                            @error('approval_level_id')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
+                                            @endif
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="approval_date" class="col-form-label col-sm-3">Date of
-                                            Submission/Approval</label>
-                                        <div class="col-sm-9">
-                                            <input type="date"
-                                                   class="form-control @error('approval_date') is-invalid @enderror"
-                                                   name="approval_date"
-                                                   value="{{ old('approval_date', $project->approval_date) }}">
-                                            @error('approval_date')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
+                                    @endforeach
+                                </dd>
+                            </dl>
 
-                                    <div class="form-group row">
-                                        <label for="gad_id" class="col-form-label col-sm-3 required">Gender
-                                            Responsiveness </label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control @error('gad_id') is-invalid @enderror"
-                                                    name="gad_id">
-                                                <option value="" disabled selected>Select GAD Classification</option>
-                                                @foreach($gads as $option)
-                                                    <option
-                                                            value="{{ $option->id }}" {{ old('gad_id', $project->gad_id) == $option->id ? 'selected' : '' }}>{{ $option->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('gad_id')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Approval Status -->
+                            <dl class="form-group">
+                                <dt class="form-group-header">
+                                    <label for="" class="required">Status of Implementation Readiness</label>
+                                </dt>
+                                <dd class="form-group-body">
+                                    <x-input.checkbox :options="$prerequisites" name="prerequisites[]" :selected="old('prerequisites', $project->prerequisites->pluck('id')->toArray() ?? [])"></x-input.checkbox>
+                                </dd>
+                            </dl>
 
-                        <!--/. Regional Development Investment Program -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">Regional Development Investment Program</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 required">Regional Development Investment Program </label>
-                                        <div class="col-sm-9">
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="radio" name="rdip" value="1"
-                                                           @if(old('rdip', $project->rdip) == 1) checked @endif>
-                                                    Yes
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="radio" name="rdip" value="0"
-                                                           @if(old('rdip', $project->rdip) == 0) checked @endif>
-                                                    No
-                                                </label>
-                                            </div>
-                                            @error('rdip')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="ml-4">
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-sm-3 required">Is RDC endorsement required? </label>
-                                            <div class="col-sm-9">
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio"
-                                                               name="rdc_endorsement_required" value="1"
-                                                               @if(old('rdc_endorsement_required', $project->rdc_endorsement_required) == 1) checked @endif>
-                                                        Yes
-                                                    </label>
-                                                </div>
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio"
-                                                               name="rdc_endorsement_required" value="0"
-                                                               @if(old('rdc_endorsement_required', $project->rdc_endorsement_required) == 0) checked @endif>
-                                                        No
-                                                    </label>
-                                                </div>
-                                                @error('rdc_endorsement_required')<span
-                                                        class="error invalid-feedback">{{ $message }}</span>@enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="rdc_endorsed" class="col-form-label col-sm-3">Has the project been
-                                                endorsed?</label>
-                                            <div class="col-sm-9">
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio" name="rdc_endorsed"
-                                                               value="1"
-                                                               @if(old('rdc_endorsed', $project->rdc_endorsed) == 1) checked @endif>
-                                                        Yes
-                                                    </label>
-                                                </div>
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio" name="rdc_endorsed"
-                                                               value="0"
-                                                               @if(old('rdc_endorsed', $project->rdc_endorsed) == 0) checked @endif>
-                                                        No
-                                                    </label>
-                                                </div>
-                                                @error('rdc_endorsed')<span
-                                                        class="error invalid-feedback">{{ $message }}</span>@enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="rdc_endorsed_date" class="col-form-label col-sm-3">RDC Endorsement
-                                                Date</label>
-                                            <div class="col-sm-9">
-                                                <input type="date"
-                                                       class="form-control @error('rdc_endorsed_date') is-invalid @enderror"
-                                                       name="rdc_endorsed_date" value="{{ old('rdc_endorsed_date') }}">
-                                                @error('rdc_endorsed_date')<span
-                                                        class="error invalid-feedback">{{ $message }}</span>@enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Regional Development Investment Program -->
+                            <dl class="form-group">
+                                <dt class="form-group-header">
+                                    <label for="risk">Implementation Risks and Mitigation Strategies</label>
+                                </dt>
+                                <dd class="form-group-body">
+                                    <x-textarea name="risk" value="{{ old('risk', $project->risk->risk ?? '') }}"></x-textarea>
+                                </dd>
+                            </dl>
 
-                        <!-- Project Preparation Details -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Project Preparation Details") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <label for="preparation_document_id" class="col-form-label col-sm-3 required">Project
-                                            Preparation Document </label>
-                                        <div class="col-sm-9">
-                                            <select name="preparation_document_id" id="preparation_document_id"
-                                                    class="form-control">
-                                                <option value="" selected disabled>Select document</option>
-                                                @foreach($preparation_documents as $option)
-                                                    <option value="{{ $option->id }}"
-                                                            @if(old('preparation_document_id', $project->preparation_document_id) == $option->id) selected @endif>{{ $option->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('preparation_document_id')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="has_fs" class="col-form-label col-sm-3 required">Does the project require
-                                            feasibility study? </label>
-                                        <div class="col-sm-9">
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" value="1"
-                                                           name="has_fs" {{ old('has_fs', $project->has_fs) == 1 ? 'checked' : '' }}>
-                                                    Yes
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" value="0"
-                                                           name="has_fs" {{ old('has_fs', $project->has_fs) == 0 ? 'checked' : '' }}>
-                                                    No
-                                                </label>
-                                            </div>
-                                            @error('has_fs')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="fs_status_id" class="col-form-label col-sm-3">Status of Feasibility
-                                            Study (Only if FS is required)</label>
-                                        <div class="col-sm-9">
-                                            <select name="feasibility_study[fs_status_id]" id="fs_status_id"
-                                                    class="form-control">
-                                                <option value="" selected disabled>Select Status</option>
-                                                @foreach($fs_statuses as $option)
-                                                    <option value="{{ $option->id }}"
-                                                            @if(old('feasibility_study.fs_status_id', $project->feasibility_study->fs_status_id ?? '') == $option->id) selected @endif>{{ $option->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('feasibility_study.fs_status_id')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="feasibility_study.needs_assistance" class="col-form-label col-sm-3">Does
-                                            the conduct of feasibility
-                                            study need assistance?</label>
-                                        <div class="col-sm-9">
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" value="1"
-                                                           name="feasibility_study[needs_assistance]"
-                                                           @if(old('feasibility_study.need_assistance', $project->feasibility_study->need_assistance ?? '') == 1) checked @endif>
-                                                    Yes
-                                                </label>
-                                            </div>
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" value="0"
-                                                           name="feasibility_study[needs_assistance]"
-                                                           @if(old('feasibility_study.need_assistance', $project->feasibility_study->need_assistance ?? '') == 0) checked @endif>
-                                                    No
-                                                </label>
-                                            </div>
-                                            @error('feasibility_study.need_assistance')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="fs_cost">Schedule of Feasibility Study Cost (in absolute PhP)</label>
-                                        <table class="col-sm-12" id="fs_cost">
-                                            <thead>
-                                            <tr>
-                                                <th class="text-sm text-center">2017</th>
-                                                <th class="text-sm text-center">2018</th>
-                                                <th class="text-sm text-center">2019</th>
-                                                <th class="text-sm text-center">2020</th>
-                                                <th class="text-sm text-center">2021</th>
-                                                <th class="text-sm text-center">2022</th>
-                                                <th class="text-sm text-center">Total</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    <input type="text" class="money fs form-control text-right"
-                                                           name="feasibility_study[y2017]"
-                                                           value="{{ old('feasibility_study.y2017', $project->feasibility_study->y2017 ?? 0) }}">
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="money fs form-control text-right"
-                                                           name="feasibility_study[y2018]"
-                                                           value="{{ old('feasibility_study.y2018', $project->feasibility_study->y2018 ?? 0) }}">
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="money fs form-control text-right"
-                                                           name="feasibility_study[y2019]"
-                                                           value="{{ old('feasibility_study.y2019', $project->feasibility_study->y2019 ?? 0) }}">
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="money fs form-control text-right"
-                                                           name="feasibility_study[y2020]"
-                                                           value="{{ old('feasibility_study.y2020', $project->feasibility_study->y2020 ?? 0) }}">
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="money fs form-control text-right"
-                                                           name="feasibility_study[y2021]"
-                                                           value="{{ old('feasibility_study.y2021', $project->feasibility_study->y2021 ?? 0) }}">
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="money fs form-control text-right"
-                                                           name="feasibility_study[y2022]"
-                                                           value="{{ old('feasibility_study.y2022', $project->feasibility_study->y2022 ?? 0) }}">
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="money form-control text-right" id="fs_total"
-                                                           readonly>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="feasibility_study[completion_date]" class="col-form-label col-sm-3">Expected/Target
-                                            Date of Completion of FS</label>
-                                        <div class="col-sm-9">
-                                            <input type="date" class="form-control"
-                                                   name="feasibility_study[completion_date]"
-                                                   value="{{ old('feasibility_study.completion_date', $project->feasibility_study->completion_date ?? '') }}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Project Preparation Details -->
-
-                        <!-- Employment Generation -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Employment Generation") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <label for="employment_generated" class="col-form-label col-sm-3 required">No. of
-                                            persons to
-                                            be employed after completion of the project</label>
-                                        <div class="col-sm-9">
-                                            <input class="form-control @error('employment_generated') is-invalid @enderror"
-                                                   type="number" name="employment_generated"
-                                                   value="{{ old('employment_generated', $project->employment_generated) }}">
-                                            @error('employment_generated')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Employment Generation -->
-
-                        <!-- Philippine Development Plan Chapter -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Philippine Development Plan") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <label for="pdp_chapter_id" class="col-form-label required">Main philippine
-                                                Development Chapter </label>
-                                            <p class="text-sm text-muted">Note: Selected PDP indicators will be cleared if
-                                                you select another PDP chapter.</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <select id="pdp_chapter_id" name="pdp_chapter_id"
-                                                    class="form-control @error('pdp_chapter_id') is-invalid @enderror">
-                                                <option value="" disabled selected>Select Main PDP Chapter</option>
-                                                @foreach($pdp_chapters as $option)
-                                                    <option value="{{ $option->id }}"
-                                                            @if(old('pdp_chapter_id', $project->pdp_chapter_id) == $option->id) selected @endif>{{ $option->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <label for="pdp_chapter_id" class="col-form-label required">Other PDP
-                                                Chapters </label>
-                                            <p class="text-sm text-muted">Note: Please re-select the main PDP chapter.</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            @foreach($pdp_chapters as $option)
-                                                <div class="form-check">
-                                                    <label class="form-check-label" for="pdp_chapter_{{ $option->id }}">
-                                                        <input id="pdp_chapter_{{ $option->id }}" type="checkbox"
-                                                               value="{{ $option->id }}" class="form-check-input"
-                                                               name="pdp_chapters[]"
-                                                               @if(in_array($option->id, old('pdp_chapters', $project->pdp_chapters->pluck('id')->toArray() ?? []))) checked @endif>
-                                                        {{ $option->name }}
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Philippine Development Plan Chapter -->
-
-                        <!-- Philippine Development Plan Indicators -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Philippine Development Results Matrices (PDP-RM) Indicators") }}</h3>
-                                </div>
-                                <!-- TODO: PDP Indicators as Vue component -->
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <label for="no_pdp_indicator" class="form-check-label">
-                                            <input type="checkbox" value="1" id="no_pdp_indicator" name="no_pdp_indicator"
-                                                   class="form-check-input">
-                                            No PDP Indicator applicable
-                                        </label>
-                                    </div>
-
-                                    <div id="pdp_indicators_group" class="form-group mt-2">
-                                        @foreach ($pdp_indicators as $pi1)
-                                            <div id="pdp_chapter_{{$pi1->id}}" class="pdp_chapters" style="display: none;">
-                                                <span class="font-weight-bold">{{ $pi1->name }}</span>
-                                                @foreach($pi1->children as $pi2)
-                                                    <div class="ml-4">
-                                                        <div class="form-check">
-                                                            <label class="form-check-label" for="pdp_outcome_{{$pi2->id}}">
-                                                                <input type="checkbox"
-                                                                       class="form-check-input pdp_indicators"
-                                                                       value="{{$pi2->id}}"
-                                                                       name="pdp_indicators[]"
-                                                                       id="pdp_outcome_{{$pi2->id}}"
-                                                                       @if(in_array($pi2->id, old('pdp_indicators', $project->pdp_indicators->pluck('id')->toArray() ?? []))) checked @endif>
-                                                                {{ $pi2->name }}
-                                                            </label>
-                                                        </div>
-                                                        <div>
-                                                            @foreach($pi2->children as $pi3)
-                                                                <div class="ml-4">
-                                                                    <div class="form-check">
-                                                                        <label class="form-check-label"
-                                                                               for="pdp_suboutcome_{{$pi3->id}}">
-                                                                            <input type="checkbox"
-                                                                                   class="form-check-input pdp_indicators"
-                                                                                   value="{{$pi3->id}}"
-                                                                                   name="pdp_indicators[]"
-                                                                                   id="pdp_suboutcome_{{$pi3->id}}"
-                                                                                   @if(in_array($pi3->id, old('pdp_indicators', $project->pdp_indicators->pluck('id')->toArray() ?? []))) checked @endif>
-                                                                            {{ $pi3->name }}
-                                                                        </label>
-                                                                    </div>
-                                                                    @foreach($pi3->children as $pi4)
-                                                                        <div class="ml-4">
-                                                                            <div class="form-check">
-                                                                                <label class="form-check-label"
-                                                                                       for="pdp_output_{{$pi4->id}}">
-                                                                                    <input type="checkbox"
-                                                                                           class="form-check-input pdp_indicators"
-                                                                                           value="{{$pi4->id}}"
-                                                                                           name="pdp_indicators[]"
-                                                                                           id="pdp_output_{{$pi4->id}}"
-                                                                                           @if(in_array($pi4->id, old('pdp_indicators', $project->pdp_indicators->pluck('id')->toArray() ?? []))) checked @endif>
-                                                                                    {{ $pi4->name }}
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    @endforeach
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Philippine Development Plan Indicators -->
-
-                        <!-- Sustainable Development Goals -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Sustainable Development Goals") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <p class="text-sm text-muted">Select all that applies</p>
-                                    </div>
-                                    <div class="row">
-                                        @foreach($sdgs as $option)
-                                            <div class="col-sm-6">
-                                                <div class="form-check">
-                                                    <label class="form-check-label" for="sdg_{{ $option->id }}">
-                                                        <input id="sdg_{{ $option->id }}" type="checkbox"
-                                                               value="{{ $option->id }}" class="form-check-input"
-                                                               name="sdgs[]"
-                                                               @if(in_array($option->id, old('sdgs', $project->sdgs->pluck('id')->toArray() ?? []))) checked @endif>
-                                                        {{ $option->name }}
-                                                        <p class="text-xs">{{ $option->description }}</p>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        @error('sdgs')<span class="error invalid-feedback">{{ $message }}</span>@enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Sustainable Development Goals -->
-
-                        <!-- Ten Point Agenda -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Ten Point Agenda") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <p class="text-sm text-muted">Select all that applies</p>
-                                    </div>
-                                    <div class="row">
-                                        @foreach($ten_point_agendas as $option)
-                                            <div class="col-sm-6">
-                                                <div class="form-check">
-                                                    <label class="form-check-label" for="tpa_{{ $option->id }}">
-                                                        <input id="tpa_{{ $option->id }}" type="checkbox"
-                                                               value="{{ $option->id }}" class="form-check-input"
-                                                               name="ten_point_agendas[]"
-                                                               @if(in_array($option->id, old('ten_point_agendas', $project->ten_point_agendas->pluck('id')->toArray() ?? []))) checked @endif>
-                                                        {{ $option->name }}
-                                                        <p class="text-xs">{{ $option->description }}</p>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        @error('ten_point_agendas')<span
-                                                class="error invalid-feedback">{{ $message }}</span>@enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Ten Point Agenda -->
-
-                        <!-- Financial Information -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Financial Information") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <label for="funding_source_id" class="col-form-label col-sm-3 required">Main Funding Source </label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control @error('funding_source_id') is-invalid @enderror"
-                                                    name="funding_source_id">
-                                                <option value="" disabled selected>Select Funding Source</option>
-                                                @foreach($funding_sources as $option)
-                                                    <option value="{{ $option->id }}"
-                                                            @if(old('funding_source_id', $project->funding_source_id) == $option->id) selected @endif>{{ $option->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('funding_source_id')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <label for="funding_sources" class="col-form-label required">Other Funding
-                                                Sources</label>
-                                            <p class="text-sm text-muted">Note: Please re-select the main funding source
-                                                selected.</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            @foreach($funding_sources as $option)
-                                                <div class="form-check">
-                                                    <label class="form-check-label" for="fs_{{ $option->id }}">
-                                                        <input id="fs_{{ $option->id }}" type="checkbox"
-                                                               value="{{ $option->id }}" class="form-check-input"
-                                                               name="funding_sources[]"
-                                                               @if(in_array($option->id, old('funding_sources', $project->funding_sources->pluck('id')->toArray() ?? []))) checked @endif>
-                                                        {{ $option->name }}
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                            @error('funding_sources')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                            <p class="text-sm text-muted">Include the main funding source selected.</p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="other_fs" class="col-form-label col-sm-3">Other Funding Source
-                                            (specify)</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="other_fs" id="other_fs"
-                                                   placeholder="Other funding source (please specify)"
-                                                   value="{{ old('other_fs', $project->other_fs) }}">
-                                            @error('other_fs')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="implementation_mode_id" class="col-form-label col-sm-3 required">Mode of
-                                            Implementation </label>
-                                        <div class="col-sm-9">
-                                            <select
-                                                    class="form-control @error('implementation_mode_id') is-invalid @enderror"
-                                                    name="implementation_mode_id">
-                                                <option value="" disabled selected>Select Implementation Mode</option>
-                                                @foreach($implementation_modes as $option)
-                                                    <option value="{{ $option->id }}"
-                                                            @if(old('implementation_mode_id', $project->implementation_mode_id) == $option->id) selected @endif>{{ $option->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('implementation_mode_id')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="funding_institution_id" class="col-form-label col-sm-3">Funding
-                                            Institution</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control select2" name="funding_institution_id">
-                                                <option value="" disabled selected>Select Funding Institution</option>
-                                                @foreach($funding_institutions as $option)
-                                                    <option value="{{ $option->id }}"
-                                                            @if(old('funding_institution_id', $project->funding_institution_id) == $option->id) selected @endif>{{ $option->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('funding_institution_id')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="tier_id" class="col-form-label col-sm-3 required">Budget Tier </label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control @error('tier_id') is-invalid @enderror"
-                                                    name="tier_id">
-                                                <option value="" disabled selected>Select Budget Tier</option>
-                                                @foreach($tiers as $option)
-                                                    <option value="{{ $option->id }}"
-                                                            @if(old('tier_id', $project->tier_id) == $option->id) selected @enderror>{{ $option->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('tier_id')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="uacs_code" class="col-form-label col-sm-3">UACS Code</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control @error('uacs_code') is-invalid @enderror"
-                                                   name="uacs_code" id="uacs_code" placeholder="UACS Code"
-                                                   value="{{ old('uacs_code', $project->uacs_code) }}">
-                                            @error('uacs_code')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Financial Information -->
-
-                        <!-- Status & Updates -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Status & Updates") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <label for="updates" class="col-form-label col-sm-3 required">Updates </label>
-                                        <div class="col-sm-9">
-                                        <textarea rows="4" style="resize: none;"
-                                                  class="form-control @error('updates') is-invalid @enderror"
-                                                  id="updates"
-                                                  name="updates"
-                                                  placeholder="For proposed program/project, please indicate the physical status of the program/project in terms of project preparation, approval, funding, etc. If ongoing or completed, please provide information on the delivery of outputs, percentage of completion and financial status/ accomplishment in terms of utilization rate.">{{ old('updates', $project->project_update->updates) }}</textarea>
-                                            @error('updates')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="updates_date" class="col-form-label col-sm-3 required">As of </label>
-                                        <div class="col-sm-9">
-                                            <input type="date"
-                                                   class="form-control @error('updates_date') is-invalid @enderror"
-                                                   id="updates_date" name="updates_date"
-                                                   value="{{ old('updates_date', $project->project_update->updates_date) }}">
-                                            @error('updates_date')<span
-                                                    class="error invalid-feedback">{{ $message }}</span>@enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Status & Updates -->
-
-                        <!-- Funding Source Breakdown -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Investment Required by Funding Source") }} </h3>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table-responsive">
+                            <dl class="form-group">
+                                <dt class="form-group-header">
+                                    <label for="">Investment Requirements by Funding Source</label>
+                                </dt>
+                                <dd class="form-group-body">
+                                    <table class="col-12 d-table">
                                         <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th class="text-sm text-center">2016 &amp; Prior</th>
-                                            <th class="text-sm text-center">2017</th>
-                                            <th class="text-sm text-center">2018</th>
-                                            <th class="text-sm text-center">2019</th>
-                                            <th class="text-sm text-center">2020</th>
-                                            <th class="text-sm text-center">2021</th>
-                                            <th class="text-sm text-center">2022</th>
-                                            <th class="text-sm text-center">2023 &amp; Beyond</th>
-                                            <th class="text-sm text-center">Total</th>
+                                        <tr class="border-top border-bottom">
+                                            <th class="col-1 p-1">Financing Source</th>
+                                            <th class="col-1 p-1 text-center">2022 &amp; Prior</th>
+                                            <th class="col-1 p-1 text-center">2023</th>
+                                            <th class="col-1 p-1 text-center">2024</th>
+                                            <th class="col-1 p-1 text-center">2025</th>
+                                            <th class="col-1 p-1 text-center">2026 &amp; Beyond</th>
+                                            <th class="col-1 p-1 text-center">Total</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($project->fs_investments as $fs)
-                                            <tr>
-                                                <th class="text-sm">
-                                                    <input type="hidden" name="fs_investments[{{ $fs->id }}][fs_id]"
-                                                           value="{{ old('fs_investments.{$fs->id}.fs_id', $fs->fs_id ?? 0) }}">
+                                        @foreach ($project->fs_infrastructures as $key => $fs)
+                                            <tr class="border-bottom">
+                                                <th class="p-1 text-left">
+                                                    <input type="hidden" name="fs_infrastructures[{{ $key }}][ref_funding_source_id]"
+                                                           value="{{ old("fs_infrastructures.{$key}.ref_funding_source_id", $fs->ref_funding_source_id ?? 0) }}">
                                                     {{ $fs->funding_source->name }}
                                                 </th>
-                                                <td><input type="text"
-                                                           class="fs_investments fs_investments_2016 fs_investments_{{$fs->fs_id}} money form-control text-right"
-                                                           name="fs_investments[{{$fs->id}}][y2016]"
-                                                           value="{{ old("fs_investments.{$fs->id}.y2016", $fs->y2016 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text"
+                                                           class="fs_infrastructures fs_infrastructures_2022 fs_infrastructures_{{$key}} money form-control text-right width-full"
+                                                           name="fs_infrastructures[{{$key}}][y2022]"
+                                                           value="{{ old("fs_infrastructures.{$key}.y2022", $fs->y2022 ?? 0) }}">
                                                 </td>
-                                                <td><input type="text"
-                                                           class="fs_investments fs_investments_2017 fs_investments_{{$fs->fs_id}} money form-control text-right"
-                                                           name="fs_investments[{{$fs->id}}][y2017]"
-                                                           value="{{ old("fs_investments.{$fs->id}.y2017", $fs->y2017 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text"
+                                                           class="fs_infrastructures fs_infrastructures_2023 fs_infrastructures_{{$key}} money form-control text-right width-full"
+                                                           name="fs_infrastructures[{{$key}}][y2023]"
+                                                           value="{{ old("fs_infrastructures.{$key}.y2023", $fs->y2023 ?? 0) }}">
                                                 </td>
-                                                <td><input type="text"
-                                                           class="fs_investments fs_investments_2018 fs_investments_{{$fs->fs_id}} money form-control text-right"
-                                                           name="fs_investments[{{$fs->id}}][y2018]"
-                                                           value="{{ old("fs_investments.{$fs->id}.y2018", $fs->y2018 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text"
+                                                           class="fs_infrastructures fs_infrastructures_2024 fs_infrastructures_{{$key}} money form-control text-right width-full"
+                                                           name="fs_infrastructures[{{$key}}][y2024]"
+                                                           value="{{ old("fs_infrastructures.{$key}.y2024", $fs->y2024 ?? 0) }}">
                                                 </td>
-                                                <td><input type="text"
-                                                           class="fs_investments fs_investments_2019 fs_investments_{{$fs->fs_id}} money form-control text-right"
-                                                           name="fs_investments[{{$fs->id}}][y2019]"
-                                                           value="{{ old("fs_investments.{$fs->id}.y2019", $fs->y2019 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text"
+                                                           class="fs_infrastructures fs_infrastructures fs_infrastructures_{{$key}} money form-control text-right width-full"
+                                                           name="fs_infrastructures[{{$key}}][y2025]"
+                                                           value="{{ old("fs_infrastructures.{$key}.y2025", $fs->y2025 ?? 0) }}">
                                                 </td>
-                                                <td><input type="text"
-                                                           class="fs_investments fs_investments_2020 fs_investments_{{$fs->fs_id}} money form-control text-right"
-                                                           name="fs_investments[{{$fs->id}}][y2020]"
-                                                           value="{{ old("fs_investments.{$fs->id}.y2020", $fs->y2020 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text"
+                                                           class="fs_infrastructures fs_infrastructures_2026 fs_infrastructures_{{$key}} money form-control text-right width-full"
+                                                           name="fs_infrastructures[{{$key}}][y2026]"
+                                                           value="{{ old("fs_infrastructures.{$key}.y2026", $fs->y2026 ?? 0) }}">
                                                 </td>
-                                                <td><input type="text"
-                                                           class="fs_investments fs_investments_2021 fs_investments_{{$fs->fs_id}} money form-control text-right"
-                                                           name="fs_investments[{{$fs->id}}][y2021]"
-                                                           value="{{ old("fs_investments.{$fs->id}.y2021", $fs->y2021 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text" class="form-control text-right  width-full"
+                                                           id="fs_infrastructures_{{$key}}_total" disabled>
                                                 </td>
-                                                <td><input type="text"
-                                                           class="fs_investments fs_investments_2022 fs_investments_{{$fs->fs_id}} money form-control text-right"
-                                                           name="fs_investments[{{$fs->id}}][y2022]"
-                                                           value="{{ old("fs_investments.{$fs->id}.y2022", $fs->y2022 ?? 0) }}">
-                                                </td>
-                                                <td><input type="text"
-                                                           class="fs_investments fs_investments_2023 fs_investments_{{$fs->fs_id}} money form-control text-right"
-                                                           name="fs_investments[{{$fs->id}}][y2023]"
-                                                           value="{{ old("fs_investments.{$fs->id}.y2023", $fs->y2023 ?? 0) }}">
-                                                </td>
-                                                <td><input type="text" class="form-control text-right"
-                                                           id="fs_investments_{{$fs->fs_id}}_total" readonly></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
                                         <tfoot>
-                                        <tr>
-                                            <th>Total</th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="fs_investments_2016_total" readonly>
+                                        <tr class="border-bottom">
+                                            <th class="p-1">Total</th>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control money text-right width-full"
+                                                       id="fs_infrastructures_2022_total" readonly>
                                             </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="fs_investments_2017_total" readonly>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control money text-right width-full"
+                                                       id="fs_infrastructures_2023_total" readonly>
                                             </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="fs_investments_2018_total" readonly>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control money text-right width-full"
+                                                       id="fs_infrastructures_2024_total" readonly>
                                             </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="fs_investments_2019_total" readonly>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control money text-right width-full"
+                                                       id="fs_infrastructures_2025_total" readonly>
                                             </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="fs_investments_2020_total" readonly>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control money text-right width-full"
+                                                       id="fs_infrastructures_2026_total" readonly>
                                             </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="fs_investments_2021_total" readonly>
-                                            </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="fs_investments_2022_total" readonly>
-                                            </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="fs_investments_2023_total" readonly>
-                                            </th>
-                                            <th>
-                                                <input type="text" class="form-control text-right" id="fs_investments_total"
+                                            <th class="p-1">
+                                                <input type="text" class="form-control text-right width-full" id="fs_infrastructures_total"
                                                        readonly>
                                             </th>
                                         </tr>
                                         </tfoot>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Funding Source Breakdown -->
+                                </dd>
+                            </dl>
 
-                        <!-- Regional Breakdown -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Investment Required by RefRegion") }} </h3>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table-responsive">
+                            <dl class="form-group">
+                                <dt class="form-group-header">
+                                    <label for="">Investment Requirements by Region</label>
+                                </dt>
+                                <dd class="form-group-body">
+                                    <table class="col-12 d-table">
                                         <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th class="text-sm text-center">2016 &amp; Prior</th>
-                                            <th class="text-sm text-center">2017</th>
-                                            <th class="text-sm text-center">2018</th>
-                                            <th class="text-sm text-center">2019</th>
-                                            <th class="text-sm text-center">2020</th>
-                                            <th class="text-sm text-center">2021</th>
-                                            <th class="text-sm text-center">2022</th>
-                                            <th class="text-sm text-center">2023 &amp; Beyond</th>
-                                            <th class="text-sm text-center">Total</th>
+                                        <tr class="border-top border-bottom">
+                                            <th class="col-1 p-1">Region</th>
+                                            <th class="col-1 p-1 text-center">2022 &amp; Prior</th>
+                                            <th class="col-1 p-1 text-center">2023</th>
+                                            <th class="col-1 p-1 text-center">2024</th>
+                                            <th class="col-1 p-1 text-center">2025</th>
+                                            <th class="col-1 p-1 text-center">2026 &amp; Beyond</th>
+                                            <th class="col-1 p-1 text-center">Total</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($project->region_investments->sortBy('region.order') as $ri)
-                                            <tr>
-                                                <td class="text-sm text-nowrap">
-                                                    <input type="hidden"
-                                                           name="region_investments[{{$ri->id}}][region_id]"
-                                                           value="{{ $ri->region_id }}">
-                                                    {{ $ri->region->label }}
+                                        @foreach ($project->region_infrastructures->sortby('region.order') as $key => $fs)
+                                            <tr class="border-bottom">
+                                                <th class="p-1 text-left">
+                                                    <input type="hidden" name="region_infrastructures[{{ $key }}][ref_region_id]"
+                                                           value="{{ old("region_infrastructures.{$key}.ref_region_id", $fs->ref_region_id ?? 0) }}">
+                                                    {{ $fs->region->label }}
+                                                </th>
+                                                <td class="p-1">
+                                                    <input type="text"
+                                                           class="region_infrastructures region_infrastructures_2022 region_infrastructures_{{$key}} money form-control text-right width-full"
+                                                           name="region_infrastructures[{{$key}}][y2022]"
+                                                           value="{{ old("region_infrastructures.{$key}.y2022", $fs->y2022 ?? 0) }}">
                                                 </td>
-                                                <td><input type="text"
-                                                           class="region_investments money region_investments_2016 region_investments_{{$ri->region_id}} form-control money text-right"
-                                                           name="region_investments[{{$ri->id}}][y2016]"
-                                                           value="{{ old("region_investments.{$ri->id}.y2016", $ri->y2016 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text"
+                                                           class="region_infrastructures region_investments_2023 region_infrastructures_{{$key}} money form-control text-right width-full"
+                                                           name="region_infrastructures[{{$key}}][y2023]"
+                                                           value="{{ old("region_infrastructures.{$key}.y2023", $fs->y2023 ?? 0) }}">
                                                 </td>
-                                                <td><input type="text"
-                                                           class="region_investments money region_investments_2017 region_investments_{{$ri->region_id}} form-control money text-right"
-                                                           name="region_investments[{{$ri->id}}][y2017]"
-                                                           value="{{ old("region_investments.{$ri->id}.y2017", $ri->y2017 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text"
+                                                           class="region_investments region_investments_2024 region_infrastructures_{{$key}} money form-control text-right width-full"
+                                                           name="region_investments[{{$key}}][y2024]"
+                                                           value="{{ old("region_infrastructures.{$key}.y2024", $fs->y2024 ?? 0) }}">
                                                 </td>
-                                                <td><input type="text"
-                                                           class="region_investments money region_investments_2018 region_investments_{{$ri->region_id}} form-control money text-right"
-                                                           name="region_investments[{{$ri->id}}][y2018]"
-                                                           value="{{ old("region_investments.{$ri->id}.y2018", $ri->y2018 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text"
+                                                           class="region_infrastructures region_infrastructures_2025 region_infrastructures_{{$key}} money form-control text-right width-full"
+                                                           name="region_infrastructures[{{$key}}][y2025]"
+                                                           value="{{ old("region_infrastructures.{$key}.y2025", $fs->y2025 ?? 0) }}">
                                                 </td>
-                                                <td><input type="text"
-                                                           class="region_investments money region_investments_2019 region_investments_{{$ri->region_id}} form-control money text-right"
-                                                           name="region_investments[{{$ri->id}}][y2019]"
-                                                           value="{{ old("region_investments.{$ri->id}.y2019", $ri->y2019 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text"
+                                                           class="region_infrastructures region_infrastructures_2026 region_infrastructures_{{$key}} money form-control text-right width-full"
+                                                           name="region_infrastructures[{{$key}}][y2026]"
+                                                           value="{{ old("region_infrastructures.{$key}.y2026", $fs->y2026 ?? 0) }}">
                                                 </td>
-                                                <td><input type="text"
-                                                           class="region_investments money region_investments_2020 region_investments_{{$ri->region_id}} form-control money text-right"
-                                                           name="region_investments[{{$ri->id}}][y2020]"
-                                                           value="{{ old("region_investments.{$ri->id}.y2020", $ri->y2020 ?? 0) }}">
+                                                <td class="p-1">
+                                                    <input type="text" class="form-control text-right  width-full"
+                                                           id="region_infrastructures_{{$key}}_total" disabled>
                                                 </td>
-                                                <td><input type="text"
-                                                           class="region_investments money region_investments_2021 region_investments_{{$ri->region_id}} form-control money text-right"
-                                                           name="region_investments[{{$ri->id}}][y2021]"
-                                                           value="{{ old("region_investments.{$ri->id}.y2021", $ri->y2021 ?? 0) }}">
-                                                </td>
-                                                <td><input type="text"
-                                                           class="region_investments money region_investments_2022 region_investments_{{$ri->region_id}} form-control money text-right"
-                                                           name="region_investments[{{$ri->id}}][y2022]"
-                                                           value="{{ old("region_investments.{$ri->id}.y2022", $ri->y2022 ?? 0) }}">
-                                                </td>
-                                                <td><input type="text"
-                                                           class="region_investments money region_investments_2023 region_investments_{{$ri->region_id}} form-control money text-right"
-                                                           name="region_investments[{{$ri->id}}][y2023]"
-                                                           value="{{ old("region_investments.{$ri->id}.y2023", $ri->y2023 ?? 0) }}">
-                                                </td>
-                                                <td><input type="text" class="form-control money text-right"
-                                                           id="region_investments_{{$ri->region_id}}_total" readonly></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
                                         <tfoot>
-                                        <tr>
-                                            <th>Total</th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="region_investments_2016_total" readonly>
+                                        <tr class="border-bottom">
+                                            <th class="p-1">Total</th>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control money text-right width-full"
+                                                       id="region_infrastructures_2022_total" readonly>
                                             </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="region_investments_2017_total" readonly>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control money text-right width-full"
+                                                       id="region_infrastructures_2023_total" readonly>
                                             </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="region_investments_2018_total" readonly>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control money text-right width-full"
+                                                       id="region_infrastructures_2024_total" readonly>
                                             </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="region_investments_2019_total" readonly>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control money text-right width-full"
+                                                       id="region_infrastructures_2025_total" readonly>
                                             </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="region_investments_2020_total" readonly>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control money text-right width-full"
+                                                       id="region_infrastructures_2026_total" readonly>
                                             </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="region_investments_2021_total" readonly>
-                                            </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="region_investments_2022_total" readonly>
-                                            </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="region_investments_2023_total" readonly>
-                                            </th>
-                                            <th>
-                                                <input type="text" class="form-control money text-right"
-                                                       id="region_investments_total" readonly>
+                                            <th class="p-1">
+                                                <input type="text" class="form-control text-right width-full" id="region_infrastructures_total"
+                                                       readonly>
                                             </th>
                                         </tr>
                                         </tfoot>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/. Regional Breakdown -->
+                                </dd>
+                            </dl>
 
-                        <!-- Financial Status -->
-                        <div class="col-md-12">
-                            <div class="card card-primary card-outline">
-                                <div class="card-header">
-                                    <h3 class="card-title">{{ __("Financial Status") }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table-responsive">
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th class="text-sm text-center">2016 &amp; Prior</th>
-                                            <th class="text-sm text-center">2017</th>
-                                            <th class="text-sm text-center">2018</th>
-                                            <th class="text-sm text-center">2019</th>
-                                            <th class="text-sm text-center">2020</th>
-                                            <th class="text-sm text-center">2021</th>
-                                            <th class="text-sm text-center">2022</th>
-                                            <th class="text-sm text-center">2023 &amp; Beyond</th>
-                                            <th class="text-sm text-center">Total</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th class="text-sm">National Expenditure Program (NEP)</th>
-                                            <td><input type="text" class="nep money form-control text-right"
-                                                       name="nep[y2016]"
-                                                       value="{{ old("nep.y2016", $project->nep->y2016 ?? 0) }}"></td>
-                                            <td><input type="text" class="nep money form-control text-right"
-                                                       name="nep[y2017]"
-                                                       value="{{ old("nep.y2017", $project->nep->y2017 ?? 0) }}"></td>
-                                            <td><input type="text" class="nep money form-control text-right"
-                                                       name="nep[y2018]"
-                                                       value="{{ old("nep.y2018", $project->nep->y2018 ?? 0) }}"></td>
-                                            <td><input type="text" class="nep money form-control text-right"
-                                                       name="nep[y2019]"
-                                                       value="{{ old("nep.y2019", $project->nep->y2019 ?? 0) }}"></td>
-                                            <td><input type="text" class="nep money form-control text-right"
-                                                       name="nep[y2020]"
-                                                       value="{{ old("nep.y2020", $project->nep->y2020 ?? 0) }}"></td>
-                                            <td><input type="text" class="nep money form-control text-right"
-                                                       name="nep[y2021]"
-                                                       value="{{ old("nep.y2021", $project->nep->y2021 ?? 0) }}"></td>
-                                            <td><input type="text" class="nep money form-control text-right"
-                                                       name="nep[y2022]"
-                                                       value="{{ old("nep.y2022", $project->nep->y2022 ?? 0) }}"
-                                                       readonly></td>
-                                            <td><input type="text" class="nep money form-control text-right"
-                                                       name="nep[y2023]"
-                                                       value="{{ old("nep.y2023", $project->nep->y2023 ?? 0) }}"
-                                                       readonly></td>
-                                            <td><input type="text" class="form-control text-right" id="nep_total" readonly>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-sm">General Appropriations Act (GAA)</th>
-                                            <td><input type="text" class="allocation money form-control text-right"
-                                                       name="allocation[y2016]"
-                                                       value="{{ old("allocation.y2016", $project->allocation->y2016 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="allocation money form-control text-right"
-                                                       name="allocation[y2017]"
-                                                       value="{{ old("allocation.y2017", $project->allocation->y2017 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="allocation money form-control text-right"
-                                                       name="allocation[y2018]"
-                                                       value="{{ old("allocation.y2018", $project->allocation->y2018 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="allocation money form-control text-right"
-                                                       name="allocation[y2019]"
-                                                       value="{{ old("allocation.y2019", $project->allocation->y2019 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="allocation money form-control text-right"
-                                                       name="allocation[y2020]"
-                                                       value="{{ old("allocation.y2020", $project->allocation->y2020 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="allocation money form-control text-right"
-                                                       name="allocation[y2021]"
-                                                       value="{{ old("allocation.y2021", $project->allocation->y2021 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="allocation money form-control text-right"
-                                                       name="allocation[y2022]"
-                                                       value="{{ old("allocation.y2022", $project->allocation->y2022 ?? 0) }}"
-                                                       readonly>
-                                            </td>
-                                            <td><input type="text" class="allocation money form-control text-right"
-                                                       name="allocation[y2023]"
-                                                       value="{{ old("allocation.y2023", $project->allocation->y2023 ?? 0) }}"
-                                                       readonly>
-                                            </td>
-                                            <td><input type="text" class="form-control text-right" id="allocation_total"
-                                                       readonly>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-sm">Actual Disbursement</th>
-                                            <td><input type="text" class="disbursement money form-control text-right"
-                                                       name="disbursement[y2016]"
-                                                       value="{{ old("disbursement.y2016", $project->disbursement->y2016 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="disbursement money form-control text-right"
-                                                       name="disbursement[y2017]"
-                                                       value="{{ old("disbursement.y2017", $project->disbursement->y2017 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="disbursement money form-control text-right"
-                                                       name="disbursement[y2018]"
-                                                       value="{{ old("disbursement.y2018", $project->disbursement->y2018 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="disbursement money form-control text-right"
-                                                       name="disbursement[y2019]"
-                                                       value="{{ old("disbursement.y2019", $project->disbursement->y2019 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="disbursement money form-control text-right"
-                                                       name="disbursement[y2020]"
-                                                       value="{{ old("disbursement.y2020", $project->disbursement->y2020 ?? 0) }}">
-                                            </td>
-                                            <td><input type="text" class="disbursement money form-control text-right"
-                                                       name="disbursement[y2021]"
-                                                       value="{{ old("disbursement.y2021", $project->disbursement->y2021 ?? 0) }}"
-                                                       readonly>
-                                            </td>
-                                            <td><input type="text" class="disbursement money form-control text-right"
-                                                       name="disbursement[y2022]"
-                                                       value="{{ old("disbursement.y2022", $project->disbursement->y2022 ?? 0) }}"
-                                                       readonly>
-                                            </td>
-                                            <td><input type="text" class="disbursement money form-control text-right"
-                                                       name="disbursement[y2023]"
-                                                       value="{{ old("disbursement.y2023", $project->disbursement->y2023 ?? 0) }}"
-                                                       readonly>
-                                            </td>
-                                            <td><input type="text" class="money form-control text-right"
-                                                       id="disbursement_total" readonly></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
-                        <!--/. Financial Status -->
+
                     </div>
+
+                    <dl class="form-group @error('expected_outputs') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="expected_outputs" class="required">Expected Outputs </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-textarea name="expected_outputs" :value="old('expected_outputs', $project->expected_output->expected_outputs ?? '')"></x-textarea>
+                            <x-error-message name="expected_outputs" id="expected_outputs-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="0-10 Point Socioeconomic Agenda"></x-subhead>
+
+                    <dl class="form-group @error('ten_point_agendas') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ten_point_agendas">0-10 Point Socioeconomic Agenda </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.checkbox :options="$ten_point_agendas" name="ten_point_agendas[]" :selected="old('ten_point_agendas', $project->ten_point_agendas->pluck('id')->toArray() ?? [])" aria-describedby="ten_point_agendas-validation"></x-input.checkbox>
+                            <x-error-message name="ten_point_agendas[]" id="ten_point_agendas-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Sustainable Development Goals (SDG)"></x-subhead>
+
+                    <dl class="form-group @error('sdgs') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="sdgs">Sustainable Development Goals (SDG) </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.checkbox :options="$sdgs" name="sdgs[]" :selected="old('sdgs', $project->sdgs->pluck('id')->toArray() ?? [])" aria-describedby="sdgs-validation"></x-input.checkbox>
+                            <x-error-message name="sdgs[]" id="sdgs-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Level of GAD Responsiveness"></x-subhead>
+
+                    <dl class="form-group @error('ref_gad_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_gad_id" class="required">Level of GAD Responsiveness  </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="ref_gad_id" :options="$gads" :selected="old('ref_gad_id', $project->ref_gad_id ?? '')" aria-describedby="ref_preparation_document_id-validation"></x-select>
+                            <x-error-message name="ref_gad_id" id="ref_gad_id-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Project Preparation Details"></x-subhead>
+
+                    <dl class="form-group @error('ref_preparation_document_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_preparation_document_id" class="required">Project Preparation Document </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select name="ref_preparation_document_id" :options="$preparation_documents" :selected="old('ref_preparation_document_id', $project->ref_preparation_document_id ?? '')" aria-describedby="ref_preparation_document_id-validation"></x-select>
+                            <x-error-message name="ref_preparation_document_id" id="ref_preparation_document_id-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('feasibility_study.needs_assistance') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="feasibility_study.needs_assistance">Will require assistance for the conduct of Feasibility Study? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="feasibility_study.needs_assistance" selected="{{ old('feasibility_study.needs_assistance', $project->feasibility_study->needs_assistance) }}" aria-describedby="need-assistance-validation"></x-input.radio>
+                            <x-error-message name="feasibility_study.needs_assistance" id="needs_assistance-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('feasibility_study.ref_fs_status_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_fs_status_id">Status of Feasibility
+                                Study (Only if FS is required)</label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select :options="$fs_statuses" :selected="old('feasibility_study.ref_fs_status_id', $project->feasibility_study->ref_fs_status_id ?? '')" name="feasibility_study[ref_fs_status_id]" id="ref_fs_status_id" aria-describedby="fs-status-validation"></x-select>
+                            <x-error-message name="feasibility_study.ref_fs_status_id" id="fs-status-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group">
+                        <dt class="form-group-header">
+                            <label for="fs_cost">Schedule of Feasibility Study Cost (in absolute PhP)</label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <table class="col-12 d-table" id="fs_cost">
+                                <thead>
+                                <tr>
+                                    <th class="col-1 text-center">2017</th>
+                                    <th class="col-1 text-center">2018</th>
+                                    <th class="col-1 text-center">2019</th>
+                                    <th class="col-1 text-center">2020</th>
+                                    <th class="col-1 text-center">2021</th>
+                                    <th class="col-1 text-center">2022</th>
+                                    <th class="col-1 text-center">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="feasibility_study[y2017]"
+                                               value="{{ old('feasibility_study.y2017', $project->feasibility_study->y2017 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="feasibility_study[y2018]"
+                                               value="{{ old('feasibility_study.y2018', $project->feasibility_study->y2018 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="feasibility_study[y2019]"
+                                               value="{{ old('feasibility_study.y2019', $project->feasibility_study->y2019 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="feasibility_study[y2020]"
+                                               value="{{ old('feasibility_study.y2020', $project->feasibility_study->y2020 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="feasibility_study[y2021]"
+                                               value="{{ old('feasibility_study.y2021', $project->feasibility_study->y2021 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="feasibility_study[y2022]"
+                                               value="{{ old('feasibility_study.y2022', $project->feasibility_study->y2022 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money form-control text-right width-full" id="fs_total"
+                                               disabled>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group">
+                        <dt class="form-group-header">
+                            <label for="completion_date">Expected/Target
+                                Date of Completion of FS</label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <input type="date" class="form-control"
+                                   name="feasibility_study[completion_date]"
+                                   value="{{ old('feasibility_study.completion_date', $project->feasibility_study->completion_date ?? '') }}">
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Pre-Construction Costs"></x-subhead>
+
+                    <dl class="form-group @error('has_row') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="has_row">With ROWA Component? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="has_row" selected="{{ old('has_row', $project->has_row) }}" aria-describedby="has-row-validation"></x-input.radio>
+                            <x-error-message name="has_row" id="has-row-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group">
+                        <dt class="form-group-header">
+                            <label for="row_cost">Schedule of ROWA Cost (in absolute PhP)</label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <table class="col-12 d-table" id="row_cost">
+                                <thead>
+                                <tr>
+                                    <th class="col-1 text-center">2017</th>
+                                    <th class="col-1 text-center">2018</th>
+                                    <th class="col-1 text-center">2019</th>
+                                    <th class="col-1 text-center">2020</th>
+                                    <th class="col-1 text-center">2021</th>
+                                    <th class="col-1 text-center">2022</th>
+                                    <th class="col-1 text-center">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="right_of_way[y2017]"
+                                               value="{{ old('right_of_way.y2017', $project->right_of_way->y2017 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="right_of_way[y2018]"
+                                               value="{{ old('right_of_way.y2018', $project->right_of_way->y2018 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="right_of_way[y2019]"
+                                               value="{{ old('right_of_way.y2019', $project->right_of_way->y2019 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="right_of_way[y2020]"
+                                               value="{{ old('right_of_way.y2020', $project->right_of_way->y2020 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="right_of_way[y2021]"
+                                               value="{{ old('right_of_way.y2021', $project->right_of_way->y2021 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="right_of_way[y2022]"
+                                               value="{{ old('right_of_way.y2022', $project->right_of_way->y2022 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money form-control text-right width-full" id="row_total"
+                                               disabled>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </dd>
+                    </dl>
+                    
+                    <dl class="form-group">
+                        <dt>
+                            <label for="">Affected households</label>
+                        </dt>
+                        <dd>
+                            <input type="text" class="form-control" name="right_of_way[affected_households]"
+                                value="{{ old('right_of_way.affected_households', $project->right_of_way->affected_households) }}">
+                        </dd>
+                    </dl>
+
+                    <div class="border-bottom"></div>
+
+                    <dl class="form-group @error('has_row') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="has_rap">With Resettlement Component? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="has_rap" selected="{{ old('has_rap', $project->has_rap) }}" aria-describedby="has-rap-validation"></x-input.radio>
+                            <x-error-message name="has_rap" id="has-rap-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group">
+                        <dt class="form-group-header">
+                            <label for="rap_cost">Schedule of Resettlement Cost (in absolute PhP)</label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <table class="col-12 d-table" id="rap_cost">
+                                <thead>
+                                <tr>
+                                    <th class="col-1 text-center">2017</th>
+                                    <th class="col-1 text-center">2018</th>
+                                    <th class="col-1 text-center">2019</th>
+                                    <th class="col-1 text-center">2020</th>
+                                    <th class="col-1 text-center">2021</th>
+                                    <th class="col-1 text-center">2022</th>
+                                    <th class="col-1 text-center">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="resettlement_action_plan[y2017]"
+                                               value="{{ old('resettlement_action_plan.y2017', $project->resettlement_action_plan->y2017 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="resettlement_action_plan[y2018]"
+                                               value="{{ old('resettlement_action_plan.y2018', $project->resettlement_action_plan->y2018 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="resettlement_action_plan[y2019]"
+                                               value="{{ old('resettlement_action_plan.y2019', $project->resettlement_action_plan->y2019 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="resettlement_action_plan[y2020]"
+                                               value="{{ old('resettlement_action_plan.y2020', $project->resettlement_action_plan->y2020 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="resettlement_action_plan[y2021]"
+                                               value="{{ old('resettlement_action_plan.y2021', $project->resettlement_action_plan->y2021 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money fs form-control text-right width-full"
+                                               name="resettlement_action_plan[y2022]"
+                                               value="{{ old('resettlement_action_plan.y2022', $project->resettlement_action_plan->y2022 ?? 0) }}">
+                                    </td>
+                                    <td class="p-1">
+                                        <input type="text" class="money form-control text-right width-full" id="row_total"
+                                               disabled>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group">
+                        <dt>
+                            <label for="">Affected households</label>
+                        </dt>
+                        <dd>
+                            <input type="text" class="form-control" name="resettlement_action_plan[affected_households]"
+                                   value="{{ old('resettlement_action_plan.affected_households', $project->resettlement_action_plan->affected_households) }}">
+                        </dd>
+                    </dl>
+
+                    <div class="border-bottom"></div>
+
+                    <dl class="form-group @error('has_row_rap') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="has_row_rap">With Resettlement Component? </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-input.radio :options="$boolean" name="has_row_rap" selected="{{ old('has_row_rap', $project->has_row_rap) }}" aria-describedby="has-row-rap-validation"></x-input.radio>
+                            <x-error-message name="has_row_rap" id="has-row-rap-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Employment Generation"></x-subhead>
+
+                    <dl class="form-group">
+                        <dt>
+                            <label for="">No. of persons to be employed:</label>
+                        </dt>
+                        <dd>
+                            <input type="number" class="form-control" name="employment_generated"
+                                   value="{{ old('employment_generated', $project->employment_generated ?? 0) }}">
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Funding Source and Mode of Implementation"></x-subhead>
+
+                    <dl class="form-group @error('ref_funding_source_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_funding_source_id" class="required">Main Funding Source </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select :options="$funding_sources" name="ref_funding_source_id" selected="{{ old('ref_funding_source_id', $project->ref_funding_source_id) }}" aria-describedby="ref_funding_source_id-validation"></x-select>
+                            <x-error-message name="ref_funding_source_id" id="ref_funding_source_id-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('ref_funding_institution_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_funding_institution_id" class="required">ODA Funding Institution </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select :options="$funding_institutions" name="ref_funding_institution_id" selected="{{ old('ref_funding_institution_id', $project->ref_funding_institution_id) }}" aria-describedby="ref_funding_institution_id-validation"></x-select>
+                            <x-error-message name="ref_funding_institution_id" id="ref_funding_institution_id-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('ref_implementation_mode_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_implementation_mode_id" class="required">Mode of Implementation </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select :options="$implementation_modes" name="ref_implementation_mode_id" selected="{{ old('ref_implementation_mode_id', $project->ref_implementation_mode_id) }}" aria-describedby="ref_implementation_mode_id-validation"></x-select>
+                            <x-error-message name="ref_implementation_mode_id" id="ref_implementation_mode_id-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Project Costs"></x-subhead>
+                    
+                    <dl class="form-group">
+                        <dt class="form-group-header">
+                            <label for="">Investment Requirements by Funding Source</label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <table class="col-12 d-table">
+                                <thead>
+                                    <tr class="border-top border-bottom">
+                                        <th class="col-1 p-1">Financing Source</th>
+                                        <th class="col-1 p-1 text-center">2022 &amp; Prior</th>
+                                        <th class="col-1 p-1 text-center">2023</th>
+                                        <th class="col-1 p-1 text-center">2024</th>
+                                        <th class="col-1 p-1 text-center">2025</th>
+                                        <th class="col-1 p-1 text-center">2026 &amp; Beyond</th>
+                                        <th class="col-1 p-1 text-center">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($project->fs_investments as $key => $fs)
+                                    <tr class="border-bottom">
+                                        <th class="p-1 text-left">
+                                            <input type="hidden" name="fs_investments[{{ $key }}][ref_funding_source_id]"
+                                                   value="{{ old('fs_investments.{$fs->id}.ref_funding_source_id', $fs->ref_funding_source_id ?? 0) }}">
+                                            {{ $fs->funding_source->name }}
+                                        </th>
+                                        <td class="p-1">
+                                            <input type="text"
+                                                   class="fs_investments fs_investments_2022 fs_investments_{{$key}} money form-control text-right width-full"
+                                                   name="fs_investments[{{$key}}][y2022]"
+                                                   value="{{ old("fs_investments.{$fs->id}.y2022", $fs->y2022 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1"><input type="text"
+                                                   class="fs_investments fs_investments_2023 fs_investments_{{$key}} money form-control text-right width-full"
+                                                   name="fs_investments[{{$key}}][y2023]"
+                                                   value="{{ old("fs_investments.{$fs->id}.y2023", $fs->y2023 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1"><input type="text"
+                                                   class="fs_investments fs_investments_2024 fs_investments_{{$key}} money form-control text-right width-full"
+                                                   name="fs_investments[{{$key}}][y2024]"
+                                                   value="{{ old("fs_investments.{$fs->id}.y2024", $fs->y2024 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1"><input type="text"
+                                                   class="fs_investments fs_investments_2025 fs_investments_{{$key}} money form-control text-right width-full"
+                                                   name="fs_investments[{{$key}}][y2025]"
+                                                   value="{{ old("fs_investments.{$fs->id}.y2025", $fs->y2025 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text"
+                                                   class="fs_investments fs_investments_2026 fs_investments_{{$key}} money form-control text-right width-full"
+                                                   name="fs_investments[{{$key}}][y2026]"
+                                                   value="{{ old("fs_investments.{$fs->id}.y2026", $fs->y2026 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="form-control text-right  width-full"
+                                                   id="fs_investments_{{$key}}_total" disabled>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr class="border-bottom">
+                                    <th class="p-1">Total</th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control money text-right width-full"
+                                               id="fs_investments_2022_total" readonly>
+                                    </th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control money text-right width-full"
+                                               id="fs_investments_2023_total" readonly>
+                                    </th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control money text-right width-full"
+                                               id="fs_investments_2024_total" readonly>
+                                    </th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control money text-right width-full"
+                                                id="fs_investments_2025_total" readonly>
+                                    </th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control money text-right width-full"
+                                               id="fs_investments_2026_total" readonly>
+                                    </th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control text-right width-full" id="fs_investments_total"
+                                               readonly>
+                                    </th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group">
+                        <dt class="form-group-header">
+                            <label for="">Investment Requirements by Region</label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <table class="col-12 d-table">
+                                <thead>
+                                <tr class="border-top border-bottom">
+                                    <th class="col-1 p-1">Region</th>
+                                    <th class="col-1 p-1 text-center">2022 &amp; Prior</th>
+                                    <th class="col-1 p-1 text-center">2023</th>
+                                    <th class="col-1 p-1 text-center">2024</th>
+                                    <th class="col-1 p-1 text-center">2025</th>
+                                    <th class="col-1 p-1 text-center">2026 &amp; Beyond</th>
+                                    <th class="col-1 p-1 text-center">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($project->region_investments->sortby('region.order') as $key => $fs)
+                                    <tr class="border-bottom">
+                                        <th class="p-1 text-left">
+                                            <input type="hidden" name="region_investments[{{ $key }}][ref_region_id]"
+                                                   value="{{ old("fs_investments.{$key}.ref_region_id", $fs->ref_region_id ?? 0) }}">
+                                            {{ $fs->region->label }}
+                                        </th>
+                                        <td class="p-1">
+                                            <input type="text"
+                                                   class="region_investments region_investments_2022 region_investments_{{$key}} money form-control text-right width-full"
+                                                   name="region_investments[{{$key}}][y2022]"
+                                                   value="{{ old("region_investments.{$key}.y2022", $fs->y2022 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1"><input type="text"
+                                                               class="region_investments region_investments_2023 fs_investments_{{$key}} money form-control text-right width-full"
+                                                               name="region_investments[{{$key}}][y2023]"
+                                                               value="{{ old("region_investments.{$key}.y2023", $fs->y2023 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1"><input type="text"
+                                                               class="region_investments region_investments_2024 region_investments_{{$key}} money form-control text-right width-full"
+                                                               name="region_investments[{{$key}}][y2024]"
+                                                               value="{{ old("region_investments.{$key}.y2024", $fs->y2024 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1"><input type="text"
+                                                               class="region_investments region_investments_2025 region_investments_{{$key}} money form-control text-right width-full"
+                                                               name="region_investments[{{$key}}][y2025]"
+                                                               value="{{ old("region_investments.{$key}.y2025", $fs->y2025 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text"
+                                                   class="region_investments region_investments_2026 region_investments_{{$key}} money form-control text-right width-full"
+                                                   name="region_investments[{{$key}}][y2026]"
+                                                   value="{{ old("region_investments.{$key}.y2026", $fs->y2026 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="form-control text-right  width-full"
+                                                   id="region_investments_{{$key}}_total" disabled>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr class="border-bottom">
+                                    <th class="p-1">Total</th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control money text-right width-full"
+                                               id="region_investments_2022_total" readonly>
+                                    </th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control money text-right width-full"
+                                               id="region_investments_2023_total" readonly>
+                                    </th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control money text-right width-full"
+                                               id="region_investments_2024_total" readonly>
+                                    </th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control money text-right width-full"
+                                               id="region_investments_2025_total" readonly>
+                                    </th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control money text-right width-full"
+                                               id="region_investments_2026_total" readonly>
+                                    </th>
+                                    <th class="p-1">
+                                        <input type="text" class="form-control text-right width-full" id="region_investments_total"
+                                               readonly>
+                                    </th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </dd>
+                    </dl>
+
+                    <x-subhead subhead="Financial Accomplishments"></x-subhead>
+
+                    <dl class="form-group @error('pap_code') errored @enderror">
+                        <dt>
+                            <label for="">PAP Code</label>
+                        </dt>
+                        <dd>
+                            <input type="text" name="pap_code" class="form-control" id="pap_code" aria-describedby="pap-code-validation" value="{{ old('pap_code', $project->pap_code) }}">
+                            <x-error-message name="pap_code" id="pap-code-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('ref_tier_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_tier_id" class="required">Category </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select :options="$tiers" name="ref_tier_id" selected="{{ old('ref_tier_id', $project->ref_tier_id) }}" aria-describedby="ref_tier_id-validation"></x-select>
+                            <x-error-message name="ref_tier_id" id="ref_tier_id-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group @error('uacs_code') errored @enderror">
+                        <dt>
+                            <label for="">UACS Code</label>
+                        </dt>
+                        <dd>
+                            <input type="text" name="uacs_code" class="form-control" id="uacs_code" aria-describedby="uacs-code-validation" value="{{ old('uacs_code', $project->uacs_code) }}">
+                            <x-error-message name="uacs_code" id="uacs-code-validation"></x-error-message>
+                        </dd>
+                    </dl>
+
+                    <dl class="form-group">
+                        <dt class="form-group-header">
+                            <label for="">Financial Accomplishments</label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <table class="col-12 d-table">
+                                <thead>
+                                    <tr class="border-top border-bottom">
+                                        <th class="col-3 p-1">Year </th>
+                                        <th class="col-3 p-1">Amount included in the NEP</th>
+                                        <th class="col-3 p-1">Amount Allocated in the Budget/GAA</th>
+                                        <th class="col-3 p-1">Actual Amount Disbursed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-bottom">
+                                        <th class="p-1 text-center">2017</th>
+                                        <td class="p-1">
+                                            <input type="text" class="nep money form-control text-right"
+                                               name="nep[y2017]"
+                                               value="{{ old("nep.y2017", $project->nep->y2017 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="allocation money form-control text-right"
+                                               name="allocation[y2017]"
+                                               value="{{ old("allocation.y2017", $project->allocation->y2017 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="disbursement money form-control text-right"
+                                                   name="disbursement[y2017]"
+                                                   value="{{ old("disbursement.y2017", $project->disbursement->y2017 ?? 0) }}">
+                                        </td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th class="text-center">2018</th>
+                                        <td class="p-1">
+                                            <input type="text" class="nep money form-control text-right"
+                                                   name="nep[y2018]"
+                                                   value="{{ old("nep.y2018", $project->nep->y2018 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="allocation money form-control text-right"
+                                                   name="allocation[y2018]"
+                                                   value="{{ old("allocation.y2018", $project->allocation->y2018 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="disbursement money form-control text-right"
+                                                   name="disbursement[y2018]"
+                                                   value="{{ old("disbursement.y2018", $project->disbursement->y2018 ?? 0) }}">
+                                        </td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th class="text-center">2019</th>
+                                        <td class="p-1">
+                                            <input type="text" class="nep money form-control text-right"
+                                                   name="nep[y2019]"
+                                                   value="{{ old("nep.y2017", $project->nep->y2019 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="allocation money form-control text-right"
+                                                   name="allocation[y2019]"
+                                                   value="{{ old("allocation.y2019", $project->allocation->y2019 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="disbursement money form-control text-right"
+                                                   name="disbursement[y2019]"
+                                                   value="{{ old("disbursement.y2019", $project->disbursement->y2019 ?? 0) }}">
+                                        </td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th class="p-1 text-center">2020</th>
+                                        <td class="p-1">
+                                            <input type="text" class="nep money form-control text-right"
+                                                   name="nep[y2020]"
+                                                   value="{{ old("nep.y2020", $project->nep->y2020 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="allocation money form-control text-right"
+                                                   name="allocation[y2020]"
+                                                   value="{{ old("allocation.y2020", $project->allocation->y2020 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="disbursement money form-control text-right"
+                                                   name="disbursement[y2020]"
+                                                   value="{{ old("disbursement.y2020", $project->disbursement->y2020 ?? 0) }}">
+                                        </td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th class="p-1 text-center">2021</th>
+                                        <td class="p-1">
+                                            <input type="text" class="nep money form-control text-right"
+                                                   name="nep[y2021]"
+                                                   value="{{ old("nep.y2021", $project->nep->y2021 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="allocation money form-control text-right"
+                                                   name="allocation[y2021]"
+                                                   value="{{ old("allocation.y2021", $project->allocation->y2021 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="disbursement money form-control text-right"
+                                                   name="disbursement[y2021]"
+                                                   value="{{ old("disbursement.y2021", $project->disbursement->y2021 ?? 0) }}">
+                                        </td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th class="p-1 text-center">2022</th>
+                                        <td class="p-1">
+                                            <input type="text" class="nep money form-control text-right"
+                                                   name="nep[y2022]"
+                                                   value="{{ old("nep.y2022", $project->nep->y2022 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="allocation money form-control text-right"
+                                                   name="allocation[y2022]"
+                                                   value="{{ old("allocation.y2022", $project->allocation->y2022 ?? 0) }}">
+                                        </td>
+                                        <td class="p-1">
+                                            <input type="text" class="disbursement money form-control text-right"
+                                                   name="disbursement[y2022]"
+                                                   value="{{ old("disbursement.y2022", $project->disbursement->y2022 ?? 0) }}">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="border-bottom">
+                                        <th class="p-1">Total</th>
+                                        <th class="p-1">
+                                            <input type="text" class="money form-control text-right"
+                                               id="nep_total" readonly></td>
+                                        </th>
+                                        <th class="p-1">
+                                            <input type="text" class="money form-control text-right"
+                                               id="allocation_total" readonly></td>
+                                        </th>
+                                        <th class="p-1">
+                                            <input type="text" class="money form-control text-right"
+                                               id="disbursement_total" readonly></td>
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </dd>
+                    </dl>
 
                 </div>
             </div>
@@ -1532,27 +1439,3 @@
 @endsection
 
 @include('projects.partials.script')
-
-@push('scripts')
-    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
-
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#description' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-        ClassicEditor
-            .create( document.querySelector( '#expected_outputs' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-        ClassicEditor
-            .create( document.querySelector( '#updates' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-    </script>
-@endpush

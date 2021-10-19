@@ -17,20 +17,3 @@
         </a>
     </nav>
 </aside>
-
-@push('scripts')
-    <script type="text/javascript">
-        /*
-         * Function to confirm and handle logout
-         */
-
-        function confirmLogout() {
-            let confirmLogout = confirm('Are you sure you want to logout?')
-
-            if (confirmLogout) {
-                let logoutForm = document.getElementById('logout')
-                logoutForm.submit()
-            }
-        }
-    </script>
-@endpush

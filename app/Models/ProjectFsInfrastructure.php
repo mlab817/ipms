@@ -18,7 +18,7 @@ class ProjectFsInfrastructure extends Model
 
     protected $fillable = [
         'project_id',
-        'fs_id',
+        'ref_funding_source_id',
         'y2016',
         'y2017',
         'y2018',
@@ -38,7 +38,7 @@ class ProjectFsInfrastructure extends Model
 
     public function funding_source(): BelongsTo
     {
-        return $this->belongsTo(RefFundingSource::class,'fs_id','id');
+        return $this->belongsTo(RefFundingSource::class,'ref_funding_source_id','id');
     }
 
     public function project(): BelongsTo

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\RoleScope;
 use App\Traits\Auditable;
 use App\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +21,11 @@ class Project extends Model
     use HasUuid;
     use SoftDeletes;
     use Auditable;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new RoleScope);
+    }
 
     protected $fillable = [
         'ipms_id',

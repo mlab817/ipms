@@ -22,4 +22,13 @@ class Role extends \Spatie\Permission\Models\Role
      * ouri - all trip
      * encoder - own only/same office
      */
+
+    public const ROLE_DESCRIPTIONS = [
+        'encoder'   => 'Views own PAPs and their Office\'s PAPs',
+        'spcmad'    => 'Views projects that are not proposed (includes ongoing, completed and draft)',
+        'pds'       => 'Views projects that are proposed',
+        'ouri'      => 'Views all TRIP PAPs',
+        'ipd'       => 'Views all PAPs',
+        'admin'     => 'Views all PAPs',
+    ];
 }

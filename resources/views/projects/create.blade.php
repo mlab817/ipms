@@ -1,13 +1,17 @@
 @extends('layouts.app')
 
+@section('page-header')
+    <x-page-header header="Create a New PAP"></x-page-header>
+@endsection
+
 @section('content')
     <div class="Box">
         <div class="Box-header">
             <div class="Box-title">Create a new PAP</div>
         </div>
-        <div class="Box-body">
-            <form action="{{ route('projects.store') }}" method="POST">
-                @csrf
+        <form action="{{ route('projects.store') }}" method="POST" id="createProjectForm">
+            @csrf
+                <div class="Box-body">
 
                 <dl class="form-group @error('office_id') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -58,78 +62,25 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-12 mb-3 ml-1">
-                        <button type="submit" class="btn btn-primary">Create PAP</button>
-                        <a href="{{ route('projects.own') }}" class="btn">Back to List</a>
-                    </div>
-                </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="Box-footer">
+                <button type="submit" class="btn btn-primary" id="submitAddForm">Create PAP</button>
+                <a href="{{ route('projects.index') }}" class="btn">Back to List</a>
+            </div>
+        </form>
     </div>
 @endsection
 
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"
-            integrity="sha512-JZSo0h5TONFYmyLMqp8k4oPhuo6yNk9mHM+FY50aBjpypfofqtEWsAgRDQm94ImLCzSaHeqNvYuD9382CEn2zw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        $('input[name=title]').keyup($.debounce(500, function (e) {
-            let title = e.target.value
-
-            if (title && title.length >= 3) {
-                // run search
-                $.get("{{ route('search.index') }}",
-                    {
-                        _token: "{{ csrf_token() }}",
-                        search: title
-                    },
-                    function (data, status) {
-                        console.log(data)
-                        console.log(status)
-                        let target = $('#search-results')
-                        if (data.length) {
-                            target.empty()
-                            target.append('<label class="text-muted">Found the following potential matches:</label>')
-                            data.forEach(res => {
-                                target.append(
-                                    `<a href="${res.url}" target="_blank">${res.title}</a>`
-                                )
-                            })
-                        } else {
-                            target.empty()
-                            target.append(
-                                '<p>Nothing found.</p>'
-                            )
-                        }
-                    }
-                )
-            } else {
-                let target = $('#search-results')
-                target.empty()
-            }
-        }))
-    </script>
-
-    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
-
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#description' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-        ClassicEditor
-            .create( document.querySelector( '#expected_outputs' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-        ClassicEditor
-            .create( document.querySelector( '#updates' ) )
-            .catch( error => {
-                console.error( error );
-            } );
+        const form = document.getElementById('createProjectForm');
+        form.addEventListener('submit', function (evt) {
+            // evt.preventDefault()
+            console.log('submit')
+            const submitButton = document.querySelector('#submitAddForm')
+            console.log(submitButton)
+            submitButton.innerHTML = 'Please wait...'
+        })
     </script>
 @endpush

@@ -37,6 +37,7 @@ use App\Models\RefPdpIndicator;
 use App\Models\RefPipTypology;
 use App\Models\RefPreparationDocument;
 use App\Models\Project;
+use App\Models\RefPrerequisite;
 use App\Models\RefProjectStatus;
 use App\Models\RefReadinessLevel;
 use App\Models\RefRegion;
@@ -47,6 +48,7 @@ use App\Models\RefSpatialCoverage;
 use App\Models\RefSubmissionStatus;
 use App\Models\RefTenPointAgenda;
 use App\Models\RefTier;
+use App\Models\RefYear;
 use App\Models\User;
 use App\Notifications\ProjectDeletedNotification;
 use Barryvdh\Snappy\Facades\SnappyPdf;
@@ -149,7 +151,8 @@ class ProjectController extends Controller
             'pdp_indicators',
             'operating_units');
 
-        return view('projects.show', compact('project'));
+        return view('projects.show', compact('project'))
+            ->with(['submission_statuses' => RefSubmissionStatus::all(),]);
     }
 
     /**
@@ -178,11 +181,11 @@ class ProjectController extends Controller
                 'bases'                     => RefBasis::all(),
                 'project_statuses'          => RefProjectStatus::all(),
                 'spatial_coverages'         => RefSpatialCoverage::all(),
-                'regions'                   => RefRegion::all(),
+                'regions'                   => RefRegion::all()->sortBy('order'),
                 'gads'                      => RefGad::all(),
                 'pip_typologies'            => RefPipTypology::all(),
                 'cip_types'                 => RefCipType::all(),
-                'years'                     => config('ipms.editor.years'),
+                'years'                     => RefYear::all(),
                 'approval_levels'           => RefApprovalLevel::all(),
                 'infrastructure_sectors'    => RefInfrastructureSector::with('children')->get(),
                 'pdp_chapters'              => RefPdpChapter::orderBy('name')->get(),
@@ -198,9 +201,10 @@ class ProjectController extends Controller
                 'preparation_documents'     => RefPreparationDocument::all(),
                 'fs_statuses'               => RefFsStatus::all(),
                 'ou_types'                  => RefOperatingUnitType::with('operating_units')->get(),
-                'covid_interventions'        => RefCovidIntervention::all(),
+                'covid_interventions'       => RefCovidIntervention::all(),
                 'boolean'                   => $boolean,
                 'operating_units'           => RefOperatingUnit::all(),
+                'prerequisites'             => RefPrerequisite::all(),
             ]);
     }
 

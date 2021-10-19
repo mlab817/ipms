@@ -32,14 +32,12 @@ Route::middleware(['auth','password.changed'])->group(function () {
     Route::put('/projects/{project}/drop', [\App\Http\Controllers\ProjectController::class,'drop'])->name('projects.drop');
 
     // Upload
-    Route::post('/projects/{project}/upload', [\App\Http\Controllers\ProjectController::class,'upload'])->name('projects.upload');
+    Route::put('/projects/{project}/upload', [\App\Http\Controllers\ProjectController::class,'upload'])->name('projects.upload');
 
-    Route::post('/projects/{uuid}/restore', [\App\Http\Controllers\ProjectController::class,'restore'])->name('projects.restore');
+    Route::put('/projects/{uuid}/restore', [\App\Http\Controllers\ProjectController::class,'restore'])->name('projects.restore');
 
-    Route::post('/projects/{project}/endorse', [\App\Http\Controllers\ProjectController::class,'endorse'])->name('reviews.endorse');
+    Route::put('/projects/{project}/submit', [\App\Http\Controllers\ProjectSubmitController::class,'endorse'])->name('projects.submit');
     // ProjectReview
-    Route::post('/projects/{project}/review', [\App\Http\Controllers\ProjectController::class,'storeReview'])->name('reviews.store');
-    Route::get('/projects/{project}/review/create', [\App\Http\Controllers\ProjectController::class,'review'])->name('reviews.create');
 
     Route::get('/projects/deleted', [\App\Http\Controllers\ProjectController::class,'deleted'])->name('projects.deleted');
 
@@ -50,6 +48,7 @@ Route::middleware(['auth','password.changed'])->group(function () {
     Route::post('/notifications', [\App\Http\Controllers\NotificationController::class,'markAllAsRead'])->name('notifications.markAllAsRead');
     Route::resource('notifications',\App\Http\Controllers\NotificationController::class)->only('index','show');
     Route::resource('pipols',\App\Http\Controllers\PipolController::class);
+    Route::resource('users', \App\Http\Controllers\UserController::class);
 
     Route::group(['prefix' => 'reports'], function() {
         Route::get('/', [\App\Http\Controllers\ReportController::class,'index'])->name('reports.index');

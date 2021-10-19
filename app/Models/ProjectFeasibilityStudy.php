@@ -13,7 +13,7 @@ class ProjectFeasibilityStudy extends Model
 
     protected $fillable = [
         'project_id',
-        'fs_status_id',
+        'ref_fs_status_id',
         'needs_assistance',
         'y2016',
         'y2017',

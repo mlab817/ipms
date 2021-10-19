@@ -58,6 +58,11 @@ class User extends Authenticatable
 //        'roles',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'username';
+    }
+
     public function accounts(): HasMany
     {
         return $this->hasMany(LinkedSocialAccount::class);
@@ -87,6 +92,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Project::class,'project_user_permission','user_id','project_id')
             ->withPivot('read','update','delete','review','comment');
+    }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
     }
 
     public function isActive(): bool

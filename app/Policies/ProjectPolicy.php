@@ -31,28 +31,26 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project): bool
     {
-        // if the user has permission to view any project
-        if ($user->hasPermissionTo('projects.view_any')) {
+        $roleName = $user->role->name ?? '';
+
+        if ($roleName == 'ipd' || $roleName == 'admin') {
             return true;
         }
 
-        // if user has permission to view office
-        // and his office is same as the office of the project
-        if ($user->hasPermissionTo('projects.view_office')
-            && $project->office_id == $user->office_id
-        ) {
-            return true;
+        if ($roleName == 'spcmad') {
+            return $project->ref_pap_type_id == 2 && $project->ref_project_status_id <> 2;
         }
 
-        if ($project->created_by == $user->id) {
-            return true;
+        if ($roleName == 'pds') {
+            return $project->ref_pap_type_id == 2 && $project->ref_project_status_id == 2;
         }
 
-        // TODO: this might throw an error
-        if ($project = $user->assigned_projects()->find($project->id)) {
-            if ($project->pivot->read) {
-                return true;
-            }
+        if ($roleName == 'encoder') {
+            return $project->office_id == $user->office_id || $project->creator_id == $user->id;
+        }
+
+        if ($roleName == 'ouri') {
+            return $project->trip; // tagged as TRIP
         }
 
         return false;
@@ -66,11 +64,12 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
-        if (! config('ipms.permissions.projects.create')) {
-            return $this->deny('Sorry, the System is currently not accepting new submissions');
-        }
+        return true;
+//        if (! config('ipms.permissions.projects.create')) {
+//            return $this->deny('Sorry, the System is currently not accepting new submissions');
+//        }
 
-        return $user->hasPermissionTo('projects.create');
+//        return $user->hasPermissionTo('projects.create');
     }
 
     /**
