@@ -83,7 +83,7 @@ use App\Http\Controllers\Api\UserController;
 */
 
 Route::get('/projects/{project}', function (\App\Models\Project $project) {
-    return response()->json($project->load('bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study'));
+    return response()->json($project->load('bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study','project_update'));
 });
 
 //Route::post('/projects/search', [ProjectController::class,'search'])->name('api.projects.search');

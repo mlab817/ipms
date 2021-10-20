@@ -175,7 +175,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $project->load('bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','funding_sources','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study');
+        $project->load('bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','funding_sources','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study','project_update');
 
         $yes = new \stdClass();
         $yes->id = 1;
@@ -241,18 +241,33 @@ class ProjectController extends Controller
         $project->covid_interventions()->sync($request->covid_interventions);
 
         foreach ($request->fs_investments as $fs_investment) {
-            $fsToEdit = ProjectFsInvestment::where('project_id', $project->id)->where('fs_id', $fs_investment['fs_id'])->first();
-            $fsToEdit->update($fs_investment);
+            $project
+                ->fs_investments()
+                ->where('ref_funding_source_id', $fs_investment['ref_funding_source_id'])
+                ->update($fs_investment);
+        }
+
+        foreach ($request->fs_infrastructures as $fs_infrastructure) {
+            $project
+                ->fs_investments()
+                ->where('ref_funding_source_id', $fs_infrastructure['ref_funding_source_id'])
+                ->update($fs_infrastructure);
         }
 
         foreach ($request->region_investments as $region_investment) {
-            $project->region_investments()->where('ref_region_id', $region_investment->ref_region_id)->update($region_investment);
+            $project
+                ->region_investments()
+                ->where('ref_region_id', $region_investment['ref_region_id'])
+                ->update($region_investment);
 //            $itemToEdit = ProjectRegionInvestment::where('project_id', $project->id)->where('region_id', $region_investment['region_id'])->first();
 //            $itemToEdit->update($region_investment);
         }
 
-        foreach ($request->region_infrastructures as $region_investment) {
-            $project->region_infrastructures()->where('ref_region_id', $region_investment->ref_region_id)->update($region_investment);
+        foreach ($request->region_infrastructures as $region_infrastructure) {
+            $project
+                ->region_infrastructures()
+                ->where('ref_region_id', $region_infrastructure['ref_region_id'])
+                ->update($region_infrastructure);
 //            $itemToEdit = ProjectRegionInvestment::where('project_id', $project->id)->where('region_id', $region_investment['region_id'])->first();
 //            $itemToEdit->update($region_investment);
         }

@@ -16,13 +16,15 @@ class OfficeController extends Controller
         //
     }
 
-    public function show()
+    public function show(Office $office)
     {
-        //
+        $office->load('projects');
+
+        return view('offices.show', compact('office'));
     }
 
-    public function edit()
+    public function edit(Office $office)
     {
-        //
+        return view('offices.edit', compact('office'));
     }
 }

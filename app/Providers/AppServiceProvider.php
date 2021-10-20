@@ -49,6 +49,10 @@ class AppServiceProvider extends ServiceProvider
             return auth()->check() && auth()->user()->isAdmin();
         });
 
+        Blade::if('ipd', function () {
+            return auth()->check() && auth()->user()->isIpd();
+        });
+
         Paginator::defaultView('includes.primer-pagination');
         Paginator::defaultSimpleView('includes.primer-simple-pagination');
     }

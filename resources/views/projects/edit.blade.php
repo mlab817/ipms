@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="Box">
-        <div class="Box-header py-2 pr-2 d-flex flex-shrink-0 flex-md-row flex-items-center">
+        <div class="Box-header py-2 pr-2 d-flex flex-shrink-0 flex-md-row flex-items-center position-sticky top-0">
             <div class="d-flex flex-items-center flex-auto">
                 <details class="dropdown details-reset details-overlay d-inline-block">
                     <summary class="color-fg-muted p-2 d-inline btn btn-octicon mr-2 m-0 p-2" aria-haspopup="true">
@@ -17,13 +17,14 @@
                         <li><a class="dropdown-item" href="#general-information">General Information</a></li>
                         <li><a class="dropdown-item" href="#implementing-agencies">Implementing Agencies</a></li>
                         <li><a class="dropdown-item" href="#spatial-coverage">Spatial Coverage</a></li>
-                        <li><a class="dropdown-item" href="#approval-status">Approval Status</a></li>
+                        <li><a class="dropdown-item" href="#approval-level">Level of Approval</a></li>
                         <li><a class="dropdown-item" href="#programming-document">Project for Inclusion in Which Programming Document</a></li>
                         <li><a class="dropdown-item" href="#physical-and-financial-status">Physical and Financial Status</a></li>
                         <li><a class="dropdown-item" href="#implementation-period">Implementation Period</a></li>
                         <li><a class="dropdown-item" href="#pdp">Philippine Development Plan</a></li>
-                        <li><a class="dropdown-item" href="#pdp-rm-indicators">Philippine Development Results Matrices (PDP-RM) Indicators</a></li>
+                        <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
                         <li><a class="dropdown-item" href="#sdgs">Sustainable Development Goals</a></li>
+                        <li><a class="dropdown-item" href="#gad-responsiveness">Level of GAD Responsiveness</a></li>
                         <li><a class="dropdown-item" href="#ten-point-agenda">Ten Point Agenda</a></li>
                         <li><a class="dropdown-item" href="#project-preparation-details">Project Preparation Details</a></li>
                         <li><a class="dropdown-item" href="#preconstruction-costs">Pre-construction Costs</a></li>
@@ -31,7 +32,6 @@
                         <li><a class="dropdown-item" href="#funding-source">Funding Source and Mode of Implementation</a></li>
                         <li><a class="dropdown-item" href="#project-costs">Project Costs</a></li>
                         <li><a class="dropdown-item" href="#financial-accomplishments">Financial Accomplishments</a></li>
-                        <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
                     </ul>
                 </details>
 
@@ -43,21 +43,34 @@
             <form class="inline-form" action="{{ route('projects.destroy', $project) }}" accept-charset="UTF-8" method="post">
                 @csrf
                 @method('delete')
-                <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn-octicon btn-octicon-danger tooltipped tooltipped-nw" type="submit" aria-label="Delete this PAP">
+                <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn-octicon btn-octicon-danger tooltipped tooltipped-nw mr-2" type="submit" aria-label="Delete this PAP">
                     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-trash">
                         <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
                     </svg>
                     <span>Delete</span>
                 </button>
             </form>
+
+            <button type="submit" form="editProjectForm" class="btn btn-primary">Save</button>
         </div>
+
         <form action="{{ route('projects.update', $project) }}" method="POST" id="editProjectForm">
             @csrf
             @method('PUT')
 
             <div class="Box-body">
 
-                <x-subhead subhead="General Information"></x-subhead>
+{{--                @env('local')--}}
+                    @if($errors->any())
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    @endif
+{{--                @endenv--}}
+
+                <x-subhead subhead="General Information" id="general-information"></x-subhead>
 
                 <dl class="form-group @error('title') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -109,7 +122,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Implementing Agencies"></x-subhead>
+                <x-subhead subhead="Implementing Agencies" id="implementing-agencies"></x-subhead>
 
                 <dl class="form-group @error('office_id') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -124,15 +137,20 @@
 
                 <dl class="form-group @error('operating_units') errored mb-6 @enderror">
                     <dt class="form-group-header">
-                        <label for="operating_units" class="required">Basis for Implementation </label>
+                        <label for="operating_units" class="required">Operating Units </label>
                     </dt>
                     <dd class="form-group-body">
-                        <x-input.checkbox :options="$operating_units" name="operating_units[]" :selected="old('operating_units', $project->operating_units->pluck('id')->toArray() ?? [])" aria-describedby="operating-units-validation"></x-input.checkbox>
+                        @foreach($ou_types as $ou_type)
+                            <label for="">{{ $ou_type->name }}</label>
+                            <div class="ml-4">
+                                <x-input.checkbox :options="$ou_type->operating_units" name="operating_units[]" :selected="old('operating_units', $project->operating_units->pluck('id')->toArray() ?? [])" aria-describedby="operating-units-validation"></x-input.checkbox>
+                            </div>
+                        @endforeach
                         <x-error-message name="operating_units[]" id="operating-units-validation"></x-error-message>
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Spatial Coverage"></x-subhead>
+                <x-subhead subhead="Spatial Coverage" id="spatial-coverage"></x-subhead>
 
                 <dl class="form-group @error('ref_spatial_coverage_id') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -154,7 +172,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Level of Approval"></x-subhead>
+                <x-subhead subhead="Level of Approval" id="approval-level"></x-subhead>
 
                 <dl class="form-group @error('iccable') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -188,7 +206,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Project for Inclusion in Which Programming Document"></x-subhead>
+                <x-subhead subhead="Project for Inclusion in Which Programming Document" id="programming-document"></x-subhead>
 
                 <dl class="form-group @error('pip') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -332,7 +350,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Physical and Financial Status"></x-subhead>
+                <x-subhead subhead="Physical and Financial Status" id="physical-and-financial-status"></x-subhead>
 
                 <dl class="form-group @error('ref_project_status_id') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -373,7 +391,7 @@
                         </label>
                     </dt>
                     <dd class="form-group-body">
-                        <x-select :options="$readiness_levels" name="ref_readiness_level_id" aria-describedby="readiness-level-validation" :selected="old('readiness_level_id', $project->readiness_level_id)"></x-select>
+                        <x-select :options="$readiness_levels" name="ref_readiness_level_id" aria-describedby="readiness-level-validation" :selected="old('ref_readiness_level_id', $project->ref_readiness_level_id)"></x-select>
                         <x-error-message name="ref_readiness_level_id" id="readiness-level-validation"></x-error-message>
                     </dd>
                 </dl>
@@ -398,7 +416,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Implementation Period"></x-subhead>
+                <x-subhead subhead="Implementation Period" id="implementation-period"></x-subhead>
 
                 <dl class="form-group @error('target_start_year') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -420,7 +438,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Philippine Development Plan (PDP) Chapter"></x-subhead>
+                <x-subhead subhead="Philippine Development Plan (PDP) Chapter" id="pdp"></x-subhead>
 
                 <div x-data="{
                     pdpChapterId: '{{ $project->ref_pdp_chapter_id }}'
@@ -473,7 +491,7 @@
                 <div class="Box">
 
                     <div class="Box-header">
-                        <h2 class="Box-title">TRIP Information</h2>
+                        <h2 class="Box-title" id="trip-information">TRIP Information</h2>
                     </div>
 
                     <div class="Box-body">
@@ -743,7 +761,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Sustainable Development Goals (SDG)"></x-subhead>
+                <x-subhead subhead="Sustainable Development Goals (SDG)" id="sdgs"></x-subhead>
 
                 <dl class="form-group @error('sdgs') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -755,7 +773,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Level of GAD Responsiveness"></x-subhead>
+                <x-subhead subhead="Level of GAD Responsiveness" id="gad-responsiveness"></x-subhead>
 
                 <dl class="form-group @error('ref_gad_id') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -767,7 +785,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Project Preparation Details"></x-subhead>
+                <x-subhead subhead="Project Preparation Details" id="project-preparation-details"></x-subhead>
 
                 <dl class="form-group @error('ref_preparation_document_id') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -796,7 +814,7 @@
                     </dt>
                     <dd class="form-group-body">
                         <x-select :options="$fs_statuses" :selected="old('feasibility_study.ref_fs_status_id', $project->feasibility_study->ref_fs_status_id ?? '')" name="feasibility_study[ref_fs_status_id]" id="ref_fs_status_id" aria-describedby="fs-status-validation"></x-select>
-                        <x-error-message name="feasibility_study.ref_fs_status_id" id="fs-status-validation"></x-error-message>
+                        <x-error-message name="feasibility_study[ref_fs_status_id]" id="fs-status-validation"></x-error-message>
                     </dd>
                 </dl>
 
@@ -871,7 +889,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Pre-Construction Costs"></x-subhead>
+                <x-subhead subhead="Pre-Construction Costs" id="preconstruction-costs"></x-subhead>
 
                 <dl class="form-group @error('has_row') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -1045,7 +1063,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Employment Generation"></x-subhead>
+                <x-subhead subhead="Employment Generation" id="employment-generation"></x-subhead>
 
                 <dl class="form-group">
                     <dt>
@@ -1057,7 +1075,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Funding Source and Mode of Implementation"></x-subhead>
+                <x-subhead subhead="Funding Source and Mode of Implementation" id="funding-source"></x-subhead>
 
                 <dl class="form-group @error('ref_funding_source_id') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -1089,7 +1107,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Project Costs"></x-subhead>
+                <x-subhead subhead="Project Costs" id="project-costs"></x-subhead>
 
                 <dl class="form-group">
                     <dt class="form-group-header">
@@ -1282,7 +1300,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="Financial Accomplishments"></x-subhead>
+                <x-subhead subhead="Financial Accomplishments" id="financial-accomplishments"></x-subhead>
 
                 <dl class="form-group @error('pap_code') errored @enderror">
                     <dt>

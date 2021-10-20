@@ -49,6 +49,7 @@ Route::middleware(['auth','password.changed'])->group(function () {
     Route::resource('notifications',\App\Http\Controllers\NotificationController::class)->only('index','show');
     Route::resource('pipols',\App\Http\Controllers\PipolController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
+    Route::get('/offices/{office}/users', \App\Http\Controllers\OfficeUserController::class)->name('offices.users');
     Route::resource('offices', \App\Http\Controllers\OfficeController::class);
 
     Route::group(['prefix' => 'reports'], function() {

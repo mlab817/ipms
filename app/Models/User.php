@@ -107,7 +107,12 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->hasRole('admin');
+        return optional($this->role)->name == ('admin');
+    }
+
+    public function isIpd(): bool
+    {
+        return optional($this->role)->name == ('ipd');
     }
 
     public function activate()

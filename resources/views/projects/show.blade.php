@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-header')
-    <x-page-header :header="$project->title"></x-page-header>
+    <x-page-header :header="$project->title" description="PIPOL Code: {{ $project->code }}"></x-page-header>
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
 
         <div x-show="tab === 'profile'">
             <div class="Box">
-                <div class="Box-header py-2 pr-2 d-flex flex-shrink-0 flex-md-row flex-items-center">
+                <div class="Box-header py-2 pr-2 d-flex flex-shrink-0 flex-md-row flex-items-center position-sticky top-0">
                     <div class="d-flex flex-items-center flex-auto">
                         <details class="dropdown details-reset details-overlay d-inline-block">
                             <summary class="color-fg-muted p-2 d-inline btn btn-octicon mr-2 m-0 p-2" aria-haspopup="true">
@@ -31,7 +31,9 @@
                                 <li><a class="dropdown-item" href="#physical-and-financial-status">Physical and Financial Status</a></li>
                                 <li><a class="dropdown-item" href="#implementation-period">Implementation Period</a></li>
                                 <li><a class="dropdown-item" href="#pdp">Philippine Development Plan</a></li>
-                                <li><a class="dropdown-item" href="#pdp-rm-indicators">Philippine Development Results Matrices (PDP-RM) Indicators</a></li>
+                                @if($project->trip)
+                                    <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
+                                @endif
                                 <li><a class="dropdown-item" href="#sdgs">Sustainable Development Goals</a></li>
                                 <li><a class="dropdown-item" href="#ten-point-agenda">Ten Point Agenda</a></li>
                                 <li><a class="dropdown-item" href="#project-preparation-details">Project Preparation Details</a></li>
@@ -40,9 +42,6 @@
                                 <li><a class="dropdown-item" href="#funding-source">Funding Source and Mode of Implementation</a></li>
                                 <li><a class="dropdown-item" href="#project-costs">Project Costs</a></li>
                                 <li><a class="dropdown-item" href="#financial-accomplishments">Financial Accomplishments</a></li>
-                                @if($project->trip)
-                                <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
-                                @endif
                             </ul>
                         </details>
 
@@ -141,10 +140,6 @@
 
                 <div class="Box-body">
 
-                    <div class="flash my-0 flash-success">
-                        <p>PIPOL Code: {{ $project->code }}</p>
-                    </div>
-
                     <x-subhead subhead="General Information" id="general-information"></x-subhead>
 
                     <dl>
@@ -222,7 +217,7 @@
                         <dt><label>Regions</label></dt>
                         <dd>
                             <ul class="pl-4">
-                                @forelse($project->regions as $region)
+                                @forelse($project->regions->sortBy('region.order') as $region)
                                     <li>{{ $region->label }}</li>
                                 @empty
                                     <li>None selected.</li>
@@ -454,6 +449,153 @@
                             </ul>
                         </dd>
                     </dl>
+
+                    @if($project->trip)
+                        <div class="Box my-5" id="trip-information">
+                            <div class="Box-header">
+                                <h1 class="Box-title">TRIP Information</h1>
+                            </div>
+
+                            <div class="Box-body">
+                                <dl>
+                                    <dt><label>Infrastructure Sector</label></dt>
+                                    <dd>
+                                        <ul class="pl-4">
+                                            @forelse($project->infrastructure_sectors as $sector)
+                                                <li>{{ $sector->name }}</li>
+                                            @empty
+                                                <li>None selected.</li>
+                                            @endforelse
+                                        </ul>
+                                    </dd>
+                                </dl>
+
+                                <dl>
+                                    <dt><label>Status of Implementation Readiness</label></dt>
+                                    <dd>
+                                        <ul class="pl-4">
+                                            @forelse($project->prerequisites as $prerequisite)
+                                                <li>{{ $prerequisite->name }}</li>
+                                            @empty
+                                                <li>None selected.</li>
+                                            @endforelse
+                                        </ul>
+                                    </dd>
+                                </dl>
+
+                                <dl>
+                                    <dt><label>Implementation Risks and Mitigation Strategies</label></dt>
+                                    <dd>
+                                        {{ $project->risk->risk }}
+                                    </dd>
+                                </dl>
+
+                                <x-subhead subhead="Total Infrastructure Cost by Funding Source">
+                                    <x-back-to-top></x-back-to-top>
+                                </x-subhead>
+
+                                <dl>
+                                    <dt><label>Total Infrastructure Cost by Funding Source</label></dt>
+                                    <dd>
+                                        <table class="col-12 d-table border">
+                                            <thead>
+                                            <tr class="border-bottom">
+                                                <th class="col-1 p-2">Funding Source</th>
+                                                <th class="col-1 p-2 text-right">2022 &amp; Prior</th>
+                                                <th class="col-1 p-2 text-right">2023</th>
+                                                <th class="col-1 p-2 text-right">2024</th>
+                                                <th class="col-1 p-2 text-right">2025</th>
+                                                <th class="col-1 p-2 text-right">2026 &amp; Prior</th>
+                                                <th class="col-1 p-2 text-right">Total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($project->fs_infrastructures as $fs_infrastructure)
+                                                <tr class="border-bottom">
+                                                    <td class="p-2">{{ $fs_infrastructure->funding_source->name ?? '_' }}</td>
+                                                    <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2022 ?? 0.00, 2) }}</td>
+                                                    <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2023 ?? 0.00, 2) }}</td>
+                                                    <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2024 ?? 0.00, 2) }}</td>
+                                                    <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2025 ?? 0.00, 2) }}</td>
+                                                    <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2026 ?? 0.00, 2) }}</td>
+                                                    <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2022 + $fs_infrastructure->y2023 + $fs_infrastructure->y2024 + $fs_infrastructure->y2025 + $fs_infrastructure->y2026, 2) }}</td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                            <tfoot>
+                                            <th class="p-2 text-left">Total</th>
+                                            <th class="p-2 text-right">{{ number_format($project->fs_infrastructures->sum('y2022'), 2) }}</th>
+                                            <th class="p-2 text-right">{{ number_format($project->fs_infrastructures->sum('y2023'), 2) }}</th>
+                                            <th class="p-2 text-right">{{ number_format($project->fs_infrastructures->sum('y2024'), 2) }}</th>
+                                            <th class="p-2 text-right">{{ number_format($project->fs_infrastructures->sum('y2025'), 2) }}</th>
+                                            <th class="p-2 text-right">{{ number_format($project->fs_infrastructures->sum('y2026'), 2) }}</th>
+                                            <th class="p-2 text-right">
+                                                {{ number_format($project->fs_infrastructures->sum('y2022')
+                                                    + $project->fs_infrastructures->sum('y2023')
+                                                    + $project->fs_infrastructures->sum('y2024')
+                                                    + $project->fs_infrastructures->sum('y2025')
+                                                    + $project->fs_infrastructures->sum('y2026'), 2) }}
+                                            </th>
+                                            </tfoot>
+                                        </table>
+                                    </dd>
+                                </dl>
+
+                                <x-subhead subhead="Total Infrastructure Cost by Region">
+                                    <x-back-to-top></x-back-to-top>
+                                </x-subhead>
+
+                                <dl>
+                                    <dt><label>Total Infrastructure Cost by Region</label></dt>
+                                    <dd>
+                                        <table class="col-12 d-table border">
+                                            <thead>
+                                            <tr class="border-bottom">
+                                                <th class="col-1 p-2">Region</th>
+                                                <th class="col-1 p-2 text-right">2022 &amp; Prior</th>
+                                                <th class="col-1 p-2 text-right">2023</th>
+                                                <th class="col-1 p-2 text-right">2024</th>
+                                                <th class="col-1 p-2 text-right">2025</th>
+                                                <th class="col-1 p-2 text-right">2026 &amp; Prior</th>
+                                                <th class="col-1 p-2 text-right">Total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($project->region_infrastructures->sortBy('region.order') as $region_infrastructure)
+                                                <tr class="border-bottom">
+                                                    <td class="p-2">{{ $region_infrastructure->region->name ?? '_' }}</td>
+                                                    <td class="p-2 text-right">{{ $region_infrastructure->y2022 ?? '0.00' }}</td>
+                                                    <td class="p-2 text-right">{{ $region_infrastructure->y2023 ?? '0.00' }}</td>
+                                                    <td class="p-2 text-right">{{ $region_infrastructure->y2024 ?? '0.00' }}</td>
+                                                    <td class="p-2 text-right">{{ $region_infrastructure->y2025 ?? '0.00' }}</td>
+                                                    <td class="p-2 text-right">{{ $region_infrastructure->y2026 ?? '0.00' }}</td>
+                                                    <td class="p-2 text-right">{{ number_format($region_infrastructure->y2022 + $region_infrastructure->y2023 + $region_infrastructure->y2024 + $region_infrastructure->y2025 + $region_infrastructure->y2026, 2) }}</td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th class="p-2 text-left">Total</th>
+                                                <th class="p-2 text-right">{{ number_format($project->region_infrastructures->sum('y2022'), 2) }}</th>
+                                                <th class="p-2 text-right">{{ number_format($project->region_infrastructures->sum('y2023'), 2) }}</th>
+                                                <th class="p-2 text-right">{{ number_format($project->region_infrastructures->sum('y2024'), 2) }}</th>
+                                                <th class="p-2 text-right">{{ number_format($project->region_infrastructures->sum('y2025'), 2) }}</th>
+                                                <th class="p-2 text-right">{{ number_format($project->region_infrastructures->sum('y2026'), 2) }}</th>
+                                                <th class="p-2 text-right">
+                                                    {{ number_format($project->region_infrastructures->sum('y2022')
+                                                        + $project->region_infrastructures->sum('y2023')
+                                                        + $project->region_infrastructures->sum('y2024')
+                                                        + $project->region_infrastructures->sum('y2025')
+                                                        + $project->region_infrastructures->sum('y2026'), 2) }}
+                                                </th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    @endif
 
                     <dl>
                         <dt><label>Expected Outputs</label></dt>
@@ -920,152 +1062,6 @@
                 </div>
             </div>
 
-            @if($project->trip)
-                <div class="Box my-5" id="trip-information">
-                    <div class="Box-header">
-                        <h1 class="Box-title">TRIP Information</h1>
-                    </div>
-
-                    <div class="Box-body">
-                        <x-subhead subhead="Total Infrastructure Cost by Funding Source">
-                            <x-back-to-top></x-back-to-top>
-                        </x-subhead>
-
-                        <dl>
-                            <dt><label>Infrastructure Sector</label></dt>
-                            <dd>
-                                <ul class="pl-4">
-                                @forelse($project->infrastructure_sectors as $sector)
-                                    <li>{{ $sector->name }}</li>
-                                    @empty
-                                    <li>None selected.</li>
-                                @endforelse
-                                </ul>
-                            </dd>
-                        </dl>
-
-                        <dl>
-                            <dt><label>Status of Implementation Readiness</label></dt>
-                            <dd>
-                                <ul class="pl-4">
-                                    @forelse($project->prerequisites as $prerequisite)
-                                        <li>{{ $prerequisite->name }}</li>
-                                    @empty
-                                        <li>None selected.</li>
-                                    @endforelse
-                                </ul>
-                            </dd>
-                        </dl>
-
-                        <dl>
-                            <dt><label>Implementation Risks and Mitigation Strategies</label></dt>
-                            <dd>
-                                {{ $project->risk->risk }}
-                            </dd>
-                        </dl>
-
-                        <dl>
-                            <dt><label>Total Infrastructure Cost by Funding Source</label></dt>
-                            <dd>
-                                <table class="col-12 d-table border">
-                                    <thead>
-                                    <tr class="border-bottom">
-                                        <th class="col-1 p-2">Funding Source</th>
-                                        <th class="col-1 p-2 text-right">2022 &amp; Prior</th>
-                                        <th class="col-1 p-2 text-right">2023</th>
-                                        <th class="col-1 p-2 text-right">2024</th>
-                                        <th class="col-1 p-2 text-right">2025</th>
-                                        <th class="col-1 p-2 text-right">2026 &amp; Prior</th>
-                                        <th class="col-1 p-2 text-right">Total</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($project->fs_infrastructures as $fs_infrastructure)
-                                        <tr class="border-bottom">
-                                            <td class="p-2">{{ $fs_infrastructure->funding_source->name ?? '_' }}</td>
-                                            <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2022 ?? 0.00, 2) }}</td>
-                                            <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2023 ?? 0.00, 2) }}</td>
-                                            <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2024 ?? 0.00, 2) }}</td>
-                                            <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2025 ?? 0.00, 2) }}</td>
-                                            <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2026 ?? 0.00, 2) }}</td>
-                                            <td class="p-2 text-right">{{ number_format($fs_infrastructure->y2022 + $fs_infrastructure->y2023 + $fs_infrastructure->y2024 + $fs_infrastructure->y2025 + $fs_infrastructure->y2026, 2) }}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                    <tfoot>
-                                    <th class="p-2 text-left">Total</th>
-                                    <th class="p-2 text-right">{{ number_format($project->fs_infrastructures->sum('y2022'), 2) }}</th>
-                                    <th class="p-2 text-right">{{ number_format($project->fs_infrastructures->sum('y2023'), 2) }}</th>
-                                    <th class="p-2 text-right">{{ number_format($project->fs_infrastructures->sum('y2024'), 2) }}</th>
-                                    <th class="p-2 text-right">{{ number_format($project->fs_infrastructures->sum('y2025'), 2) }}</th>
-                                    <th class="p-2 text-right">{{ number_format($project->fs_infrastructures->sum('y2026'), 2) }}</th>
-                                    <th class="p-2 text-right">
-                                        {{ number_format($project->fs_infrastructures->sum('y2022')
-                                            + $project->fs_infrastructures->sum('y2023')
-                                            + $project->fs_infrastructures->sum('y2024')
-                                            + $project->fs_infrastructures->sum('y2025')
-                                            + $project->fs_infrastructures->sum('y2026'), 2) }}
-                                    </th>
-                                    </tfoot>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <x-subhead subhead="Total Infrastructure Cost by Region">
-                            <x-back-to-top></x-back-to-top>
-                        </x-subhead>
-
-                        <dl>
-                            <dt><label>Total Infrastructure Cost by Region</label></dt>
-                            <dd>
-                                <table class="col-12 d-table border">
-                                    <thead>
-                                    <tr class="border-bottom">
-                                        <th class="col-1 p-2">Region</th>
-                                        <th class="col-1 p-2 text-right">2022 &amp; Prior</th>
-                                        <th class="col-1 p-2 text-right">2023</th>
-                                        <th class="col-1 p-2 text-right">2024</th>
-                                        <th class="col-1 p-2 text-right">2025</th>
-                                        <th class="col-1 p-2 text-right">2026 &amp; Prior</th>
-                                        <th class="col-1 p-2 text-right">Total</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($project->region_infrastructures->sortBy('region.order') as $region_infrastructure)
-                                        <tr class="border-bottom">
-                                            <td class="p-2">{{ $region_infrastructure->region->name ?? '_' }}</td>
-                                            <td class="p-2 text-right">{{ $region_infrastructure->y2022 ?? '0.00' }}</td>
-                                            <td class="p-2 text-right">{{ $region_infrastructure->y2023 ?? '0.00' }}</td>
-                                            <td class="p-2 text-right">{{ $region_infrastructure->y2024 ?? '0.00' }}</td>
-                                            <td class="p-2 text-right">{{ $region_infrastructure->y2025 ?? '0.00' }}</td>
-                                            <td class="p-2 text-right">{{ $region_infrastructure->y2026 ?? '0.00' }}</td>
-                                            <td class="p-2 text-right">{{ number_format($region_infrastructure->y2022 + $region_infrastructure->y2023 + $region_infrastructure->y2024 + $region_infrastructure->y2025 + $region_infrastructure->y2026, 2) }}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th class="p-2 text-left">Total</th>
-                                        <th class="p-2 text-right">{{ number_format($project->region_infrastructures->sum('y2022'), 2) }}</th>
-                                        <th class="p-2 text-right">{{ number_format($project->region_infrastructures->sum('y2023'), 2) }}</th>
-                                        <th class="p-2 text-right">{{ number_format($project->region_infrastructures->sum('y2024'), 2) }}</th>
-                                        <th class="p-2 text-right">{{ number_format($project->region_infrastructures->sum('y2025'), 2) }}</th>
-                                        <th class="p-2 text-right">{{ number_format($project->region_infrastructures->sum('y2026'), 2) }}</th>
-                                        <th class="p-2 text-right">
-                                            {{ number_format($project->region_infrastructures->sum('y2022')
-                                                + $project->region_infrastructures->sum('y2023')
-                                                + $project->region_infrastructures->sum('y2024')
-                                                + $project->region_infrastructures->sum('y2025')
-                                                + $project->region_infrastructures->sum('y2026'), 2) }}
-                                        </th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            @endif
         </div>
 
         <div x-cloak x-show="tab === 'history'">
