@@ -18,8 +18,9 @@
                         <label for="office_id" class="required">Office </label>
                     </dt>
                     <dd class="form-group-body">
-                        <x-select name="office_id" :options="$offices" :selected="old('office_id')" aria-describedby="office-validation"></x-select>
-                        <x-error-message name="office_id" id="office-validation"></x-error-message>
+                        <input type="hidden" name="office_id" value="{{ auth()->user()->office_id }}">
+                        <x-select disabled name="office_id" :options="$offices" selected="{{ auth()->user()->office_id }}" aria-describedby="office-validation"></x-select>
+                        <p class="note">Office depends on the current user's office assignment.</p>
                     </dd>
                 </dl>
 

@@ -21,4 +21,9 @@ class RefSubmissionStatus extends Model
     {
         return static::where('name', $name)->first();
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class,'ref_submission_status_id');
+    }
 }

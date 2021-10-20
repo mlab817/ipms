@@ -21,17 +21,18 @@ class ProjectRegionInvestment extends Model
     protected $fillable = [
         'uuid',
         'project_id',
-        'region_id',
-        'y2016',
-        'y2017',
-        'y2018',
-        'y2019',
-        'y2020',
-        'y2021',
+        'ref_region_id',
+//        'y2016',
+//        'y2017',
+//        'y2018',
+//        'y2019',
+//        'y2020',
+//        'y2021',
         'y2022',
         'y2023',
         'y2024',
         'y2025',
+        'y2026',
     ];
 
     protected static function boot()
@@ -50,7 +51,7 @@ class ProjectRegionInvestment extends Model
 
     public function region(): BelongsTo
     {
-        return $this->belongsTo(RefRegion::class,'region_id','id');
+        return $this->belongsTo(RefRegion::class,'ref_region_id','id');
     }
 
     public function project(): BelongsTo

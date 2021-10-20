@@ -104,6 +104,7 @@ class Project extends Model
         'ref_submission_status_id',
         'ref_reason_id',
         'other_reason',
+        'completion_date',
     ];
 
     protected $casts = [

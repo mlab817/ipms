@@ -16,7 +16,7 @@ class ProjectUpdate extends Model
     ];
 
     protected $casts = [
-        'updates_date',
+        'updates_date' => 'date',
     ];
 
     public function project(): BelongsTo

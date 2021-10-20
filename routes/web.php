@@ -49,6 +49,7 @@ Route::middleware(['auth','password.changed'])->group(function () {
     Route::resource('notifications',\App\Http\Controllers\NotificationController::class)->only('index','show');
     Route::resource('pipols',\App\Http\Controllers\PipolController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
+    Route::resource('offices', \App\Http\Controllers\OfficeController::class);
 
     Route::group(['prefix' => 'reports'], function() {
         Route::get('/', [\App\Http\Controllers\ReportController::class,'index'])->name('reports.index');
@@ -67,14 +68,6 @@ Route::middleware(['auth','password.changed'])->group(function () {
 
     Route::post('password/change', [\App\Http\Controllers\Auth\PasswordChangeController::class,'update'])->name('change_password_update');
     Route::get('password/change', [\App\Http\Controllers\Auth\PasswordChangeController::class,'index'])->name('change_password_index');
-
-    // auth routes with registration disabled
-
-    Route::middleware('can:projects.manage')->prefix('/admin')->name('admin.')->group(function() {
-        Route::resource('projects', \App\Http\Controllers\Admin\AdminProjectController::class);
-        Route::post('/projects/{project}/change_owner', [\App\Http\Controllers\Admin\AdminProjectController::class,'changeOwnerPost'])->name('projects.changeOwner.post');
-        Route::get('/projects/{project}/change_owner', [\App\Http\Controllers\Admin\AdminProjectController::class,'changeOwner'])->name('projects.changeOwner.get');
-    });
 
     // Admin routes
     Route::middleware(['admin'])->prefix('/admin')->name('admin.')->group(function () {
@@ -104,17 +97,4 @@ Route::group(['middleware' => 'guest'], function() {
 
 Route::fallback(function () {
     return view('errors.404');
-});
-
-Route::get('/debug', function () {
-    \Log::debug('Test debug message');
-});
-
-Route::get('/generate_username', function () {
-    $users = \App\Models\User::all();
-
-    foreach ($users as $item) {
-        $item->username = generate_username($item->email);
-        $item->save();
-    }
 });

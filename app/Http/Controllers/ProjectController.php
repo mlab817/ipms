@@ -51,6 +51,7 @@ use App\Models\RefTier;
 use App\Models\RefYear;
 use App\Models\User;
 use App\Notifications\ProjectDeletedNotification;
+use App\Services\ProjectCreateService;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use File;
 use Illuminate\Database\Eloquent\Model;
@@ -80,12 +81,23 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         $projectQuery = Project::query()->with(['office','creator.office','project_status','pipol']);
+        $q = $request->q;
+        $status = RefSubmissionStatus::findByName($request->status ?? '');
 
-        $projects = $this->filter($projectQuery, $request);
+        if ($status) {
+            $projectQuery->where('ref_submission_status_id', $status->id);
+        }
+
+        if ($q) {
+            $projectQuery->where('title','like', '%'. $q . '%');
+        }
+
+        $projects = $projectQuery->paginate();
 
         return view('projects.index', compact('projects'))
             ->with([
-                'pageTitle' => 'Projects'
+                'submission_statuses'=> RefSubmissionStatus::withCount('projects')->get(),
+                'totalProjectsCount' => Project::count(),
             ]);
     }
 
@@ -113,13 +125,13 @@ class ProjectController extends Controller
      * @return Response
      * @throws \Exception
      */
-    public function store(ProjectStoreRequest $request)
+    public function store(ProjectStoreRequest $request, ProjectCreateService $service)
     {
-        $project = Project::create($request->validated());
-        $project->creator()->associate(Auth::user());
-        $project->save();
+        $project = $service->execute($request->validated(), auth()->id());
 
-        event(new ProjectCreatedEvent($project));
+        dd($project);
+
+//        event(new ProjectCreatedEvent($project));
 
         return redirect()->route('projects.show', $project);
     }
@@ -174,7 +186,6 @@ class ProjectController extends Controller
         $boolean = array($yes, $no);
 
         return view('projects.edit', compact('project'))
-            ->with('pageTitle', 'Edit Project')
             ->with([
                 'offices'                   => Office::all(),
                 'pap_types'                 => RefPapType::all(),
@@ -205,6 +216,7 @@ class ProjectController extends Controller
                 'boolean'                   => $boolean,
                 'operating_units'           => RefOperatingUnit::all(),
                 'prerequisites'             => RefPrerequisite::all(),
+                'readiness_levels'          => RefReadinessLevel::all(),
             ]);
     }
 
@@ -221,7 +233,6 @@ class ProjectController extends Controller
 
         $project->bases()->sync($request->bases);
         $project->regions()->sync($request->regions);
-        $project->funding_sources()->sync($request->funding_sources);
         $project->sdgs()->sync($request->sdgs);
         $project->pdp_chapters()->sync($request->pdp_chapters);
         $project->pdp_indicators()->sync($request->pdp_indicators);
@@ -232,39 +243,42 @@ class ProjectController extends Controller
         foreach ($request->fs_investments as $fs_investment) {
             $fsToEdit = ProjectFsInvestment::where('project_id', $project->id)->where('fs_id', $fs_investment['fs_id'])->first();
             $fsToEdit->update($fs_investment);
-//            update(['id' => $fs_investment['id']], $fs_investment);
         }
-//
+
         foreach ($request->region_investments as $region_investment) {
-            $itemToEdit = ProjectRegionInvestment::where('project_id', $project->id)->where('region_id', $region_investment['region_id'])->first();
-            $itemToEdit->update($region_investment);
+            $project->region_investments()->where('ref_region_id', $region_investment->ref_region_id)->update($region_investment);
+//            $itemToEdit = ProjectRegionInvestment::where('project_id', $project->id)->where('region_id', $region_investment['region_id'])->first();
+//            $itemToEdit->update($region_investment);
+        }
+
+        foreach ($request->region_infrastructures as $region_investment) {
+            $project->region_infrastructures()->where('ref_region_id', $region_investment->ref_region_id)->update($region_investment);
+//            $itemToEdit = ProjectRegionInvestment::where('project_id', $project->id)->where('region_id', $region_investment['region_id'])->first();
+//            $itemToEdit->update($region_investment);
         }
 
         $project->project_update()->update([
             'updates'   => $request->updates,
             'updates_date' => $request->updates_date,
         ]);
+
         $project->expected_output()->update([
             'expected_outputs' => $request->expected_outputs
         ]);
+
         $project->description()->update([
             'description' => $request->description,
         ]);
+
         $project->feasibility_study()->update($request->feasibility_study);
+
         $project->nep()->update($request->nep);
+
         $project->allocation()->update($request->allocation);
+
         $project->disbursement()->update($request->disbursement);
 
-        if ($request->has('draft')) {
-            $project->submission_status_id = RefSubmissionStatus::findByName('Draft')->id;
-            $project->save();
-        }
-
-        if ($request->has('endorse')) {
-            $this->authorize('endorse', $project);
-            $project->submission_status_id = RefSubmissionStatus::findByName('Endorsed')->id;
-            $project->save();
-        }
+        session()->flash('status', 'success|Successfully updated PAP.');
 
         return back();
     }
@@ -291,43 +305,6 @@ class ProjectController extends Controller
         }
 
         return redirect()->route('projects.own');
-    }
-
-    public function filter($projectQuery, $request)
-    {
-        $projects = collect();
-
-        if ($request->has('q')) {
-            $query = $request->query();
-            $searchTerm = '%' .  $query['q'] . '%' ?? '';
-            $orderBy = $query['orderBy']  ?? 'id';
-            $sortOrder = $query['sortOrder'] ?? 'ASC';
-
-            if (! $searchTerm) {
-                $projects = $projectQuery
-                    ->orderBy($orderBy, $sortOrder)
-                    ->paginate();
-            } else {
-                $projects = $projectQuery
-                    ->where('title','like', $searchTerm)
-//                    ->orWhereHas('project_status', function ($query) use ($searchTerm) {
-//                        $query->where('name', 'like', $searchTerm);
-//                    })
-//                    ->orWhereHas('office', function ($query) use ($searchTerm) {
-//                        $query->where('name','like', $searchTerm)
-//                            ->orWhere('acronym','like', $searchTerm);
-//                    })
-//                    ->orWhereHas('creator', function ($query) use ($searchTerm) {
-//                        $query->where('first_name','like', $searchTerm);
-//                    })
-                    ->orderBy($orderBy, $sortOrder)
-                    ->paginate();
-            }
-        } else {
-            $projects = $projectQuery->paginate();
-        }
-
-        return $projects;
     }
 
     public function assigned(Request $request)

@@ -111,7 +111,7 @@
                                                 </select>
                                             </div>
                                             <div class="Box-footer">
-                                                <button onclick="return confirm('Are you really sure?')" type="submit" class="btn btn-primary btn-block" data-close-dialog>Submit</button>
+                                                <button onclick="return confirm('Are you really sure?')" type="submit" class="btn btn-primary btn-block">Submit</button>
                                             </div>
                                         </div>
                                     </form>
@@ -223,7 +223,7 @@
                         <dd>
                             <ul class="pl-4">
                                 @forelse($project->regions as $region)
-                                    <li>{{ $region->name }}</li>
+                                    <li>{{ $region->label }}</li>
                                 @empty
                                     <li>None selected.</li>
                                 @endforelse
@@ -756,19 +756,19 @@
                             <table class="col-12 d-table border">
                                 <thead>
                                 <tr class="border-bottom">
-                                    <th class="col p-2">Region</th>
-                                    <th class="col p-2 text-right">2022 &amp; Prior</th>
-                                    <th class="col p-2 text-right">2023</th>
-                                    <th class="col p-2 text-right">2024</th>
-                                    <th class="col p-2 text-right">2025</th>
-                                    <th class="col p-2 text-right">2026 &amp; Prior</th>
-                                    <th class="col p-2 text-right">Total</th>
+                                    <th class="col-1 p-2">Region</th>
+                                    <th class="col-1 p-2 text-right">2022 &amp; Prior</th>
+                                    <th class="col-1 p-2 text-right">2023</th>
+                                    <th class="col-1 p-2 text-right">2024</th>
+                                    <th class="col-1 p-2 text-right">2025</th>
+                                    <th class="col-1 p-2 text-right">2026 &amp; Prior</th>
+                                    <th class="col-1 p-2 text-right">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($project->region_investments->sortBy('region.order') as $region_investment)
                                     <tr class="border-bottom">
-                                        <td class="p-2">{{ $region_investment->region->name ?? '_' }}</td>
+                                        <td class="p-2">{{ $region_investment->region->label ?? '_' }}</td>
                                         <td class="p-2 text-right">{{ number_format($region_investment->y2022 ?? 0.00, 2) }}</td>
                                         <td class="p-2 text-right">{{ number_format($region_investment->y2023 ?? 0.00, 2) }}</td>
                                         <td class="p-2 text-right">{{ number_format($region_investment->y2024 ?? 0.00, 2) }}</td>
@@ -964,8 +964,6 @@
                             </dd>
                         </dl>
 
-
-
                         <dl>
                             <dt><label>Total Infrastructure Cost by Funding Source</label></dt>
                             <dd>
@@ -1023,13 +1021,13 @@
                                 <table class="col-12 d-table border">
                                     <thead>
                                     <tr class="border-bottom">
-                                        <th class="col p-2">Region</th>
-                                        <th class="col p-2 text-right">2022 &amp; Prior</th>
-                                        <th class="col p-2 text-right">2023</th>
-                                        <th class="col p-2 text-right">2024</th>
-                                        <th class="col p-2 text-right">2025</th>
-                                        <th class="col p-2 text-right">2026 &amp; Prior</th>
-                                        <th class="col p-2 text-right">Total</th>
+                                        <th class="col-1 p-2">Region</th>
+                                        <th class="col-1 p-2 text-right">2022 &amp; Prior</th>
+                                        <th class="col-1 p-2 text-right">2023</th>
+                                        <th class="col-1 p-2 text-right">2024</th>
+                                        <th class="col-1 p-2 text-right">2025</th>
+                                        <th class="col-1 p-2 text-right">2026 &amp; Prior</th>
+                                        <th class="col-1 p-2 text-right">Total</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -1081,8 +1079,8 @@
                             <!-- Default TimelineItem Badge -->
                             <div class="TimelineItem">
                                 <div class="TimelineItem-avatar">
-                                    <img class="avatar" height="40" width="40" alt="{{ '@' . $log->user->username }}"
-                                         src="{{ $log->user->avatar }}" />
+                                    <img class="avatar" height="40" width="40" alt="{{ '@' . optional($log->user)->username }}"
+                                         src="{{ optional($log->user)->avatar }}" />
                                 </div>
                                 <div class="TimelineItem-badge">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" class="octicon">
@@ -1090,7 +1088,7 @@
                                     </svg>
                                 </div>
                                 <div class="TimelineItem-body">
-                                    <a href="{{ route('users.show', $log->user) }}" class="text-bold Link--primary mr-1">{{ optional($log->user)->first_name }}</a>
+                                    <a href="{{ $log->user ? route('users.show', $log->user) : '#' }}" class="text-bold Link--primary mr-1">{{ optional($log->user)->first_name }}</a>
                                     {{ $log->description }} this project {{ $log->created_at->diffForHumans(null, null, true) }}
                                 </div>
                             </div>
