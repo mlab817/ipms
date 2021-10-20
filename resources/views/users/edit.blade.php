@@ -10,20 +10,24 @@
             <details>
                 <summary class="btn btn-danger">Delete User</summary>
                 <details-dialog class="Box--overlay">
-                    <div class="Box">
-                        <div class="Box-header">
-                            <h2 class="Box-title">Delete User</h2>
+                    <form action="{{ route('users.destroy', $user) }}" method="POST" accept-charset="utf-8">
+                        @csrf
+                        @method('DELETE')
+                        <div class="Box">
+                            <div class="Box-header">
+                                <h2 class="Box-title">Delete User</h2>
+                            </div>
+                            <div class="Box-body">
+                                <p>This will deactivate user account. The user will not be able to login. Are you sure you want to continue?</p>
+                            </div>
+                            <div class="Box-footer">
+                                <button type="submit">Delete User</button>
+                            </div>
                         </div>
-                        <div class="Box-body">
-                            <p>This will deactivate user account. The user will not be able to login. Are you sure you want to continue?</p>
-                        </div>
-                        <div class="Box-footer">
-                            <button type="submit">Delete User</button>
-                        </div>
-                    </div>
+                    </form>
                 </details-dialog>
             </details>
-            
+
             <h2 class="Box-title">Update a User</h2>
         </div>
 

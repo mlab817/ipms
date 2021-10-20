@@ -8,6 +8,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Models\Office;
 use App\Models\Role;
 use App\Models\User;
+use App\Notifications\UserDeactivatedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -101,8 +102,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->deactivate();
+
+        // TODO: Notify User
+        $user->notify(new UserDeactivatedNotification);
+
+        return back()->with(['success' => 'Successfully deactivated user.']);
     }
 }
