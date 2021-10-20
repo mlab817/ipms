@@ -15,6 +15,8 @@
 <body>
 @include('partials.header')
 
+<x-flash-message></x-flash-message>
+
 @yield('page-header')
 
 <div class="Layout Layout--gutter-none">

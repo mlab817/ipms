@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\SampleChart;
 use App\Models\Project;
 use App\Models\ProjectReview;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
@@ -23,11 +21,6 @@ class DashboardController extends Controller
             ->mapWithKeys(function ($item) {
                 return [$item->date  => $item->count];
             });
-
-        // create chart
-        $chart = new SampleChart;
-        $chart->labels($chartData->keys());
-        $chart->dataset('Projects Added Daily', 'bar', $chartData->values());
 
         return view('dashboard', [
             'projectCount'  => Project::count(),
@@ -56,7 +49,7 @@ class DashboardController extends Controller
                 $q->where('submission_status','Draft');
             })->count(),
             'userCount'     => User::count(),
-            'chart'         => $chart,
+            'chart'         => [],
             'reviews'       => ProjectReview::with('user')->has('project')->latest()->take(5)->get(),
             'latestProjects'=> Project::with('pap_type','project_status','creator.office','office')->latest()->take(5)->get(),
             'users'         => User::whereHas('roles', function ($q) {

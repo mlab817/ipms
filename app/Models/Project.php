@@ -201,7 +201,7 @@ class Project extends Model
 
     public function submission_status(): BelongsTo
     {
-        return $this->belongsTo(RefSubmissionStatus::class, 'ref_submission_status_id')->withDefault();
+        return $this->belongsTo(RefSubmissionStatus::class, 'ref_submission_status_id')->withDefault(['name' => 'None selected']);
     }
 
     public function tier(): BelongsTo

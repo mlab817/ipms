@@ -1,31 +1,7 @@
 @extends('layouts.app')
 
 @section('page-header')
-    <x-page-header>
-        <h1 class=" d-flex flex-wrap flex-items-center wb-break-word f3 text-normal">
-            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-repo color-icon-secondary mr-2">
-                <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
-            </svg>
-
-            <span class="author flex-self-stretch" itemprop="author">
-                    <a class="url fn" rel="author" href="{{ route('users.show', $project->creator) }}">
-                        {{ $project->creator->username }}
-                    </a>
-                </span>
-
-            <span class="mx-1 flex-self-stretch color-text-secondary">/</span>
-
-            <strong itemprop="name" class="mr-2 flex-self-stretch">
-                <a href="#">
-                    {{ $project->title }}
-                </a>
-            </strong>
-
-            <span></span>
-
-            <span class="Label Label--secondary v-align-middle mr-1">{{ $project->pap_type->name }}</span>
-        </h1>
-    </x-page-header>
+    <x-page-header :header="$project->title"></x-page-header>
 @endsection
 
 @section('content')
@@ -64,7 +40,9 @@
                                 <li><a class="dropdown-item" href="#funding-source">Funding Source and Mode of Implementation</a></li>
                                 <li><a class="dropdown-item" href="#project-costs">Project Costs</a></li>
                                 <li><a class="dropdown-item" href="#financial-accomplishments">Financial Accomplishments</a></li>
+                                @if($project->trip)
                                 <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
+                                @endif
                             </ul>
                         </details>
 
@@ -74,86 +52,90 @@
                     </div>
 
                     <div class="d-flex py-1 py-md-0 flex-auto flex-order-1 flex-md-order-2 flex-sm-grow-0 flex-justify-between hide-sm hide-md">
-                        <details class="details-reset details-overlay details-overlay-dark mr-1">
-                            <summary class="btn tooltipped tooltipped-nw" aria-label="Endorse this PAP" aria-haspopup="dialog">
-                                <svg class="octicon octicon-plane" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.592 2.712L2.38 7.25h4.87a.75.75 0 110 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8L.064 2.68a1.341 1.341 0 011.85-1.462l13.402 5.744a1.13 1.13 0 010 2.076L1.913 14.782a1.341 1.341 0 01-1.85-1.463L.99 8z"></path></svg>
-                                Endorse
-                            </summary>
-                            <details-dialog class="Box--overlay d-flex flex-column anim-fade-in fast">
-                                <form action="{{ route('projects.submit', $project) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="Box">
-                                        <div class="Box-header">
-                                            <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
-                                                <!-- <%= octicon "x" %> -->
-                                                <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
-                                            </button>
-                                            <h2 class="Box-title">Submit PAP</h2>
-                                        </div>
-                                        <div class="flash flash-warn flash-full m-0">
-                                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
-                                                <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
-                                            </svg>
-                                            <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
-                                        </div>
-                                        <div class="Box-body">
-                                            <div class="d-flex flex-nowrap">
-                                                <div>
-                                                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
-                                                        <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
-                                                    </svg>
-                                                </div>
-                                                <div class="pl-3 flex-1">
-                                                    <p class="overflow-hidden mb-1">Before you submit, please consider:</p>
-                                                    <ul class="ml-3">
-                                                        <li>
-                                                            <strong>Endorsed:</strong> The PAP will be endorsed for validation of the IPD.
-                                                            Once endorsed, you will <strong>No</strong> longer be able to edit the PAP.
-                                                            Only IPD can restore the PAP to DRAFT provided the PAP has not been validated.
-                                                        </li>
-                                                        <li>
-                                                            <strong>Dropped:</strong> The PAP will be dropped from the PIP/TRIP, i.e. it will no longer
-                                                            be considered for inclusion to the PIP/TRIP. The PAP will still remain in the
-                                                            list of PAPs. If you wish to permanently delete the PAP, use the Delete function.
-                                                            The IPD will also validate dropped PAPs and similar to endorsement, you will have
-                                                            to request IPD to restore the PAP.
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                        @if(in_array(strtolower(optional($project->submission_status)->name), ['endorsed','dropped']))
+                            <span class="branch-name mr-2">{{ $project->submission_status->name }}</span>
+                        @else
+                            <details class="details-reset details-overlay details-overlay-dark mr-1">
+                                <summary class="btn tooltipped tooltipped-nw" aria-label="Endorse this PAP" aria-haspopup="dialog">
+                                    <svg class="octicon octicon-plane" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.592 2.712L2.38 7.25h4.87a.75.75 0 110 1.5H2.38l-.788 4.538L13.929 8 1.592 2.712zM.989 8L.064 2.68a1.341 1.341 0 011.85-1.462l13.402 5.744a1.13 1.13 0 010 2.076L1.913 14.782a1.341 1.341 0 01-1.85-1.463L.99 8z"></path></svg>
+                                    Endorse
+                                </summary>
+                                <details-dialog class="Box--overlay d-flex flex-column anim-fade-in fast">
+                                    <form action="{{ route('projects.submit', $project) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="Box">
+                                            <div class="Box-header">
+                                                <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+                                                    <!-- <%= octicon "x" %> -->
+                                                    <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+                                                </button>
+                                                <h2 class="Box-title">Submit PAP</h2>
                                             </div>
+                                            <div class="flash flash-warn flash-full m-0">
+                                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
+                                                    <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
+                                                </svg>
+                                                <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
+                                            </div>
+                                            <div class="Box-body">
+                                                <div class="d-flex flex-nowrap">
+                                                    <div>
+                                                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
+                                                            <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="pl-3 flex-1">
+                                                        <p class="overflow-hidden mb-1">Before you submit, please consider:</p>
+                                                        <ul class="ml-3">
+                                                            <li>
+                                                                <strong>Endorsed:</strong> The PAP will be endorsed for validation of the IPD.
+                                                                Once endorsed, you will <strong>No</strong> longer be able to edit the PAP.
+                                                                Only IPD can restore the PAP to DRAFT provided the PAP has not been validated.
+                                                            </li>
+                                                            <li>
+                                                                <strong>Dropped:</strong> The PAP will be dropped from the PIP/TRIP, i.e. it will no longer
+                                                                be considered for inclusion to the PIP/TRIP. The PAP will still remain in the
+                                                                list of PAPs. If you wish to permanently delete the PAP, use the Delete function.
+                                                                The IPD will also validate dropped PAPs and similar to endorsement, you will have
+                                                                to request IPD to restore the PAP.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
 
-                                            <select name="ref_submission_status_id" id="ref_submission_status_id" class="mt-3 form-select input-block">
-                                                @foreach($submission_statuses as $option)
-                                                    <option value="{{ $option->id }}">{{ $option->name }}</option>
-                                                @endforeach
-                                            </select>
+                                                <select name="ref_submission_status_id" id="ref_submission_status_id" class="mt-3 form-select input-block">
+                                                    @foreach($submission_statuses as $option)
+                                                        <option value="{{ $option->id }}">{{ $option->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="Box-footer">
+                                                <button onclick="return confirm('Are you really sure?')" type="submit" class="btn btn-primary btn-block" data-close-dialog>Submit</button>
+                                            </div>
                                         </div>
-                                        <div class="Box-footer">
-                                            <button type="button" class="btn btn-primary btn-block" data-close-dialog>Submit</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </details-dialog>
-                        </details>
+                                    </form>
+                                </details-dialog>
+                            </details>
 
-                        <a class="btn btn-primary tooltipped tooltipped-nw mr-1" href="{{ route('projects.edit', $project) }}" aria-label="Edit this PAP" data-hotkey="e" data-disable-with="">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-pencil">
-                                <path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>
-                            </svg>
-                            Edit
-                        </a>
-
-                        <form class="inline-form" action="{{ route('projects.destroy', $project) }}" accept-charset="UTF-8" method="post">
-                            @csrf
-                            @method('delete')
-                            <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn btn-danger tooltipped tooltipped-nw" type="submit" aria-label="Delete this PAP" data-disable-with="">
-                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-trash">
-                                    <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
+                            <a class="btn btn-primary tooltipped tooltipped-nw mr-1" href="{{ route('projects.edit', $project) }}" aria-label="Edit this PAP" data-hotkey="e" data-disable-with="">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-pencil">
+                                    <path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>
                                 </svg>
-                                Delete
-                            </button>
-                        </form>
+                                Edit
+                            </a>
+
+                            <form class="inline-form" action="{{ route('projects.destroy', $project) }}" accept-charset="UTF-8" method="post">
+                                @csrf
+                                @method('delete')
+                                <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn btn-danger tooltipped tooltipped-nw" type="submit" aria-label="Delete this PAP" data-disable-with="">
+                                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-trash">
+                                        <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
+                                    </svg>
+                                    Delete
+                                </button>
+                            </form>
+                        @endif
                     </div>
                 </div>
 
@@ -1093,13 +1075,28 @@
                 <div class="Box-header">
                     <h2 class="Box-title">History: {{ $project->title }}</h2>
                 </div>
-                <ul>
+                <div class="Box-body">
                     @foreach($project->audit_logs->sortByDesc('created_at') as $log)
-                        <li class="Box-row">
-                            {{ ucfirst($log->description) }} by {{ $log->user->full_name }} on {{ $log->created_at }}
-                        </li>
+                        <div class="ml-6 pl-3">
+                            <!-- Default TimelineItem Badge -->
+                            <div class="TimelineItem">
+                                <div class="TimelineItem-avatar">
+                                    <img class="avatar" height="40" width="40" alt="{{ '@' . $log->user->username }}"
+                                         src="{{ $log->user->avatar }}" />
+                                </div>
+                                <div class="TimelineItem-badge">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" class="octicon">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009a1.82 1.82 0 00.35.31c.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371a1.82 1.82 0 00.35-.31l.007-.008a.75.75 0 011.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.989 1.989 0 01-.184.213 3.32 3.32 0 01-.53.445A3.766 3.766 0 018 12c-.946 0-1.652-.308-2.126-.63a3.323 3.323 0 01-.673-.604 1.975 1.975 0 01-.042-.053l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044z"></path>
+                                    </svg>
+                                </div>
+                                <div class="TimelineItem-body">
+                                    <a href="{{ route('users.show', $log->user) }}" class="text-bold Link--primary mr-1">{{ optional($log->user)->first_name }}</a>
+                                    {{ $log->description }} this project {{ $log->created_at->diffForHumans(null, null, true) }}
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
-                </ul>
+                </div>
             </div>
         </div>
     </div>

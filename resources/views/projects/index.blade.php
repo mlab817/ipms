@@ -27,7 +27,30 @@
         </div>
         <ul>
             @foreach($projects as $project)
-            <li class="Box-row d-flex flex-items-center">
+            <li class="Box-row clearfix position-relative pr-6">
+                <details class="details-reset details-overlay dropdown position-static">
+                    <summary class="color-fg-muted position-absolute right-0 top-0 mt-3 px-3" aria-label="Project menu" aria-haspopup="menu" role="button">
+                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal">
+                            <path d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+                        </svg>
+                    </summary>
+                    <details-menu class="dropdown-menu dropdown-menu-sw mt-6 mr-1 top-0" role="menu">
+                        <a href="{{ route('projects.show', $project) }}" class="btn-link dropdown-item" role="menuitem">
+                            View
+                        </a>
+                        <a href="{{ route('projects.edit', $project) }}" class="btn-link dropdown-item" role="menuitem">
+                            Edit
+                        </a>
+                        <div role="none" class="dropdown-divider"></div>
+                        <form action="{{ route('projects.destroy', $project) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick="return confirm('Are you sure you want to delete this PAP?')" type="submit" href="{{ route('projects.destroy', $project) }}" class="btn-link dropdown-item" role="menuitem">
+                                Delete
+                            </button>
+                        </form>
+                    </details-menu>
+                </details>
                 <div class="flex-auto">
                     <strong>{{ $project->title }}</strong>
                     <div class="text-small color-fg-subtle">

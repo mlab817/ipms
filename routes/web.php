@@ -36,7 +36,7 @@ Route::middleware(['auth','password.changed'])->group(function () {
 
     Route::put('/projects/{uuid}/restore', [\App\Http\Controllers\ProjectController::class,'restore'])->name('projects.restore');
 
-    Route::put('/projects/{project}/submit', [\App\Http\Controllers\ProjectSubmitController::class,'endorse'])->name('projects.submit');
+    Route::put('/projects/{project}/submit', \App\Http\Controllers\ProjectSubmitController::class)->name('projects.submit');
     // ProjectReview
 
     Route::get('/projects/deleted', [\App\Http\Controllers\ProjectController::class,'deleted'])->name('projects.deleted');

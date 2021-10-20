@@ -43,8 +43,6 @@ class SocialLoginController extends Controller
 
         Auth::login($existingUser);
 
-        Alert::success('Welcome Back!', 'Thank you for using our application');
-
         return redirect()->route(RouteServiceProvider::HOME);
     }
 }
