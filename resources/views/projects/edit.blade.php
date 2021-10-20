@@ -456,42 +456,13 @@
                                 <div x-cloak x-show="pdpChapterId == {{$pdp_indicator->id}}" class="mt-4">
                                     <div class="form-checkbox my-0">
                                         <label for="pdp_indicator_{{ $pdp_indicator->id }}">
-                                            <input type="checkbox" name="pdp_indicators[]" id="pdp_indicator_{{ $pdp_indicator->id }}" value="{{ $pdp_indicator->id }}">
+                                            <input type="checkbox" name="pdp_indicators[]" id="pdp_indicator_{{ $pdp_indicator->id }}" value="{{ $pdp_indicator->id }}"
+                                                @if(in_array($pdp_indicator->id, old('pdp_indicators', $project->pdp_indicators->pluck('id')->toArray() ?? []))) checked @endif>
                                             {{ $pdp_indicator->name }}
                                         </label>
                                     </div>
 
-                                    @foreach($pdp_indicator->children as $child1)
-                                        <div class="form-checkbox ml-4 my-0">
-                                            <label for="pdp_indicator_{{ $child1->id }}">
-                                                <input type="checkbox" name="pdp_indicators[]" id="pdp_indicator_{{ $child1->id }}" value="{{ $child1->id }}">
-                                                {{ $child1->name }}
-                                            </label>
-                                        </div>
-
-                                        <div class="ml-4">
-                                            @foreach($child1->children as $child2)
-                                                <div class="form-checkbox ml-4 my-0">
-                                                    <label for="pdp_indicator_{{ $child2->id }}">
-                                                        <input type="checkbox" name="pdp_indicators[]" id="pdp_indicator_{{ $child2->id }}" value="{{ $child2->id }}">
-                                                        {{ $child2->name }}
-                                                    </label>
-                                                </div>
-
-                                                <div class="ml-4">
-                                                    @foreach($child2->children as $child3)
-                                                        <div class="form-checkbox ml-4 my-0">
-                                                            <label for="pdp_indicator_{{ $child3->id }}">
-                                                                <input type="checkbox" name="pdp_indicators[]" id="pdp_indicator_{{ $child3->id }}" value="{{ $child3->id }}">
-                                                                {{ $child3->name }}
-                                                            </label>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            @endforeach
-
-                                        </div>
-                                    @endforeach
+                                    @include('projects.partials.child', ['children' => $pdp_indicator->children, 'selected' => old('$pdp_indicators', $project->pdp_indicators->pluck('id')->toArray() ?? [])])
                                 </div>
                             @endforeach
                         </dd>
