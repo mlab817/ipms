@@ -177,15 +177,6 @@
       <path value="$PROJECT_DIR$/vendor/laravel/passport" />
       <path value="$PROJECT_DIR$/vendor/hidehalo/nanoid-php" />
       <path value="$PROJECT_DIR$/vendor/inertiajs/inertia-laravel" />
-      <path value="$PROJECT_DIR$/vendor/realrashid/sweet-alert" />
-      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
-      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-html" />
-      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-fractal" />
-      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-editor" />
-      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables" />
-      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-buttons" />
-      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
-      <path value="$PROJECT_DIR$/vendor/league/fractal" />
       <path value="$PROJECT_DIR$/vendor/spatie/pdf-to-image" />
     </include_path>
   </component>
