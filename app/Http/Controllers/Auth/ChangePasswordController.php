@@ -28,7 +28,7 @@ class ChangePasswordController extends Controller
 
         event(new PasswordChangedEvent($user));
 
-        Alert::success('Success', 'Password successfully changed');
+        session()->flash('status', 'success|Successfully changed password');
 
         return back();
     }

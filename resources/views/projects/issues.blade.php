@@ -4,8 +4,9 @@
 
 @section('content')
     <div class="Box">
+        <div class="Box-row--blue"></div>
         <div class="Box-header">
-            <h2 class="Box-title">Issues: {{ $project->title }}
+            <h2 class="Box-title">Issues
                 <span class="Counter Counter--gray">
                     {{ count($issues) }}
                 </span>

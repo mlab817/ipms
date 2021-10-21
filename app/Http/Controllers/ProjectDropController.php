@@ -15,6 +15,8 @@ class ProjectDropController extends Controller
      */
     public function __invoke(Request $request, Project $project)
     {
+        $this->authorize('drop', $project);
+
         $project->drop();
 
         session()->flash('status','success|Successfully dropped PAP.');

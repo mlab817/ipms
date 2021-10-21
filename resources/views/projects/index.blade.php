@@ -65,9 +65,9 @@
         </div>
     </div>
 
-    <ul class="border-top mt-3">
+    <ul class="border-top mt-3 border-bottom">
         @forelse($projects as $project)
-        <li class="col-12 d-flex width-full py-4 border-bottom color-border-muted">
+        <li class="Box-row Box-row--{{ strtolower(optional($project->submission_status)->name) }} col-12 d-flex width-full py-4 color-border-muted">
             <div class="col-10 col-lg-9 d-inline-block">
                 <div class="d-inline-block mb-1">
                     <div class="d-inline wb-break-all">
@@ -77,7 +77,7 @@
                     </div>
                     <div class="d-inline">
                         <a href="{{ route('projects.index', array_merge(request()->except('status'), ['status' => $project->submission_status->name ])) }}" class="btn-link">
-                            <span class="Label Label--secondary v-align-middle mr-1 mb-1">
+                            <span class="Label Label--secondary v-align-middle mr-1 mb-1 tooltipped tooltipped-n" aria-label="Click to filter all {{ $project->submission_status->name }}">
                                 {{ $project->submission_status->name }}
                             </span>
                         </a>
@@ -101,6 +101,14 @@
                             <span class="repo-language-color" style="background-color: #e34c26"></span>
                             <span itemprop="">
                                 {{ optional($project->office)->acronym }}
+                            </span>
+                        </span>
+                    </a>
+
+                    by <a href="{{ route('users.show', $project->creator) }}" class="btn-link">
+                        <span class="ml-0 mr-3">
+                            <span itemprop="">
+                                {{ optional($project->creator)->full_name }}
                             </span>
                         </span>
                     </a>
@@ -147,7 +155,7 @@
         @endforelse
     </ul>
 
-    <div class="paginate-container d-none d-sm-flex flex-sm-justify-center">
+    <div class="paginate-container d-none d-sm-flex flex-sm-justify-center py-3">
         {{ $projects->appends(request()->except('page'))->links() }}
     </div>
 

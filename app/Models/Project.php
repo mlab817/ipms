@@ -172,6 +172,10 @@ class Project extends Model
         static::addGlobalScope(new RoleScope);
     }
 
+    protected $appends = [
+        'is_validated'
+    ];
+
     protected $fillable = [
         'ipms_id',
         'office_id',
@@ -250,6 +254,7 @@ class Project extends Model
         'ref_reason_id',
         'other_reason',
         'completion_date',
+        'validated_at',
     ];
 
     protected $casts = [
@@ -352,7 +357,8 @@ class Project extends Model
 
     public function submission_status(): BelongsTo
     {
-        return $this->belongsTo(RefSubmissionStatus::class, 'ref_submission_status_id')->withDefault(['name' => 'None selected']);
+        return $this->belongsTo(RefSubmissionStatus::class, 'ref_submission_status_id')
+            ->withDefault(['name' => 'None']);
     }
 
     public function tier(): BelongsTo
@@ -560,6 +566,47 @@ class Project extends Model
             'description' => 'dropped',
             'user_id' => auth()->id(),
         ]);
+    }
+
+    public function toggleValidation()
+    {
+        if (! $this->validated_at) {
+            $this->validated_at = now();
+            $this->saveQuietly();
+
+            $this->audit_logs()->create([
+                'description' => 'validated',
+                'user_id' => auth()->id(),
+            ]);
+        } else {
+            $this->validated_at = null;
+            $this->saveQuietly();
+
+            $this->audit_logs()->create([
+                'description' => 'invalidated',
+                'user_id' => auth()->id(),
+            ]);
+        }
+    }
+
+    public function isValidated(): bool
+    {
+        return !!$this->validated_at;
+    }
+
+    public function getIsValidatedAttribute(): bool
+    {
+        return $this->isValidated();
+    }
+
+    public function isDropped()
+    {
+        return optional($this->submission_status)->name == 'Dropped';
+    }
+
+    public function isEndorsed()
+    {
+        return optional($this->submission_status)->name == 'Endorsed';
     }
 
     public function investment(): HasOne

@@ -64,12 +64,11 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
-        return true;
-//        if (! config('ipms.permissions.projects.create')) {
-//            return $this->deny('Sorry, the System is currently not accepting new submissions');
-//        }
+        if ($user->role->name == 'guest') {
+            return $this->deny('Guests cannot create PAPs.');
+        }
 
-//        return $user->hasPermissionTo('projects.create');
+        return true;
     }
 
     /**
@@ -81,36 +80,32 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        if (! config('ipms.permissions.projects.update')) {
-            return $this->deny('Sorry, the System is currently not accepting update to submissions');
+        // if project has already been validated, disable update
+        if ($project->isValidated()) {
+            return $this->deny('PAP has already been validated.');
         }
 
-        if ($user->hasPermissionTo('projects.update_any')) {
+        // if project is endorsed, only IPD can edit it
+        if ($project->isEndorsed() && ! $user->role->name == 'ipd') {
+            return $this->deny('PAP has already been endorsed. Only IPD staff can edit.');
+        }
+
+        // if project is endorsed, only IPD can edit it
+        if ($project->isDropped() && ! $user->role->name == 'ipd') {
+            return $this->deny('PAP has been dropped. Only IPD staff can edit.');
+        }
+
+        // if user belongs to the same office as the project office
+        // or if the project belongs to user
+        // or if the role is ipd
+        if ($project->office_id == $user->office_id
+            || $project->creator_id == $user->id
+            || $user->role->name == 'ipd') {
             return true;
         }
 
-        if ($user->hasPermissionTo('projects.update_office')
-            && $user->office_id == $project->office_id
-        ) {
-            return true;
-        }
-
-        if ($user->id == $project->created_by) {
-            return true;
-        }
-
-        if ($user->hasPermissionTo('projects.import')) {
-            return true;
-        }
-
-        // TODO: this might throw an error
-        if ($project = $user->assigned_projects()->find($project->id)) {
-            if ($project->pivot->update) {
-                return true;
-            }
-        }
-
-        return false;
+        // all conditions return false
+        return $this->deny('You are not allowed to edit this PAP');
     }
 
     /**
@@ -118,39 +113,16 @@ class ProjectPolicy
      *
      * @param User $user
      * @param Project $project
-     * @return mixed
+     * @return bool
      */
-    public function delete(User $user, Project $project)
+    public function delete(User $user, Project $project): bool
     {
-        // check global permissions first
-        if (! config('ipms.permissions.projects.delete')) {
-            return $this->deny('Sorry, the System is currently not deleting submissions');
-        }
-
-        // if user is able to delete any project
-        if ($user->hasPermissionTo('projects.delete_any')) {
+        // only admin can delete projects
+        if ($user->role->name == 'admin') {
             return true;
         }
 
-        if ($user->hasPermissionTo('projects.delete_office')
-            && $user->office_id == $project->office_id
-        ) {
-            return true;
-        }
-
-        // if user is owner of the project
-        if ($user->id == $project->created_by) {
-            return true;
-        }
-
-        // TODO: this might throw an error
-        if ($project = $user->assigned_projects()->find($project->id)) {
-            if ($project->pivot->delete) {
-                return true;
-            }
-        }
-
-        return false;
+        return $this->deny('Only admins can delete deleted PAPs.');
     }
 
     /**
@@ -158,32 +130,16 @@ class ProjectPolicy
      *
      * @param User $user
      * @param Project $project
-     * @return mixed
+     * @return bool
      */
     public function restore(User $user, Project $project)
     {
-        // check global permissions first
-        if (! config('ipms.permissions.projects.restore')) {
-            return $this->deny('Sorry, the System is currently not restoring deleted submissions');
-        }
-
-        // if user is able to delete any project
-        if ($user->hasPermissionTo('projects.delete_any')) {
+        // only admin can delete projects
+        if ($user->role->name == 'admin') {
             return true;
         }
 
-        if ($user->hasPermissionTo('projects.delete_office')
-            && $user->office_id == $project->office_id
-        ) {
-            return true;
-        }
-
-        // if user is owner of the project
-        if ($user->id == $project->created_by) {
-            return true;
-        }
-
-        return false;
+        return $this->deny('Only admins can restore deleted PAPs.');
     }
 
     /**
@@ -191,60 +147,44 @@ class ProjectPolicy
      *
      * @param User $user
      * @param Project $project
-     * @return mixed
+     * @return bool
      */
     public function forceDelete(User $user, Project $project)
     {
-        // check global permissions first
-        if (! config('ipms.permissions.projects.forceDelete')) {
-            return $this->deny('Sorry, the System is currently not allowing permanent deletion of submissions');
-        }
-
-        // if user is able to delete any project
-        if ($user->hasPermissionTo('projects.delete_any')) {
+        // only admin can delete projects
+        if ($user->role->name == 'admin') {
             return true;
         }
 
-        if ($user->hasPermissionTo('projects.delete_office')
-            && $user->office_id == $project->office_id
-        ) {
-            return true;
-        }
-
-        // if user is owner of the project
-        if ($user->id == $project->created_by) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function review(User $user, Project $project)
-    {
-        $userCanReview = $user->can('reviews.create') || ($user->assigned_projects()->where('project_id', $project->id)->first()->pivot->review ?? false);
-
-        if ($userCanReview) {
-            return true;
-        }
-
-        return $this->deny('User is not assigned to review project');
+        return $this->deny('Only admins can force delete deleted PAPs.');;
     }
 
     public function endorse(User $user, Project $project)
     {
-        if (! config('ipms.permissions.projects.endorse')) {
-            return $this->deny('Sorry, the System is currently not allowing endorsement of submissions');
+        if ($project->office_id == $user->office_id
+            || $project->creator_id == $user->id) {
+            return true;
         }
 
-        return $user->hasPermissionTo('projects.endorse');
+        return $this->deny('Only owners and users belonging to the same office as the PAP can endorse it');
     }
 
     public function drop(User $user, Project $project)
     {
-        if (! config('ipms.permissions.projects.drop')) {
-            return $this->deny('Sorry, the System is currently not allowing dropping of submissions');
+        if ($project->office_id == $user->office_id
+            || $project->creator_id == $user->id) {
+            return true;
         }
 
-        return $user->hasPermissionTo('projects.drop');
+        return $this->deny('Only owners and users belonging to the same office as the PAP can endorse it');
+    }
+
+    public function validate(User $user, Project $project)
+    {
+        if ($user->role->name == 'ipd') {
+            return true;
+        }
+
+        return $this->deny('Only IPD can validate PAPs.');
     }
 }

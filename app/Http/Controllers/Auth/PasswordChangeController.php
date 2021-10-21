@@ -22,8 +22,6 @@ class PasswordChangeController extends Controller
             'password_changed_at' => now(),
         ]);
 
-        Alert::success('Success', 'Successfully changed password.');
-
         return redirect()->route('dashboard');
     }
 }

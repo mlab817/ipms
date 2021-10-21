@@ -1,17 +1,14 @@
-@extends('errors.layout')
-
 @php
-  $error_number = 408;
+  $error_number = 403;
 @endphp
 
-@section('title')
-  Request timeout.
-@endsection
+@php
+  $default_error_message = "Please <a href='javascript:history.back()''>go back</a> or return to <a href='".url('')."'>our homepage</a>.";
+@endphp
 
-@section('description')
-  @php
-    $default_error_message = "Please <a href='javascript:history.back()''>go back</a>, refresh the page and tru again.";
+@extends('layouts.errors')
 
-  @endphp
-  {!! isset($exception)? ($exception->getMessage()?$exception->getMessage():$default_error_message): $default_error_message !!}
+@section('content')
+  @php($error_message = isset($exception)? ($exception->getMessage() ? $exception->getMessage() : $default_error_message) : $default_error_message)
+  <x-error-page :error="$error_number" :message="$error_message"></x-error-page>
 @endsection

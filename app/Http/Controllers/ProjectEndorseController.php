@@ -15,6 +15,8 @@ class ProjectEndorseController extends Controller
      */
     public function __invoke(Request $request, Project $project)
     {
+        $this->authorize('drop', $project);
+
         $project->endorse();
 
         session()->flash('status','success|Successfully endorsed PAP.');

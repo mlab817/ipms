@@ -22,7 +22,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::paginate();
+
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -50,13 +52,16 @@ class UserController extends Controller
 
         $user = new User($request->validated());
         $user->password = Hash::make($password);
+        $user->username = generate_username($request->email);
         $user->save();
 
         $user->activate();
 
         event(new UserCreated($user, $password));
 
-        return back()->with('success','Successfully created user');
+        session()->flash('status', 'success|Successfully created user');
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -67,7 +72,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', $user);
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -93,6 +98,8 @@ class UserController extends Controller
     {
         $user->update($request->validated());
 
+        session()->flash('status', 'success|Successfully updated user');
+
         return redirect()->route('users.index');
     }
 
@@ -109,6 +116,8 @@ class UserController extends Controller
         // TODO: Notify User
         $user->notify(new UserDeactivatedNotification);
 
-        return back()->with(['success' => 'Successfully deactivated user.']);
+        session()->flash('status', 'success|Successfully deactivated user');
+
+        return redirect()->route('users.index');
     }
 }

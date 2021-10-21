@@ -6,9 +6,10 @@
 
 @section('content')
     <div class="Box">
-        <div class="Box-header">
-            <details>
-                <summary class="btn btn-danger">Delete User</summary>
+        <div class="Box-header d-flex flex-items-center">
+            <h3 class="Box-title overflow-hidden flex-auto">Update User</h3>
+            <details class="details-reset details-overlay details-overlay-dark">
+                <summary class="btn btn-danger btn-sm">Delete User</summary>
                 <details-dialog class="Box--overlay">
                     <form action="{{ route('users.destroy', $user) }}" method="POST" accept-charset="utf-8">
                         @csrf
@@ -21,14 +22,12 @@
                                 <p>This will deactivate user account. The user will not be able to login. Are you sure you want to continue?</p>
                             </div>
                             <div class="Box-footer">
-                                <button type="submit">Delete User</button>
+                                <button type="submit" class="btn btn-danger">Delete User</button>
                             </div>
                         </div>
                     </form>
                 </details-dialog>
             </details>
-
-            <h2 class="Box-title">Update a User</h2>
         </div>
 
         <form action="{{ route('users.update', $user) }}" method="POST" accept-charset="utf-8">

@@ -3,46 +3,90 @@
 @include('projects.partials.show-header')
 
 @section('content')
-    <div class="Box">
-        <div class="Box-header py-2 pr-2 d-flex flex-shrink-0 flex-md-row flex-items-center position-sticky top-0">
-            <div class="d-flex flex-items-center flex-auto">
-                <details class="dropdown details-reset details-overlay d-inline-block">
-                    <summary class="color-fg-muted p-2 d-inline btn btn-octicon mr-2 m-0 p-2" aria-haspopup="true">
-                        <svg class="octicon octicon-list-unordered" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-                    </summary>
+    <div class="d-flex flex-column flex-lg-row flex-auto mb-4">
+        <div class="auto-search-group mb-1 mb-lg-0 mr-lg-1 flex-auto">
 
-                    <ul class="dropdown-menu dropdown-menu-e">
-                        <li><a class="dropdown-item" href="#general-information">General Information</a></li>
-                        <li><a class="dropdown-item" href="#implementing-agencies">Implementing Agencies</a></li>
-                        <li><a class="dropdown-item" href="#spatial-coverage">Spatial Coverage</a></li>
-                        <li><a class="dropdown-item" href="#approval-status">Approval Status</a></li>
-                        <li><a class="dropdown-item" href="#programming-document">Project for Inclusion in Which Programming Document</a></li>
-                        <li><a class="dropdown-item" href="#physical-and-financial-status">Physical and Financial Status</a></li>
-                        <li><a class="dropdown-item" href="#implementation-period">Implementation Period</a></li>
-                        <li><a class="dropdown-item" href="#pdp">Philippine Development Plan</a></li>
-                        @if($project->trip)
-                            <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
-                        @endif
-                        <li><a class="dropdown-item" href="#sdgs">Sustainable Development Goals</a></li>
-                        <li><a class="dropdown-item" href="#ten-point-agenda">Ten Point Agenda</a></li>
-                        <li><a class="dropdown-item" href="#project-preparation-details">Project Preparation Details</a></li>
-                        <li><a class="dropdown-item" href="#preconstruction-costs">Pre-construction Costs</a></li>
-                        <li><a class="dropdown-item" href="#employment-generation">Employment Generation</a></li>
-                        <li><a class="dropdown-item" href="#funding-source">Funding Source and Mode of Implementation</a></li>
-                        <li><a class="dropdown-item" href="#project-costs">Project Costs</a></li>
-                        <li><a class="dropdown-item" href="#financial-accomplishments">Financial Accomplishments</a></li>
-                    </ul>
-                </details>
-
-                <h2 class="Box-title">
-                    {{ $project->title }}
-                </h2>
-            </div>
-
+        </div>
+        <div class="d-flex flex-wrap">
+            @if($project->isValidated())
+                <span class="State State--open mr-2">
+                    <!-- <%= octicon "git-pull-request" %> -->
+                    <svg class="octicon octicon-git-pull-request" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" class="css-5lyks0">  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.17674 3.07322L9.57318 0.676753C9.73068 0.51926 9.99996 0.630802 9.99996 0.853529V5.64642C9.99996 5.86915 9.73068 5.98069 9.57319 5.8232L7.17674 3.42677C7.07911 3.32914 7.07911 3.17085 7.17674 3.07322ZM3.75 2.5C3.33579 2.5 3 2.83579 3 3.25C3 3.66421 3.33579 4 3.75 4C4.16421 4 4.5 3.66421 4.5 3.25C4.5 2.83579 4.16421 2.5 3.75 2.5ZM1.5 3.25C1.5 2.00736 2.50736 1 3.75 1C4.99264 1 6 2.00736 6 3.25C6 4.22966 5.37389 5.06309 4.5 5.37197V10.628C5.37389 10.9369 6 11.7703 6 12.75C6 13.9926 4.99264 15 3.75 15C2.50736 15 1.5 13.9926 1.5 12.75C1.5 11.7703 2.12611 10.9369 3 10.628V5.37197C2.12611 5.06309 1.5 4.22966 1.5 3.25ZM11 2.5H10V4H11C11.5523 4 12 4.44772 12 5V10.628C11.1261 10.9369 10.5 11.7703 10.5 12.75C10.5 13.9926 11.5074 15 12.75 15C13.9926 15 15 13.9926 15 12.75C15 11.7703 14.3739 10.9369 13.5 10.628V5C13.5 3.61929 12.3807 2.5 11 2.5ZM12 12.75C12 12.3358 12.3358 12 12.75 12C13.1642 12 13.5 12.3358 13.5 12.75C13.5 13.1642 13.1642 13.5 12.75 13.5C12.3358 13.5 12 13.1642 12 12.75ZM3.75 12C3.33579 12 3 12.3358 3 12.75C3 13.1642 3.33579 13.5 3.75 13.5C4.16421 13.5 4.5 13.1642 4.5 12.75C4.5 12.3358 4.16421 12 3.75 12Z"></path></svg>
+                    Validated
+                </span>
+            @else
             <div class="d-flex py-1 py-md-0 flex-auto flex-order-1 flex-md-order-2 flex-sm-grow-0 flex-justify-between hide-sm hide-md">
                 @if(in_array(strtolower(optional($project->submission_status)->name), ['endorsed','dropped']))
-                    <span class="branch-name mr-2">{{ $project->submission_status->name }}</span>
+                    @if(optional($project->submission_status)->name == 'Dropped')
+                    <span class="State State--red mr-2">
+                        <!-- <%= octicon "issue-closed" %> -->
+                        <svg class="octicon octicon-issue-closed" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7 10h2v2H7v-2zm2-6H7v5h2V4zm1.5 1.5l-1 1L12 9l4-4.5-1-1L12 7l-1.5-1.5zM8 13.7A5.71 5.71 0 0 1 2.3 8c0-3.14 2.56-5.7 5.7-5.7 1.83 0 3.45.88 4.5 2.2l.92-.92A6.947 6.947 0 0 0 8 1C4.14 1 1 4.14 1 8s3.14 7 7 7 7-3.14 7-7l-1.52 1.52c-.66 2.41-2.86 4.19-5.48 4.19v-.01z"></path></svg>
+                        Dropped
+                    </span>
+                    @endif
+                    @if(optional($project->submission_status)->name == 'Endorsed')
+                    <span class="State State--open mr-2">
+                        <!-- <%= octicon "issue-closed" %> -->
+                        <svg class="octicon octicon-issue-opened" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
+                        Endorsed
+                    </span>
+                    @endif
                 @else
+                    @can('validate', $project)
+                    <details class="details-reset details-overlay details-overlay-dark mr-1">
+                        <summary class="btn btn-outline-dark tooltipped tooltipped-nw" aria-label="Endorse this PAP" aria-haspopup="dialog">
+                            <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
+                            Validate
+                        </summary>
+                        <details-dialog class="Box--overlay d-flex flex-column anim-fade-in fast">
+                            <form class="inline-form" action="{{ route('projects.validate', $project) }}" accept-charset="UTF-8" method="post">
+                                @csrf
+                                @method('PUT')
+                                <div class="Box">
+                                    <div class="Box-header">
+                                        <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+                                            <!-- <%= octicon "x" %> -->
+                                            <svg class="octicon octicon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
+                                        </button>
+                                        <h2 class="Box-title">Validate PAP</h2>
+                                    </div>
+                                    <div class="flash flash-warn flash-full m-0">
+                                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
+                                            <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
+                                        </svg>
+                                        <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
+                                    </div>
+                                    <div class="Box-body">
+                                        <div class="d-flex flex-nowrap">
+                                            <div>
+                                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
+                                                    <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="pl-3 flex-1">
+                                                <p class="overflow-hidden mb-1">Before you validate, please consider:</p>
+                                                <ul class="ml-3">
+                                                    <strong>Validated:</strong> Validating PAPs will prevent further modification by IPD and the owner of the PAP.
+                                                    While not required, you may wish to inform the owner of the PAP first esp. if you expect them to provide
+                                                    further information on this PAP.
+                                                    <p>PS: You may still invalidate if needed.</p>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="Box-footer">
+                                        <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
+                                            <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
+                                            Validate
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </details-dialog>
+                    </details>
+                    @endcan
+
+                    @can('drop', $project)
                     <details class="details-reset details-overlay details-overlay-dark mr-1">
                         <summary class="btn btn-danger tooltipped tooltipped-nw" aria-label="Endorse this PAP" aria-haspopup="dialog">
                             <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-trash">
@@ -99,7 +143,9 @@
                             </form>
                         </details-dialog>
                     </details>
+                    @endcan
 
+                    @can('endorse', $project)
                     <details class="details-reset details-overlay details-overlay-dark mr-1">
                         <summary class="btn btn-primary tooltipped tooltipped-nw" aria-label="Endorse this PAP" aria-haspopup="dialog">
                             <svg class="octicon octicon-rocket" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -156,15 +202,58 @@
                             </form>
                         </details-dialog>
                     </details>
-
-                    <a class="btn tooltipped tooltipped-nw mr-1" href="{{ route('projects.edit', $project) }}" aria-label="Edit this PAP" data-hotkey="e" data-disable-with="">
-                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-pencil">
-                            <path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>
-                        </svg>
-                        Edit
-                    </a>
-
+                    @endcan
                 @endif
+            </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="Box">
+        <div class="Box-header py-2 pr-2 d-flex flex-shrink-0 flex-md-row flex-items-center position-sticky top-0">
+            <div class="d-flex flex-items-center flex-auto">
+                <details class="dropdown details-reset details-overlay d-inline-block">
+                    <summary class="color-fg-muted p-2 d-inline btn btn-octicon mr-2 m-0 p-2" aria-haspopup="true">
+                        <svg class="octicon octicon-list-unordered" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+                    </summary>
+
+                    <ul class="dropdown-menu dropdown-menu-e">
+                        <li><a class="dropdown-item" href="#general-information">General Information</a></li>
+                        <li><a class="dropdown-item" href="#implementing-agencies">Implementing Agencies</a></li>
+                        <li><a class="dropdown-item" href="#spatial-coverage">Spatial Coverage</a></li>
+                        <li><a class="dropdown-item" href="#approval-status">Approval Status</a></li>
+                        <li><a class="dropdown-item" href="#programming-document">Project for Inclusion in Which Programming Document</a></li>
+                        <li><a class="dropdown-item" href="#physical-and-financial-status">Physical and Financial Status</a></li>
+                        <li><a class="dropdown-item" href="#implementation-period">Implementation Period</a></li>
+                        <li><a class="dropdown-item" href="#pdp">Philippine Development Plan</a></li>
+                        @if($project->trip)
+                            <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
+                        @endif
+                        <li><a class="dropdown-item" href="#sdgs">Sustainable Development Goals</a></li>
+                        <li><a class="dropdown-item" href="#ten-point-agenda">Ten Point Agenda</a></li>
+                        <li><a class="dropdown-item" href="#project-preparation-details">Project Preparation Details</a></li>
+                        <li><a class="dropdown-item" href="#preconstruction-costs">Pre-construction Costs</a></li>
+                        <li><a class="dropdown-item" href="#employment-generation">Employment Generation</a></li>
+                        <li><a class="dropdown-item" href="#funding-source">Funding Source and Mode of Implementation</a></li>
+                        <li><a class="dropdown-item" href="#project-costs">Project Costs</a></li>
+                        <li><a class="dropdown-item" href="#financial-accomplishments">Financial Accomplishments</a></li>
+                    </ul>
+                </details>
+
+                <h2 class="Box-title">
+                    {{ $project->title }}
+                </h2>
+            </div>
+
+            <div class="d-flex py-1 py-md-0 flex-auto flex-order-1 flex-md-order-2 flex-sm-grow-0 flex-justify-between hide-sm hide-md">
+                @can('update', $project)
+                <a class="btn tooltipped tooltipped-nw mr-1" href="{{ route('projects.edit', $project) }}" aria-label="Edit this PAP" data-hotkey="e" data-disable-with="">
+                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-pencil">
+                        <path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>
+                    </svg>
+                    Edit
+                </a>
+                @endcan
             </div>
         </div>
 

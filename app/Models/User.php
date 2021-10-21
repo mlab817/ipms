@@ -84,6 +84,11 @@ class User extends Authenticatable
         return $this->hasMany(Project::class,'creator_id','id');
     }
 
+    public function offices(): BelongsToMany
+    {
+        return $this->belongsToMany(Office::class,'office_reviewer','user_id','office_id');
+    }
+
     public function reviews(): HasMany
     {
         return $this->hasMany(ProjectReview::class,'user_id','id');

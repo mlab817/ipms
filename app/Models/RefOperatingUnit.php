@@ -51,7 +51,7 @@ class RefOperatingUnit extends Model
         return $this->hasManyThrough(
             Project::class,
             Office::class,
-            'operating_unit_id',
+            'ref_operating_unit_id',
             'office_id',
             'id',
             'id'
