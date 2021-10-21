@@ -53,6 +53,7 @@ class ProjectCreateService
                 $project->fs_investments()->createMany($fsInvestments);
                 $project->fs_infrastructures()->createMany($fsInvestments);
 
+                $project->trip = true; // set the trip to true
                 $project->creator_id = $userId;
                 $project->save();
 

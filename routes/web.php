@@ -36,11 +36,14 @@ Route::middleware(['auth','password.changed'])->group(function () {
 
     Route::put('/projects/{uuid}/restore', [\App\Http\Controllers\ProjectController::class,'restore'])->name('projects.restore');
 
-    Route::put('/projects/{project}/submit', \App\Http\Controllers\ProjectSubmitController::class)->name('projects.submit');
+    Route::put('/projects/{project}/endorse', \App\Http\Controllers\ProjectEndorseController::class)->name('projects.endorse');
+    Route::put('/projects/{project}/drop', \App\Http\Controllers\ProjectDropController::class)->name('projects.drop');
     // ProjectReview
 
     Route::get('/projects/deleted', [\App\Http\Controllers\ProjectController::class,'deleted'])->name('projects.deleted');
 
+    Route::get('/projects/{project}/issues', \App\Http\Controllers\ProjectIssueController::class)->name('projects.issues');
+    Route::get('/projects/{project}/history', \App\Http\Controllers\ProjectHistoryController::class)->name('projects.history');
     Route::get('/projects/{project}/generatePdf', [\App\Http\Controllers\ProjectController::class,'generatePdf'])->name('projects.generatePdf');
     Route::get('/projects/{project}/exportJson', [\App\Http\Controllers\ProjectController::class,'exportJson'])->name('projects.exportJson');
     Route::resource('projects', \App\Http\Controllers\ProjectController::class);

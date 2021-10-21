@@ -115,6 +115,11 @@ class User extends Authenticatable
         return optional($this->role)->name == ('ipd');
     }
 
+    public function isEncoder(): bool
+    {
+        return optional($this->role)->name == ('encoder');
+    }
+
     public function activate()
     {
         $this->activated_at = now();

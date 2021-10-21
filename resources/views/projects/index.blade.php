@@ -96,7 +96,7 @@
 
                 <div class="f6 color-fg-muted mt-2">
 
-                    <a href="{{ route('offices.show', $project->office) }}" class="btn-link Link--muted">
+                    <a href="{{ route('offices.show', $project->office) }}" class="btn-link">
                         <span class="ml-0 mr-3">
                             <span class="repo-language-color" style="background-color: #e34c26"></span>
                             <span itemprop="">
@@ -124,14 +124,14 @@
                             <a href="{{ route('projects.edit', $project) }}" class="btn-link dropdown-item" role="menuitem">
                                 Edit
                             </a>
-                            <div role="none" class="dropdown-divider"></div>
-                            <form action="{{ route('projects.destroy', $project) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button onclick="return confirm('Are you sure you want to delete this PAP?')" type="submit" href="{{ route('projects.destroy', $project) }}" class="btn-link dropdown-item" role="menuitem">
-                                    Delete
-                                </button>
-                            </form>
+{{--                            <div role="none" class="dropdown-divider"></div>--}}
+{{--                            <form action="{{ route('projects.destroy', $project) }}" method="POST">--}}
+{{--                                @csrf--}}
+{{--                                @method('DELETE')--}}
+{{--                                <button onclick="return confirm('Are you sure you want to delete this PAP?')" type="submit" href="{{ route('projects.destroy', $project) }}" class="btn-link dropdown-item" role="menuitem">--}}
+{{--                                    Delete--}}
+{{--                                </button>--}}
+{{--                            </form>--}}
                         </details-menu>
                     </details>
                 </div>

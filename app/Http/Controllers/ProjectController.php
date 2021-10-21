@@ -14,6 +14,7 @@ use App\Http\Requests\ProjectDropRequest;
 use App\Http\Requests\ProjectEndorseRequest;
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
+use App\Http\Requests\ProjectUpdateStrictRequest;
 use App\Http\Requests\ReviewStoreRequest;
 use App\Http\Requests\UploadAttachmentRequest;
 use App\Http\Resources\ProjectResource;
@@ -51,6 +52,7 @@ use App\Models\RefTier;
 use App\Models\RefYear;
 use App\Models\User;
 use App\Notifications\ProjectDeletedNotification;
+use App\Services\ProjectCheckForIssuesService;
 use App\Services\ProjectCreateService;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use File;
@@ -60,6 +62,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Knp\Snappy\Pdf;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -125,13 +128,13 @@ class ProjectController extends Controller
      * @return Response
      * @throws \Exception
      */
-    public function store(ProjectStoreRequest $request, ProjectCreateService $service)
+    public function store(ProjectStoreRequest $request, ProjectCreateService $service, ProjectCheckForIssuesService $checkForIssuesService)
     {
         $project = $service->execute($request->validated(), auth()->id());
 
-        dd($project);
-
 //        event(new ProjectCreatedEvent($project));
+
+        $checkForIssuesService->execute($project->toArray(), $project->id, $project->updated_at);
 
         return redirect()->route('projects.show', $project);
     }
@@ -163,7 +166,9 @@ class ProjectController extends Controller
             'pdp_indicators',
             'operating_units');
 
-        return view('projects.show', compact('project'))
+        $tab = 'profile';
+
+        return view('projects.show', compact('project','tab'))
             ->with(['submission_statuses' => RefSubmissionStatus::all(),]);
     }
 
@@ -175,7 +180,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $project->load('bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','funding_sources','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study','project_update');
+        $project->load('bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','funding_sources','region_investments.region','fs_investments.funding_source','region_infrastructures.region','fs_infrastructures.funding_source','allocation','disbursement','nep','feasibility_study','project_update');
 
         $yes = new \stdClass();
         $yes->id = 1;
@@ -184,6 +189,29 @@ class ProjectController extends Controller
         $no->id = 0;
         $no->name = 'No';
         $boolean = array($yes, $no);
+
+        // create infrastructure investments if they are not present in the model
+        if (! count($project->region_infrastructures)) {
+            $regions = RefRegion::all();
+            $regionInvestments = collect($regions)->map(function ($r) {
+                return [
+                    'ref_region_id' => $r->id,
+                ];
+            });
+
+            $project->region_infrastructures()->createMany($regionInvestments);
+        }
+
+        if (! count($project->fs_infrastructures)) {
+            $fundingSources = RefFundingSource::all();
+            $fsInvestments = collect($fundingSources)->map(function ($fs) {
+                return [
+                    'ref_funding_source_id' => $fs->id,
+                ];
+            });
+
+            $project->fs_infrastructures()->createMany($fsInvestments);
+        }
 
         return view('projects.edit', compact('project'))
             ->with([
@@ -227,7 +255,7 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return Response
      */
-    public function update(ProjectUpdateRequest $request, Project $project)
+    public function update(ProjectUpdateRequest $request, Project $project, ProjectCheckForIssuesService $service)
     {
         $project->update($request->validated());
 
@@ -249,7 +277,7 @@ class ProjectController extends Controller
 
         foreach ($request->fs_infrastructures as $fs_infrastructure) {
             $project
-                ->fs_investments()
+                ->fs_infrastructures()
                 ->where('ref_funding_source_id', $fs_infrastructure['ref_funding_source_id'])
                 ->update($fs_infrastructure);
         }
@@ -294,6 +322,8 @@ class ProjectController extends Controller
         $project->disbursement()->update($request->disbursement);
 
         session()->flash('status', 'success|Successfully updated PAP.');
+
+        $service->execute($request->toArray(), $project->id, $project->updated_at);
 
         return back();
     }

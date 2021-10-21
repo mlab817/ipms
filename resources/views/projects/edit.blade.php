@@ -36,20 +36,24 @@
                 </details>
 
                 <h2 class="Box-title">
-                    {{ $project->title }}
+                    <a href="{{ route('projects.show', $project) }}" class="btn-link Link--muted">
+                        {{ $project->title }}
+                    </a>
                 </h2>
             </div>
 
-            <form class="inline-form" action="{{ route('projects.destroy', $project) }}" accept-charset="UTF-8" method="post">
-                @csrf
-                @method('delete')
-                <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn-octicon btn-octicon-danger tooltipped tooltipped-nw mr-2" type="submit" aria-label="Delete this PAP">
-                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-trash">
-                        <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
-                    </svg>
-                    <span>Delete</span>
-                </button>
-            </form>
+{{--            <form class="inline-form" action="{{ route('projects.destroy', $project) }}" accept-charset="UTF-8" method="post">--}}
+{{--                @csrf--}}
+{{--                @method('delete')--}}
+{{--                <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn-octicon btn-octicon-danger tooltipped tooltipped-nw mr-2" type="submit" aria-label="Delete this PAP">--}}
+{{--                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-trash">--}}
+{{--                        <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>--}}
+{{--                    </svg>--}}
+{{--                    <span>Delete</span>--}}
+{{--                </button>--}}
+{{--            </form>--}}
+
+            <a href="{{ route('projects.index') }}" class="btn-link mr-2">List of Projects</a>
 
             <button type="submit" form="editProjectForm" class="btn btn-primary">Save</button>
         </div>
@@ -749,7 +753,7 @@
                     </dd>
                 </dl>
 
-                <x-subhead subhead="0-10 Point Socioeconomic Agenda"></x-subhead>
+                <x-subhead subhead="0-10 Point Socioeconomic Agenda" id="ten-point-agenda"></x-subhead>
 
                 <dl class="form-group @error('ten_point_agendas') errored mb-6 @enderror">
                     <dt class="form-group-header">

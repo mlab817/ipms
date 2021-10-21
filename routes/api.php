@@ -83,7 +83,7 @@ use App\Http\Controllers\Api\UserController;
 */
 
 Route::get('/projects/{project}', function (\App\Models\Project $project) {
-    return response()->json($project->load('bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study','project_update'));
+    return response()->json($project->load('bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','region_investments.region','fs_investments.funding_source','region_infrastructures.region','fs_infrastructures.funding_source','allocation','disbursement','nep','feasibility_study','project_update'));
 });
 
 //Route::post('/projects/search', [ProjectController::class,'search'])->name('api.projects.search');
@@ -106,3 +106,13 @@ Route::get('/pdp_chapters/{id}', function ($id) {
         ->where('level', 1)
         ->first();
 })->name('api.pdp_chapters');
+
+Route::get('/checkProjectTitleAvailability', function(Request $request) {
+    $title = trim(strtolower($request->title));
+
+    $exists = \App\Models\Project::withoutGlobalScope(\App\Scopes\RoleScope::class)
+        ->whereRaw('LOWER(title) = ?', $title)
+        ->exists();
+
+    return response()->json(['available' => ! $exists]);
+})->name('api.checkProjectTitleAvailability');

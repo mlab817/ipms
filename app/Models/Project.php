@@ -22,6 +22,151 @@ class Project extends Model
     use SoftDeletes;
     use Auditable;
 
+    public array $rules = [
+        'office_id'                         => 'required',
+        'title'                             => 'required|max:255',
+        'ref_pap_type_id'                   => 'required|exists:ref_pap_types,id',
+        'regular_program'                   => 'required|bool',
+        'bases'                             => 'required',
+        'bases.*'                           => 'exists:ref_bases,id',
+        'description'                       => 'required',
+        'expected_outputs'                  => 'required',
+        'ref_project_status_id'             => 'required|exists:ref_project_statuses,id',
+        'operating_units'                   => 'nullable',
+        'operating_units.*'                 => 'exists:ref_operating_units,id',
+        'pip'                               => 'required|bool',
+        'ref_pip_typology_id'               => 'required|exists:ref_pip_typologies,id',
+        'trip'                              => 'required|bool',
+        'cip'                               => 'required|bool',
+        'ref_cip_type_id'                   => 'required|exists:ref_cip_types,id',
+        'research'                          => 'required|bool',
+        'ict'                               => 'required|bool',
+        'covid'                             => 'required|bool',
+        'covid_interventions'               => 'nullable',
+        'covid_interventions.*'             => 'exists:ref_covid_interventions,id',
+        'ref_spatial_coverage_id'           => 'required|exists:ref_spatial_coverages,id',
+        'regions'                           => 'nullable',
+        'regions.*'                         => 'exists:ref_regions,id',
+        'iccable'                           => 'required|bool',
+        'ref_approval_level_id'             => 'required_if:iccable,1|exists:ref_approval_levels,id',
+        'approval_date'                     => 'nullable|date',
+        'ref_gad_id'                        => 'exists:ref_gads,id',
+        'rdip'                              => 'required|bool',
+        'rdc_endorsement_required'          => 'bool',
+        'rdc_endorsed'                      => 'bool',
+        'rdc_endorsed_date'                 => 'nullable|date',
+        'ref_preparation_document_id'       => 'required',
+        'ref_pdp_chapter_id'                => 'required|exists:ref_pdp_chapters,id',
+        'pdp_chapters'                      => 'nullable',
+        'pdp_chapters.*'                    => 'exists:ref_pdp_chapters,id',
+        'target_start_year'                 => 'required|int|min:2016',
+        'target_end_year'                   => 'required|int|gte:target_start_year|max:2030',
+        'feasibility_study'                 => 'required',
+        'feasibility_study.ref_fs_status_id'=> 'required_if:has_fs,1|exists:ref_fs_statuses,id',
+        'feasibility_study.needs_assistance'=> 'bool',
+        'feasibility_study.y2017'           => 'numeric|min:0',
+        'feasibility_study.y2018'           => 'numeric|min:0',
+        'feasibility_study.y2019'           => 'numeric|min:0',
+        'feasibility_study.y2020'           => 'numeric|min:0',
+        'feasibility_study.y2021'           => 'numeric|min:0',
+        'feasibility_study.y2022'           => 'numeric|min:0',
+        'employment_generated'              => 'nullable|string',
+        'ref_funding_source_id'             => 'required|exists:ref_funding_sources,id',
+        'ref_implementation_mode_id'        => 'required|exists:ref_implementation_modes,id',
+        'updates'                           => 'required',
+        'updates_date'                      => 'required|date',
+        'ref_tier_id'                       => 'required|exists:ref_tiers,id',
+        'uacs_code'                         => 'nullable|required_if:ref_tier_id,1',
+        'ref_funding_institution_id'        => 'exclude_unless:ref_funding_source_id,2|exists:ref_funding_institutions,id',
+        'prerequisites'                     => 'nullable',
+        'prerequisites.*'                   => 'exists:ref_prerequisites,id',
+        'sdgs'                              => 'nullable|array',
+        'sdgs.*'                            => 'exists:ref_sdgs,id',
+        'pdp_indicators'                    => 'nullable|array',
+        'pdp_indicators.*'                  => 'exists:ref_pdp_indicators,id',
+        'ten_point_agendas'                 => 'nullable|array',
+        'ten_point_agendas.*'               => 'exists:ref_ten_point_agendas,id',
+        'nep.*'                             => 'required',
+        'nep.y2017'                         => 'numeric|min:0',
+        'nep.y2018'                         => 'numeric|min:0',
+        'nep.y2019'                         => 'numeric|min:0',
+        'nep.y2020'                         => 'numeric|min:0',
+        'nep.y2021'                         => 'numeric|min:0',
+        'nep.y2022'                         => 'numeric|min:0',
+        'allocation.*'                      => 'required',
+        'allocation.y2017'                  => 'numeric|min:0',
+        'allocation.y2018'                  => 'numeric|min:0',
+        'allocation.y2019'                      => 'numeric|min:0',
+        'allocation.y2020'                      => 'numeric|min:0',
+        'allocation.y2021'                      => 'numeric|min:0',
+        'disbursement.*'                        => 'required',
+        'disbursement.y2017'                    => 'numeric|min:0',
+        'disbursement.y2018'                    => 'numeric|min:0',
+        'disbursement.y2019'                    => 'numeric|min:0',
+        'disbursement.y2020'                    => 'numeric|min:0',
+        'disbursement.y2021'                    => 'numeric|min:0',
+        'region_investments'                    => 'required',
+        'region_investments.*.ref_region_id'    => 'required|exists:ref_regions,id',
+        'region_investments.*.y2022'            => 'required|min:0|numeric',
+        'region_investments.*.y2023'            => 'required|min:0|numeric',
+        'region_investments.*.y2024'            => 'required|min:0:numeric',
+        'region_investments.*.y2025'            => 'required|min:0:numeric',
+        'region_investments.*.y2026'            => 'required|min:0:numeric',
+        'fs_investments'                            => 'required',
+        'fs_investments.*.ref_funding_source_id'    => 'required|exists:ref_funding_sources,id',
+        'fs_investments.*.y2022'                    => 'required|min:0|numeric',
+        'fs_investments.*.y2023'                    => 'required|min:0|numeric',
+        'fs_investments.*.y2024'            => 'required|min:0:numeric',
+        'fs_investments.*.y2025'            => 'required|min:0:numeric',
+        'fs_investments.*.y2026'            => 'required|min:0:numeric',
+        'region_infrastructures'                    => 'nullable',
+        'region_infrastructures.*.ref_region_id'    => 'required|exists:ref_regions,id',
+        'region_infrastructures.*.y2022'            => 'required|min:0|numeric',
+        'region_infrastructures.*.y2023'            => 'required|min:0|numeric',
+        'region_infrastructures.*.y2024'            => 'required|min:0:numeric',
+        'region_infrastructures.*.y2025'            => 'required|min:0:numeric',
+        'region_infrastructures.*.y2026'            => 'required|min:0:numeric',
+        'fs_infrastructures'                            => 'nullable',
+        'fs_infrastructures.*.ref_funding_source_id'    => 'required|exists:ref_funding_sources,id',
+        'fs_infrastructures.*.y2022'                    => 'required|min:0|numeric',
+        'fs_infrastructures.*.y2023'                    => 'required|min:0|numeric',
+        'fs_infrastructures.*.y2024'            => 'required|min:0:numeric',
+        'fs_infrastructures.*.y2025'            => 'required|min:0:numeric',
+        'fs_infrastructures.*.y2026'            => 'required|min:0:numeric',
+        'ref_readiness_level_id'                => 'required|exists:ref_readiness_levels,id',
+        'completion_date'                       => 'nullable|date',
+        'pap_code'                              => 'required',
+    ];
+
+    public array $validationAttributes = [
+        'bases'                         => 'basis for implementation',
+        'pip'                           => 'PIP',
+        'cip'                           => 'CIP',
+        'ref_pap_type_id'               => 'program or project',
+        'ref_project_status_id'         => 'status of implementation readiness',
+        "ref_pip_typology_id"           => 'PIP typology',
+        "ref_cip_type_id"               => 'type of CIP',
+        'research'                      => 'research and development',
+        'ifp'                           => 'infrastructure flagship project(IFP)',
+        'covid'                         => 'responsive to COVID-19/New Normal Intervention',
+        "ref_spatial_coverage_id"       => 'spatial coverage',
+        "ref_preparation_document_id"   => 'preparation document',
+        "ref_pdp_chapter_id"            => 'PDP chapter',
+        "target_start_year"             => 'start of project implementation',
+        "target_end_year"               => 'year of project completion',
+        "ref_funding_source_id"         => 'funding source',
+        "ref_implementation_mode_id"    => 'mode of implementation',
+        "updates_date"                  => 'as of date of updates',
+        "ref_tier_id"                   => 'categorization',
+        "ref_readiness_level_id"        => 'level of readiness',
+        "pap_code"                      => 'PAP code',
+        'uacs_code'                     => 'UACS code',
+        'fs_investments'                => 'investment by funding source',
+        'region_investments'            => 'investment by region',
+        'fs_infrastructures'            => 'infrastructure cost by funding source',
+        'region_infrastructures'        => 'infrastructure cost by region',
+    ];
+
     protected static function booted()
     {
         static::addGlobalScope(new RoleScope);
@@ -158,6 +303,11 @@ class Project extends Model
     public function implementation_mode(): BelongsTo
     {
         return $this->belongsTo(RefImplementationMode::class, 'ref_implementation_mode_id')->withDefault();
+    }
+
+    public function issue(): HasOne
+    {
+        return $this->hasOne(ProjectIssue::class);
     }
 
     public function office(): BelongsTo
@@ -380,6 +530,36 @@ class Project extends Model
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachment::class);
+    }
+
+    /**
+     * Endorse the PAP
+     */
+    public function endorse()
+    {
+        $this->submission_status()->associate(RefSubmissionStatus::findByName('Endorsed'));
+        $this->updated_at = now();
+        $this->saveQuietly();
+
+        $this->audit_logs()->create([
+            'description' => 'endorsed',
+            'user_id' => auth()->id(),
+        ]);
+    }
+
+    /**
+     * Drop the PAP
+     */
+    public function drop()
+    {
+        $this->submission_status()->associate(RefSubmissionStatus::findByName('Dropped'));
+        $this->updated_at = now();
+        $this->saveQuietly();
+
+        $this->audit_logs()->create([
+            'description' => 'dropped',
+            'user_id' => auth()->id(),
+        ]);
     }
 
     public function investment(): HasOne

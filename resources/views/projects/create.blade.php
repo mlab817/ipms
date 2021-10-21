@@ -29,7 +29,7 @@
                         <label for="title" class="required">PAP Title </label>
                     </dt>
                     <dd class="form-group-body">
-                        <x-input.text name="title" value="{{ old('title') }}" aria-describedby="title-validation"></x-input.text>
+                        <x-input.text name="title" aria-describedby="title-validation" value="{{ old('title') }}"></x-input.text>
                         <x-error-message name="title" id="title-validation"></x-error-message>
                     </dd>
                 </dl>
