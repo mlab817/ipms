@@ -1,14 +1,14 @@
 ![cover](https://raw.githubusercontent.com/mlab817/ipms-rest/main/cover.png)
 
-## About IPMS
+## About PIPS
 
-The Investment Programming and Management System (or simply IPMS) is a 
+The Public Investment Program System (now PIPS, previously Investment Programming and Management System or simply IPMS) is a 
 web application built using the PHP Laravel Framework (v.8.*). 
 We believe that Public Investment Programming (PIP) formulation and updating
 should focus on identification and prioritization of programs and projects
 rather than merely encoding entries into a collection system (be it MS 
-Excel, Google Sheets or any other platform). The IPMS is built as RESTful API
-to make development more flexible and easy to build on.
+Excel, Google Sheets or any other platform). The PIPS is envisioned to be 
+clone of NEDA's PIP Online System.
 
 The objectives of the IPMS are as follows:
 
