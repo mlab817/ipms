@@ -28,6 +28,11 @@ class RefOperatingUnitType extends Model
         return 'slug';
     }
 
+    public function offices()
+    {
+        return $this->hasManyThrough(Office::class,RefOperatingUnit::class,'ref_operating_unit_type_id','ref_operating_unit_id','id','id');
+    }
+
     public function operating_units(): HasMany
     {
         return $this->hasMany(RefOperatingUnit::class);

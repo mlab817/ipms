@@ -30,6 +30,7 @@ class Role extends Model
         'ouri'      => 'Views all TRIP PAPs',
         'ipd'       => 'Views all PAPs',
         'admin'     => 'Views all PAPs',
+        'guest'     => 'Does not have permission to access PAPs, offices and users',
     ];
 
     public static function findByName($name = '')

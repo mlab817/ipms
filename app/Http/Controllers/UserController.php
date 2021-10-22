@@ -15,6 +15,11 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(User::class,'user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +29,7 @@ class UserController extends Controller
     {
         $users = User::query();
         $roles = Role::withCount('users')->get();
+        $offices = Office::withCount('users')->get();
 
         if ($request->q) {
             $users = $users->whereRaw('LOWER(CONCAT(first_name, last_name)) like ? ','%' . trim(strtolower($request->q)) .'%');
@@ -34,9 +40,14 @@ class UserController extends Controller
             $users->where('role_id', $role->id);
         }
 
+        if ($request->office) {
+            $office = Office::where('acronym', $request->office)->first();
+            $users->where('office_id', $office->id);
+        }
+
         $users = $users->paginate(10);
 
-        return view('users.index', compact('users', 'roles'));
+        return view('users.index', compact('users', 'roles','offices'));
     }
 
     /**

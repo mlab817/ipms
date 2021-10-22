@@ -17,7 +17,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermissionTo('users.view_index');
+        return !!$user;
     }
 
     /**
@@ -29,7 +29,20 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        return $user->can('users.view');
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        if (in_array($user->role->name, ['ipd','spcmad','pds','ouri'])) {
+            return true;
+        }
+
+        // if user has no role
+        if ($user->role->name == 'encoder' && $user->office_id == $model->office_id) {
+            return true;
+        }
+
+        return $this->deny('You can only view a user if you are an admin, an ipd, a spcmad, a pds or ouri staff or you belong to the office');
     }
 
     /**
@@ -40,7 +53,11 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return $user->can('users.create');
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        return $this->deny('Only an admin can create a user');
     }
 
     /**
@@ -52,7 +69,11 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return $user->can('users.update');
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        return $this->deny('Only an admin can update a user');
     }
 
     /**
@@ -64,7 +85,11 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        return $user->can('users.delete');
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        return $this->deny('Only an admin can delete a user');
     }
 
     /**
@@ -76,7 +101,11 @@ class UserPolicy
      */
     public function restore(User $user, User $model)
     {
-        return $user->can('users.delete');
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        return $this->deny('Only an admin can restore a user');
     }
 
     /**
@@ -88,6 +117,10 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        return $user->can('users.delete');
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        return $this->deny('Only an admin can force delete a user');
     }
 }
