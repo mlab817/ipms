@@ -31,6 +31,7 @@
                     <dd class="form-group-body">
                         <x-input.text name="title" aria-describedby="title-validation" value="{{ old('title') }}"></x-input.text>
                         <x-error-message name="title" id="title-validation"></x-error-message>
+                        <p class="note">PAP Title must be unique to avoid duplication.</p>
                     </dd>
                 </dl>
 

@@ -74,8 +74,8 @@
             labels: labels,
             datasets: [{
                 label: 'No. of Projects by Fund Source',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: '#2da44e',
+                borderColor: '#2da44e',
                 data: @json(\App\Models\RefFundingSource::withCount('projects')->get()->pluck('projects_count')->toArray()),
             }]
         };
@@ -83,7 +83,13 @@
         const config = {
             type: 'bar',
             data: data,
-            options: {}
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         };
 
         var myChart = new Chart(
