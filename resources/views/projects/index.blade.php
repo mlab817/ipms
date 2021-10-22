@@ -9,7 +9,7 @@
         <div class="mb-1 mb-md-0 mr-md-3 flex-auto">
             <form class="subnav-search ml-0 mt-3 mt-lg-0 width-full width-lg-auto flex-auto flex-order-1 flex-lg-order-none js-active-navigation-container" role="search" aria-label="PAPs" action="{{ route('projects.index') }}" accept-charset="UTF-8" method="get">
                 <input type="search" id="q" name="q" class="form-control subnav-search-input input-contrast width-full" placeholder="Find a PAP…" autocomplete="off" aria-label="Find a PAP…" value="{{ old('q', request()->get('q')) }}">
-                <input type="hidden" name="status" value="{{ request()->query('status') }}">
+                
                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-search subnav-search-icon">
                     <path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path>
                 </svg>

@@ -29,7 +29,6 @@ class Role extends Model
         'pds'       => 'Views projects that are proposed',
         'ouri'      => 'Views all TRIP PAPs',
         'ipd'       => 'Views all PAPs',
-        'admin'     => 'Views all PAPs',
         'guest'     => 'Does not have permission to access PAPs, offices and users',
     ];
 
