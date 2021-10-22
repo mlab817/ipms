@@ -1,6 +1,7 @@
 window._ = require('lodash');
 import '@github/details-dialog-element';
 import '@github/clipboard-copy-element';
+import '@github/filter-input-element';
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

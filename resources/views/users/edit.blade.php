@@ -72,14 +72,43 @@
                     </dd>
                 </dl>
 
-                <dl class="form-group">
-                    <dt class="form-group-header">
-                        <label for="office_id" class="required">Role</label>
-                    </dt>
-                    <dd class="form-group-body">
-                        <x-select name="role_id" id="role_id" :options="$roles" :selected="old('role_id', $user->role_id)"></x-select>
-                    </dd>
-                </dl>
+                <div x-data="{
+                    role_id: {{ old('role_id', $user->role_id) ?? 0 }},
+                }">
+                    <dl class="form-group">
+                        <dt class="form-group-header">
+                            <label for="office_id" class="required">Role</label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <x-select x-model="role_id" name="role_id" id="role_id" :options="$roles" :selected="old('role_id', $user->role_id)"></x-select>
+                        </dd>
+                    </dl>
+
+                    <dl x-cloak x-show="parseInt(role_id) === 2">
+                        <dt class="form-group-header">
+                            <label for="office_id" class="required">Assigned Office</label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <filter-input aria-owns="offices">
+                                <input type="search" class="form-control my-2" placeholder="Filter offices" autofocus autocomplete="off">
+                            </filter-input>
+                            <div id="offices">
+                                <div data-filter-list>
+                                @foreach($offices as $key => $office)
+                                    <div class="form-checkbox m-0">
+                                        <label for="office_{{ $key }}" data-filter-item-text>
+                                            <input type="checkbox" name="offices[]" id="offices" value="{{ $office->id }}">
+                                            {{ $office->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                                </div>
+                                <div data-filter-empty-state hidden>0 offices found.</div>
+                            </div>
+
+                        </dd>
+                    </dl>
+                </div>
             </div>
             <div class="Box-footer">
                 <button type="submit" class="btn btn-primary">Update</button>

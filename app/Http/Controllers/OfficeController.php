@@ -13,7 +13,7 @@ class OfficeController extends Controller
 {
     public function index()
     {
-        $offices = Office::withCount('projects')->paginate();
+        $offices = Office::withCount('projects')->paginate(10);
 
         return view('offices.index', compact('offices'));
     }

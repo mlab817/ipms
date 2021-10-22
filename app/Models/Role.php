@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends \Spatie\Permission\Models\Role
+class Role extends Model
 {
     use HasFactory;
     use Auditable;
@@ -31,4 +31,14 @@ class Role extends \Spatie\Permission\Models\Role
         'ipd'       => 'Views all PAPs',
         'admin'     => 'Views all PAPs',
     ];
+
+    public static function findByName($name = '')
+    {
+        return static::where('name','like',$name)->first();
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class,'role_id');
+    }
 }

@@ -4,11 +4,10 @@
         <div class="container-lg pt-4 p-responsive clearfix">
 
             <div class="d-flex flex-wrap flex-items-start flex-md-items-center my-3">
-
                 <img
                         itemprop="image"
                         class="avatar flex-shrink-0 mb-3 mr-3 mb-md-0 mr-md-4"
-                        src="{{ $office->logo }}" width="100" height="100" alt="{{ '@' . $office->acronym }}">
+                        src="{{ asset('images/offices/' . strtoupper($office->operating_unit->label) . '.png' ) }}" width="100" height="100" alt="{{ '@' . $office->acronym }}">
 
                 <div class="flex-1">
                     <h1 class="h2 lh-condensed">

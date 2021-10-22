@@ -20,11 +20,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate();
+        $users = User::query();
+        $roles = Role::withCount('users')->get();
 
-        return view('users.index', compact('users'));
+        if ($request->q) {
+            $users = $users->whereRaw('LOWER(CONCAT(first_name, last_name)) like ? ','%' . trim(strtolower($request->q)) .'%');
+        }
+
+        if ($request->role) {
+            $role = Role::findByName($request->role);
+            $users->where('role_id', $role->id);
+        }
+
+        $users = $users->paginate(10);
+
+        return view('users.index', compact('users', 'roles'));
     }
 
     /**
@@ -97,6 +109,10 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, User $user)
     {
         $user->update($request->validated());
+
+        if ($request->offices) {
+            $user->offices()->sync($request->offices);
+        }
 
         session()->flash('status', 'success|Successfully updated user');
 

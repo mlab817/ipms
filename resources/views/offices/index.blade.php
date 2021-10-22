@@ -8,7 +8,7 @@
     <div class="Box">
         <div class="Box-header d-flex flex-items-center">
             <h3 class="Box-title overflow-hidden flex-auto">Offices
-                <span class="Counter Counter--gray-dark">{{ count($offices) }}</span>
+                <span class="Counter Counter--gray-dark">{{ \App\Models\Office::count() }}</span>
             </h3>
             <a href="{{ route('offices.create') }}" class="btn btn-primary btn-sm">New</a>
         </div>
