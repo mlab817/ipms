@@ -45,14 +45,16 @@
                         <svg class="octicon octicon-kebab-horizontal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>
                     </summary>
                     <ul class="dropdown-menu dropdown-menu-sw ">
-                        <li>
-                            <a class="dropdown-item" href="{{ route('projects.edit', $project) }}">
-                                Edit
-                            </a>
-                        </li>
+                        @can('update', $project)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('projects.edit', $project) }}">
+                                    Edit
+                                </a>
+                            </li>
+                        @endcan
 
-                        <li>
-                            @can('endorse', $project)
+                        @can('endorse', $project)
+                            <li>
                                 <details class="details-reset details-overlay details-overlay-dark mr-1">
                                     <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
                                         Endorse
@@ -106,11 +108,11 @@
                                         </form>
                                     </details-dialog>
                                 </details>
-                            @endcan
-                        </li>
+                            </li>
+                        @endcan
 
-                        <li>
-                            @can('drop', $project)
+                        @can('drop', $project)
+                            <li>
                                 <details class="details-reset details-overlay details-overlay-dark mr-1">
                                     <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
                                         Drop
@@ -164,11 +166,11 @@
                                         </form>
                                     </details-dialog>
                                 </details>
-                            @endcan
-                        </li>
+                            </li>
+                        @endcan
 
-                        <li>
-                            @can('validate', $project)
+                        @can('validate', $project)
+                            <li>
                                 <details class="details-reset details-overlay details-overlay-dark">
                                     <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
                                         Validate
@@ -219,9 +221,9 @@
                                         </form>
                                     </details-dialog>
                                 </details>
-                            @endcan
-                        </li>
-                        @can('validate', $project)
+                            </li>
+                        @endcan
+                        @can('encode', $project)
                             <li class="dropdown-divider" role="separator"></li>
                             <li>
                                 <details class="details-reset details-overlay details-overlay-dark mr-1">

@@ -40,10 +40,15 @@ class RefFundingSource extends Model
         return $this->hasMany(ProjectFsInfrastructure::class,'ref_funding_source_id','id');
     }
 
-    public function projects(): BelongsToMany
+    public function projects()
     {
-        return $this->belongsToMany(Project::class);
+        return $this->hasMany(Project::class, 'ref_funding_source_id');
     }
+
+//    public function projects(): BelongsToMany
+//    {
+//        return $this->belongsToMany(Project::class);
+//    }
 
     /**
      * @return array

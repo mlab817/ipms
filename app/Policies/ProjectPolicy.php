@@ -187,4 +187,13 @@ class ProjectPolicy
 
         return $this->deny('Only IPD can validate PAPs.');
     }
+
+    public function encode(User $user, Project $project)
+    {
+        if ($user->role->name == 'ipd') {
+            return true;
+        }
+
+        return $this->deny('Only IPD can encode PAPs to PIPOL System.');
+    }
 }

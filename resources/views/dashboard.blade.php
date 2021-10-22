@@ -68,36 +68,27 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        const labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
+        const labels = @json(\App\Models\RefFundingSource::all()->pluck('name')->toArray())
 
         const data = {
             labels: labels,
             datasets: [{
-                label: 'My First dataset',
+                label: 'No. of Projects by Fund Source',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
+                data: @json(\App\Models\RefFundingSource::withCount('projects')->get()->pluck('projects_count')->toArray()),
             }]
         };
 
         const config = {
-            type: 'line',
+            type: 'bar',
             data: data,
             options: {}
         };
 
-        // === include 'setup' then 'config' above ===
-
         var myChart = new Chart(
-        document.getElementById('myChart'),
-        config
+            document.getElementById('myChart'),
+            config
         );
     </script>
 
