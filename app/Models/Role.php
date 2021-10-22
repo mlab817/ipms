@@ -24,11 +24,11 @@ class Role extends Model
      */
 
     public const ROLE_DESCRIPTIONS = [
-        'encoder'   => 'Views own PAPs and their Office\'s PAPs',
-        'spcmad'    => 'Views projects that are not proposed (includes ongoing, completed and draft)',
-        'pds'       => 'Views projects that are proposed',
-        'ouri'      => 'Views all TRIP PAPs',
-        'ipd'       => 'Views all PAPs',
+        'encoder'   => 'Viewing own PAPs and their Office\'s PAPs',
+        'spcmad'    => 'Viewing projects that are not proposed (includes ongoing, completed and draft)',
+        'pds'       => 'Viewing projects that are proposed',
+        'ouri'      => 'Viewing all TRIP PAPs',
+        'ipd'       => 'Viewing all PAPs of offices assigned to you',
         'guest'     => 'Does not have permission to access PAPs, offices and users',
     ];
 
