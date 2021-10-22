@@ -18,6 +18,7 @@ use App\Http\Requests\ProjectUpdateStrictRequest;
 use App\Http\Requests\ReviewStoreRequest;
 use App\Http\Requests\UploadAttachmentRequest;
 use App\Http\Resources\ProjectResource;
+use App\Jobs\ProjectUpdateJob;
 use App\Models\RefApprovalLevel;
 use App\Models\RefBasis;
 use App\Models\RefCipType;
@@ -35,6 +36,7 @@ use App\Models\RefOperatingUnitType;
 use App\Models\RefPapType;
 use App\Models\RefPdpChapter;
 use App\Models\RefPdpIndicator;
+use App\Models\RefPipolStatus;
 use App\Models\RefPipTypology;
 use App\Models\RefPreparationDocument;
 use App\Models\Project;
@@ -169,7 +171,10 @@ class ProjectController extends Controller
         $tab = 'profile';
 
         return view('projects.show', compact('project','tab'))
-            ->with(['submission_statuses' => RefSubmissionStatus::all(),]);
+            ->with([
+                'submission_statuses' => RefSubmissionStatus::all(),
+                'pipol_statuses' => RefPipolStatus::all(),
+            ]);
     }
 
     /**
@@ -255,75 +260,11 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return Response
      */
-    public function update(ProjectUpdateRequest $request, Project $project, ProjectCheckForIssuesService $service)
+    public function update(ProjectUpdateRequest $request, Project $project)
     {
-        $project->update($request->validated());
-
-        $project->bases()->sync($request->bases);
-        $project->regions()->sync($request->regions);
-        $project->sdgs()->sync($request->sdgs);
-        $project->pdp_chapters()->sync($request->pdp_chapters);
-        $project->pdp_indicators()->sync($request->pdp_indicators);
-        $project->ten_point_agendas()->sync($request->ten_point_agendas);
-        $project->operating_units()->sync($request->operating_units);
-        $project->covid_interventions()->sync($request->covid_interventions);
-
-        foreach ($request->fs_investments as $fs_investment) {
-            $project
-                ->fs_investments()
-                ->where('ref_funding_source_id', $fs_investment['ref_funding_source_id'])
-                ->update($fs_investment);
-        }
-
-        foreach ($request->fs_infrastructures as $fs_infrastructure) {
-            $project
-                ->fs_infrastructures()
-                ->where('ref_funding_source_id', $fs_infrastructure['ref_funding_source_id'])
-                ->update($fs_infrastructure);
-        }
-
-        foreach ($request->region_investments as $region_investment) {
-            $project
-                ->region_investments()
-                ->where('ref_region_id', $region_investment['ref_region_id'])
-                ->update($region_investment);
-//            $itemToEdit = ProjectRegionInvestment::where('project_id', $project->id)->where('region_id', $region_investment['region_id'])->first();
-//            $itemToEdit->update($region_investment);
-        }
-
-        foreach ($request->region_infrastructures as $region_infrastructure) {
-            $project
-                ->region_infrastructures()
-                ->where('ref_region_id', $region_infrastructure['ref_region_id'])
-                ->update($region_infrastructure);
-//            $itemToEdit = ProjectRegionInvestment::where('project_id', $project->id)->where('region_id', $region_investment['region_id'])->first();
-//            $itemToEdit->update($region_investment);
-        }
-
-        $project->project_update()->update([
-            'updates'   => $request->updates,
-            'updates_date' => $request->updates_date,
-        ]);
-
-        $project->expected_output()->update([
-            'expected_outputs' => $request->expected_outputs
-        ]);
-
-        $project->description()->update([
-            'description' => $request->description,
-        ]);
-
-        $project->feasibility_study()->update($request->feasibility_study);
-
-        $project->nep()->update($request->nep);
-
-        $project->allocation()->update($request->allocation);
-
-        $project->disbursement()->update($request->disbursement);
+        dispatch(new ProjectUpdateJob($request->validated(), $project->id));
 
         session()->flash('status', 'success|Successfully updated PAP.');
-
-        $service->execute($request->toArray(), $project->id, $project->updated_at);
 
         return back();
     }

@@ -6,56 +6,42 @@
 
 @section('content')
     <div class="Box">
-        <div class="Box-header py-2 pr-2 d-flex flex-shrink-0 flex-md-row flex-items-center position-sticky top-0">
-            <div class="d-flex flex-items-center flex-auto">
-                <details class="dropdown details-reset details-overlay d-inline-block">
-                    <summary class="color-fg-muted p-2 d-inline btn btn-octicon mr-2 m-0 p-2" aria-haspopup="true">
-                        <svg class="octicon octicon-list-unordered" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-                    </summary>
+        <div class="Box-header clearfix d-flex flex-items-center py-2 pr-2  position-sticky top-0">
 
-                    <ul class="dropdown-menu dropdown-menu-e">
-                        <li><a class="dropdown-item" href="#general-information">General Information</a></li>
-                        <li><a class="dropdown-item" href="#implementing-agencies">Implementing Agencies</a></li>
-                        <li><a class="dropdown-item" href="#spatial-coverage">Spatial Coverage</a></li>
-                        <li><a class="dropdown-item" href="#approval-level">Level of Approval</a></li>
-                        <li><a class="dropdown-item" href="#programming-document">Project for Inclusion in Which Programming Document</a></li>
-                        <li><a class="dropdown-item" href="#physical-and-financial-status">Physical and Financial Status</a></li>
-                        <li><a class="dropdown-item" href="#implementation-period">Implementation Period</a></li>
-                        <li><a class="dropdown-item" href="#pdp">Philippine Development Plan</a></li>
-                        <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
-                        <li><a class="dropdown-item" href="#sdgs">Sustainable Development Goals</a></li>
-                        <li><a class="dropdown-item" href="#gad-responsiveness">Level of GAD Responsiveness</a></li>
-                        <li><a class="dropdown-item" href="#ten-point-agenda">Ten Point Agenda</a></li>
-                        <li><a class="dropdown-item" href="#project-preparation-details">Project Preparation Details</a></li>
-                        <li><a class="dropdown-item" href="#preconstruction-costs">Pre-construction Costs</a></li>
-                        <li><a class="dropdown-item" href="#employment-generation">Employment Generation</a></li>
-                        <li><a class="dropdown-item" href="#funding-source">Funding Source and Mode of Implementation</a></li>
-                        <li><a class="dropdown-item" href="#project-costs">Project Costs</a></li>
-                        <li><a class="dropdown-item" href="#financial-accomplishments">Financial Accomplishments</a></li>
-                    </ul>
-                </details>
+            <details class="dropdown details-reset details-overlay d-inline-block">
+                <summary class="color-fg-muted p-2 d-inline btn btn-octicon mr-2 m-0 p-2" aria-haspopup="true">
+                    <svg class="octicon octicon-list-unordered" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+                </summary>
 
-                <h2 class="Box-title">
-                    <a href="{{ route('projects.show', $project) }}" class="btn-link Link--muted">
-                        {{ $project->title }}
-                    </a>
-                </h2>
-            </div>
+                <ul class="dropdown-menu dropdown-menu-e">
+                    <li><a class="dropdown-item" href="#general-information">General Information</a></li>
+                    <li><a class="dropdown-item" href="#implementing-agencies">Implementing Agencies</a></li>
+                    <li><a class="dropdown-item" href="#spatial-coverage">Spatial Coverage</a></li>
+                    <li><a class="dropdown-item" href="#approval-level">Level of Approval</a></li>
+                    <li><a class="dropdown-item" href="#programming-document">Project for Inclusion in Which Programming Document</a></li>
+                    <li><a class="dropdown-item" href="#physical-and-financial-status">Physical and Financial Status</a></li>
+                    <li><a class="dropdown-item" href="#implementation-period">Implementation Period</a></li>
+                    <li><a class="dropdown-item" href="#pdp">Philippine Development Plan</a></li>
+                    <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
+                    <li><a class="dropdown-item" href="#sdgs">Sustainable Development Goals</a></li>
+                    <li><a class="dropdown-item" href="#gad-responsiveness">Level of GAD Responsiveness</a></li>
+                    <li><a class="dropdown-item" href="#ten-point-agenda">Ten Point Agenda</a></li>
+                    <li><a class="dropdown-item" href="#project-preparation-details">Project Preparation Details</a></li>
+                    <li><a class="dropdown-item" href="#preconstruction-costs">Pre-construction Costs</a></li>
+                    <li><a class="dropdown-item" href="#employment-generation">Employment Generation</a></li>
+                    <li><a class="dropdown-item" href="#funding-source">Funding Source and Mode of Implementation</a></li>
+                    <li><a class="dropdown-item" href="#project-costs">Project Costs</a></li>
+                    <li><a class="dropdown-item" href="#financial-accomplishments">Financial Accomplishments</a></li>
+                </ul>
+            </details>
 
-{{--            <form class="inline-form" action="{{ route('projects.destroy', $project) }}" accept-charset="UTF-8" method="post">--}}
-{{--                @csrf--}}
-{{--                @method('delete')--}}
-{{--                <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn-octicon btn-octicon-danger tooltipped tooltipped-nw mr-2" type="submit" aria-label="Delete this PAP">--}}
-{{--                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-trash">--}}
-{{--                        <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>--}}
-{{--                    </svg>--}}
-{{--                    <span>Delete</span>--}}
-{{--                </button>--}}
-{{--            </form>--}}
+            <h2 class="Box-title overflow-hidden pr-3">
+                <a href="{{ route('projects.show', $project) }}" class="Link tooltipped tooltipped-n" aria-label="Go back to view project and exit edit mode">
+                    {{ $project->title }}
+                </a>
+            </h2>
 
-            <a href="{{ route('projects.index') }}" class="btn-link mr-2">List of Projects</a>
-
-            <button type="submit" form="editProjectForm" class="btn btn-primary">Save</button>
+            <button type="submit" form="editProjectForm" class="btn btn-primary float-right">Save</button>
         </div>
 
         <form action="{{ route('projects.update', $project) }}" method="POST" id="editProjectForm">
@@ -1484,6 +1470,7 @@
 
             <div class="Box-footer">
                 <button class="btn btn-primary">Save</button>
+                <a href="{{ route('projects.index') }}" class="btn">Back to List</a>
             </div>
         </form>
     </div>

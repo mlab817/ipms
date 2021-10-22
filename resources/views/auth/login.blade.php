@@ -3,7 +3,7 @@
 @section('content')
     <div class="login-box mt-6">
         <div class="text-center">
-            <img src="{{ asset('images/logo_with_da.svg') }}" width="100px" alt="ipms-logo">
+            <img class="avatar avatar-user" src="{{ asset('images/pips.png') }}" width="100px" alt="ipms-logo">
         </div>
 
         <!-- /.login-logo -->

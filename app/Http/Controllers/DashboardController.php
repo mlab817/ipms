@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\ProjectReview;
+use App\Models\RefSubmissionStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +13,8 @@ class DashboardController extends Controller
 {
     public function __invoke()
     {
+        $bySubmissionStatus = RefSubmissionStatus::withCount('projects')->get();
+
         // get daily data of added projects
         $chartData = DB::table('projects')
             ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
@@ -56,6 +59,8 @@ class DashboardController extends Controller
                 $q->where('name','reviewer.main')
                     ->orWhere('name','reviewer');
             })->withCount('projects','reviews')->get(),
+            'bySubmissionStatus' => $bySubmissionStatus,
+            'validated' => Project::whereNotNull('validated_at')->count(),
         ]);
     }
 }

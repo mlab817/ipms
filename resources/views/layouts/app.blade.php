@@ -28,11 +28,6 @@
 {{--            @yield('content')--}}
 {{--        </div>--}}
     </div>
-    @if (Route::is('dashboard'))
-    <div class="Layout-sidebar border mr-3" style="min-height: calc(100vh - 64px)">
-        @include('partials.sidebar')
-    </div>
-    @endif
 </div>
 
 @stack('scripts')

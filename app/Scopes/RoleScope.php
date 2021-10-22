@@ -21,6 +21,10 @@ class RoleScope implements Scope
         $user = auth()->user();
         $roleName = $user->role->name ?? '';
 
+        if ($roleName == 'ipd') {
+            $builder->whereIn('office_id', $user->offices->pluck('id')->toArray());
+        }
+
         if ($roleName == 'encoder') {
             $builder->where('office_id', $user->office_id)
                 ->orWhere('creator_id', $user->id);

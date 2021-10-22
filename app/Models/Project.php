@@ -180,17 +180,13 @@ class Project extends Model
         'ipms_id',
         'office_id',
         'uuid',
-        'code', // pipol code
+        'pipol_code',
         'title',
         'ref_pap_type_id',
         'regular_program',
         'has_infra',
-        // implementation bases
-//        'description',
         'summary',
-//        'expected_outputs',
         'total_project_cost',
-        // implementing_agencies
         'ref_spatial_coverage_id',
         'iccable',
         'ref_approval_level_id',
@@ -205,52 +201,33 @@ class Project extends Model
         'rdc_endorsement_required',
         'rdc_endorsed',
         'rdc_endorsed_date',
-        // trip infra sector and subsectors
         'other_infrastructure',
-        // prerequisites
-//        'risk',
-//        'mitigation_strategy',
-        // infra cost
         'ref_pdp_chapter_id',
-        // pdp_chapters
-        // pdp_indicators
-        'no_pdp_indicator',
-        // ten point agenda
-        // sdg
         'ref_gad_id',
         'target_start_year',
         'target_end_year',
         'ref_preparation_document_id',
-        // feasibility study
         'preparation_document_others',
         'has_fs',
         'has_row',
         'has_rap',
-        // rowa
-        // resettlement
         'employment_generated',
-        // costs
         'ref_funding_source_id',
         'ref_funding_institution_id',
         'ref_implementation_mode_id',
         'other_fs',
         'ref_project_status_id',
         'ref_readiness_level_id',
-//        'updates',
-//        'updates_date',
         'uacs_code',
         'ref_tier_id',
-        // nep
-        // allocation
-        // disbursement
         'has_subprojects',
         'covid',
-//        'ifp',
         'research',
         'ict',
         'office_id',
         'trip_info',
         'ref_submission_status_id',
+        'ref_pipol_status_id',
         'ref_reason_id',
         'other_reason',
         'completion_date',

@@ -62,6 +62,15 @@ class Handler extends ExceptionHandler
             ], 403);
         }
 
+        /**
+         * Redirect the users back to current page if they encounter an authorization exception
+         */
+        if ($e instanceof AuthorizationException) {
+            session()->flash('status', 'error|' . $e->getMessage());
+
+            return back();
+        }
+
         return parent::render($request, $e);
     }
 }

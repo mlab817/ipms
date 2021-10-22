@@ -15,7 +15,7 @@
         @if(count($offices))
         <div class="Box-body p-0">
             @foreach($offices as $office)
-                <div class="Box-row clearfix position-relative pr-6" data-filter-value="ipms">
+                <div class="Box-row clearfix position-relative pr-6">
                     <details class="details-reset details-overlay dropdown position-static">
                         <summary class="color-fg-muted position-absolute right-0 top-0 mt-3 px-3" aria-label="Project menu" aria-haspopup="menu" role="button">
                             <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-kebab-horizontal">
@@ -42,7 +42,7 @@
 
                     <div class="col-12 col-md-6 col-lg-4 pr-2 float-left">
                         <h4 class="mb-1">
-                            <a href="{{ route('offices.show', $office) }}" class="Link--primary mr-1">{{ $office->acronym }}</a>
+                            <a href="{{ route('offices.show', $office) }}" class="Link mr-1">{{ $office->acronym }}</a>
                         </h4>
                         <p class="f5">{{ $office->email }}</p>
                         <p class="f6">{{ $office->contact_numbers }}</p>

@@ -46,10 +46,10 @@
                         </div>
 
                         <div class="inline-block col-4">
-                            <p class="color-fg-muted">{{ $user->full_name }}</p>
-                            <h4 class="mb-1">
-                                <a href="{{ route('users.show', $user) }}" class="Link--primary mr-1">{{ '@' . $user->username }}</a>
-                            </h4>
+                            <p class="mb-0">
+                                <a href="{{ route('users.show', $user) }}" class="btn-link mr-1">{{ $user->full_name }}</a>
+                            </p>
+                            <p class="f4 mb-1">{{ '@' . $user->username }}</p>
                             <p class="f5">{{ $user->email }}</p>
                         </div>
 
