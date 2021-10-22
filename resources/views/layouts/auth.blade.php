@@ -6,6 +6,8 @@
     <title>{{ config('app.name') }}</title>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 <body>

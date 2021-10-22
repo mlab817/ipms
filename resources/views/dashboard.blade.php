@@ -58,8 +58,22 @@
         </li>
     </ol>
 
-    <div>
-        <canvas id="myChart"></canvas>
+    <div class="col-12 d-flex flex-wrap gutter-md">
+        <div class="col-6">
+            <canvas id="chart1"></canvas>
+        </div>
+
+        <div class="col-6">
+            <canvas id="chart2"></canvas>
+        </div>
+
+        <div class="col-6">
+            <canvas id="chart3"></canvas>
+        </div>
+
+        <div class="col-6">
+            <canvas id="chart4"></canvas>
+        </div>
     </div>
 
 @endsection
@@ -93,9 +107,96 @@
         };
 
         var myChart = new Chart(
-            document.getElementById('myChart'),
+            document.getElementById('chart1'),
             config
         );
+    </script>
+
+    <script>
+        var ctx = document.getElementById('chart2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: @json(\App\Models\RefSubmissionStatus::all()->pluck('name')->toArray()),
+                datasets: [{
+                    label: 'No. of PAPs per submission status',
+                    data: @json(\App\Models\RefSubmissionStatus::withCount('projects')->get()->pluck('projects_count')->toArray()),
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    hoverOffset: 4
+                }]
+            }
+        });
+    </script>
+
+    <script>
+        var ctx = document.getElementById('chart3').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: @json(\App\Models\RefSubmissionStatus::all()->pluck('name')->toArray()),
+                datasets: [{
+                    label: 'No. of PAPs per submission status',
+                    data: @json(\App\Models\RefSubmissionStatus::withCount('projects')->get()->pluck('projects_count')->toArray()),
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    hoverOffset: 4
+                }]
+            }
+        });
+    </script>
+
+    <script>
+        var ctx = document.getElementById('chart4').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: @json(\App\Models\RefSubmissionStatus::all()->pluck('name')->toArray()),
+                datasets: [{
+                    label: 'No. of PAPs per submission status',
+                    data: @json(\App\Models\RefSubmissionStatus::withCount('projects')->get()->pluck('projects_count')->toArray()),
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    hoverOffset: 4
+                }]
+            }
+        });
     </script>
 
 @endpush

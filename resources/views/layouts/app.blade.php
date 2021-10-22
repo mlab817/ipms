@@ -8,6 +8,8 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
 
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
     <link href="https://unpkg.com/@github/details-dialog-element/dist/index.css" rel="stylesheet" />
 
     <script src="{{ mix('js/app.js') }}" defer></script>
