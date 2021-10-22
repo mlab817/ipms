@@ -24,7 +24,7 @@
                             Enter your user account's verified email address and we will send you a password reset link.
                         </label>
 
-                        <div class="form-group @error('email') errored @enderror">
+                        <div class="form-group @error('email') errored mb-6 @enderror">
                             <input type="email" placeholder="Enter email address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
                             @error('email')
                             <p class="note error" id="email-validation">{{ $message }}</p>

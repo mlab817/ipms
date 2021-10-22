@@ -24,7 +24,7 @@
 
                     <input type="hidden" name="email" value="{{ $email }}">
 
-                    <div class="form-group @error('password') errored @enderror">
+                    <div class="form-group @error('password') errored mb-6 @enderror">
                         <div class="form-group-header">
                             <label for="password">New Password</label>
                         </div>
