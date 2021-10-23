@@ -497,8 +497,6 @@ class Project extends Model
         return $this->hasMany(ProjectRegionInfrastructure::class);
     }
 
-
-
     public function subprojects(): HasMany
     {
         return $this->hasMany(Subproject::class);
@@ -508,11 +506,6 @@ class Project extends Model
     {
         return $this->belongsToMany(User::class,'project_user_permission','project_id','user_id','id','id')
             ->withPivot('read','update','delete','review','comment');
-    }
-
-    public function attachments(): HasMany
-    {
-        return $this->hasMany(Attachment::class);
     }
 
     /**
