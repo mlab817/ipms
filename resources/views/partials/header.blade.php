@@ -36,7 +36,7 @@
             </summary>
             <details-menu class="dropdown-menu dropdown-menu-sw" role="menu">
                 <a role="menuitem" class="dropdown-item" href="{{ route('projects.create') }}">
-                    New PAP
+                    Create a New PAP
                 </a>
                 @admin
                     <a role="menuitem" class="dropdown-item" href="{{ route('offices.create') }}">
@@ -69,7 +69,7 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li><a class="dropdown-item" href="{{ route('projects.create') }}">Create a PAP</a></li>
+                <li><a class="dropdown-item" href="{{ route('projects.create') }}">Create a New PAP</a></li>
                 <li><a class="dropdown-item" href="{{ route('projects.index') }}">Your PAPs</a></li>
                 <li><a href="{{ route('users.show', auth()->user()) }}" class="dropdown-item">Your Profile</a></li>
 
