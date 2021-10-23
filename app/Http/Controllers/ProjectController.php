@@ -262,6 +262,7 @@ class ProjectController extends Controller
      */
     public function update(ProjectUpdateRequest $request, Project $project)
     {
+//        dispatch_sync(new ProjectUpdateJob($request->validated(), $project->id));
         dispatch(new ProjectUpdateJob($request->validated(), $project->id));
 
         session()->flash('status', 'success|Successfully updated PAP.');

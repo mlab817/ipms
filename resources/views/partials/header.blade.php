@@ -5,7 +5,7 @@
             <img class="avatar avatar-user" src="{{ asset('images/pips.png') }}" alt="pips" height="32">
         </a>
     </div>
-    <div class="Header-item">
+    <div class="Header-item hide-md hide-sm">
         <form action="{{ route('projects.index') }}" method="get">
             <input type="search" class="form-control Header-input" name="q" />
         </form>
@@ -60,6 +60,12 @@
                     <a role="menuitem" class="no-underline px-3 pt-2 pb-2 mb-n2 mt-n1 d-block" href="javascript:void(0)">
                         Signed in as <strong class="css-truncate-target">{{ optional(auth()->user()->role)->name }}</strong>
                     </a>
+                </li>
+                <li class="dropdown-divider hide-xl hide-lg"></li>
+                <li class="px-2 hide-xl hide-lg">
+                    <form action="{{ route('projects.index') }}" method="get">
+                        <input type="search" autocomplete="off" class="form-control input-sm width-full" name="q">
+                    </form>
                 </li>
                 <li class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>

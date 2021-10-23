@@ -86,12 +86,12 @@ class ProjectPolicy
         }
 
         // if project is endorsed, only IPD can edit it
-        if ($project->isEndorsed() && ! $user->role->name == 'ipd') {
+        if ($project->isEndorsed() && ! $user->isIpd()) {
             return $this->deny('PAP has already been endorsed. Only IPD staff can edit.');
         }
 
         // if project is endorsed, only IPD can edit it
-        if ($project->isDropped() && ! $user->role->name == 'ipd') {
+        if ($project->isDropped() && ! $user->isIpd()) {
             return $this->deny('PAP has been dropped. Only IPD staff can edit.');
         }
 
@@ -100,7 +100,7 @@ class ProjectPolicy
         // or if the role is ipd
         if ($project->office_id == $user->office_id
             || $project->creator_id == $user->id
-            || $user->role->name == 'ipd') {
+            || $user->isIpd()) {
             return true;
         }
 
@@ -118,7 +118,7 @@ class ProjectPolicy
     public function delete(User $user, Project $project): bool
     {
         // only admin can delete projects
-        if ($user->role->name == 'admin') {
+        if ($user->isAdmin()) {
             return true;
         }
 
@@ -135,7 +135,7 @@ class ProjectPolicy
     public function restore(User $user, Project $project)
     {
         // only admin can delete projects
-        if ($user->role->name == 'admin') {
+        if ($user->isAdmin()) {
             return true;
         }
 
@@ -152,7 +152,7 @@ class ProjectPolicy
     public function forceDelete(User $user, Project $project)
     {
         // only admin can delete projects
-        if ($user->role->name == 'admin') {
+        if ($user->isAdmin()) {
             return true;
         }
 
@@ -181,7 +181,7 @@ class ProjectPolicy
 
     public function validate(User $user, Project $project)
     {
-        if ($user->role->name == 'ipd') {
+        if ($user->isIpd()) {
             return true;
         }
 
@@ -190,7 +190,7 @@ class ProjectPolicy
 
     public function encode(User $user, Project $project)
     {
-        if ($user->role->name == 'ipd') {
+        if ($user->isIpd()) {
             return true;
         }
 

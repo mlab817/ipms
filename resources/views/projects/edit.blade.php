@@ -6,43 +6,95 @@
 
 @section('content')
     <div class="Box">
-        <div class="Box-header clearfix d-flex flex-items-center py-2 pr-2  position-sticky top-0">
+        <div class="Box-header clearfix d-flex flex-items-center py-2 pr-2 position-sticky top-0">
+            <div class="d-flex flex-auto flex-items-center">
+                <details class="dropdown details-reset details-overlay d-inline-block">
+                    <summary class="color-fg-muted p-2 d-inline btn btn-octicon mr-2 m-0 p-2" aria-haspopup="true">
+                        <svg class="octicon octicon-list-unordered" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+                    </summary>
 
-            <details class="dropdown details-reset details-overlay d-inline-block">
-                <summary class="color-fg-muted p-2 d-inline btn btn-octicon mr-2 m-0 p-2" aria-haspopup="true">
-                    <svg class="octicon octicon-list-unordered" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-                </summary>
+                    <ul class="dropdown-menu dropdown-menu-e">
+                        <li><a class="dropdown-item" href="#general-information">General Information</a></li>
+                        <li><a class="dropdown-item" href="#implementing-agencies">Implementing Agencies</a></li>
+                        <li><a class="dropdown-item" href="#spatial-coverage">Spatial Coverage</a></li>
+                        <li><a class="dropdown-item" href="#approval-level">Level of Approval</a></li>
+                        <li><a class="dropdown-item" href="#programming-document">Project for Inclusion in Which Programming Document</a></li>
+                        <li><a class="dropdown-item" href="#physical-and-financial-status">Physical and Financial Status</a></li>
+                        <li><a class="dropdown-item" href="#implementation-period">Implementation Period</a></li>
+                        <li><a class="dropdown-item" href="#pdp">Philippine Development Plan</a></li>
+                        <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
+                        <li><a class="dropdown-item" href="#sdgs">Sustainable Development Goals</a></li>
+                        <li><a class="dropdown-item" href="#gad-responsiveness">Level of GAD Responsiveness</a></li>
+                        <li><a class="dropdown-item" href="#ten-point-agenda">Ten Point Agenda</a></li>
+                        <li><a class="dropdown-item" href="#project-preparation-details">Project Preparation Details</a></li>
+                        <li><a class="dropdown-item" href="#preconstruction-costs">Pre-construction Costs</a></li>
+                        <li><a class="dropdown-item" href="#employment-generation">Employment Generation</a></li>
+                        <li><a class="dropdown-item" href="#funding-source">Funding Source and Mode of Implementation</a></li>
+                        <li><a class="dropdown-item" href="#project-costs">Project Costs</a></li>
+                        <li><a class="dropdown-item" href="#financial-accomplishments">Financial Accomplishments</a></li>
+                    </ul>
+                </details>
 
-                <ul class="dropdown-menu dropdown-menu-e">
-                    <li><a class="dropdown-item" href="#general-information">General Information</a></li>
-                    <li><a class="dropdown-item" href="#implementing-agencies">Implementing Agencies</a></li>
-                    <li><a class="dropdown-item" href="#spatial-coverage">Spatial Coverage</a></li>
-                    <li><a class="dropdown-item" href="#approval-level">Level of Approval</a></li>
-                    <li><a class="dropdown-item" href="#programming-document">Project for Inclusion in Which Programming Document</a></li>
-                    <li><a class="dropdown-item" href="#physical-and-financial-status">Physical and Financial Status</a></li>
-                    <li><a class="dropdown-item" href="#implementation-period">Implementation Period</a></li>
-                    <li><a class="dropdown-item" href="#pdp">Philippine Development Plan</a></li>
-                    <li><a class="dropdown-item" href="#trip-information">TRIP Information</a></li>
-                    <li><a class="dropdown-item" href="#sdgs">Sustainable Development Goals</a></li>
-                    <li><a class="dropdown-item" href="#gad-responsiveness">Level of GAD Responsiveness</a></li>
-                    <li><a class="dropdown-item" href="#ten-point-agenda">Ten Point Agenda</a></li>
-                    <li><a class="dropdown-item" href="#project-preparation-details">Project Preparation Details</a></li>
-                    <li><a class="dropdown-item" href="#preconstruction-costs">Pre-construction Costs</a></li>
-                    <li><a class="dropdown-item" href="#employment-generation">Employment Generation</a></li>
-                    <li><a class="dropdown-item" href="#funding-source">Funding Source and Mode of Implementation</a></li>
-                    <li><a class="dropdown-item" href="#project-costs">Project Costs</a></li>
-                    <li><a class="dropdown-item" href="#financial-accomplishments">Financial Accomplishments</a></li>
-                </ul>
-            </details>
+                <h2 class="Box-title overflow-hidden pr-3">
+                    <a href="{{ route('projects.show', $project) }}" class="Link tooltipped tooltipped-n" aria-label="Go back to view project and exit edit mode">
+                        {{ $project->title }}
+                    </a>
+                </h2>
+            </div>
 
-            <h2 class="Box-title overflow-hidden pr-3">
-                <a href="{{ route('projects.show', $project) }}" class="Link tooltipped tooltipped-n" aria-label="Go back to view project and exit edit mode">
-                    {{ $project->title }}
-                </a>
-            </h2>
-
-            <button type="submit" form="editProjectForm" class="btn btn-primary float-right">Save</button>
+            <div class="float-right">
+{{--                <button type="submit" form="editProjectForm" class="btn btn-primary" name="immediate" value="1">Save Immediately</button>--}}
+                <button type="submit" form="editProjectForm" class="btn btn-primary">Save</button>
+            </div>
         </div>
+
+        @if(config('queue.default') == 'database')
+            <div class="d-flex flash flash-full flash-error">
+                <div class="d-flex flex-auto flex-items-center">
+                    <pre>!! Warning: Saving PAP information is queued. Changes may take some time to reflect. !!</pre>
+                </div>
+                <details class="details-reset details-overlay details-overlay-dark">
+                    <summary aria-haspopup="true" class="btn btn-danger btn-sm flash-action">
+                        Learn more
+                    </summary>
+                    <details-dialog class="Box--overlay d-flex flex-column anim-fade-in fast">
+                        <div class="Box">
+                            <div class="Box-header">
+                                <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+                                    <!-- <%= octicon "x" %> -->
+                                    <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+                                </button>
+
+                                <h3 class="Box-title">
+                                    Queueing
+                                </h3>
+                            </div>
+                            <div class="Box-body">
+                                <p>
+                                    <strong>TL;DR: "Heavy" tasks run in the background to ensure better user experience.</strong>
+                                </p>
+                                <p>To speed up the system, tasks that may take a long time to execute
+                                    do not run right away. Instead, the system queues them and runs them
+                                    at a specific time. This should not take too long provided there
+                                    aren't many tasks.
+                                </p>
+                                <p>Under the hood, the "update" PAP operation updates
+                                    the PAP information and updates other related data
+                                    that may take some time to execute. It also checks
+                                    for issues. This scheme also prevents the operation
+                                    from breaking (i.e. not being able to save some of
+                                    the information inputted).
+                                </p>
+                                <p class="note">
+                                    If you don't like this feature, you may request IPD
+                                    to disable it.
+                                </p>
+                            </div>
+                        </div>
+                    </details-dialog>
+                </details>
+            </div>
+        @endif
 
         <form action="{{ route('projects.update', $project) }}" method="POST" id="editProjectForm">
             @csrf

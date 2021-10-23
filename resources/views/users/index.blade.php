@@ -6,14 +6,46 @@
 
 @section('content')
     <div class="d-flex mb-3">
-        <div class="flex-auto mr-2">
+        <div class="flex-auto">
             <form action="{{ route('users.index') }}" method="get">
                 <input value="{{ request()->query('q') }}" type="search" name="q" class="form-control width-full" placeholder="Find a user..." aria-label="Find a user">
             </form>
         </div>
 
         <details class="dropdown details-reset details-overlay d-inline-block">
-            <summary class="btn mr-2" aria-haspopup="true">
+            <summary class="btn ml-2" aria-haspopup="true">
+                Office
+                <span class="dropdown-caret"></span>
+            </summary>
+            <div class="SelectMenu right-0">
+                <div class="SelectMenu-modal">
+                    <header class="SelectMenu-header">
+                        <h3 class="SelectMenu-title">Select role</h3>
+                        <button class="SelectMenu-closeButton" type="button" data-close-dialog>
+                            <!-- <%= octicon "x" %> -->
+                            <svg class="octicon octicon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">  <path fill-rule="evenodd" clip-rule="evenodd" d="M3.72 3.72C3.86062 3.57955 4.05125 3.50066 4.25 3.50066C4.44875 3.50066 4.63937 3.57955 4.78 3.72L8 6.94L11.22 3.72C11.2887 3.64631 11.3715 3.58721 11.4635 3.54622C11.5555 3.50523 11.6548 3.48319 11.7555 3.48141C11.8562 3.47963 11.9562 3.49816 12.0496 3.53588C12.143 3.5736 12.2278 3.62974 12.299 3.70096C12.3703 3.77218 12.4264 3.85702 12.4641 3.9504C12.5018 4.04379 12.5204 4.14382 12.5186 4.24452C12.5168 4.34523 12.4948 4.44454 12.4538 4.53654C12.4128 4.62854 12.3537 4.71134 12.28 4.78L9.06 8L12.28 11.22C12.3537 11.2887 12.4128 11.3715 12.4538 11.4635C12.4948 11.5555 12.5168 11.6548 12.5186 11.7555C12.5204 11.8562 12.5018 11.9562 12.4641 12.0496C12.4264 12.143 12.3703 12.2278 12.299 12.299C12.2278 12.3703 12.143 12.4264 12.0496 12.4641C11.9562 12.5018 11.8562 12.5204 11.7555 12.5186C11.6548 12.5168 11.5555 12.4948 11.4635 12.4538C11.3715 12.4128 11.2887 12.3537 11.22 12.28L8 9.06L4.78 12.28C4.63782 12.4125 4.44977 12.4846 4.25547 12.4812C4.06117 12.4777 3.87579 12.399 3.73837 12.2616C3.60096 12.1242 3.52225 11.9388 3.51882 11.7445C3.51539 11.5502 3.58752 11.3622 3.72 11.22L6.94 8L3.72 4.78C3.57955 4.63938 3.50066 4.44875 3.50066 4.25C3.50066 4.05125 3.57955 3.86063 3.72 3.72Z"></path></svg>
+                        </button>
+                    </header>
+                    <div class="SelectMenu-list">
+                        <a class="SelectMenu-item" href="{{ route('users.index') }}" @if(request()->query('office') == '') aria-checked="true" @endif>
+                            <svg class="SelectMenu-icon SelectMenu-icon--check octicon octicon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">  <path fill-rule="evenodd" clip-rule="evenodd" d="M13.78 4.22C13.9204 4.36062 13.9993 4.55125 13.9993 4.75C13.9993 4.94875 13.9204 5.13937 13.78 5.28L6.53 12.53C6.38937 12.6704 6.19875 12.7493 6 12.7493C5.80125 12.7493 5.61062 12.6704 5.47 12.53L2.22 9.28C2.08752 9.13782 2.0154 8.94978 2.01882 8.75547C2.02225 8.56117 2.10096 8.37579 2.23838 8.23837C2.37579 8.10096 2.56118 8.02225 2.75548 8.01882C2.94978 8.01539 3.13782 8.08752 3.28 8.22L6 10.94L12.72 4.22C12.8606 4.07955 13.0512 4.00066 13.25 4.00066C13.4487 4.00066 13.6394 4.07955 13.78 4.22Z"></path></svg>
+                            All
+                        </a>
+                        @foreach($offices as $office)
+                            <a class="SelectMenu-item" href="{{ route('users.index', ['office' => $office->acronym ]) }}" @if(request()->query('office') == $office->acronym) aria-checked="true" @endif>
+                                <!-- <%= octicon "check", class: "SelectMenu-icon SelectMenu-icon--check" %> -->
+                                <svg class="SelectMenu-icon SelectMenu-icon--check octicon octicon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">  <path fill-rule="evenodd" clip-rule="evenodd" d="M13.78 4.22C13.9204 4.36062 13.9993 4.55125 13.9993 4.75C13.9993 4.94875 13.9204 5.13937 13.78 5.28L6.53 12.53C6.38937 12.6704 6.19875 12.7493 6 12.7493C5.80125 12.7493 5.61062 12.6704 5.47 12.53L2.22 9.28C2.08752 9.13782 2.0154 8.94978 2.01882 8.75547C2.02225 8.56117 2.10096 8.37579 2.23838 8.23837C2.37579 8.10096 2.56118 8.02225 2.75548 8.01882C2.94978 8.01539 3.13782 8.08752 3.28 8.22L6 10.94L12.72 4.22C12.8606 4.07955 13.0512 4.00066 13.25 4.00066C13.4487 4.00066 13.6394 4.07955 13.78 4.22Z"></path></svg>
+                                {{ $office->acronym }}
+                                <span class="Counter ml-1">{{ $office->users_count }}</span>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details class="dropdown details-reset details-overlay d-inline-block">
+            <summary class="btn ml-2" aria-haspopup="true">
                 Role
                 <span class="dropdown-caret"></span>
             </summary>
@@ -43,8 +75,9 @@
                 </div>
             </div>
         </details>
-
-        <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">New</a>
+        @can('create', \App\Models\User::class)
+        <a href="{{ route('users.create') }}" class="btn btn-primary ml-2">New</a>
+        @endcan
     </div>
 
     <div class="Box">
@@ -114,7 +147,7 @@
                                 @endforeach
                             </p>
 
-                            @if($user->role->name == 'ipd')
+                            @if(auth()->user()->isIpd())
                             <p class="f5">
                                 <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg> Reviews:
                                 @foreach($user->offices as $office)
