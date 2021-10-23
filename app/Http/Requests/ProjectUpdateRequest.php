@@ -22,6 +22,7 @@ class ProjectUpdateRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
+            'total_project_cost'    => str_replace(',', '', $this->total_project_cost) ?? 0,
             'feasibility_study'     => [
                 'ref_fs_status_id'  => $this->feasibility_study['ref_fs_status_id'] ?? null,
                 'needs_assistance'  => $this->feasibility_study['needs_assistance'],
@@ -239,6 +240,12 @@ class ProjectUpdateRequest extends FormRequest
             'ref_readiness_level_id'                        => 'nullable|exists:ref_readiness_levels,id',
             'completion_date'                               => 'nullable|date',
             'pap_code'                                      => 'nullable',
+            'risk'                                          => 'nullable',
+            'infrastructure_sectors'                        => 'nullable|array',
+            'infrastructure_sectors.*'                      => 'exists:ref_infrastructure_sectors,id',
+            'infrastructure_subsectors'                     => 'nullable|array',
+            'infrastructure_subsectors.*'                   => 'exists:ref_infrastructure_subsectors,id',
+            'total_project_cost'                            => 'nullable|numeric'
         ];
     }
 

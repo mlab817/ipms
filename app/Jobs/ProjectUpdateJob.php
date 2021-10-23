@@ -53,6 +53,7 @@ class ProjectUpdateJob implements ShouldQueue
         $project->covid_interventions()->sync($request['covid_interventions'] ?? []);
         $project->prerequisites()->sync($request['prerequisites'] ?? []);
         $project->infrastructure_sectors()->sync($request['infrastructure_sectors'] ?? []);
+        $project->infrastructure_subsectors()->sync($request['infrastructure_subsectors'] ?? []);
 
         foreach ($request['fs_investments'] as $fs_investment) {
             $project

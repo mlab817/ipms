@@ -164,6 +164,16 @@
                     </dd>
                 </dl>
 
+                <dl class="form-group @error('total_project_cost') errored mb-6 @enderror">
+                    <dt class="form-group-header">
+                        <label for="total_project_cost" class="required">Total Project Cost (in PhP) </label>
+                    </dt>
+                    <dd class="form-group-body">
+                        <input type="text" class="form-control money" name="total_project_cost" value="{{ old('total_project_cost', $project->total_project_cost ?? 0) }}">
+                        <x-error-message name="total_project_cost" id="total_project_cost-validation"></x-error-message>
+                    </dd>
+                </dl>
+
                 <x-subhead subhead="Implementing Agencies" id="implementing-agencies"></x-subhead>
 
                 <dl class="form-group @error('office_id') errored mb-6 @enderror">
@@ -554,8 +564,8 @@
                                             @foreach($is->infrastructure_subsectors as $key => $iss)
                                                 <div class="form-checkbox my-0">
                                                     <label for="">
-                                                        <input type="checkbox" value="{{ $iss->id }}" name="infrastructure_sectors[]"
-                                                               @if(in_array($is->id, old('infrastructure_sectors', $project->infrastructure_sectors->pluck('id')->toArray()))) checked @endif>
+                                                        <input type="checkbox" value="{{ $iss->id }}" name="infrastructure_subsectors[]"
+                                                               @if(in_array($is->id, old('infrastructure_sectors', $project->infrastructure_subsectors->pluck('id')->toArray()))) checked @endif>
                                                         {{ $iss->name }}
                                                     </label>
                                                 </div>
