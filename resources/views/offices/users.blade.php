@@ -62,7 +62,7 @@
                         @endforeach
                     </p>
 
-                    @if($user->role->name == 'ipd')
+                    @if($user->isIpd())
                         <p class="f5">
                             <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg> Reviews:
                             @foreach($user->offices as $office)
@@ -77,8 +77,10 @@
         <div class="blankslate blankslate-large">
             <img src="https://ghicons.github.com/assets/images/blue/png/Pull%20request.png" alt="" class="mb-3" />
             <h3 class="mb-1">There are no users yet for this Office.</h3>
-            <p>Add a user to this office now by clicking the button below.</p>
-            <a class="btn btn-primary my-3" href="{{ route('users.create') }}" role="button">New</a>
+            @can('add', \App\Models\User::class)
+                <p>Add a user to this office now by clicking the button below.</p>
+                <a class="btn btn-primary my-3" href="{{ route('users.create') }}" role="button">New</a>
+            @endcan
         </div>
     @endforelse
 @endsection

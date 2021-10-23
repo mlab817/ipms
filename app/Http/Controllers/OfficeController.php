@@ -11,11 +11,30 @@ use Illuminate\Http\Request;
 
 class OfficeController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $offices = Office::withCount('projects')->paginate(10);
+        $this->authorizeResource(Office::class, 'office');
+    }
 
-        return view('offices.index', compact('offices'));
+    public function index(Request $request)
+    {
+        $offices = Office::query();
+        $ou_types = RefOperatingUnitType::withCount('offices')->get();
+
+        if ($request->q) {
+            $offices->where('name', 'like', '%' . $request->q . '%')
+                ->orWhere('acronym', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->ou_type) {
+            $type = RefOperatingUnitType::where('name', $request->ou_type)->first();
+            $ous = RefOperatingUnit::where('ref_operating_unit_type_id', $type->id)->pluck('id')->toArray();
+            $offices->whereIn('ref_operating_unit_id', $ous);
+        }
+
+        $offices = $offices->with('projects')->paginate(10);
+
+        return view('offices.index', compact('offices', 'ou_types'));
     }
 
     public function create()

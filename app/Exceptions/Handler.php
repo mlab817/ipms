@@ -44,31 +44,36 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-        if ($e instanceof ModelNotFoundException && $request->wantsJson()) {
-            return response()->json([
-                'error' => 'Resource not found'
-            ], 404);
-        }
+//        if ($e instanceof ModelNotFoundException && $request->wantsJson()) {
+//            return response()->json([
+//                'error' => 'Resource not found'
+//            ], 404);
+//        }
+//
+//        if ($e instanceof AuthenticationException && $request->wantsJson()) {
+//            return response()->json([
+//                'error' => 'Unauthenticated'
+//            ], 401);
+//        }
+//
+//        if ($e instanceof AuthorizationException && $request->wantsJson()) {
+//            return response()->json([
+//                'error' => 'Unauthorized'
+//            ], 403);
+//        }
 
-        if ($e instanceof AuthenticationException && $request->wantsJson()) {
-            return response()->json([
-                'error' => 'Unauthenticated'
-            ], 401);
-        }
+        if ($e instanceof ModelNotFoundException) {
+            session()->flash('status', 'error|The resource you are looking for was not found or may have moved to another page');
 
-        if ($e instanceof AuthorizationException && $request->wantsJson()) {
-            return response()->json([
-                'error' => 'Unauthorized'
-            ], 403);
+            return redirect()->route('dashboard');
         }
-
         /**
          * Redirect the users back to current page if they encounter an authorization exception
          */
         if ($e instanceof AuthorizationException) {
             session()->flash('status', 'error|' . $e->getMessage());
 
-            return back();
+            return redirect()->route('dashboard');
         }
 
         return parent::render($request, $e);
