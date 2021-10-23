@@ -155,7 +155,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="Box-footer">
-                                                    <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn btn-danger btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
+                                                    <button onclick="return confirm('Are you sure you want to drop this PAP?')" class="btn btn-danger btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
                                                         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-trash">
                                                             <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
                                                         </svg>
@@ -212,7 +212,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="Box-footer">
-                                                    <button onclick="return confirm('Are you sure you want to delete this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
+                                                    <button onclick="return confirm('Are you sure you want to validate this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
                                                         <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
                                                         Validate
                                                     </button>
