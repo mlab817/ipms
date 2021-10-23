@@ -51,6 +51,8 @@ class ProjectUpdateJob implements ShouldQueue
         $project->ten_point_agendas()->sync($request['ten_point_agendas'] ?? []);
         $project->operating_units()->sync($request['operating_units'] ?? []);
         $project->covid_interventions()->sync($request['covid_interventions'] ?? []);
+        $project->prerequisites()->sync($request['prerequisites'] ?? []);
+        $project->infrastructure_sectors()->sync($request['infrastructure_sectors'] ?? []);
 
         foreach ($request['fs_investments'] as $fs_investment) {
             $project
@@ -91,7 +93,7 @@ class ProjectUpdateJob implements ShouldQueue
             ]);
         }
 
-        if (isset($request['description'])) {
+        if (isset($request['expected_outputs'])) {
             $project->expected_output()->update([
                 'expected_outputs' => $request['expected_outputs']
             ]);
@@ -101,6 +103,10 @@ class ProjectUpdateJob implements ShouldQueue
             $project->description()->update([
                 'description' => $request['description'],
             ]);
+        }
+
+        if (isset($request['risk'])) {
+            $project->risk()->update($request['risk']);
         }
 
         if (isset($request['feasibility_study'])) {
@@ -119,11 +125,11 @@ class ProjectUpdateJob implements ShouldQueue
             $project->nep()->update($request['nep']);
         }
 
-        if (isset($request['nep'])) {
+        if (isset($request['allocation'])) {
             $project->allocation()->update($request['allocation']);
         }
 
-        if (isset($request['nep'])) {
+        if (isset($request['disbursement'])) {
             $project->disbursement()->update($request['disbursement']);
         }
 

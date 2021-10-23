@@ -547,7 +547,7 @@
                                     <div class="form-checkbox my-0">
                                         <label for="">
                                             <input type="checkbox" value="{{ $is->id }}" name="infrastructure_sectors[]"
-                                                   @if(in_array($is->id, old('$infrastructure_sectors', $project->infrastructure_sectors->pluck('id')->toArray()))) checked @endif>
+                                                   @if(in_array($is->id, old('infrastructure_sectors', $project->infrastructure_sectors->pluck('id')->toArray()))) checked @endif>
                                             {{ $is->name }}
                                         </label>
                                         @if ($is->infrastructure_subsectors)
@@ -555,7 +555,7 @@
                                                 <div class="form-checkbox my-0">
                                                     <label for="">
                                                         <input type="checkbox" value="{{ $iss->id }}" name="infrastructure_sectors[]"
-                                                               @if(in_array($is->id, old('$infrastructure_sectors', $project->infrastructure_sectors->pluck('id')->toArray()))) checked @endif>
+                                                               @if(in_array($is->id, old('infrastructure_sectors', $project->infrastructure_sectors->pluck('id')->toArray()))) checked @endif>
                                                         {{ $iss->name }}
                                                     </label>
                                                 </div>
