@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'login');
 
 // Resources secured by auth
-Route::middleware(['auth','password.changed'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
 
 //    Route::post('/logout_other_devices', \App\Http\Controllers\Auth\LogoutOtherDevicesController::class)->name('logout_other_devices');

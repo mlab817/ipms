@@ -28,3 +28,31 @@
 .Box-row--dropped {
     background-color: var(--color-danger-subtle)
 }
+
+.Progress .color-bg-draft-emphasis {
+    background-color: var(--color-attention-emphasis);
+}
+
+.Progress .color-bg-endorsed-emphasis {
+    background-color: var(--color-success-emphasis);
+}
+
+.Progress .color-bg-dropped-emphasis {
+    background-color: var(--color-danger-emphasis);
+}
+
+.Progress .color-bg-validated-emphasis {
+    background-color: var(--color-accent-emphasis);
+}
+
+.color-text-draft {
+    color: var(--color-attention-emphasis);
+}
+
+.color-text-endorsed {
+    color: var(--color-success-emphasis);
+}
+
+.color-text-dropped {
+    color: var(--color-danger-emphasis);
+}

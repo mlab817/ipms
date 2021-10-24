@@ -15,7 +15,7 @@ class ProjectCheckForIssuesService
         ProjectIssue::updateOrCreate([
             'project_id' => $projectId,
         ],[
-            'issues' => json_encode($validator->errors()),
+            'issues' => count($validator->errors()) ? json_encode($validator->errors()) : null,
             'project_updated_at' => $updatedAt,
         ]);
     }

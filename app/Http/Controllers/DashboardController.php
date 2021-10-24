@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\ProjectReview;
+use App\Models\RefPipolStatus;
 use App\Models\RefSubmissionStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,6 +15,12 @@ class DashboardController extends Controller
     public function __invoke()
     {
         $bySubmissionStatus = RefSubmissionStatus::withCount('projects')->get();
+
+        $byPipolStatus = RefPipolStatus::withCount('projects')->get()
+            ->map(function($p) {
+                $p->label = $p->projects_count . ' ' . strtolower($p->name);
+                return $p;
+            });
 
         // get daily data of added projects
         $chartData = DB::table('projects')
@@ -26,6 +33,7 @@ class DashboardController extends Controller
             });
 
         return view('dashboard', [
+            'byPipolStatus' => $byPipolStatus,
             'projectCount'  => Project::count(),
             'reviewCount'   => Project::has('review')->count(),
 //            'encodedCount'  => Project::has('pipol')->count(),

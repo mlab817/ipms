@@ -25,76 +25,164 @@
 
         <ul>
             <li class="Box-row p-0 d-flex flex-wrap">
-                <div class="col-12 col-md-6 px-3 py-4">
+                <div class="col-12 col-md-4 px-3 py-4">
                     <div class="tooltipped tooltipped-n" aria-label="paps: {{ join(', ', $bySubmissionStatus->map(function($ss) {
                         return $ss->projects_count . ' ' . strtolower($ss->name);
                     })->toArray()) }}">
                         <span class="Progress">
-                        @foreach($bySubmissionStatus as $status)
-                                <span class="Progress-item color-bg-success-emphasis"
-                                      style="width: {{ round($status->projects_count / $bySubmissionStatus->sum('projects_count') * 100) }}%" aria-label="View all {{ strtolower($status->name) }}" projects></span>
+                            @foreach($bySubmissionStatus as $status)
+                                <span class="Progress-item color-bg-{{ strtolower($status->name) }}-emphasis"
+                                      style="width: {{ round($status->projects_count / \App\Models\Project::count() * 100) }}%" aria-label="View all {{ strtolower($status->name) }}"> projects</span>
                             @endforeach
                         </span>
                     </div>
                     <div class="mt-2">
-                        <span class="text-emphasized">{{ $bySubmissionStatus->sum('projects_count') }}</span>
+                        <span class="text-emphasized">{{ \App\Models\Project::count() }}</span>
                         PAPs
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 px-3 py-4">
-                    <div class="Progress">
-
+                <div class="col-12 col-md-4 px-3 py-4">
+                    <div class="tooltipped tooltipped-n" aria-label="paps: {{ \App\Models\Project::whereNotNull('validated_at')->count() . ' of ' . \App\Models\Project::count() }} validated">
+                        <div class="Progress">
+                            <span class="Progress-item color-bg-success-emphasis"
+                                  style="width: {{ round(\App\Models\Project::whereNotNull('validated_at')->count() / \App\Models\Project::count() * 100) }}%"></span>
+                        </div>
                     </div>
                     <div class="mt-2">
-                        <span class="text-emphasized">{{ \App\Models\Project::whereHas('issue')->count() }}</span>
-                        PAPs with issues
+                        <span class="text-emphasized">
+                            {{ \App\Models\Project::count() }}</span>
+                         PAPs
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 px-3 py-4">
+                    <div class="tooltipped tooltipped-n" aria-label="paps: {{ join(', ', $byPipolStatus->pluck('label')->toArray()) }}">
+                        <span class="Progress">
+                            @foreach($byPipolStatus as $status)
+                                <span class="Progress-item color-bg-{{ strtolower($status->name) }}-emphasis"
+                                      style="width: {{ round($status->projects_count / \App\Models\Project::count() * 100) }}%" aria-label="View all {{ strtolower($status->name) }}"> projects</span>
+                            @endforeach
+                        </span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="text-emphasized">{{ \App\Models\Project::count() }}</span>
+                        PAPs
                     </div>
                 </div>
             </li>
 
+            <li class="Box-row d-flex flex-items-center p-0 color-bg-subtle p-2">
+                <h3 class="Box-title">
+                    PIPS Status Details
+                </h3>
+                <span class="flex-auto"></span>
+                <details class="details-reset details-overlay details-overlay-dark">
+                    <summary class="btn btn-sm">
+                        Learn more
+                    </summary>
+                    <details-dialog class="Box-overlay">
+                        <div class="Box">
+                            <div class="Box-header">
+                                <h3 class="Box-title">PIPS Status Details</h3>
+                            </div>
+                            <div class="Box-body">
+                                <p>
+                                    PIPS Status details show the status of PAPs in the PIPS as follows:
+                                </p>
+                                <ul class="ml-4">
+                                    <li>Draft - the PAP is still draft</li>
+                                    <li>Endorsed - the PAP has been endorsed by the user</li>
+                                    <li>Dropped - the PAP has been dropped by the user</li>
+                                    <li>Validated - the PAP has been validated by the IPD</li>
+                                </ul>
+                                <p class="note">
+                                    Note: Unlike the PIPOL status where they are expected to be sequential, in the
+                                    PIPS, PAPs can be validated by the IPD regardless of the PIPS status.
+                                </p>
+                            </div>
+                        </div>
+                    </details-dialog>
+                </details>
+            </li>
+
             <li class="Box-row p-0">
                 <ul class="list-style-none text-center d-flex flex-wrap">
+                    @foreach($bySubmissionStatus as $status)
                     <li class="p-3 col-12 col-sm-6 col-md-3 border-bottom border-sm-right border-md-bottom-0 color-border-muted">
-                <span class="d-block h4 color-fg-default">
-                  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-merge color-fg-done">
-    <path fill-rule="evenodd" d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
-</svg>
-                  0
-                </span>
-                        <span class="color-fg-muted">Merged Pull Requests</span>
+                        <span class="d-block h4 color-text-{{ strtolower($status->name) }}">
+                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-git-merge" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
+                            </svg>
+                            {{ $status->projects_count }}
+                        </span>
+
+                        <span class="color-fg-muted">{{ $status->name }} PAPs</span>
                     </li>
-                    <li class="p-3 col-12 col-sm-6 col-md-3 border-bottom border-md-bottom-0 border-md-right color-border-muted">
-              <span class="d-block h4">
-                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request color-icon-success">
-    <path fill-rule="evenodd" d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"></path>
-</svg>
-                0
-              </span>
-                        <span class="color-fg-muted">Open Pull Requests</span>
-                    </li>
-                    <li class="p-3 col-12 col-sm-6 col-md-3 border-bottom border-sm-bottom-0 border-sm-right color-border-muted">
-                        <a href="#closed-issues" class="d-block Link--muted">
-                            <span class="d-block h4 color-fg-default">
-                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-closed color-icon-danger">
-                                    <path d="M11.28 6.78a.75.75 0 00-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l3.5-3.5z"></path><path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zm-1.5 0a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"></path>
-                                </svg>
-                                2
-                            </span>
-                            <span class="color-fg-muted">Closed Issues</span>
-                        </a>
-                    </li>
+                    @endforeach
+
                     <li class="p-3 col-12 col-sm-6 col-md-3">
-                        <a href="#new-issues" class="d-block Link--muted">
+                        <a href="#validated-paps" class="d-block Link--muted">
                             <span class="d-block h4 color-fg-default">
-                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened color-icon-success">
-                                    <path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path>
+                                <svg class="octicon octicon-checklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                                    <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
                                 </svg>
-                                3
+                                {{ \App\Models\Project::whereNotNull('validated_at')->count() }}
                             </span>
-                            <span class="color-fg-muted">New Issues</span>
+                            <span class="color-fg-muted">Validated PAPs</span>
                         </a>
                     </li>
+                </ul>
+            </li>
+
+            <li class="Box-row d-flex p-0 color-bg-success p-2">
+                <h3 class="Box-title">
+                    PIPOL Status Details
+                </h3>
+                <span class="flex-auto"></span>
+                <details class="details-reset details-overlay details-overlay-dark">
+                    <summary class="btn btn-sm">
+                        Learn more
+                    </summary>
+                    <details-dialog class="Box-overlay">
+                        <div class="Box">
+                            <div class="Box-header">
+                                <h3 class="Box-title">PIPOL Status Details</h3>
+                            </div>
+                            <div class="Box-body">
+                                <p>
+                                    PIPOL Status details show the status of PAPs in the NEDA-PIPOL as follows:
+                                </p>
+                                <ul class="ml-4">
+                                    <li>Draft - the PAP has been encoded into the PIPOL System</li>
+                                    <li>Endorsed - the PAP has been endorsed by the IPD to the PIPOL System</li>
+                                    <li>Dropped - the PAP has been dropped by the IPD from the PIPOL System</li>
+                                    <li>Validated - the PAP has been validated by the concerned NEDA Secretariat office</li>
+                                </ul>
+                                <p class="note">
+                                    Note: NEDA validation may take some time to reflect as these usually take place after the updating
+                                    activity.
+                                </p>
+                            </div>
+                        </div>
+                    </details-dialog>
+                </details>
+            </li>
+
+            <li class="Box-row p-0">
+                <ul class="list-style-none text-center d-flex flex-wrap">
+                    @foreach($byPipolStatus as $status)
+                        <li class="p-3 col-12 col-sm-6 col-md-3 border-bottom border-sm-right border-md-bottom-0 color-border-muted">
+                        <span class="d-block h4 color-text-{{ strtolower($status->name) }}">
+                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-git-merge" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
+                            </svg>
+                            {{ $status->projects_count }}
+                        </span>
+
+                            <span class="color-fg-muted">{{ $status->name }} PAPs</span>
+                        </li>
+                    @endforeach
                 </ul>
             </li>
         </ul>
