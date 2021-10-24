@@ -18,7 +18,19 @@ class OfficeController extends Controller
 
     public function index(Request $request)
     {
+        // add scopes for
+        $user = auth()->user();
         $offices = Office::query();
+
+        if ($user->isIpd()) {
+            $filters = $user->offices->pluck('id')->toArray() + [$user->office_id] ?? [];
+            $offices->whereIn('id', $filters);
+        }
+
+        if ($user->isEncoder()) {
+            $offices->where('id', $user->office_id);
+        }
+
         $ou_types = RefOperatingUnitType::withCount('offices')->get();
 
         if ($request->q) {

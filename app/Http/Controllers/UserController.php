@@ -30,6 +30,15 @@ class UserController extends Controller
         $users = User::query();
         $roles = Role::withCount('users')->get();
         $offices = Office::withCount('users')->get();
+        $user = auth()->user();
+
+        if ($user->isIpd()) {
+            $users->whereIn('office_id', $user->offices->pluck('id')->toArray() ?? []);
+        }
+
+        if ($user->isEncoder()) {
+            $users->whereIn('office_id', $user->office_id);
+        }
 
         if ($request->q) {
             $users = $users->whereRaw('LOWER(CONCAT(first_name, last_name)) like ? ','%' . trim(strtolower($request->q)) .'%');

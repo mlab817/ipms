@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    @if(! auth()->user()->isIpd() && ! auth()->user()->isEncoder())
     <div class="d-flex mb-3">
         <div class="flex-auto">
             <form action="{{ route('offices.index') }}" method="get">
@@ -47,6 +48,7 @@
         <a href="{{ route('offices.create') }}" class="btn btn-primary ml-2">New</a>
         @endcan
     </div>
+    @endif
 
     <div class="Box">
         <div class="Box-header d-flex flex-items-center">

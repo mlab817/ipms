@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Scopes\OfficeScope;
 use App\Traits\Auditable;
 use App\Traits\HasUuid;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +18,11 @@ class Office extends Model
     use Sluggable;
     use Auditable;
     use SoftDeletes;
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OfficeScope);
+    }
 
     protected $fillable = [
         'name',
