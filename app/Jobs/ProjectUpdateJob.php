@@ -107,7 +107,7 @@ class ProjectUpdateJob implements ShouldQueue
         }
 
         if (isset($request['risk'])) {
-            $project->risk()->update($request['risk']);
+            $project->risk()->update(['risk' => $request['risk']]);
         }
 
         if (isset($request['feasibility_study'])) {
