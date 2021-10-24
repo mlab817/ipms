@@ -362,7 +362,7 @@
 
                 <dl class="form-group @error('rdip') errored mb-6 @enderror">
                     <dt class="form-group-header">
-                        <label for="rdip" class="required">Is it responsive to COVID-19/New Normal Intervention? </label>
+                        <label for="rdip" class="required">Is this PAP included in the Regional Development Investment Program? </label>
                     </dt>
                     <dd class="form-group-body">
                         <x-input.radio :options="$boolean" name="rdip" selected="{{ old('rdip', $project->rdip) }}" aria-describedby="rdip-validation"></x-input.radio>
@@ -1107,7 +1107,7 @@
 
                 <dl class="form-group @error('has_row_rap') errored mb-6 @enderror">
                     <dt class="form-group-header">
-                        <label for="has_row_rap">With Resettlement Component? </label>
+                        <label for="has_row_rap">With Right of Way and Resettlement Component? </label>
                     </dt>
                     <dd class="form-group-body">
                         <x-input.radio :options="$boolean" name="has_row_rap" selected="{{ old('has_row_rap', $project->has_row_rap) }}" aria-describedby="has-row-rap-validation"></x-input.radio>
