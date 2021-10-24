@@ -22,16 +22,16 @@
                         </div>
                     @endif
 
-                    <div class="form-group @error('email') errored mb-6 @enderror">
+                    <div class="form-group @error('username') errored mb-6 @enderror">
                         <div class="input-group">
-                            <input type="email" placeholder="Email" aria-describedby="email-validation" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                            @error('email')
-                            <p class="note error" role="alert" id="email-validation">
+                            <input type="text" placeholder="Email or username" aria-describedby="username-validation" class="form-control" name="username" value="{{ old('username') }}" required autocomplete="off" autofocus>
+                            @error('username')
+                            <p class="note error" role="alert" id="username-validation">
                                 <strong>{{ $message }}</strong>
                             </p>
                             @enderror
                             <span class="input-group-button">
-                                <button class="btn" type="button" aria-label="Email">
+                                <button class="btn" type="button" aria-label="Username">
                                     <!-- <%= octicon "mail" %> -->
                                     <svg class="octicon octicon-mail" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.75 2A1.75 1.75 0 000 3.75v.736a.75.75 0 000 .027v7.737C0 13.216.784 14 1.75 14h12.5A1.75 1.75 0 0016 12.25v-8.5A1.75 1.75 0 0014.25 2H1.75zM14.5 4.07v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88l6.5-3.81zm-13 1.74v6.441c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809z"></path></svg>
                                 </button>
