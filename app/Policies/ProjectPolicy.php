@@ -64,12 +64,11 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
-        // TODO: only encoders can add
-        if ($user->role->name == 'guest') {
-            return $this->deny('Guests cannot create PAPs.');
+        if ($user->isEncoder()) {
+            return true;
         }
 
-        return true;
+        return $this->deny('Only encoders can create PAPs.');;
     }
 
     /**
