@@ -217,9 +217,11 @@
                             <a href="{{ route('projects.show', $project) }}" class="btn-link dropdown-item" role="menuitem">
                                 View
                             </a>
+                            @can('update', $project)
                             <a href="{{ route('projects.edit', $project) }}" class="btn-link dropdown-item" role="menuitem">
                                 Edit
                             </a>
+                            @endcan
                             @can('delete', $project)
                             <div role="none" class="dropdown-divider"></div>
                             <form action="{{ route('projects.destroy', $project) }}" method="POST">
