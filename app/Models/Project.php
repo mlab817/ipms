@@ -575,6 +575,11 @@ class Project extends Model
         return $this->isValidated();
     }
 
+    public function isDraft()
+    {
+        return optional($this->submission_status)->name == 'Draft';
+    }
+
     public function isDropped()
     {
         return optional($this->submission_status)->name == 'Dropped';
