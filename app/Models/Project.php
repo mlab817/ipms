@@ -335,7 +335,7 @@ class Project extends Model
 
     public function spatial_coverage(): BelongsTo
     {
-        return $this->belongsTo(RefSpatialCoverage::class, 'ref_spatial_coverage_id')->withDefault();
+        return $this->belongsTo(RefSpatialCoverage::class, 'ref_spatial_coverage_id')->withDefault(['name' => '_']);
     }
 
     public function submission_status(): BelongsTo

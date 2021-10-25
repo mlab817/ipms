@@ -275,20 +275,6 @@ class ProjectController extends Controller
         return redirect()->route('projects.index');
     }
 
-    public function assigned(Request $request)
-    {
-        abort_if(! auth()->user()->can('projects.view_assigned'), 403);
-
-        return view('projects.assigned');
-    }
-
-    public function deleted(Request $request)
-    {
-        abort_if(! auth()->user()->can('projects.manage'), 403);
-
-        return view('projects.deleted');
-    }
-
     public function restore(string $uuid)
     {
         $project = Project::withTrashed()->where('uuid', $uuid)->firstOrFail();
@@ -296,53 +282,5 @@ class ProjectController extends Controller
         $project->restore();
 
         return redirect()->route('projects.deleted');
-    }
-
-    public function search(Request $request)
-    {
-        $searchTerm = $request->search;
-
-        $searchResults = (new Search())
-            ->registerModel(Project::class, 'title')
-            ->search($searchTerm);
-
-        if ($request->ajax()) {
-            return response()->json($searchResults);
-        }
-
-        return $searchResults;
-    }
-
-    public function generatePdf(Project $project)
-    {
-//        $project->load('creator','bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','funding_sources','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study');
-//        $pdf = SnappyPdf::loadView('projects.pdf', compact('project'));
-//
-//        return $pdf->download(str_replace('-',' ',Str::slug($project->title)).'.pdf');
-
-        $project->load('creator','bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','funding_sources','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study');
-////         generate PDF
-        return view('projects.pdf', compact('project'));
-    }
-
-    public function exportJson(Project $project)
-    {
-        $json = json_encode($project->load('creator','bases','regions','pdp_chapters','pdp_indicators','ten_point_agendas','funding_sources','region_investments.region','fs_investments.funding_source','allocation','disbursement','nep','feasibility_study','review'), JSON_PRETTY_PRINT);
-
-        $file = Str::slug($project->title) . '.json';
-
-        $destinationPath = \File::put(public_path($file), json_encode($json));
-
-        return Storage::download(public_path($file));
-    }
-
-    public function drop(ProjectDropRequest $request, Project $project)
-    {
-        $project->reason_id             = $request->reason_id;
-        $project->other_reason          = $request->other_reason;
-        $project->submission_status_id  = RefSubmissionStatus::findByName(RefSubmissionStatus::DROPPED)->id;
-        $project->save();
-
-        return redirect()->route('projects.own');
     }
 }
