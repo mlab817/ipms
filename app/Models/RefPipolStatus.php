@@ -13,4 +13,9 @@ class RefPipolStatus extends Model
     {
         return $this->hasMany(Project::class, 'ref_pipol_status_id');
     }
+
+    public static function findByName($name = '')
+    {
+        return static::where('name', $name)->first();
+    }
 }

@@ -62,14 +62,24 @@ class ProjectController extends Controller
     {
         $projectQuery = Project::query()->with(['office','creator.office','project_status','pipol']);
         $q = $request->q;
-        $status = RefSubmissionStatus::findByName($request->status ?? '');
+        $validated = $request->validated;
+        $pipsStatus = RefSubmissionStatus::findByName($request->status ?? '');
+        $pipolStatus = RefPipolStatus::findByName($request->pipol);
 
-        if ($status) {
-            $projectQuery->where('ref_submission_status_id', $status->id);
+        if ($pipsStatus) {
+            $projectQuery->where('ref_submission_status_id', $pipsStatus->id);
         }
 
         if ($q) {
             $projectQuery->where('title','like', '%'. $q . '%');
+        }
+
+        if ($validated) {
+            $projectQuery->whereNotNull('validated_at');
+        }
+
+        if ($pipolStatus) {
+            $projectQuery->where('ref_pipol_status_id', $pipolStatus->id);
         }
 
         $projects = $projectQuery->paginate();
@@ -78,6 +88,7 @@ class ProjectController extends Controller
             ->with([
                 'submission_statuses'=> RefSubmissionStatus::withCount('projects')->get(),
                 'totalProjectsCount' => Project::count(),
+                'pipol_statuses'     => RefPipolStatus::withCount('projects')->get(),
             ]);
     }
 

@@ -117,7 +117,8 @@
                             {{ $status->projects_count }}
                         </span>
 
-                        <span class="color-fg-muted">{{ $status->name }} PAPs</span>
+                        <span class="color-fg-muted">
+                            <a href="{{ route('projects.index', ['status' => $status->name]) }}">{{ $status->name }} PAPs</a></span>
                     </li>
                     @endforeach
 
@@ -179,13 +180,22 @@
                             </svg>
                             {{ $status->projects_count }}
                         </span>
-
-                            <span class="color-fg-muted">{{ $status->name }} PAPs</span>
+                            <span class="color-fg-muted">
+                                {{ $status->name }} PAPs</span>
                         </li>
                     @endforeach
                 </ul>
             </li>
         </ul>
+    </div>
+
+    <div class="Box mt-5">
+        <div class="Box-header">
+            <h3 class="Box-title">Infrastructure Cost by Regions</h3>
+        </div>
+        <div class="Box-body">
+            <canvas id="chart"></canvas>
+        </div>
     </div>
 
 {{--    <ol class="d-flex flex-wrap list-style-none gutter-condensed mb-4 js-pinned-items-reorder-list">--}}
@@ -248,38 +258,40 @@
 
 @endsection
 
-{{--@push('scripts')--}}
-{{--    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>--}}
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-{{--    <script>--}}
-{{--        const labels = @json(\App\Models\RefFundingSource::all()->pluck('name')->toArray())--}}
+    <script>
+        let labels = @json($infraCostByRegion->pluck('region')->toArray())
 
-{{--        const data = {--}}
-{{--            labels: labels,--}}
-{{--            datasets: [{--}}
-{{--                label: 'No. of Projects by Fund Source',--}}
-{{--                backgroundColor: '#2da44e',--}}
-{{--                borderColor: '#2da44e',--}}
-{{--                data: @json(\App\Models\RefFundingSource::withCount('projects')->get()->pluck('projects_count')->toArray()),--}}
-{{--            }]--}}
-{{--        };--}}
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Total Infra Cost by Region',
+                backgroundColor: '#2da44e',
+                borderColor: '#2da44e',
+                data: @json($infraCostByRegion->map(function ($ic) {
+                        return floatval($ic->y2022);
+                    })->toArray()),
+            }]
+        };
 
-{{--        const config = {--}}
-{{--            type: 'bar',--}}
-{{--            data: data,--}}
-{{--            options: {--}}
-{{--                scales: {--}}
-{{--                    y: {--}}
-{{--                        beginAtZero: true--}}
-{{--                    }--}}
-{{--                }--}}
-{{--            }--}}
-{{--        };--}}
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
 
-{{--        var myChart = new Chart(--}}
-{{--            document.getElementById('chart1'),--}}
-{{--            config--}}
-{{--        );--}}
+        var myChart = new Chart(
+            document.getElementById('chart'),
+            config
+        );
 {{--    </script>--}}
 
 {{--    <script>--}}
@@ -367,6 +379,6 @@
 {{--                }]--}}
 {{--            }--}}
 {{--        });--}}
-{{--    </script>--}}
+    </script>
 
-{{--@endpush--}}
+@endpush

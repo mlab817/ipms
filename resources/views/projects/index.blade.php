@@ -24,6 +24,7 @@
         </div>
 
         <div class="d-flex flex-wrap">
+
             <details class="details-reset details-overlay position-relative mt-1 mt-lg-0 ml-1" id="sort-options">
                 <summary aria-haspopup="menu" role="button" class="btn">
                     <span>{{ request()->query('status') ?? 'All' }}</span>
@@ -32,17 +33,17 @@
                 <details-menu class="SelectMenu right-lg-0" role="menu">
                     <div class="SelectMenu-modal">
                         <header class="SelectMenu-header">
-                            <span class="SelectMenu-title">Select status</span>
+                            <span class="SelectMenu-title">Select PIPS status</span>
                         </header>
                         <div class="SelectMenu-list">
-                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status'), ['status' => null ])) }}" role="menuitemradio" @if(! request()->query('status')) aria-checked="true" @endif tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('validated','pipol'), ['status' => null ])) }}" role="menuitemradio" @if(! request()->query('status')) aria-checked="true" @endif tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
                                 <span class="text-normal" data-menu-button-text="">All ({{ $totalProjectsCount }})</span>
                             </a>
                             @foreach($submission_statuses as $status)
-                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status'), ['status' => $status->name ])) }}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('validated','pipol'), ['status' => $status->name ])) }}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
@@ -53,6 +54,74 @@
                     </div>
                 </details-menu>
             </details>
+
+            <details class="details-reset details-overlay position-relative mt-1 mt-lg-0 ml-1" id="sort-validated">
+                <summary aria-haspopup="menu" role="button" class="btn">
+                    <span>{{ ! request()->has('validated') ? 'All' : (request()->query('validated' == 1) ? 'Validated' : 'Not Validated') }}</span>
+                    <span class="dropdown-caret"></span>
+                </summary>
+                <details-menu class="SelectMenu right-lg-0" role="menu">
+                    <div class="SelectMenu-modal">
+                        <header class="SelectMenu-header">
+                            <span class="SelectMenu-title">Select validation status</span>
+                        </header>
+                        <div class="SelectMenu-list">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status'), ['validated' => null ])) }}" role="menuitemradio" @if(! request()->has('validated')) aria-checked="true" @endif tabindex="0">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                                    <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                                </svg>
+                                <span class="text-normal" data-menu-button-text="">All ({{ $totalProjectsCount }})</span>
+                            </a>
+
+                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status','pipol'), ['validated' => 1 ])) }}" role="menuitemradio" @if(request()->query('validated') == 1) aria-checked="true" @endif" tabindex="0">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                                    <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                                </svg>
+                                <span class="text-normal">Validated ({{ \App\Models\Project::whereNotNull('validated_at')->count() }})</span>
+                            </a>
+
+                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status','pipol'), ['validated' => 0 ])) }}" role="menuitemradio" @if(request()->has('validated') && request()->query('validated') == 0) aria-checked="true" @endif" tabindex="0">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                                    <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                                </svg>
+                                <span class="text-normal">Not Validated ({{ \App\Models\Project::whereNull('validated_at')->count() }})</span>
+                            </a>
+                        </div>
+                    </div>
+                </details-menu>
+            </details>
+
+            <details class="details-reset details-overlay position-relative mt-1 mt-lg-0 ml-1" id="sort-validated">
+                <summary aria-haspopup="menu" role="button" class="btn">
+                    <span>{{ ! request()->has('pipol') ? 'All' : request()->query('pipol') }}</span>
+                    <span class="dropdown-caret"></span>
+                </summary>
+                <details-menu class="SelectMenu right-lg-0" role="menu">
+                    <div class="SelectMenu-modal">
+                        <header class="SelectMenu-header">
+                            <span class="SelectMenu-title">Select PIPOL status</span>
+                        </header>
+                        <div class="SelectMenu-list">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status','validated'), ['pipol' => null ])) }}" role="menuitemradio" @if(! request()->has('pipol')) aria-checked="true" @endif tabindex="0">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                                    <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                                </svg>
+                                <span class="text-normal" data-menu-button-text="">All ({{ $totalProjectsCount }})</span>
+                            </a>
+
+                            @foreach($pipol_statuses as $status)
+                                <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status','validated'), ['pipol' => $status->name ])) }}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
+                                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                                        <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                                    </svg>
+                                    <span class="text-normal">{{ $status->name }} ({{ $status->projects_count }})</span>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </details-menu>
+            </details>
+
         </div>
 
         <div class="d-none d-md-flex flex-md-items-center flex-md-justify-end">
@@ -81,6 +150,13 @@
                                 {{ $project->submission_status->name }}
                             </span>
                         </a>
+                        @if ($project->isValidated())
+                        <a href="{{ route('projects.index', array_merge(request()->except('status'), ['validated' => true ])) }}" class="btn-link">
+                            <span class="Label Label--secondary v-align-middle mr-1 mb-1 tooltipped tooltipped-n" aria-label="Click to filter all {{ $project->submission_status->name }}">
+                                Validated
+                            </span>
+                        </a>
+                        @endif
                     </div>
                     <div class="text-small color-fg-subtle">
                         <div class="Truncate" >
