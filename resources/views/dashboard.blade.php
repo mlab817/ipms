@@ -45,7 +45,14 @@
                                 belong to the same office. You see other PAPs that were tagged with {{ auth()->user()->office->acronym }}; and </li>
                                 <li><strong>Owner:</strong> You see PAPs created by you.</li>
                             </ol>
+
+                            <p class="mt-3">
+                                <em>
+                                    Note: Admin users can view all PAPs and this supercedes other permissions.
+                                </em>
+                            </p>
                         </div>
+
                         <div class="Box-footer">
                             <button type="button" class="btn width-full" data-close-dialog>OK, I get it</button>
                         </div>

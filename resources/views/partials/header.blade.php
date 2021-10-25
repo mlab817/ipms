@@ -35,17 +35,21 @@
                 <span class="dropdown-caret"></span>
             </summary>
             <details-menu class="dropdown-menu dropdown-menu-sw" role="menu">
+                @can('create', \App\Models\Project::class)
                 <a role="menuitem" class="dropdown-item" href="{{ route('projects.create') }}">
                     Create a New PAP
                 </a>
-                @admin
+                @endcan
+                @can('create', \App\Models\Office::class)
                     <a role="menuitem" class="dropdown-item" href="{{ route('offices.create') }}">
                         New Office
                     </a>
+                @endcan
+                @can('create', \App\Models\User::class)
                     <a role="menuitem" class="dropdown-item" href="{{ route('users.create') }}">
                         New User
                     </a>
-                @endadmin
+                @endcan
             </details-menu>
         </details>
     </div>
@@ -69,7 +73,9 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                @can('create', \App\Models\Project::class)
                 <li><a class="dropdown-item" href="{{ route('projects.create') }}">Create a New PAP</a></li>
+                @endcan
                 <li><a class="dropdown-item" href="{{ route('projects.index') }}">Your PAPs</a></li>
                 <li><a href="{{ route('users.show', auth()->user()) }}" class="dropdown-item">Your Profile</a></li>
                 <div class="dropdown-divider" role="separator"></div>
