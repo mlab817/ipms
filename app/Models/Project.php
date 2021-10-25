@@ -698,11 +698,9 @@ class Project extends Model
 
     // relationships
 
-    public function scopeOwn($query)
+    public function scopeValidated($query)
     {
-        $userId = auth() ? auth()->id() : null;
-
-        return $query->where('creator_id', $userId);
+        return $query->whereNotNull('validated_at');
     }
 
     public function scopeOffice($query)
