@@ -15,12 +15,7 @@
                 <form action="{{ route('login') }}" method="post">
                     @csrf
 
-                    @if (session('message'))
-                        <div class="alert alert-danger">
-                            Error!</h5>
-                            {{ session('message') }}
-                        </div>
-                    @endif
+                    <x-flash-message></x-flash-message>
 
                     <div class="form-group @error('username') errored mb-6 @enderror">
                         <div class="input-group">

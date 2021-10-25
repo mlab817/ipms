@@ -64,6 +64,7 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
+        // TODO: only encoders can add
         if ($user->role->name == 'guest') {
             return $this->deny('Guests cannot create PAPs.');
         }
@@ -90,8 +91,10 @@ class ProjectPolicy
             return $this->deny('PAP has already been endorsed. Only IPD staff can edit.');
         }
 
-        // if project is endorsed, only IPD can edit it
+        // if project is dropped, only IPD can edit it
         if ($project->isDropped() && ! $user->isIpd()) {
+            // TODO: allow IPD to undrop,
+            // for tracking
             return $this->deny('PAP has been dropped. Only IPD staff can edit.');
         }
 

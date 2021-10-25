@@ -94,9 +94,9 @@
         </div>
     </div>
 
-    <x-subhead subhead="Projects" id="projects"></x-subhead>
+    <x-subhead subhead="Projects by the User" id="projects"></x-subhead>
 
-    @include('partials.projects', ['projects' => $user->projects()->paginate(),'office' => $user->office])
+    @include('partials.projects', ['projects' => $user->projects()->paginate(), 'office' => $user->office])
 
     @if(auth()->id() == $user->id)
     <div class="Box mt-6">
