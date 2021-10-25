@@ -19,44 +19,80 @@
 
 @section('content')
     <div class="Box">
-        <div class="Box-header">
+        <div class="Box-header d-flex flex-items-center">
             <h3 class="Box-title">Overview</h3>
+            <span class="flex-auto"></span>
+            <details class="details-reset details-overlay details-overlay-dark">
+                <summary class="btn-link">Why am I seeing this?</summary>
+                <details-dialog class="Box--overlay">
+                    <div class="Box">
+                        <div class="Box-header">
+                            <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+                                <!-- <%= octicon "x" %> -->
+                                <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+                            </button>
+
+                            <h3 class="Box-title">
+                                Why am I seeing this?
+                            </h3>
+                        </div>
+                        <div class="Box-body">
+                            <p>Different users see different types of PAPs as they are affected by the following: </p>
+
+                            <ol class="ml-4">
+                                <li><strong>Role:</strong> {{ strtoupper(auth()->user()->role->name) }} {{ auth()->user()->role->description }};</li>
+                                <li><strong>Office:</strong> You are seeing PAPs of {{ auth()->user()->office->acronym }} because you
+                                belong to the same office. You see other PAPs that were tagged with {{ auth()->user()->office->acronym }}; and </li>
+                                <li><strong>Owner:</strong> You see PAPs created by you.</li>
+                            </ol>
+                        </div>
+                        <div class="Box-footer">
+                            <button type="button" class="btn width-full" data-close-dialog>OK, I get it</button>
+                        </div>
+                    </div>
+                </details-dialog>
+            </details>
         </div>
 
         <ul>
             <li class="Box-row p-0 d-flex flex-wrap">
                 <div class="col-12 col-md-4 px-3 py-4">
+                    <div class="text-center mb-2 note">PIPS Submission Status</div>
                     <div class="tooltipped tooltipped-n" aria-label="paps: {{ join(', ', $bySubmissionStatus->map(function($ss) {
                         return $ss->projects_count . ' ' . strtolower($ss->name);
                     })->toArray()) }}">
                         <span class="Progress">
                             @foreach($bySubmissionStatus as $status)
                                 <span class="Progress-item color-bg-{{ strtolower($status->name) }}-emphasis"
-                                      style="width: {{ round($status->projects_count / \App\Models\Project::count() * 100) }}%" aria-label="View all {{ strtolower($status->name) }}"> projects</span>
+                                      style="width: {{ $projectCount == 0 ? 0: round($status->projects_count / $projectCount * 100) }}%" aria-label="View all {{ strtolower($status->name) }}"> projects</span>
                             @endforeach
                         </span>
                     </div>
                     <div class="mt-2">
-                        <span class="text-emphasized">{{ \App\Models\Project::count() }}</span>
+                        <span class="text-emphasized">{{ $projectCount }}</span>
                         PAPs
                     </div>
                 </div>
 
-                <div class="col-12 col-md-4 px-3 py-4">
-                    <div class="tooltipped tooltipped-n" aria-label="paps: {{ \App\Models\Project::whereNotNull('validated_at')->count() . ' of ' . \App\Models\Project::count() }} validated">
+                <div class="col-12 col-md-4 px-3 py-4 border-right">
+                    <div class="text-center mb-2 note">PIPS Validation Status</div>
+
+                    <div class="tooltipped tooltipped-n" aria-label="paps: {{ $validatedCount . ' of ' . $projectCount }} validated">
                         <div class="Progress">
                             <span class="Progress-item color-bg-success-emphasis"
-                                  style="width: {{ round(\App\Models\Project::whereNotNull('validated_at')->count() / \App\Models\Project::count() * 100) }}%"></span>
+                                  style="width: {{ $projectCount == 0 ? 0 : round($validatedCount / $projectCount) }}%"></span>
                         </div>
                     </div>
                     <div class="mt-2">
                         <span class="text-emphasized">
-                            {{ \App\Models\Project::count() }}</span>
-                         PAPs
+                            {{ $projectCount }} PAPs</span>
+
                     </div>
                 </div>
 
                 <div class="col-12 col-md-4 px-3 py-4">
+                    <div class="text-center mb-2 note">PIPOL Status</div>
+
                     <div class="tooltipped tooltipped-n" aria-label="paps: {{ join(', ', $byPipolStatus->pluck('label')->toArray()) }}">
                         <span class="Progress">
                             @foreach($byPipolStatus as $status)
@@ -67,7 +103,7 @@
                     </div>
                     <div class="mt-2">
                         <span class="text-emphasized">
-                            {{ \App\Models\Project::count() }}</span>
+                            {{ $projectCount }}</span>
                         PAPs
                     </div>
                 </div>
@@ -129,7 +165,7 @@
                                 <svg class="octicon octicon-checklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                     <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
                                 </svg>
-                                {{ \App\Models\Project::whereNotNull('validated_at')->count() }}
+                                {{ $validatedCount }}
                             </span>
                             <span class="color-fg-muted">
                                 <a href="{{ route('projects.index',['validated' => 1]) }}">
@@ -179,12 +215,12 @@
                 <ul class="list-style-none text-center d-flex flex-wrap">
                     @foreach($byPipolStatus as $status)
                         <li class="p-3 col-12 col-sm-6 col-md-3 border-bottom border-sm-right border-md-bottom-0 color-border-muted">
-                        <span class="d-block h4 color-text-{{ strtolower($status->name) }}">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-git-merge" fill="currentColor">
-                                <path fill-rule="evenodd" d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
-                            </svg>
-                            {{ $status->projects_count }}
-                        </span>
+                            <span class="d-block h4 color-text-{{ strtolower($status->name) }}">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-git-merge" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5 3.254V3.25v.005a.75.75 0 110-.005v.004zm.45 1.9a2.25 2.25 0 10-1.95.218v5.256a2.25 2.25 0 101.5 0V7.123A5.735 5.735 0 009.25 9h1.378a2.251 2.251 0 100-1.5H9.25a4.25 4.25 0 01-3.8-2.346zM12.75 9a.75.75 0 100-1.5.75.75 0 000 1.5zm-8.5 4.5a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
+                                </svg>
+                                {{ $status->projects_count }}
+                            </span>
                             <span class="color-fg-muted">
                                 <a href="{{ route('projects.index', ['pipol' => $status->name]) }}">
                                     {{ $status->name }} PAPs
@@ -205,65 +241,6 @@
             <canvas id="chart"></canvas>
         </div>
     </div>
-
-{{--    <ol class="d-flex flex-wrap list-style-none gutter-condensed mb-4 js-pinned-items-reorder-list">--}}
-{{--        @foreach($bySubmissionStatus as $status)--}}
-{{--        <li class="mb-3 d-flex flex-content-stretch col-12 col-md-4 col-lg-3">--}}
-{{--            <div class="Box d-flex pinned-item-list-item p-3 width-full js-pinned-item-list-item public sortable-button-item source">--}}
-{{--                <div class="pinned-item-list-item-content">--}}
-{{--                    <div class="d-flex width-full flex-items-center position-relative">--}}
-{{--                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo mr-2 color-text-secondary flex-shrink-0">--}}
-{{--                            <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>--}}
-{{--                        </svg>--}}
-{{--                        <a class="text-bold flex-auto min-width-0 " href="{{ route('projects.index', ['status' => $status->name ]) }}">--}}
-{{--                            <span class="repo" title="pips">{{ $status->name }}</span>--}}
-{{--                        </a>--}}
-{{--                        <span class="Label Label--secondary v-align-middle ml-1">--}}
-{{--                            {{ $status->projects_count }}--}}
-{{--                        </span>--}}
-{{--                    </div>--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </li>--}}
-{{--        @endforeach--}}
-{{--        <li class="mb-3 d-flex flex-content-stretch col-12 col-md-4 col-lg-3">--}}
-{{--            <div class="Box d-flex pinned-item-list-item p-3 width-full js-pinned-item-list-item public sortable-button-item source">--}}
-{{--                <div class="pinned-item-list-item-content">--}}
-{{--                    <div class="d-flex width-full flex-items-center position-relative">--}}
-{{--                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo mr-2 color-text-secondary flex-shrink-0">--}}
-{{--                            <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>--}}
-{{--                        </svg>--}}
-{{--                        <a class="text-bold flex-auto min-width-0 " href="#">--}}
-{{--                            <span class="repo" title="pips">Validated</span>--}}
-{{--                        </a>--}}
-{{--                        <span class="Label Label--secondary v-align-middle ml-1">--}}
-{{--                        {{ $validated }}--}}
-{{--                    </span>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </li>--}}
-{{--    </ol>--}}
-
-{{--    <div class="col-12 d-flex flex-wrap gutter-md">--}}
-{{--        <div class="col-6">--}}
-{{--            <canvas id="chart1"></canvas>--}}
-{{--        </div>--}}
-
-{{--        <div class="col-6">--}}
-{{--            <canvas id="chart2"></canvas>--}}
-{{--        </div>--}}
-
-{{--        <div class="col-6">--}}
-{{--            <canvas id="chart3"></canvas>--}}
-{{--        </div>--}}
-
-{{--        <div class="col-6">--}}
-{{--            <canvas id="chart4"></canvas>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
 @endsection
 
 @push('scripts')
