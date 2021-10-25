@@ -22,13 +22,15 @@ class OfficeController extends Controller
         $user = auth()->user();
         $offices = Office::query();
 
-        if ($user->isIpd()) {
-            $filters = $user->offices->pluck('id')->toArray() + [$user->office_id] ?? [];
-            $offices->whereIn('id', $filters);
-        }
+        if (!$user->isAdmin()) {
+            if ($user->isIpd()) {
+                $filters = $user->offices->pluck('id')->toArray() + [$user->office_id] ?? [];
+                $offices->whereIn('id', $filters);
+            }
 
-        if ($user->isEncoder()) {
-            $offices->where('id', $user->office_id);
+            if ($user->isEncoder()) {
+                $offices->where('id', $user->office_id);
+            }
         }
 
         $ou_types = RefOperatingUnitType::withCount('offices')->get();

@@ -32,12 +32,14 @@ class UserController extends Controller
         $offices = Office::withCount('users')->get();
         $user = auth()->user();
 
-        if ($user->isIpd()) {
-            $users->whereIn('office_id', $user->offices->pluck('id')->toArray() ?? []);
-        }
+        if (!$user->isAdmin()) {
+            if ($user->isIpd()) {
+                $users->whereIn('office_id', $user->offices->pluck('id')->toArray() ?? []);
+            }
 
-        if ($user->isEncoder()) {
-            $users->whereIn('office_id', $user->office_id);
+            if ($user->isEncoder()) {
+                $users->whereIn('office_id', $user->office_id);
+            }
         }
 
         if ($request->q) {
