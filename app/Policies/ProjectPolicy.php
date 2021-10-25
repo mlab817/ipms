@@ -178,7 +178,21 @@ class ProjectPolicy
             return true;
         }
 
-        return $this->deny('Only owners and users belonging to the same office as the PAP can endorse it');
+        return $this->deny('Only owners and users belonging to the same office as the PAP can drop it');
+    }
+
+    public function undrop(User $user, Project $project)
+    {
+        // owner
+        // same office
+        // ipd can undrop PAP
+        if ($project->office_id == $user->office_id
+            || $project->creator_id == $user->id
+            || $user->isIpd()) {
+            return true;
+        }
+
+        return $this->deny('Only owners and users belonging to the same office as the PAP and IPD can undo the its dropping');
     }
 
     public function validate(User $user, Project $project)

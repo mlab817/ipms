@@ -173,6 +173,64 @@
 
                         @endif
 
+                        @if($project->isDropped())
+                            @can('undrop', $project)
+                                    <li>
+                                        <details class="details-reset details-overlay details-overlay-dark mr-1">
+                                            <summary class="dropdown-item" aria-label="Undo dropping of this PAP" aria-haspopup="dialog">
+                                                Undo Drop
+                                            </summary>
+                                            <details-dialog class="Box--overlay anim-fade-in fast">
+                                                <form class="inline-form" action="{{ route('projects.undrop', $project) }}" accept-charset="UTF-8" method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="Box">
+                                                        <div class="Box-header">
+                                                            <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+                                                                <!-- <%= octicon "x" %> -->
+                                                                <svg class="octicon octicon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
+                                                            </button>
+                                                            <h2 class="Box-title">Undo Drop</h2>
+                                                        </div>
+                                                        <div class="flash flash-warn flash-full m-0">
+                                                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
+                                                                <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
+                                                            </svg>
+                                                            <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
+                                                        </div>
+                                                        <div class="Box-body">
+                                                            <div class="d-flex flex-nowrap">
+                                                                <div>
+                                                                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
+                                                                        <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="pl-3 flex-1">
+                                                                    <p class="overflow-hidden mb-1">Before you submit, please consider:</p>
+                                                                    <ul class="ml-3">
+                                                                        <strong>Undo Drop:</strong> The dropping of the PAP will be undid and the PAP will be restored as draft. If you wish to permanently delete the PAP, use the Delete function.
+                                                                        Doing so would allow the encoder to further make modifications and endorse the PAP for inclusion in the
+                                                                        PIP/TRIP.
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="Box-footer">
+                                                            <button onclick="return confirm('Are you sure you want to undo dropping of this PAP?')" class="btn btn-danger btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
+                                                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-trash">
+                                                                    <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
+                                                                </svg>
+                                                                Undo Drop
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </details-dialog>
+                                        </details>
+                                    </li>
+                            @endcan
+                        @endif
+
                         @can('validate', $project)
                             @if($project->isValidated())
                             <li>

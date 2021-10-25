@@ -544,6 +544,21 @@ class Project extends Model
         ]);
     }
 
+    /**
+     * Drop the PAP
+     */
+    public function undrop()
+    {
+        $this->submission_status()->associate(RefSubmissionStatus::findByName('Draft'));
+        $this->updated_at = now();
+        $this->saveQuietly();
+
+        $this->audit_logs()->create([
+            'description' => 'undid drop',
+            'user_id' => auth()->id(),
+        ]);
+    }
+
     public function toggleValidation()
     {
         if (! $this->validated_at) {

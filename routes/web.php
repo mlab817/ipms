@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/projects/{project}/endorse', \App\Http\Controllers\ProjectEndorseController::class)->name('projects.endorse');
     Route::put('/projects/{project}/drop', \App\Http\Controllers\ProjectDropController::class)->name('projects.drop');
     Route::put('/projects/{project}/encode', \App\Http\Controllers\ProjectEncodeController::class)->name('projects.encode');
+    Route::put('/projects/{project}/undrop', \App\Http\Controllers\ProjectUndropController::class)->name('projects.undrop');
     // ProjectReview
 
     Route::get('/projects/deleted', [\App\Http\Controllers\ProjectController::class,'deleted'])->name('projects.deleted');
