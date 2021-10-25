@@ -315,7 +315,7 @@ class Project extends Model
     public function pipol_status(): BelongsTo
     {
         return $this->belongsTo(RefPipolStatus::class,'ref_pipol_status_id')
-            ->withDefault(['name' => 'N/A']);
+            ->withDefault(['name' => 'Not encoded']);
     }
 
     public function preparation_document(): BelongsTo
