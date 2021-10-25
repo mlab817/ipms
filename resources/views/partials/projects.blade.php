@@ -1,6 +1,7 @@
 
-@forelse($projects as $project)
+@if(count($projects))
     <ul class="border-top mt-3">
+        @foreach($projects as $project)
         <li class="col-12 d-flex width-full py-4 border-bottom color-border-muted">
             <div class="col-10 col-lg-9 d-inline-block">
                 <div class="d-inline-block mb-1">
@@ -71,12 +72,13 @@
                 </div>
             </div>
         </li>
+        @endforeach
     </ul>
 
     <div class="paginate-container d-none d-sm-flex flex-sm-justify-center">
         {{ $projects->appends(request()->except('page'))->links() }}
     </div>
-@empty
+@else
     <div class="blankslate blankslate-large">
         <img src="https://ghicons.github.com/assets/images/blue/png/Pull%20request.png" alt="" class="mb-3" />
         <h3 class="mb-1">There are no programs or projects to show.</h3>
@@ -85,7 +87,7 @@
             <a class="btn btn-primary my-3" href="{{ route('projects.create') }}" role="button">New</a>
         @endif
     </div>
-@endforelse
+@endif
 
 @if(auth()->user()->role)
     <div class="protip mb-3">

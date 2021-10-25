@@ -50,6 +50,18 @@
                     {{ optional($user->role)->name }}
                 </dd>
             </dl>
+            @if($user->isIpd())
+                <dl>
+                    <dt>
+                        <label for="">Offices Assigned for Review</label>
+                    </dt>
+                    <dd>
+                        @foreach($user->offices as $office)
+                            <a href="{{ route('offices.show', $office) }}">{{ $office->acronym }}</a>,
+                        @endforeach
+                    </dd>
+                </dl>
+            @endif
         </div>
     </div>
 
