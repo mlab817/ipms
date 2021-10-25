@@ -149,7 +149,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->deactivate();
+        // soft delete the user
+        // this is better approach
+        // to prevent deletion of PAPs by deleted users
+        $user->delete();
 
         // TODO: Notify User
         $user->notify(new UserDeactivatedNotification);
