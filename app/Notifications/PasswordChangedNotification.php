@@ -11,16 +11,14 @@ class PasswordChangedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $user;
-
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct()
     {
-        $this->user = $user;
+
     }
 
     /**
@@ -44,7 +42,7 @@ class PasswordChangedNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                     ->subject(config('app.name') . ' Password Changed')
-                    ->greeting('Hi, ' . $this->user->name . '!')
+                    ->greeting('Hi, ' . $notifiable->first_name . '!')
                     ->line('You\'ve successfully changed your '. config('app.name') .' password!')
                     ->line('If you didn\'t authorize this, please call us immediately at (02)8920-9116 or email us at ipd@da.gov.ph.')
                     ->line('Thank you for using our application!');
