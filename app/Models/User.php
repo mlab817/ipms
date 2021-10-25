@@ -138,11 +138,6 @@ class User extends Authenticatable
         $this->save();
     }
 
-    public function scopeProjectManager($query)
-    {
-        $query->permission('projects.manage');
-    }
-
     /**
      * The attributes that should be cast to native types.
      *

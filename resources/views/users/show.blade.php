@@ -1,7 +1,28 @@
 @extends('layouts.app')
 
 @section('page-header')
-    <x-page-header header="{{ $user->full_name }}"></x-page-header>
+    <header class="color-bg-subtle border-bottom-0 pt-0">
+
+        <div class="container-lg pt-4 p-responsive clearfix">
+
+            <div class="d-flex flex-wrap flex-items-start flex-md-items-center my-3">
+                <img
+                        itemprop="image"
+                        class="avatar flex-shrink-0 mb-3 mr-3 mb-md-0 mr-md-4"
+                        src="{{ $user->avatar }}" width="100" height="100" alt="{{ '@' . $user->username }}">
+
+                <div class="flex-1">
+                    <h1 class="h2 lh-condensed">
+                        {{ $user->full_name }}
+                    </h1>
+                    <p>
+                    {{ '@' . $user->username }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </header>
 @endsection
 
 @section('content')
@@ -44,6 +65,14 @@
             </dl>
             <dl>
                 <dt>
+                    <label for="">Admin Privilege</label>
+                </dt>
+                <dd>
+                    {{ $user->isAdmin() ? 'Yes' : 'No' }}
+                </dd>
+            </dl>
+            <dl>
+                <dt>
                     <label for="">Role</label>
                 </dt>
                 <dd>
@@ -64,6 +93,10 @@
             @endif
         </div>
     </div>
+
+    <x-subhead subhead="Projects" id="projects"></x-subhead>
+
+    @include('partials.projects', ['projects' => $user->projects()->paginate(),'office' => $user->office])
 
     @if(auth()->id() == $user->id)
     <div class="Box mt-6">

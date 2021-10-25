@@ -82,7 +82,7 @@
     <div class="blankslate blankslate-large">
         <img src="https://ghicons.github.com/assets/images/blue/png/Pull%20request.png" alt="" class="mb-3" />
         <h3 class="mb-1">There are no programs or projects to show.</h3>
-        @if(auth()->user()->office_id == $office->id)
+        @if(auth()->user()->office_id == $office->id ?? '')
             <p>Change your filters and search or add a new PAP to continue.</p>
             <a class="btn btn-primary my-3" href="{{ route('projects.create') }}" role="button">New</a>
         @endif

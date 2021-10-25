@@ -83,7 +83,7 @@
     <div class="Box">
         <div class="Box-header d-flex flex-items-center">
             <h3 class="Box-title overflow-hidden flex-auto">Users
-                <span class="Counter Counter--gray-dark">{{ \App\Models\User::count() }}</span>
+                <span class="Counter Counter--gray-dark">{{ $users->total() }}</span>
             </h3>
         </div>
         @if(count($users))
@@ -100,9 +100,12 @@
                             <a href="{{ route('users.show', $user) }}" class="btn-link dropdown-item" role="menuitem">
                                 View
                             </a>
+                            @can('update', $user)
                             <a href="{{ route('users.edit', $user) }}" class="btn-link dropdown-item" role="menuitem">
                                 Edit
                             </a>
+                            @endcan
+                            @can('delete', $user)
                             <div class="dropdown-divider"></div>
                             <form action="{{ route('users.destroy', $user) }}" method="POST">
                                 @csrf
@@ -111,6 +114,7 @@
                                     Delete
                                 </button>
                             </form>
+                            @endcan
                         </details-menu>
                     </details>
 
@@ -145,6 +149,7 @@
                                 @foreach($user->projects->take(5) as $project)
                                     <a href="{{ route('projects.show', $project) }}" class="btn-link tooltipped tooltipped-n" aria-label="{{ $project->title }}">{{ $project->uuid }}</a>
                                 @endforeach
+                                <a href="{{ route('users.show', $user) }}#projects">View all</a>
                             </p>
 
                             @if(auth()->user()->isIpd())

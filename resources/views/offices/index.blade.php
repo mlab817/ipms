@@ -53,7 +53,7 @@
     <div class="Box">
         <div class="Box-header d-flex flex-items-center">
             <h3 class="Box-title overflow-hidden flex-auto">Offices
-                <span class="Counter Counter--gray-dark">{{ \App\Models\Office::count() }}</span>
+                <span class="Counter Counter--gray-dark">{{ $offices->total() }}</span>
             </h3>
         </div>
         @if(count($offices))
@@ -70,9 +70,12 @@
                             <a href="{{ route('offices.show', $office) }}" class="btn-link dropdown-item" role="menuitem">
                                 View
                             </a>
+                            @can('update', $office)
                             <a href="{{ route('offices.edit', $office) }}" class="btn-link dropdown-item" role="menuitem">
                                 Edit
                             </a>
+                            @endcan
+                            @can('delete', $office)
                             <div class="dropdown-divider"></div>
                             <form action="{{ route('offices.destroy', $office) }}" method="POST">
                                 @csrf
@@ -81,6 +84,7 @@
                                     Delete
                                 </button>
                             </form>
+                            @endcan
                         </details-menu>
                     </details>
 

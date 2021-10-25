@@ -72,7 +72,7 @@
                 <li><a class="dropdown-item" href="{{ route('projects.create') }}">Create a New PAP</a></li>
                 <li><a class="dropdown-item" href="{{ route('projects.index') }}">Your PAPs</a></li>
                 <li><a href="{{ route('users.show', auth()->user()) }}" class="dropdown-item">Your Profile</a></li>
-
+                <div class="dropdown-divider" role="separator"></div>
                 <form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
