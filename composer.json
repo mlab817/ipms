@@ -30,7 +30,6 @@
         "maatwebsite/excel": "^3.1",
         "rollbar/rollbar-laravel": "^7.0",
         "socialiteproviders/discord": "^4.1",
-        "spatie/laravel-medialibrary": "^9.8",
         "spatie/laravel-permission": "^4.0",
         "spatie/laravel-searchable": "^1.9"
     },

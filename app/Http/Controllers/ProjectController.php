@@ -264,20 +264,15 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project, Request $request)
     {
-        $projectArray = $project->toArray();
-        $creator = $project->creator;
-
         if (config('ipms.force_delete')) {
             $project->forceDelete();
         } else {
             $project->delete();
         }
 
-        if ($creator) {
-            $creator->notify(new ProjectDeletedNotification($projectArray, auth()->user(), $request->reason));
-        }
+        session()->flash('status','success|Successfully deleted project.');
 
-        return redirect()->route('projects.own');
+        return redirect()->route('projects.index');
     }
 
     public function assigned(Request $request)

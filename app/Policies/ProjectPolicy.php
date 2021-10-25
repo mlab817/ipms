@@ -117,7 +117,7 @@ class ProjectPolicy
      * @param Project $project
      * @return bool
      */
-    public function delete(User $user, Project $project): bool
+    public function delete(User $user, Project $project)
     {
         // only admin can delete projects
         if ($user->isAdmin()) {

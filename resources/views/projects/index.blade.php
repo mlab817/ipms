@@ -220,14 +220,16 @@
                             <a href="{{ route('projects.edit', $project) }}" class="btn-link dropdown-item" role="menuitem">
                                 Edit
                             </a>
-{{--                            <div role="none" class="dropdown-divider"></div>--}}
-{{--                            <form action="{{ route('projects.destroy', $project) }}" method="POST">--}}
-{{--                                @csrf--}}
-{{--                                @method('DELETE')--}}
-{{--                                <button onclick="return confirm('Are you sure you want to delete this PAP?')" type="submit" href="{{ route('projects.destroy', $project) }}" class="btn-link dropdown-item" role="menuitem">--}}
-{{--                                    Delete--}}
-{{--                                </button>--}}
-{{--                            </form>--}}
+                            @can('delete', $project)
+                            <div role="none" class="dropdown-divider"></div>
+                            <form action="{{ route('projects.destroy', $project) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button onclick="return confirm('Are you sure you want to delete this PAP?')" type="submit" href="{{ route('projects.destroy', $project) }}" class="btn-link dropdown-item" role="menuitem">
+                                    Delete
+                                </button>
+                            </form>
+                            @endcan
                         </details-menu>
                     </details>
                 </div>
