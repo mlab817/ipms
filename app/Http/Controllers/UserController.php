@@ -38,7 +38,7 @@ class UserController extends Controller
             }
 
             if ($user->isEncoder()) {
-                $users->whereIn('office_id', $user->office_id);
+                $users->where('office_id', $user->office_id);
             }
         }
 
