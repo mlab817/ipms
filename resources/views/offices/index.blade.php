@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @if(! auth()->user()->isIpd() && ! auth()->user()->isEncoder())
+    @if(auth()->user()->isAdmin())
     <div class="d-flex mb-3">
         <div class="flex-auto">
             <form action="{{ route('offices.index') }}" method="get">
