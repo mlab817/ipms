@@ -146,17 +146,22 @@
                     </div>
                     <div class="d-inline">
                         <a href="{{ route('projects.index', array_merge(request()->except('status'), ['status' => $project->submission_status->name ])) }}" class="btn-link">
-                            <span class="Label Label--secondary v-align-middle mr-1 mb-1 tooltipped tooltipped-n" aria-label="Click to filter all {{ $project->submission_status->name }}">
+                            <span class="State State--small v-align-middle mr-1 mb-1 tooltipped tooltipped-n" aria-label="Click to filter all {{ $project->submission_status->name }}">
                                 {{ $project->submission_status->name }}
                             </span>
                         </a>
                         @if ($project->isValidated())
                         <a href="{{ route('projects.index', array_merge(request()->except('status'), ['validated' => true ])) }}" class="btn-link">
-                            <span class="Label Label--secondary v-align-middle mr-1 mb-1 tooltipped tooltipped-n" aria-label="Click to filter all {{ $project->submission_status->name }}">
+                            <span class="State State--closed State--small v-align-middle mr-1 mb-1 tooltipped tooltipped-n" aria-label="Click to filter all {{ $project->submission_status->name }}">
                                 Validated
                             </span>
                         </a>
                         @endif
+                        <a href="{{ route('projects.index', array_merge(request()->except('status'), ['pipol' => $project->pipol_status->name ?? null ])) }}" class="btn-link">
+                            <span class="State State--open State--small State--primary State--small v-align-middle mr-1 mb-1 tooltipped tooltipped-n" aria-label="Click to filter all {{ $project->pipol_status->name }}">
+                                {{ $project->pipol_status->name }}
+                            </span>
+                        </a>
                     </div>
                     <div class="text-small color-fg-subtle">
                         <div class="Truncate" >

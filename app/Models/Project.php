@@ -312,6 +312,12 @@ class Project extends Model
         return $this->belongsTo(RefPipTypology::class,'ref_pip_typology_id');
     }
 
+    public function pipol_status(): BelongsTo
+    {
+        return $this->belongsTo(RefPipolStatus::class,'ref_pipol_status_id')
+            ->withDefault(['name' => 'N/A']);
+    }
+
     public function preparation_document(): BelongsTo
     {
         return $this->belongsTo(RefPreparationDocument::class, 'ref_preparation_document_id')->withDefault(['name' => '_']);

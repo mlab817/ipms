@@ -59,7 +59,7 @@
                                     <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
                                         Endorse
                                     </summary>
-                                    <details-dialog class="Box--overlay d-flex flex-column anim-fade-in fast">
+                                    <details-dialog class="Box--overlay anim-fade-in fast">
                                         <form action="{{ route('projects.endorse', $project) }}" method="POST">
                                             @csrf
                                             @method('PUT')
@@ -117,7 +117,7 @@
                                     <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
                                         Drop
                                     </summary>
-                                    <details-dialog class="Box--overlay d-flex flex-column anim-fade-in fast">
+                                    <details-dialog class="Box--overlay anim-fade-in fast">
                                         <form class="inline-form" action="{{ route('projects.drop', $project) }}" accept-charset="UTF-8" method="post">
                                             @csrf
                                             @method('PUT')
@@ -175,7 +175,7 @@
                                     <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
                                         Validate
                                     </summary>
-                                    <details-dialog class="Box--overlay d-flex flex-column anim-fade-in fast">
+                                    <details-dialog class="Box--overlay anim-fade-in fast">
                                         <form class="inline-form" action="{{ route('projects.validate', $project) }}" accept-charset="UTF-8" method="post">
                                             @csrf
                                             @method('PUT')

@@ -66,7 +66,8 @@
                         </span>
                     </div>
                     <div class="mt-2">
-                        <span class="text-emphasized">{{ \App\Models\Project::count() }}</span>
+                        <span class="text-emphasized">
+                            {{ \App\Models\Project::count() }}</span>
                         PAPs
                     </div>
                 </div>
@@ -130,7 +131,11 @@
                                 </svg>
                                 {{ \App\Models\Project::whereNotNull('validated_at')->count() }}
                             </span>
-                            <span class="color-fg-muted">Validated PAPs</span>
+                            <span class="color-fg-muted">
+                                <a href="{{ route('projects.index',['validated' => 1]) }}">
+                                    Validated PAPs
+                                </a>
+                            </span>
                         </a>
                     </li>
                 </ul>
@@ -181,7 +186,10 @@
                             {{ $status->projects_count }}
                         </span>
                             <span class="color-fg-muted">
-                                {{ $status->name }} PAPs</span>
+                                <a href="{{ route('projects.index', ['pipol' => $status->name]) }}">
+                                    {{ $status->name }} PAPs
+                                </a>
+                            </span>
                         </li>
                     @endforeach
                 </ul>
