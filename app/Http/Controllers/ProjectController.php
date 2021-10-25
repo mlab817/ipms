@@ -262,7 +262,7 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Project $project, Request $request)
+    public function destroy(Project $project)
     {
         if (config('ipms.force_delete')) {
             $project->forceDelete();
