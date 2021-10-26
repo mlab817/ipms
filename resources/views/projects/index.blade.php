@@ -137,8 +137,41 @@
 
     <ul class="border-top mt-3 border-bottom">
         @forelse($projects as $project)
-        <li class="Box-row @if($project->creator_id == auth()->id()) Box-row--unread @endif Box-row--{{ strtolower(optional($project->submission_status)->name) }} col-12 d-flex width-full py-4 color-border-muted">
-            <div class="col-10 col-lg-9 d-inline-block">
+
+        <li class="d-flex Box-row px-2 @if($project->creator_id == auth()->id()) Box-row--unread @endif width-full py-3 clearfix position-relative color-border-muted">
+            <div class="flex-shrink-0 pt-2">
+                @if($project->isDraft())
+                <span class="tooltipped tooltipped-n" aria-label="Draft by encoder">
+                    <svg class="octicon octicon-issue-opened" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
+                </span>
+                @endif
+
+                @if($project->isEndorsed())
+                    <span class="tooltipped tooltipped-n" aria-label="Endorsed by encoder">
+                        <svg class="octicon octicon-issue-closed closed" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M11.28 6.78a.75.75 0 00-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l3.5-3.5z"></path><path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zm-1.5 0a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"></path></svg>
+                    </span>
+                @endif
+
+                @if($project->isDropped())
+                    <span class="tooltipped tooltipped-n" aria-label="Dropped by encoder">
+                        <svg class="octicon octicon-x-circle open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.404 12.596a6.5 6.5 0 119.192-9.192 6.5 6.5 0 01-9.192 9.192zM2.344 2.343a8 8 0 1011.313 11.314A8 8 0 002.343 2.343zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"></path></svg>
+                    </span>
+                @endif
+
+                @if(! $project->isValidated())
+                <span class="tooltipped tooltipped-n" aria-label="Not yet validated by IPD">
+                    <svg class="octicon octicon-issue-opened" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
+                </span>
+                @endif
+
+                @if($project->isValidated())
+                <span class="tooltipped tooltipped-n" aria-label="Validated by IPD">
+                    <svg class="octicon octicon-issue-closed closed" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M11.28 6.78a.75.75 0 00-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l3.5-3.5z"></path><path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zm-1.5 0a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"></path></svg>
+                </span>
+                @endif
+            </div>
+
+            <div class="d-inline col-9 ml-3 mr-3 flex-auto">
                 <div class="d-inline-block mb-1">
                     <div class="d-inline wb-break-all">
                         <a href="{{ route('projects.show', $project) }}" class="Link--onHover">
@@ -146,25 +179,6 @@
                         </a>
                     </div>
                     <div class="d-inline">
-                        <!-- TODO: find a way to better present the tags -->
-                        <a href="{{ route('projects.index', array_merge(request()->except('status'), ['status' => $project->submission_status->name ])) }}" class="btn-link">
-                            <span class="State State--small v-align-middle mr-1 mb-1 tooltipped tooltipped-n" aria-label="Click to filter all {{ $project->submission_status->name }}">
-                                pips: {{ $project->submission_status->name }}
-                            </span>
-                        </a>
-                        @if ($project->isValidated())
-                        <a href="{{ route('projects.index', array_merge(request()->except('status'), ['validated' => true ])) }}" class="btn-link">
-                            <span class="State State--closed State--small v-align-middle mr-1 mb-1 tooltipped tooltipped-n" aria-label="Click to filter all {{ $project->submission_status->name }}">
-                                pips: Validated
-                            </span>
-                        </a>
-                        @endif
-                        <a href="{{ route('projects.index', array_merge(request()->except('status'), ['pipol' => $project->pipol_status->name ?? null ])) }}" class="btn-link">
-                            <span class="State State--open State--small State--primary State--small v-align-middle mr-1 mb-1 tooltipped tooltipped-n" aria-label="Click to filter all {{ $project->pipol_status->name }}">
-                                pipol: {{ $project->pipol_status->name }}
-                            </span>
-                        </a>
-
                         @if($project->trip)
                         <span class="Label">TRIP</span>
                         @endif
@@ -201,6 +215,12 @@
                         </span>
                     </a>
 
+                    <span class="ml-0 mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="10" height="10"><path fill-rule="evenodd" d="M5.604.089A.75.75 0 016 .75v4.77h.711a.75.75 0 110 1.5H3.759a.75.75 0 110-1.5H4.5V2.15l-.334.223a.75.75 0 01-.832-1.248l1.5-1a.75.75 0 01.77-.037zM9 4.75A.75.75 0 019.75 4h4a.75.75 0 01.53 1.28l-1.89 1.892c.312.076.604.18.867.319.742.391 1.244 1.063 1.244 2.005 0 .653-.231 1.208-.629 1.627-.386.408-.894.653-1.408.777-1.01.243-2.225.063-3.124-.527a.75.75 0 01.822-1.254c.534.35 1.32.474 1.951.322.306-.073.53-.201.67-.349.129-.136.218-.32.218-.596 0-.308-.123-.509-.444-.678-.373-.197-.98-.318-1.806-.318a.75.75 0 01-.53-1.28l1.72-1.72H9.75A.75.75 0 019 4.75zm-3.587 5.763c-.35-.05-.77.113-.983.572a.75.75 0 11-1.36-.632c.508-1.094 1.589-1.565 2.558-1.425 1 .145 1.872.945 1.872 2.222 0 1.433-1.088 2.192-1.79 2.681-.308.216-.571.397-.772.573H7a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75c0-.69.3-1.211.67-1.61.348-.372.8-.676 1.15-.92.8-.56 1.18-.904 1.18-1.474 0-.473-.267-.69-.587-.737z"></path></svg>
+                        PhP {{ format_money($project->total_project_cost) }}
+                    </span>
+
+
                     by <a href="{{ route('users.show', $project->creator) }}" class="btn-link">
                         <span class="ml-0 mr-3">
                             <span itemprop="">
@@ -215,36 +235,38 @@
                 </div>
             </div>
 
-            <div class="col-2 col-lg-3 d-flex flex-column flex-justify-around">
-                <div class="text-right">
-                    <details class="details-reset details-overlay dropdown">
-                        <summary class="color-fg-muted position-relative mt-3 px-3" aria-label="Project menu" aria-haspopup="menu" role="button">
-                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-kebab-horizontal">
-                                <path d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
-                            </svg>
-                        </summary>
-                        <details-menu class="dropdown-menu dropdown-menu-sw mt-4 mr-1 top-0" role="menu">
-                            <a href="{{ route('projects.show', $project) }}" class="btn-link dropdown-item" role="menuitem">
-                                View
-                            </a>
-                            @can('update', $project)
-                            <a href="{{ route('projects.edit', $project) }}" class="btn-link dropdown-item" role="menuitem">
-                                Edit
-                            </a>
-                            @endcan
-                            @can('delete', $project)
-                            <div role="none" class="dropdown-divider"></div>
-                            <form action="{{ route('projects.destroy', $project) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button onclick="return confirm('Are you sure you want to delete this PAP?')" type="submit" href="{{ route('projects.destroy', $project) }}" class="btn-link dropdown-item" role="menuitem">
-                                    Delete
-                                </button>
-                            </form>
-                            @endcan
-                        </details-menu>
-                    </details>
-                </div>
+            <div class="text-right mr-5">
+                <span class="Label">{{ optional($project->pipol_status)->name }}</span>
+            </div>
+
+            <div class="">
+                <details class="details-reset details-overlay dropdown position-static">
+                    <summary class="color-fg-muted position-absolute right-0 top-0 mt-3 px-3" aria-label="Project menu" aria-haspopup="menu" role="button">
+                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-kebab-horizontal">
+                            <path d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+                        </svg>
+                    </summary>
+                    <details-menu class="dropdown-menu dropdown-menu-sw mt-6 mr-1 top-0" role="menu">
+                        <a href="{{ route('projects.show', $project) }}" class="btn-link dropdown-item" role="menuitem">
+                            View
+                        </a>
+                        @can('update', $project)
+                        <a href="{{ route('projects.edit', $project) }}" class="btn-link dropdown-item" role="menuitem">
+                            Edit
+                        </a>
+                        @endcan
+                        @can('delete', $project)
+                        <div role="none" class="dropdown-divider"></div>
+                        <form action="{{ route('projects.destroy', $project) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick="return confirm('Are you sure you want to delete this PAP?')" type="submit" href="{{ route('projects.destroy', $project) }}" class="btn-link dropdown-item" role="menuitem">
+                                Delete
+                            </button>
+                        </form>
+                        @endcan
+                    </details-menu>
+                </details>
             </div>
         </li>
         @empty

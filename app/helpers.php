@@ -31,3 +31,45 @@ if (! function_exists('generate_username')) {
         return substr($email, 0, $position);
     }
 }
+
+/**
+ * function first_sentence()
+ *
+ * @return string first sentence of the string
+ */
+if (! function_exists('first_sentence')) {
+    function first_sentence($content = ''): string
+    {
+        $content = html_entity_decode(strip_tags($content));
+
+        $pos = strpos($content, '.');
+
+        if($pos === false) {
+            return $content;
+        }
+        else {
+            return substr($content, 0, $pos+1);
+        }
+    }
+}
+
+if (! function_exists('format_money')) {
+    function format_money($money): string
+    {
+        $money = (float) $money;
+
+        if ($money > 10**9) {
+            return number_format($money / 10**9, 2) .' B';
+        }
+
+        if ($money > 10**6) {
+            return number_format($money / 10**6, 2) .' M';
+        }
+
+        if ($money > 10**3) {
+            return number_format($money / 10**3, 2) .' K';
+        }
+
+        return number_format($money, 2);
+    }
+}

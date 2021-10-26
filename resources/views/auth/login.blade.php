@@ -58,7 +58,7 @@
 
                 <!-- /.social-auth-links -->
                 @if (Route::has('password.request'))
-                <p class="mb-1 text-sm">
+                <p class="mb-1 mt-2 text-sm">
                     <a href="{{ route('password.request') }}" class="btn-link no-underline">I forgot my password</a>
                 </p>
                 @endif

@@ -60,3 +60,11 @@
 .Box-row.Box-row--unread, .Box-row.unread {
     box-shadow: inset 2px 0 0 var(--color-success-emphasis);
 }
+
+.open.octicon {
+    color: var(--color-danger-fg);
+}
+
+.closed.octicon {
+    color: var(--color-success-fg);
+}
