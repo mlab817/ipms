@@ -9,7 +9,7 @@
         <!-- /.login-logo -->
         <div class="Box mt-3">
             @if($status = session('status'))
-                <div class="flash flash-banner flash-{{ explode('|', $status)[0] }}" x-data="{ show: true }" x-show="show">
+                <div class="flash rounded-top-3 flash-full flash-{{ explode('|', $status)[0] }}" x-data="{ show: true }" x-show="show">
                     {{ explode('|', $status)[1] }}
                     <button class="flash-close js-flash-close" type="button" aria-label="Close" @click="show = false">
                         <!-- <%= octicon "x" %> -->
