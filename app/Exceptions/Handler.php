@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use http\Exception\InvalidArgumentException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -44,24 +45,6 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-//        if ($e instanceof ModelNotFoundException && $request->wantsJson()) {
-//            return response()->json([
-//                'error' => 'Resource not found'
-//            ], 404);
-//        }
-//
-//        if ($e instanceof AuthenticationException && $request->wantsJson()) {
-//            return response()->json([
-//                'error' => 'Unauthenticated'
-//            ], 401);
-//        }
-//
-//        if ($e instanceof AuthorizationException && $request->wantsJson()) {
-//            return response()->json([
-//                'error' => 'Unauthorized'
-//            ], 403);
-//        }
-
         if ($e instanceof ModelNotFoundException) {
             session()->flash('status', 'error|The resource you are looking for was not found or may have moved to another page');
 

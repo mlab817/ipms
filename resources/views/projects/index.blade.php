@@ -5,6 +5,15 @@
 @endsection
 
 @section('content')
+    @if(auth()->user()->isEncoder())
+    <div class="d-flex flex-justify-end mb-5">
+        <a href="{{ route('download') }}" class="btn btn-primary tooltipped tooltipped-n" aria-label="Download endorsement letter">
+            <svg class="octicon octicon-download" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M7.47 10.78a.75.75 0 001.06 0l3.75-3.75a.75.75 0 00-1.06-1.06L8.75 8.44V1.75a.75.75 0 00-1.5 0v6.69L4.78 5.97a.75.75 0 00-1.06 1.06l3.75 3.75zM3.75 13a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z"></path></svg>
+            Download
+        </a>
+    </div>
+    @endif
+
     <div class="d-flex flex-column flex-lg-row flex-auto">
         <div class="mb-1 mb-md-0 mr-md-3 flex-auto">
             <form class="subnav-search ml-0 mt-3 mt-lg-0 width-full width-lg-auto flex-auto flex-order-1 flex-lg-order-none js-active-navigation-container" role="search" aria-label="PAPs" action="{{ route('projects.index') }}" accept-charset="UTF-8" method="get">
