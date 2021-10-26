@@ -61,7 +61,6 @@ class Handler extends ExceptionHandler
 //                'error' => 'Unauthorized'
 //            ], 403);
 //        }
-        dd($e->getCode());
 
         if ($e instanceof ModelNotFoundException) {
             session()->flash('status', 'error|The resource you are looking for was not found or may have moved to another page');
