@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/projects/{project}/undrop', \App\Http\Controllers\ProjectUndropController::class)->name('projects.undrop');
     // ProjectReview
 
+    Route::get('/preview/pdf', [\App\Http\Controllers\GenerateEndorsementLetter::class,'download'])->name('endorsement.download');
+    Route::get('/preview', [\App\Http\Controllers\GenerateEndorsementLetter::class,'preview'])->name('endorsement.preview');
+
     Route::get('/projects/deleted', [\App\Http\Controllers\ProjectController::class,'deleted'])->name('projects.deleted');
 
     Route::get('/projects/{project}/issues', \App\Http\Controllers\ProjectIssueController::class)->name('projects.issues');

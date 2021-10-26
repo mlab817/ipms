@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-header')
-    <x-page-header header="Projects"></x-page-header>
+    <x-page-header header="Programs and Projects"></x-page-header>
 @endsection
 
 @section('content')
