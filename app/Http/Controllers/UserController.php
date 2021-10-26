@@ -104,9 +104,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user, Request $request)
     {
-        return view('users.show', compact('user'));
+        $tab = 'profile';
+
+        if ($request->tab) {
+            $tab = $request->tab;
+        }
+
+        return view('users.show', compact('user', 'tab'));
     }
 
     /**
