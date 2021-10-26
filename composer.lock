@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8900ae0b213e9f77dc5ecd53966c03e6",
+    "content-hash": "664ba08ec2f26a4aa9be110021301165",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5927,84 +5927,6 @@
                 "source": "https://github.com/SocialiteProviders/Manager/tree/4.0.1"
             },
             "time": "2020-12-01T23:09:06+00:00"
-        },
-        {
-            "name": "spatie/laravel-permission",
-            "version": "4.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "3c9d7ae7683081ee90a4e2297f4e58aff3492a1e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/3c9d7ae7683081ee90a4e2297f4e58aff3492a1e",
-                "reference": "3c9d7ae7683081ee90a4e2297f4e58aff3492a1e",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/auth": "^6.0|^7.0|^8.0",
-                "illuminate/container": "^6.0|^7.0|^8.0",
-                "illuminate/contracts": "^6.0|^7.0|^8.0",
-                "illuminate/database": "^6.0|^7.0|^8.0",
-                "php": "^7.2.5|^8.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^4.0|^5.0|^6.0",
-                "phpunit/phpunit": "^8.0|^9.0",
-                "predis/predis": "^1.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\Permission\\PermissionServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Permission\\": "src"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Permission handling for Laravel 6.0 and up",
-            "homepage": "https://github.com/spatie/laravel-permission",
-            "keywords": [
-                "acl",
-                "laravel",
-                "permission",
-                "permissions",
-                "rbac",
-                "roles",
-                "security",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/laravel-permission/issues",
-                "source": "https://github.com/spatie/laravel-permission/tree/4.4.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-09-01T17:40:58+00:00"
         },
         {
             "name": "spatie/laravel-searchable",

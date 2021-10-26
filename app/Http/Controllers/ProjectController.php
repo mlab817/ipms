@@ -220,9 +220,10 @@ class ProjectController extends Controller
                 'pdp_chapters'              => RefPdpChapter::orderBy('name')->get(),
                 'sdgs'                      => RefSdg::all(),
                 'ten_point_agendas'         => RefTenPointAgenda::all(),
-                'pdp_indicators'            => RefPdpIndicator::with('children.children.children')
-                    ->where('level',1)
-                    ->select('id','name')->get(),
+                'pdp_indicators'            => [],
+//                'pdp_indicators'            => RefPdpIndicator::with('children.children.children')
+//                    ->where('level',1)
+//                    ->select('id','name')->get(),
                 'funding_sources'           => RefFundingSource::all(),
                 'funding_institutions'      => RefFundingInstitution::all(),
                 'implementation_modes'      => RefImplementationMode::all(),

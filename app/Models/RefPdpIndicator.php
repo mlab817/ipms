@@ -27,6 +27,13 @@ class RefPdpIndicator extends Model
         'parent_id',
     ];
 
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+        'deleted_at',
+        'description',
+    ];
+
     public function projects(): BelongsToMany
     {
         return $this->belongsToMany(Project::class);

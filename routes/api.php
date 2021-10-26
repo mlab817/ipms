@@ -101,7 +101,8 @@ Route::post('/checkEmailAvailability', function (Request $request) {
 })->name('api.checkEmailAvailability');
 
 Route::get('/pdp_chapters/{id}', function ($id) {
-    return RefPdpIndicator::with('children.children')
+    return RefPdpIndicator::select('id','name')
+        ->with('children.children')
         ->where('id', $id)
         ->where('level', 1)
         ->first();

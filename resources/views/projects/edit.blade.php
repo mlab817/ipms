@@ -493,14 +493,26 @@
                 <x-subhead subhead="Philippine Development Plan (PDP) Chapter" id="pdp"></x-subhead>
 
                 <div x-data="{
-                    pdpChapterId: '{{ $project->ref_pdp_chapter_id }}'
-                }">
+                        pdpChapterId: '{{ $project->ref_pdp_chapter_id }}',
+                        options: [],
+                        pdp_indicators: @json($project->pdp_indicators->pluck('id')->toArray() ?? []),
+                        loadPdpIndicators() {
+                            if (this.pdpChapterId) {
+                                let url = '{{ route('api.pdp_chapters', ['id' => ':id']) }}';
+                                url = url.replace(':id', this.pdpChapterId);
+                                axios.get(url)
+                                    .then(res => {
+                                        this.options = res.data;
+                                    });
+                            }
+                        }
+                    }" x-init="loadPdpIndicators()">
                     <dl class="form-group @error('ref_pdp_chapter_id') errored mb-6 @enderror">
                         <dt class="form-group-header">
                             <label for="ref_pdp_chapter_id" class="required">Main PDP Midterm Update Chapter </label>
                         </dt>
                         <dd class="form-group-body">
-                            <x-select x-model="pdpChapterId" name="ref_pdp_chapter_id" :options="$pdp_chapters" :selected="old('ref_pdp_chapter_id', $project->ref_pdp_chapter_id ?? '')" aria-describedby="ref_pdp_chapter_id-validation"></x-select>
+                            <x-select x-on:change="loadPdpIndicators" x-model="pdpChapterId" name="ref_pdp_chapter_id" :options="$pdp_chapters" :selected="old('ref_pdp_chapter_id', $project->ref_pdp_chapter_id ?? '')" aria-describedby="ref_pdp_chapter_id-validation"></x-select>
                             <x-error-message name="ref_pdp_chapter_id" id="ref_pdp_chapter_id-validation"></x-error-message>
                         </dd>
                     </dl>
@@ -522,19 +534,47 @@
                             <label>Main PDP Chapter Outcome Statements/Outputs</label>
                         </dt>
                         <dd>
-                            @foreach ($pdp_indicators as $pdp_indicator)
-                                <div x-cloak x-show="pdpChapterId == {{$pdp_indicator->id}}" class="mt-4">
+                            <template x-for="indicator in options.children" :key="indicator.id">
+                                <div>
                                     <div class="form-checkbox my-0">
-                                        <label for="pdp_indicator_{{ $pdp_indicator->id }}">
-                                            <input type="checkbox" name="pdp_indicators[]" id="pdp_indicator_{{ $pdp_indicator->id }}" value="{{ $pdp_indicator->id }}"
-                                                @if(in_array($pdp_indicator->id, old('pdp_indicators', $project->pdp_indicators->pluck('id')->toArray() ?? []))) checked @endif>
-                                            {{ $pdp_indicator->name }}
+                                        <label :for="`pdp_indicator_${indicator.id}`">
+                                            <input type="checkbox" name="pdp_indicators[]" x-model="pdp_indicators" :id="`pdp_indicator_${indicator.id}`" :value="indicator.id">
+                                            <span x-text="indicator.name"></span>
                                         </label>
                                     </div>
+                                    <template x-for="child1 in indicator.children" :key="child1.id">
+                                        <div class="ml-4">
+                                            <div class="form-checkbox my-0">
+                                                <label :for="`pdp_indicator_${child1.id}`">
+                                                    <input type="checkbox" name="pdp_indicators[]" x-model="pdp_indicators" :id="`pdp_indicator_${child1.id}`" :value="child1.id">
+                                                    <span x-text="child1.name"></span>
+                                                </label>
+                                            </div>
+                                            <template x-for="child2 in child1.children" :key="child2.id">
+                                                <div class="ml-4">
+                                                    <div class="form-checkbox my-0">
+                                                        <label :for="`pdp_indicator_${child2.id}`">
+                                                            <input type="checkbox" name="pdp_indicators[]" x-model="pdp_indicators" :id="`pdp_indicator_${child2.id}`" :value="child2.id">
+                                                            <span x-text="child2.name"></span>
+                                                        </label>
+                                                    </div>
 
-                                    @include('projects.partials.child', ['children' => $pdp_indicator->children, 'selected' => old('$pdp_indicators', $project->pdp_indicators->pluck('id')->toArray() ?? [])])
+                                                    <template x-for="child3 in child2.children" :key="child3.id">
+                                                        <div class="ml-4">
+                                                            <div class="form-checkbox my-0">
+                                                                <label :for="`pdp_indicator_${child3.id}`">
+                                                                    <input type="checkbox" name="pdp_indicators[]" x-model="pdp_indicators" :id="`pdp_indicator_${child3.id}`" :value="child3.id">
+                                                                    <span x-text="child3.name"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </template>
                                 </div>
-                            @endforeach
+                            </template>
                         </dd>
                     </dl>
 

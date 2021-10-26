@@ -155,7 +155,6 @@
       <path value="$PROJECT_DIR$/vendor/ramsey/collection" />
       <path value="$PROJECT_DIR$/vendor/nyholm/psr7" />
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
-      <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-searchable" />
       <path value="$PROJECT_DIR$/vendor/balping/json-raw-encoder" />
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />

@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
@@ -21,7 +20,6 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use HasApiTokens;
-    use HasRoles;
     use SoftDeletes;
     use Auditable;
 
