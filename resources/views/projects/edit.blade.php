@@ -404,15 +404,61 @@
 
                 <x-subhead subhead="Physical and Financial Status" id="physical-and-financial-status"></x-subhead>
 
-                <dl class="form-group @error('ref_project_status_id') errored mb-6 @enderror">
-                    <dt class="form-group-header">
-                        <label for="ref_project_status_id" class="required">Status of Implementation Readiness </label>
-                    </dt>
-                    <dd class="form-group-body">
-                        <x-select name="ref_project_status_id" :options="$project_statuses" :selected="old('ref_project_status_id', $project->ref_project_status_id)" aria-describedby="project-status-validation"></x-select>
-                        <x-error-message name="ref_project_status_id" id="project-status-validation"></x-error-message>
-                    </dd>
-                </dl>
+                <div x-data="{
+                    ref_project_status_id:  {{ old('ref_project_status_id', $project->ref_project_status_id ?? 0) }}
+                }">
+                    <dl class="form-group @error('ref_project_status_id') errored mb-6 @enderror">
+                        <dt class="form-group-header">
+                            <label for="ref_project_status_id" class="required">Status of Implementation Readiness </label>
+                        </dt>
+                        <dd class="form-group-body">
+                            <select class="form-select" id="ref_project_status_id" x-model="ref_project_status_id" name="ref_project_status_id" aria-describedby="project-status-validation">
+                                <option value="">Select Option</option>
+                                @foreach($project_statuses as $option)
+                                    <option value="{{ $option->id }}">{{ $option->name }}</option>
+                                @endforeach
+                            </select>
+                            <x-error-message name="ref_project_status_id" id="project-status-validation"></x-error-message>
+                            <p class="note" x-show="ref_project_status_id == 4">
+                                Indicate reason for dropping in the updates field.
+                            </p>
+                        </dd>
+                    </dl>
+
+                    <div class="ml-4" x-cloak x-show="ref_project_status_id">
+                        <dl x-show="ref_project_status_id == 1" class="form-group @error('icc_resubmission') errored mb-6 @enderror">
+                            <dt class="form-group-header">
+                                <label for="icc_resubmission" class="required">Will this require resubmission to the ICC? (If ongoing) </label>
+                            </dt>
+                            <dd class="form-group-body">
+                                <x-input.radio :options="$boolean" name="icc_resubmission" selected="{{ old('icc_resubmission', $project->icc_resubmission) }}" aria-describedby="icc_resubmission-validation"></x-input.radio>
+                                <x-error-message name="icc_resubmission" id="rdc_endorsed-validation"></x-error-message>
+                            </dd>
+                        </dl>
+
+                        <dl x-show="ref_project_status_id == 2" class="form-group @error('ref_readiness_level_id') errored mb-6 @enderror">
+                            <dt class="form-group-header">
+                                <label for="ref_readiness_level_id">
+                                    Level of Readiness (If proposed)
+                                </label>
+                            </dt>
+                            <dd class="form-group-body">
+                                <x-select :options="$readiness_levels" name="ref_readiness_level_id" aria-describedby="readiness-level-validation" :selected="old('ref_readiness_level_id', $project->ref_readiness_level_id)"></x-select>
+                                <x-error-message name="ref_readiness_level_id" id="readiness-level-validation"></x-error-message>
+                            </dd>
+                        </dl>
+
+                        <dl x-show="ref_project_status_id == 3" class="form-group @error('completion_date') errored mb-6 @enderror">
+                            <dt class="form-group-header">
+                                <label for="completion_date">Date of Completion  (If completed) </label>
+                            </dt>
+                            <dd class="form-group-body">
+                                <input type="date" class="form-control" name="completion_date" value="{{ old('completion_date', $project->completion_date) }}" aria-describedby="completion-date-validation">
+                                <x-error-message name="completion_date" id="completion-date-validation"></x-error-message>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
 
                 <dl class="form-group @error('updates') errored mb-6 @enderror">
                     <dt class="form-group-header">
@@ -433,38 +479,6 @@
                     <dd class="form-group-body">
                         <input id="updates_date" name="updates_date" type="date" class="form-control" aria-describedby="updates-date-validation" value="{{ old('updates_date', $project->project_update->updates_date) }}">
                         <x-error-message name="updates_date" id="updates-date-validation"></x-error-message>
-                    </dd>
-                </dl>
-
-                <dl class="form-group @error('ref_readiness_level_id') errored mb-6 @enderror">
-                    <dt class="form-group-header">
-                        <label for="ref_readiness_level_id">
-                            Level of Readiness (If proposed)
-                        </label>
-                    </dt>
-                    <dd class="form-group-body">
-                        <x-select :options="$readiness_levels" name="ref_readiness_level_id" aria-describedby="readiness-level-validation" :selected="old('ref_readiness_level_id', $project->ref_readiness_level_id)"></x-select>
-                        <x-error-message name="ref_readiness_level_id" id="readiness-level-validation"></x-error-message>
-                    </dd>
-                </dl>
-
-                <dl class="form-group @error('icc_resubmission') errored mb-6 @enderror">
-                    <dt class="form-group-header">
-                        <label for="icc_resubmission" class="required">Will this require resubmission to the ICC? (If ongoing) </label>
-                    </dt>
-                    <dd class="form-group-body">
-                        <x-input.radio :options="$boolean" name="icc_resubmission" selected="{{ old('icc_resubmission', $project->icc_resubmission) }}" aria-describedby="icc_resubmission-validation"></x-input.radio>
-                        <x-error-message name="icc_resubmission" id="rdc_endorsed-validation"></x-error-message>
-                    </dd>
-                </dl>
-
-                <dl class="form-group @error('completion_date') errored mb-6 @enderror">
-                    <dt class="form-group-header">
-                        <label for="completion_date">Date of Completion  (If completed) </label>
-                    </dt>
-                    <dd class="form-group-body">
-                        <input type="date" class="form-control" name="completion_date" value="{{ old('completion_date', $project->completion_date) }}" aria-describedby="completion-date-validation">
-                        <x-error-message name="completion_date" id="completion-date-validation"></x-error-message>
                     </dd>
                 </dl>
 

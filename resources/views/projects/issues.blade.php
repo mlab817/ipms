@@ -15,7 +15,7 @@
         @forelse($issues as $key => $issue)
             <div class="Box-row d-flex flex-items-center">
                 <div class="flex-auto">
-                    <strong>{{ ucfirst($key) }}</strong>
+                    <strong>{{ ucfirst(str_ireplace('id', ' ', str_replace('_', ' ', str_ireplace('ref_','',$key)))) }}</strong>
                     <div class="text-small color-fg-subtle">
                         {{ $issue[0] }}
                     </div>

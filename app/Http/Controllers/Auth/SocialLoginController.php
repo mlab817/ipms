@@ -24,7 +24,7 @@ class SocialLoginController extends Controller
         $existingUser = User::where('email', $socialiteUser->email)->first();
 
         if (! $existingUser) {
-            session()->flash('error|Only existing users can use this feature. Please use the same email currently registered.');
+            session()->flash('status','error|Only existing users can use this feature. Please use the same email currently registered.');
 
             return redirect()->route('login');
         }
