@@ -133,7 +133,7 @@ class GenerateEndorsementLetter extends Controller
         $objWriter = IOFactory::createWriter($doc, 'Word2007');
 
 
-        $doc_name = 'fileName.docx';
+        $doc_name = time() . '_' . strtolower($office->acronym) . 'endorsement.docx';
         $objWriter->save($doc_name); // saving in the public path just for testing
 
         return response()->download(public_path($doc_name))->deleteFileAfterSend(true);
