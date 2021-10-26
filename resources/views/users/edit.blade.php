@@ -84,7 +84,7 @@
                         </dd>
                     </dl>
 
-                    <dl x-cloak x-show="parseInt(role_id) === 2">
+                    <dl x-cloak x-show="parseInt(role_id) === 1">
                         <dt class="form-group-header">
                             <label for="office_id" class="required">Assigned Office</label>
                         </dt>
