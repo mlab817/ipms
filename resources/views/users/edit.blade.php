@@ -97,7 +97,7 @@
                                 @foreach($offices as $key => $office)
                                     <div class="form-checkbox m-0">
                                         <label for="office_{{ $key }}" data-filter-item-text>
-                                            <input type="checkbox" name="offices[]" id="offices" value="{{ $office->id }}" @if(in_array($office->id, old('offices', $user->offices->pluck('id')->toArray() ?? []))) checked @endif>
+                                            <input type="checkbox" name="offices[]" id="office{{ $key }}" value="{{ $office->id }}" @if(in_array($office->id, old('offices', $user->offices->pluck('id')->toArray() ?? []))) checked @endif>
                                             {{ $office->name }}
                                         </label>
                                     </div>
