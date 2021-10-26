@@ -123,7 +123,7 @@
             </details>
 
         </div>
-
+        @can('create', \App\Models\Project::class)
         <div class="d-none d-md-flex flex-md-items-center flex-md-justify-end">
             <a href="{{ route('projects.create') }}" class="text-center btn btn-primary ml-3">
                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-repo">
@@ -132,11 +132,12 @@
                 New
             </a>
         </div>
+        @endif
     </div>
 
     <ul class="border-top mt-3 border-bottom">
         @forelse($projects as $project)
-        <li class="Box-row Box-row--{{ strtolower(optional($project->submission_status)->name) }} col-12 d-flex width-full py-4 color-border-muted">
+        <li class="Box-row @if($project->creator_id == auth()->id()) Box-row--unread @endif Box-row--{{ strtolower(optional($project->submission_status)->name) }} col-12 d-flex width-full py-4 color-border-muted">
             <div class="col-10 col-lg-9 d-inline-block">
                 <div class="d-inline-block mb-1">
                     <div class="d-inline wb-break-all">

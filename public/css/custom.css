@@ -56,3 +56,7 @@
 .color-text-dropped {
     color: var(--color-danger-emphasis);
 }
+
+.Box-row.Box-row--unread, .Box-row.unread {
+    box-shadow: inset 2px 0 0 var(--color-success-emphasis);
+}

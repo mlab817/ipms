@@ -33,6 +33,10 @@ class ProjectPolicy
     {
         $roleName = $user->role->name ?? '';
 
+        if ($user->isAdmin()) {
+            return true;
+        }
+
         if ($roleName == 'ipd' || $roleName == 'admin') {
             return true;
         }
