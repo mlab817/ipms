@@ -109,7 +109,7 @@
                             <div class="dropdown-divider"></div>
                             <form action="{{ route('users.destroy', $user) }}" method="POST">
                                 @csrf
-                                @method('PUT')
+                                @method('delete')
                                 <button onclick="return confirm('Are you sure you want to delete this office?')" type="submit" class="btn-link dropdown-item" role="menuitem">
                                     Delete
                                 </button>
