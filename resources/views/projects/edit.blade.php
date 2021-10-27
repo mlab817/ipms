@@ -1224,7 +1224,7 @@
                             <thead>
                                 <tr class="border-top border-bottom">
                                     <th class="col-1 p-1">Financing Source</th>
-                                    <th class="col-1 p-1 text-center">2022 &amp; Prior</th>
+                                    <th class="col-1 p-1 text-center">2022 *</th>
                                     <th class="col-1 p-1 text-center">2023</th>
                                     <th class="col-1 p-1 text-center">2024</th>
                                     <th class="col-1 p-1 text-center">2025</th>
