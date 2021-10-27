@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
         foreach (Office::all() as $office) {
             $suffixes = ['01','02'];
             foreach ($suffixes as $suffix) {
-                $username = strtolower($office->acronym . $suffix);
+                $username = strtolower(str_replace(' ', '', $office->acronym . $suffix));
                 $email =  $username . '@dummy.com';
                 \DB::table('users')->insert([
                     'first_name' => $office->acronym,
