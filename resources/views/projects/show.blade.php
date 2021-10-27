@@ -811,11 +811,11 @@
                                     <thead>
                                     <tr class="border-bottom">
                                         <th class="col-1 p-2">Funding Source</th>
-                                        <th class="col-1 p-2 text-right">2022 &amp; Prior</th>
+                                        <th class="col-1 p-2 text-right">2022 *</th>
                                         <th class="col-1 p-2 text-right">2023</th>
                                         <th class="col-1 p-2 text-right">2024</th>
                                         <th class="col-1 p-2 text-right">2025</th>
-                                        <th class="col-1 p-2 text-right">2026 &amp; Prior</th>
+                                        <th class="col-1 p-2 text-right">2026 &amp; Beyond</th>
                                         <th class="col-1 p-2 text-right">Total</th>
                                     </tr>
                                     </thead>
@@ -862,11 +862,11 @@
                                     <thead>
                                     <tr class="border-bottom">
                                         <th class="col-1 p-2">Region</th>
-                                        <th class="col-1 p-2 text-right">2022 &amp; Prior</th>
+                                        <th class="col-1 p-2 text-right">2022 *</th>
                                         <th class="col-1 p-2 text-right">2023</th>
                                         <th class="col-1 p-2 text-right">2024</th>
                                         <th class="col-1 p-2 text-right">2025</th>
-                                        <th class="col-1 p-2 text-right">2026 &amp; Prior</th>
+                                        <th class="col-1 p-2 text-right">2026</th>
                                         <th class="col-1 p-2 text-right">Total</th>
                                     </tr>
                                     </thead>
@@ -1183,11 +1183,11 @@
                         <thead>
                         <tr class="border-bottom">
                             <th class="col-1 p-2">Funding Source</th>
-                            <th class="col-1 p-2 text-right">2022 &amp; Prior</th>
+                            <th class="col-1 p-2 text-right">2022 *</th>
                             <th class="col-1 p-2 text-right">2023</th>
                             <th class="col-1 p-2 text-right">2024</th>
                             <th class="col-1 p-2 text-right">2025</th>
-                            <th class="col-1 p-2 text-right">2026 &amp; Prior</th>
+                            <th class="col-1 p-2 text-right">2026</th>
                             <th class="col-1 p-2 text-right">Total</th>
                         </tr>
                         </thead>
@@ -1230,11 +1230,11 @@
                         <thead>
                         <tr class="border-bottom">
                             <th class="col-1 p-2">Region</th>
-                            <th class="col-1 p-2 text-right">2022 &amp; Prior</th>
+                            <th class="col-1 p-2 text-right">2022 *</th>
                             <th class="col-1 p-2 text-right">2023</th>
                             <th class="col-1 p-2 text-right">2024</th>
                             <th class="col-1 p-2 text-right">2025</th>
-                            <th class="col-1 p-2 text-right">2026 &amp; Prior</th>
+                            <th class="col-1 p-2 text-right">2026</th>
                             <th class="col-1 p-2 text-right">Total</th>
                         </tr>
                         </thead>
