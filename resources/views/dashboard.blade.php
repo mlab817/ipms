@@ -104,7 +104,7 @@
                         <span class="Progress">
                             @foreach($byPipolStatus as $status)
                                 <span class="Progress-item color-bg-{{ strtolower($status->name) }}-emphasis"
-                                      style="width: {{ round($status->projects_count / \App\Models\Project::count() * 100) }}%" aria-label="View all {{ strtolower($status->name) }}"> projects</span>
+                                      style="width: {{ $projectCount ? round($status->projects_count / $projectCount * 100) : 0 }}%" aria-label="View all {{ strtolower($status->name) }}"> projects</span>
                             @endforeach
                         </span>
                     </div>
