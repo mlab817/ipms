@@ -1,0 +1,262 @@
+[
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 29,
+    "name": "Schools constructed/rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 30,
+    "name": "Classrooms constructed/rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 31,
+    "name": "Hospitals constructed/rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 32,
+    "name": "Barangay Health Stations (BHS) constructed/rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 33,
+    "name": "Rural Health Units (RHUs) constructed/rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 34,
+    "name": "Academic Buildings/Libraries (SUCs) constructed/rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 35,
+    "name": "Socialized Housing constructed/rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 36,
+    "name": "Sanitary landfills (SLF) constructed/rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 37,
+    "name": "Waste-to-Energy (WtE) facilities constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 38,
+    "name": "Materials Recovery Facilities (MRFs) constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 39,
+    "name": "Research/ Laboratory Centers constructed/rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 1,
+    "id": 40,
+    "name": "School dormitories constructed/rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 2,
+    "id": 26,
+    "name": "Additional Capacity provided"
+  },
+  {
+    "ref_infrastructure_sector_id": 2,
+    "id": 27,
+    "name": "Upgrading/Rehabilitation of Electrical System"
+  },
+  {
+    "ref_infrastructure_sector_id": 2,
+    "id": 28,
+    "name": "Power Lines (Constructed/Rehabilitated)"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 1,
+    "name": "Length of newly constructed roads"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 2,
+    "name": "Length of roads rehabilitated/improved"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 3,
+    "name": "Length of newly constructed bridges"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 4,
+    "name": "Length of bridges rehabilitated/improved"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 5,
+    "name": "Number of newly constructed airports/airports improved to international standards"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 6,
+    "name": "Length of newly constructed/rehabilitated railway"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 7,
+    "name": "Length of newly constructed/rehabilitated mass transit system other than railway (e.g., BRT, cable car)"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 8,
+    "name": "Number of newly constructed/rehabilitated public ports"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 9,
+    "name": "Length of bike lanes constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 10,
+    "name": "Length of pedestrian walkways constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 3,
+    "id": 11,
+    "name": "Transport Terminals"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 12,
+    "name": "Irrigation canals constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 13,
+    "name": "Box Culverts constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 14,
+    "name": "Drainage Lines constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 15,
+    "name": "Slope Protection Structures constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 16,
+    "name": "Dike / Revetment / Shore Protection System constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 17,
+    "name": "Level I / Level II Water Systems installed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 18,
+    "name": "Piped water system installed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 19,
+    "name": "Water Treatment Plant constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 20,
+    "name": "Deep Wells constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 21,
+    "name": "Rain Collector Systems constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 22,
+    "name": "Sewerage / Septage Treatment Plant constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 23,
+    "name": "Sewerage systems constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 24,
+    "name": "Canal System installed"
+  },
+  {
+    "ref_infrastructure_sector_id": 4,
+    "id": 25,
+    "name": "Dam constructed"
+  },
+  {
+    "ref_infrastructure_sector_id": 5,
+    "id": 41,
+    "name": "Site/Stations/Centers comprised of active equipment"
+  },
+  {
+    "ref_infrastructure_sector_id": 5,
+    "id": 42,
+    "name": "Number of free Wifi Sites constructed (special type of above)"
+  },
+  {
+    "ref_infrastructure_sector_id": 5,
+    "id": 43,
+    "name": "Passive Infrastructure (cables) installed"
+  },
+  {
+    "ref_infrastructure_sector_id": 5,
+    "id": 44,
+    "name": "ICT equipment procured (equipment used as standalone)"
+  },
+  {
+    "ref_infrastructure_sector_id": 6,
+    "id": 45,
+    "name": "Government/administrative buildings constructed/ rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 6,
+    "id": 46,
+    "name": "Gymnasium/sports facilities constructed/ rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 6,
+    "id": 47,
+    "name": "Dormitories/barracks/living quarters constructed/ rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 6,
+    "id": 48,
+    "name": "Staff housing constructed/ rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 6,
+    "id": 49,
+    "name": "Prison/Jail facilities constructed/ rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 6,
+    "id": 50,
+    "name": "Multipurpose/auxiliary facilities constructed/ rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 6,
+    "id": 51,
+    "name": "Evacuation centers constructed/ rehabilitated"
+  },
+  {
+    "ref_infrastructure_sector_id": 6,
+    "id": 52,
+    "name": "Others"
+  }
+]
