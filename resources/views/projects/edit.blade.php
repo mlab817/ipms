@@ -506,6 +506,8 @@
 
                 <x-subhead subhead="Philippine Development Plan (PDP) Chapter" id="pdp"></x-subhead>
 
+                <!-- TODO: Add TRIP indicators -->
+
                 <div x-data="{
                         pdpChapterId: '{{ $project->ref_pdp_chapter_id }}',
                         options: [],

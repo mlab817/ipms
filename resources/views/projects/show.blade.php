@@ -773,6 +773,8 @@
                 </dd>
             </dl>
 
+            <!-- TODO: Add trip indicators -->
+
             @if($project->trip)
                 <div class="Box my-5" id="trip-information">
                     <div class="Box-header">

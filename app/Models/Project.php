@@ -413,6 +413,11 @@ class Project extends Model
         return $this->belongsToMany(RefTenPointAgenda::class,'project_ten_point_agenda','project_id','tpa_id','id','id');
     }
 
+    public function trip_indicators(): BelongsToMany
+    {
+        return $this->belongsToMany(RefTripIndicator::class,'project_trip_indicator','project_id','ref_trip_indicator_id');
+    }
+
     /**
      * HasOne Relationships
      */
