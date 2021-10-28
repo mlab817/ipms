@@ -453,8 +453,10 @@
             <x-subhead subhead="General Information" id="general-information"></x-subhead>
 
             <dl>
-                <dt><label>Title</label></dt>
-                <dd>{{ $project->title }}</dd>
+                <dt>
+                    <label for="title">Title</label><x-copy for="title"></x-copy>
+                </dt>
+                <dd><span id="title">{{ $project->title }}</span></dd>
             </dl>
 
             <dl>
@@ -481,8 +483,15 @@
             </dl>
 
             <dl>
-                <dt><label>Description</label></dt>
-                <dd>{!! $project->description->description !!}</dd>
+                <dt>
+                    <label>Description</label>
+                    <x-copy for="description"></x-copy>
+                </dt>
+                <dd>
+                    <span id="description">
+                    {!! $project->description->description !!}
+                    </span>
+                </dd>
             </dl>
 
             <dl>
@@ -679,9 +688,13 @@
             </dl>
 
             <dl>
-                <dt><label>Updates</label></dt>
+                <dt><label>Updates</label>
+                    <x-copy for="updates"></x-copy>
+                </dt>
                 <dd>
-                    {{ $project->project_update->updates ?? '_' }}
+                    <span id="updates">
+                        {{  strip_tags($project->project_update->updates ?? '_') }}
+                    </span>
                 </dd>
             </dl>
 
@@ -794,9 +807,14 @@
                         </dl>
 
                         <dl>
-                            <dt><label>Implementation Risks and Mitigation Strategies</label></dt>
+                            <dt>
+                                <label>Implementation Risks and Mitigation Strategies</label>
+                                <x-copy for="risk"></x-copy>
+                            </dt>
                             <dd>
-                                {{ strip_tags($project->risk->risk) ?? '_' }}
+                                <span id="risk">
+                                    {{ strip_tags($project->risk->risk) ?? '_' }}
+                                </span>
                             </dd>
                         </dl>
 
@@ -921,7 +939,9 @@
                 <dd>
                     <ul class="pl-4">
                         @forelse($project->sdgs as $sdg)
-                            <li>{{ $sdg->name }} <br/> <span class="text-muted">{{ $sdg->description }}</span></li>
+                            <li>{{ $sdg->name }} <br/>
+                                <span class="note">{{ $sdg->description }}</span>
+                            </li>
                         @empty
                             <li>None selected</li>
                         @endforelse
@@ -938,7 +958,7 @@
                 <dd>
                     <ul class="pl-4">
                         @forelse($project->ten_point_agendas as $tpa)
-                            <li>{{ $tpa->name }} <br/><span class="text-muted"> {{ $tpa->description }}</span></li>
+                            <li>{{ $tpa->name }} <br/><span class="note"> {{ $tpa->description }}</span></li>
                         @empty
                             <li>None selected</li>
                         @endforelse
