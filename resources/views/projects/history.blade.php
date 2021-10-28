@@ -5,7 +5,7 @@
 @section('content')
     <div class="Box">
         <div class="Box-header">
-            <h2 class="Box-title">History: {{ $project->title }}</h2>
+            <h2 class="Box-title">History <span class="Counter Counter--gray">{{ count($project->audit_logs) }}</span></h2>
         </div>
         <div class="Box-body">
             @forelse($project->audit_logs->sortByDesc('created_at') as $log)

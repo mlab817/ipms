@@ -17,7 +17,7 @@ class ProjectDropController extends Controller
     {
         $this->authorize('drop', $project);
 
-        $project->drop();
+        $project->drop($request->reason_for_dropping);
 
         session()->flash('status','success|Successfully dropped PAP.');
 

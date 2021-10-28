@@ -538,14 +538,15 @@ class Project extends Model
     /**
      * Drop the PAP
      */
-    public function drop()
+    public function drop($reason = '')
     {
+        $this->reason_for_dropping = $reason;
         $this->submission_status()->associate(RefSubmissionStatus::findByName('Dropped'));
         $this->updated_at = now();
         $this->saveQuietly();
 
         $this->audit_logs()->create([
-            'description' => 'dropped',
+            'description' => 'dropped due to [' . $reason . ']',
             'user_id' => auth()->id(),
         ]);
     }

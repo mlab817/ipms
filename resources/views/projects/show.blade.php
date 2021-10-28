@@ -138,6 +138,9 @@
                                                         <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
                                                     </div>
                                                     <div class="Box-body">
+                                                        <div class="d-flex mb-3">
+                                                            <textarea required rows="4" placeholder="Indicate reason for dropping (e.g. duplicate PAP)" class="form-control width-full" name="reason_for_dropping" id="reason_for_dropping" style="resize: none;"></textarea>
+                                                        </div>
                                                         <div class="d-flex flex-nowrap">
                                                             <div>
                                                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
@@ -149,9 +152,9 @@
                                                                 <ul class="ml-3">
                                                                     <strong>Dropped:</strong> The PAP will be dropped from the PIP/TRIP, i.e. it will no longer
                                                                     be considered for inclusion to the PIP/TRIP. The PAP will still remain in the
-                                                                    list of PAPs. If you wish to permanently delete the PAP, use the Delete function.
-                                                                    The IPD will also validate dropped PAPs and similar to endorsement, you will have
-                                                                    to request IPD to restore the PAP.
+                                                                    list of PAPs. If you wish to permanently delete the PAP, request the admin to delete the PAP.
+                                                                    The IPD will also validate dropped PAPs. You may undo the dropping as long as the IPD
+                                                                    has not marked the PAP as validated.
                                                                 </ul>
                                                             </div>
                                                         </div>
