@@ -2,7 +2,11 @@
 
 namespace App\Observers;
 
+use App\Models\Office;
 use App\Models\Project;
+use App\Models\User;
+use App\Notifications\ProjectCreatedNotification;
+use Illuminate\Support\Facades\Notification;
 
 class ProjectObserver
 {

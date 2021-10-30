@@ -58,7 +58,7 @@
 }
 
 .Box-row.Box-row--unread, .Box-row.unread {
-    box-shadow: inset 2px 0 0 var(--color-success-emphasis);
+    box-shadow: inset 2px 0 0 var(--color-danger-emphasis);
 }
 
 .open.octicon {
@@ -67,4 +67,23 @@
 
 .closed.octicon {
     color: var(--color-success-fg);
+}
+
+.mail-status.unread {
+    display: inline-block;
+}
+
+.mail-status {
+    position: absolute;
+    top: -6px;
+    left: 6px;
+    z-index: 2;
+    display: none;
+    width: 14px;
+    height: 14px;
+    color: #fff;
+    background-image: linear-gradient(#54a3ff, #006eed);
+    background-clip: padding-box;
+    border: 2px solid var(--color-header-bg);
+    border-radius: 50%;
 }

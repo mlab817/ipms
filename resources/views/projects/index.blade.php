@@ -147,7 +147,7 @@
     <ul class="border-top mt-3 border-bottom">
         @forelse($projects as $project)
 
-        <li class="d-flex Box-row px-2 @if($project->creator_id == auth()->id()) Box-row--unread @endif width-full py-3 clearfix position-relative color-border-muted">
+        <li class="d-flex Box-row px-2 @if(! $project->seen) Box-row--gray @endif width-full py-3 clearfix position-relative color-border-muted">
             <div class="flex-shrink-0 pt-2">
                 @if($project->isDraft())
                 <span class="tooltipped tooltipped-n" aria-label="Draft by encoder">
@@ -214,7 +214,7 @@
                         </span>
                     </span>
 
-                    <a href="{{ route('offices.show', $project->office) }}" class="btn-link">
+                    <a href="{{  route('offices.show', $project->office) }}" class="btn-link">
                         <span class="ml-0 mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="10" height="10"><path fill-rule="evenodd" d="M1.5 14.25c0 .138.112.25.25.25H4v-1.25a.75.75 0 01.75-.75h2.5a.75.75 0 01.75.75v1.25h2.25a.25.25 0 00.25-.25V1.75a.25.25 0 00-.25-.25h-8.5a.25.25 0 00-.25.25v12.5zM1.75 16A1.75 1.75 0 010 14.25V1.75C0 .784.784 0 1.75 0h8.5C11.216 0 12 .784 12 1.75v12.5c0 .085-.006.168-.018.25h2.268a.25.25 0 00.25-.25V8.285a.25.25 0 00-.111-.208l-1.055-.703a.75.75 0 11.832-1.248l1.055.703c.487.325.779.871.779 1.456v5.965A1.75 1.75 0 0114.25 16h-3.5a.75.75 0 01-.197-.026c-.099.017-.2.026-.303.026h-3a.75.75 0 01-.75-.75V14h-1v1.25a.75.75 0 01-.75.75h-3zM3 3.75A.75.75 0 013.75 3h.5a.75.75 0 010 1.5h-.5A.75.75 0 013 3.75zM3.75 6a.75.75 0 000 1.5h.5a.75.75 0 000-1.5h-.5zM3 9.75A.75.75 0 013.75 9h.5a.75.75 0 010 1.5h-.5A.75.75 0 013 9.75zM7.75 9a.75.75 0 000 1.5h.5a.75.75 0 000-1.5h-.5zM7 6.75A.75.75 0 017.75 6h.5a.75.75 0 010 1.5h-.5A.75.75 0 017 6.75zM7.75 3a.75.75 0 000 1.5h.5a.75.75 0 000-1.5h-.5z"></path></svg>
 
@@ -263,6 +263,65 @@
                         <a href="{{ route('projects.edit', $project) }}" class="btn-link dropdown-item" role="menuitem">
                             Edit
                         </a>
+                        @endcan
+                        @can('transfer', $project)
+                            <div role="none" class="dropdown-divider"></div>
+                            <details class="details-reset details-overlay details-overlay-dark position-relative">
+                                <summary class="dropdown-item" aria-haspopup="dialog">
+                                    Transfer
+                                </summary>
+                                <details-dialog class="Box--overlay anim-fade-in fast">
+                                    <form action="{{ route('projects.transfer', $project) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="Box">
+                                            <div class="Box-header">
+                                                <h3 class="Box-title">Transfer PAP</h3>
+                                            </div>
+                                            <div class="flash flash-warn flash-full">
+                                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
+                                                    <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
+                                                </svg>
+                                                <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
+                                            </div>
+                                            <div class="Box-body">
+                                                <div class="d-flex flex-nowrap">
+                                                    <div>
+                                                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
+                                                            <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="pl-3 flex-1">
+                                                        <p class="overflow-hidden mb-1">Before you transfer PAP, please note:</p>
+                                                        <ul class="ml-3">
+                                                            <li>
+                                                                Transferred PAPs will change its owner/creator as well as the office it
+                                                                was originally tagged into unless the receiving user belongs to the same
+                                                                office.
+                                                            </li>
+                                                            <li>
+                                                                There is no confirmation on the transfer. This process will immediately
+                                                                transfer the PAP to the receiving user.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <p class="mt-3">
+                                                    Select user to transfer the PAP ownership into.
+                                                </p>
+                                                <auto-complete src="/api/encoders" for="encoders-popup">
+                                                    <input autofocus required placeholder="Type to search users..." name="username" type="text" class="form-control width-full" >
+                                                    <ul id="encoders-popup"></ul>
+                                                </auto-complete>
+                                            </div>
+                                            <div class="Box-footer">
+                                                <button type="submit" class="btn btn-primary width-full">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </details-dialog>
+                            </details>
                         @endcan
                         @can('delete', $project)
                         <div role="none" class="dropdown-divider"></div>

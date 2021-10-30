@@ -226,13 +226,13 @@ class Project extends Model
         'research',
         'ict',
         'office_id',
-        'trip_info',
         'ref_submission_status_id',
         'ref_pipol_status_id',
         'ref_reason_id',
         'other_reason',
         'completion_date',
         'validated_at',
+        'creator_id',
     ];
 
     protected $casts = [
@@ -509,15 +509,21 @@ class Project extends Model
         return $this->hasMany(ProjectRegionInfrastructure::class);
     }
 
-    public function subprojects(): HasMany
+    public function seen_by(): BelongsToMany
     {
-        return $this->hasMany(Subproject::class);
+        return $this->belongsToMany(User::class,'seen_projects','project_id','user_id')
+            ->withTimestamps();
     }
 
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class,'project_user_permission','project_id','user_id','id','id')
             ->withPivot('read','update','delete','review','comment');
+    }
+
+    public function getSeenAttribute()
+    {
+        return $this->seen_by->contains(auth()->id());
     }
 
     /**
@@ -563,6 +569,22 @@ class Project extends Model
         $this->audit_logs()->create([
             'description' => 'undid drop',
             'user_id' => auth()->id(),
+        ]);
+    }
+
+    /**
+     * Drop the PAP
+     */
+    public function transfer($creator)
+    {
+        $this->creator()->associate($creator);
+        $this->office_id = $creator->office_id ?? 1;
+        $this->updated_at = now();
+        $this->saveQuietly();
+
+        $this->audit_logs()->create([
+            'description' => 'transferred',
+            'user_id' => $creator->id,
         ]);
     }
 
@@ -612,72 +634,6 @@ class Project extends Model
         return optional($this->submission_status)->name == 'Endorsed';
     }
 
-    public function investment(): HasOne
-    {
-        return $this->hasOne(ProjectFsInvestment::class,'project_id')
-            ->selectRaw('sum(y2016) as "y2016"')
-            ->selectRaw('sum(y2017) as "y2017"')
-            ->selectRaw('sum(y2018) as "y2018"')
-            ->selectRaw('sum(y2019) as "y2019"')
-            ->selectRaw('sum(y2020) as "y2020"')
-            ->selectRaw('sum(y2021) as "y2021"')
-            ->selectRaw('sum(y2022) as "y2022"')
-            ->selectRaw('sum(y2023) as "y2023"')
-            ->selectRaw('sum(y2024) as "y2024"')
-            ->selectRaw('sum(y2025) as "y2025"')
-            ->selectRaw('sum(y2016+y2017+y2018+y2019+y2020+y2021+y2022+y2023+y2024+y2025) AS total')
-            ->groupBy('project_id');
-    }
-
-    public function infrastructure(): HasOne
-    {
-        return $this->hasOne(ProjectFsInfrastructure::class,'project_id')
-            ->selectRaw('sum(y2016) as "y2016"')
-            ->selectRaw('sum(y2017) as "y2017"')
-            ->selectRaw('sum(y2018) as "y2018"')
-            ->selectRaw('sum(y2019) as "y2019"')
-            ->selectRaw('sum(y2020) as "y2020"')
-            ->selectRaw('sum(y2021) as "y2021"')
-            ->selectRaw('sum(y2022) as "y2022"')
-            ->selectRaw('sum(y2023) as "y2023"')
-            ->selectRaw('sum(y2024) as "y2024"')
-            ->selectRaw('sum(y2025) as "y2025"')
-            ->selectRaw('sum(y2016+y2017+y2018+y2019+y2020+y2021+y2022+y2023+y2024+y2025) AS total')
-            ->groupBy('project_id');
-    }
-
-    public function getTotalInvestmentAttribute(): float
-    {
-        return $this->investment->total ?? 0;
-    }
-
-    public function getTotalInfrastructureAttribute(): float
-    {
-        return $this->infrastructure->total ?? 0;
-    }
-
-    public function getImplementationLengthAttribute(): int
-    {
-        return (int) $this->target_end_year
-            - (int) $this->target_start_year
-            + 1;
-    }
-
-    public function getDisbursementTotalAttribute(): float
-    {
-        if ($this->disbursement()->exists()) {
-            return floatval($this->disbursement->y2016)
-                    + floatval($this->disbursement->y2017)
-                        + floatval($this->disbursement->y2018)
-                            + floatval($this->disbursement->y2019)
-                                + floatval($this->disbursement->y2020)
-                                    + floatval($this->disbursement->y2021)
-                                        + floatval($this->disbursement->y2022)
-                                            + floatval($this->disbursement->y2023);
-        }
-        return 0;
-    }
-
     public function getPermissionsAttribute(): array
     {
         $user = auth()->user();
@@ -689,18 +645,6 @@ class Project extends Model
             'restore'       => $user ? $user->can('restore', $this) : false,
             'force-delete'  => $user ? $user->can('force-delete', $this) : false,
         ];
-    }
-
-    public function getProjectStatusNameAttribute()
-    {
-        return optional($this->project_status)->name;
-    }
-
-    public function getPipolCodeAttribute()
-    {
-        return $this->review
-            ? $this->review->pipol_code
-            : ($this->pipol->pipol_code ?? 'NO DATA');
     }
 
     // relationships

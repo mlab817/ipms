@@ -2,23 +2,33 @@
 
 namespace App\Notifications;
 
+use App\Models\Project;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifyUserOfCompletedExportNotification extends Notification
+class ProjectCreatedNotification extends Notification
 {
     use Queueable;
+
+    public int $projectId;
+
+    public $project;
+
+    public $from;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($projectId)
     {
-        //
+        $this->projectId = $projectId;
+        $this->project = Project::find($projectId);
+        $this->from = User::find($this->project->creator_id);
     }
 
     /**
@@ -29,21 +39,7 @@ class NotifyUserOfCompletedExportNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return ['database'];
     }
 
     /**
@@ -55,7 +51,9 @@ class NotifyUserOfCompletedExportNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'sender' => $this->from,
+            'content' => $this->from->full_name . ' added a new PAP. View now.',
+            'redirectUrl' => route('projects.show', $this->project),
         ];
     }
 }
