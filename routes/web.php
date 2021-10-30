@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/projects/{uuid}/restore', [\App\Http\Controllers\ProjectController::class,'restore'])->name('projects.restore');
 
+    Route::put('/projects/{project}/transfer', \App\Http\Controllers\ProjectTransferController::class)->name('projects.transfer');
     Route::put('/projects/{project}/validate', \App\Http\Controllers\ProjectValidateController::class)->name('projects.validate');
     Route::put('/projects/{project}/endorse', \App\Http\Controllers\ProjectEndorseController::class)->name('projects.endorse');
     Route::put('/projects/{project}/drop', \App\Http\Controllers\ProjectDropController::class)->name('projects.drop');
@@ -53,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/projects/{project}/exportJson', [\App\Http\Controllers\ProjectController::class,'exportJson'])->name('projects.exportJson');
     Route::resource('projects', \App\Http\Controllers\ProjectController::class);
     Route::resource('reviews', \App\Http\Controllers\ReviewController::class)->except('store','create');
+    Route::post('/notifications/markMultipleAsRead', [\App\Http\Controllers\NotificationController::class,'markMultipleAsRead'])->name('notifications.markMultipleAsRead');
+    Route::put('/notifications/{notification}/markAsRead', [\App\Http\Controllers\NotificationController::class,'markAsRead'])->name('notifications.markAsRead');
     Route::post('/notifications', [\App\Http\Controllers\NotificationController::class,'markAllAsRead'])->name('notifications.markAllAsRead');
     Route::resource('notifications',\App\Http\Controllers\NotificationController::class)->only('index','show');
     Route::resource('pipols',\App\Http\Controllers\PipolController::class);
