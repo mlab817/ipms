@@ -18,7 +18,12 @@ class ProjectCreateService
     {
         try {
             return DB::transaction(function () use ($data, $userId) {
-                $project = Project::create($data);
+                $project = Project::create(
+                    array_merge($data, [
+                        'trip' => true,
+                        'creator_id' => $userId,
+                    ])
+                );
 
                 // create hasOne relationships
                 $project->description()->create([]);
@@ -52,10 +57,6 @@ class ProjectCreateService
 
                 $project->fs_investments()->createMany($fsInvestments);
                 $project->fs_infrastructures()->createMany($fsInvestments);
-
-                $project->trip = true; // set the trip to true
-                $project->creator_id = $userId;
-                $project->saveQuietly();
 
                 return $project;
             });
