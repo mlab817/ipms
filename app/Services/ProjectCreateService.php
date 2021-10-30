@@ -55,7 +55,7 @@ class ProjectCreateService
 
                 $project->trip = true; // set the trip to true
                 $project->creator_id = $userId;
-                $project->save();
+                $project->saveQuietly();
 
                 return $project;
             });
