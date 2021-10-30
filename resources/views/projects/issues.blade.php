@@ -23,7 +23,9 @@
             </div>
         @empty
             <x-blankslate title="Hooray!" message="No issues found or you have not edited this PAP yet. Pfft.">
-                <a class="btn btn-primary my-3" role="button" href="{{ route('projects.edit', $project) }}">Start Editing</a>
+                @can('update', $project)
+                    <a class="btn btn-primary my-3" role="button" href="{{ route('projects.edit', $project) }}">Start Editing</a>
+                @endcan
             </x-blankslate>
         @endforelse
     </div>
