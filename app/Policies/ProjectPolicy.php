@@ -208,6 +208,13 @@ class ProjectPolicy
         return $this->deny('Only IPD can validate PAPs.');
     }
 
+    /**
+     * Only IPD are allowed to encode PAPs into PIPOL.
+     * 
+     * @param User $user
+     * @param Project $project
+     * @return bool|\Illuminate\Auth\Access\Response
+     */
     public function encode(User $user, Project $project)
     {
         if ($user->isIpd()) {
@@ -215,5 +222,21 @@ class ProjectPolicy
         }
 
         return $this->deny('Only IPD can encode PAPs to PIPOL System.');
+    }
+
+    /**
+     * Only admins are allowed to transfer PAP.
+     *
+     * @param User $user
+     * @param Project $project
+     * @return bool|\Illuminate\Auth\Access\Response
+     */
+    public function transfer(User $user, Project $project)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        return $this->deny('Only admin can transfer PAP ownership');
     }
 }
