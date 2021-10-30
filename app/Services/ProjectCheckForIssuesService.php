@@ -17,16 +17,22 @@ class ProjectCheckForIssuesService
             if (isset($data['ref_spatial_coverage_id'])) {
                 if ($data['ref_spatial_coverage_id'] == 1) {
                     $regions = RefRegion::whereNotIn('id',[99,100])->pluck('id')->toArray();
-                    $compareRegions = array_diff($regions,$data['regions']);
-                    if (count($compareRegions)) {
+                    if (! isset($data['regions'])) {
                         $validator->errors()->add(
                             'regions', 'All regions except NB and N/A should be included for nationwide spatial coverage!'
                         );
+                    } else {
+                        $compareRegions = array_diff($regions,$data['regions']);
+                        if (count($compareRegions)) {
+                            $validator->errors()->add(
+                                'regions', 'All regions except NB and N/A should be included for nationwide spatial coverage!'
+                            );
+                        }
                     }
                 }
 
                 if ($data['ref_spatial_coverage_id'] == 2) {
-                    if (count($data['regions']) < 2) {
+                    if (isset($data['regions']) && count($data['regions']) < 2) {
                         $validator->errors()->add(
                             'regions', 'At least two regions must be included if the spatial coverage is inter-regional'
                         );
@@ -34,7 +40,7 @@ class ProjectCheckForIssuesService
                 }
 
                 if ($data['ref_spatial_coverage_id'] == 3) {
-                    if (count($data['regions']) != 1) {
+                    if (isset($data['regions']) && count($data['regions']) != 1) {
                         $validator->errors()->add(
                             'regions', 'Only one region must be included for region-specific spatial coverage'
                         );
@@ -42,7 +48,7 @@ class ProjectCheckForIssuesService
                 }
 
                 if ($data['ref_spatial_coverage_id'] == 4) {
-                    if (count($data['regions']) > 1) {
+                    if (isset($data['regions']) && count($data['regions']) > 1) {
                         $validator->errors()->add(
                             'regions', 'Only one region must be included for region-specific spatial coverage'
                         );
