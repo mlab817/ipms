@@ -58,6 +58,11 @@ class User extends Authenticatable
 //        'roles',
     ];
 
+    public static function findByUsername($username = '')
+    {
+        return static::where('username', $username)->first();
+    }
+
     public function getRouteKeyName(): string
     {
         return 'username';
@@ -97,6 +102,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Project::class,'project_user_permission','user_id','project_id')
             ->withPivot('read','update','delete','review','comment');
+    }
+
+    public function seen_projects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class,'seen_projects','user_id','project_id')
+            ->withTimestamps();
     }
 
     public function role(): BelongsTo
