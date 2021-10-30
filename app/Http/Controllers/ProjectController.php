@@ -35,11 +35,14 @@ use App\Models\RefSubmissionStatus;
 use App\Models\RefTenPointAgenda;
 use App\Models\RefTier;
 use App\Models\RefYear;
+use App\Models\User;
+use App\Notifications\ProjectCreatedNotification;
 use App\Notifications\ProjectDeletedNotification;
 use App\Services\ProjectCheckForIssuesService;
 use App\Services\ProjectCreateService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Spatie\Searchable\Search;
@@ -117,11 +120,25 @@ class ProjectController extends Controller
      */
     public function store(ProjectStoreRequest $request, ProjectCreateService $service, ProjectCheckForIssuesService $checkForIssuesService)
     {
-        $project = $service->execute($request->validated(), auth()->id());
+        try {
+            $project = $service->execute($request->validated(), auth()->id());
 
-//        event(new ProjectCreatedEvent($project));
+            $checkForIssuesService->execute($project->toArray(), $project->id, $project->updated_at);
 
-        $checkForIssuesService->execute($project->toArray(), $project->id, $project->updated_at);
+            // notify concerned
+            $office = Office::find($project->office_id);
+
+            // notify users
+            $otherUsersFromSameOffice = User::where('office_id', $office->id)
+                ->where('id', '<>', auth()->id())->get();
+            $reviewers = $office->reviewers;
+            $users = collect($otherUsersFromSameOffice, $reviewers);
+
+            Notification::send($users, new ProjectCreatedNotification($project->id));
+        } catch (\Exception $e) {
+            session()->flash('status','error|'. $e->getMessage());
+        }
+
 
         return redirect()->route('projects.show', $project);
     }
@@ -134,6 +151,10 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        if (! $project->seen) {
+            $project->seen_by()->attach(auth()->id());
+        }
+
         $project->load(
             'regions',
             'region_investments.region',
@@ -250,6 +271,14 @@ class ProjectController extends Controller
     {
 //        dispatch_sync(new ProjectUpdateJob($request->validated(), $project->id));
         dispatch(new ProjectUpdateJob($request->validated(), $project->id));
+
+        $office = Office::find($project->office_id);
+
+        // notify users from same office
+        $otherUsersFromSameOffice = User::where('office_id', $office->id)
+            ->where('id', '<>', auth()->id())->get();
+
+        Notification::send($otherUsersFromSameOffice, new ProjectCreatedNotification($project->id));
 
         session()->flash('status', 'success|Successfully updated PAP.');
 

@@ -4,12 +4,43 @@ namespace App\Http\Controllers;
 
 use App\DataTables\NotificationsDataTable;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\Facades\Notification;
 
 class NotificationController extends Controller
 {
-    public function index(NotificationsDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('notifications.index');
+        $notifications = auth()->user()->notifications()->simplePaginate();
+
+        return view('notifications', compact('notifications'));
+    }
+
+    public function markAsRead(DatabaseNotification $notification)
+    {
+        $notification->markAsRead();
+
+        session()->flash('status','success|Successfully marked notification as read');
+
+        return back();
+    }
+
+    public function markMultipleAsRead(Request $request)
+    {
+        $notifications = $request->notifications;
+
+        if (! $notifications) {
+            return back();
+        }
+
+        foreach ($notifications as $notification) {
+            $notification = DatabaseNotification::find($notification);
+            $notification->markAsRead();
+        }
+
+        session()->flash('status','success|Successfully marked notification as read');
+
+        return back();
     }
 
     /**
