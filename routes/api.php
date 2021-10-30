@@ -117,3 +117,14 @@ Route::get('/checkProjectTitleAvailability', function(Request $request) {
 
     return response()->json(['available' => ! $exists]);
 })->name('api.checkProjectTitleAvailability');
+
+Route::get('/encoders', function (Request $request) {
+    $encoders = \App\Models\User::where(DB::raw('CONCAT(first_name, " ",last_name)'),'like','%' . $request->q .'%')
+        ->where('role_id', \App\Models\Role::findByName('encoder')->id)
+        ->get();
+    $response = '';
+    foreach ($encoders as $encoder) {
+        $response .= '<li class="autocomplete-item" role="option" data-autocomplete-value="'. $encoder->username .'">' . $encoder->office->acronym .' - '. $encoder->full_name .'</li>';
+    }
+    return $response;
+});
