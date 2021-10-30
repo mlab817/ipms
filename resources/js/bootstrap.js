@@ -1,4 +1,5 @@
 window._ = require('lodash');
+import '@github/auto-complete-element';
 import '@github/details-dialog-element';
 import '@github/clipboard-copy-element';
 import '@github/filter-input-element';
