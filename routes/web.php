@@ -19,8 +19,6 @@ Route::redirect('/', 'login');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
 
-//    Route::post('/logout_other_devices', \App\Http\Controllers\Auth\LogoutOtherDevicesController::class)->name('logout_other_devices');
-//    Route::post('/change_password', \App\Http\Controllers\Auth\ChangePasswordController::class)->name('change_password');
     Route::post('/auth/password/change', \App\Http\Controllers\Auth\ChangePasswordController::class)->name('password.change');
     Route::get('/settings',\App\Http\Controllers\SettingsController::class)->name('settings');
 
@@ -62,41 +60,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/offices/{office}/users', \App\Http\Controllers\OfficeUserController::class)->name('offices.users');
     Route::resource('offices', \App\Http\Controllers\OfficeController::class);
 
-    Route::group(['prefix' => 'reports'], function() {
-        Route::get('/', [\App\Http\Controllers\ReportController::class,'index'])->name('reports.index');
-        Route::get('/implementation_modes', [\App\Http\Controllers\ReportController::class,'implementation_modes'])->name('reports.implementation_modes');
-        Route::get('/offices', [\App\Http\Controllers\ReportController::class,'offices'])->name('reports.offices');
-        Route::get('/spatial_coverages', [\App\Http\Controllers\ReportController::class,'spatial_coverages'])->name('reports.spatial_coverages');
-        Route::get('/regions', [\App\Http\Controllers\ReportController::class,'regions'])->name('reports.regions');
-        Route::get('/funding_sources', [\App\Http\Controllers\ReportController::class,'funding_sources'])->name('reports.funding_sources');
-        Route::get('/tiers', [\App\Http\Controllers\ReportController::class,'tiers'])->name('reports.tiers');
-        Route::get('/pap_types', [\App\Http\Controllers\ReportController::class,'pap_types'])->name('reports.pap_types');
-        Route::get('/pdp_chapters', [\App\Http\Controllers\ReportController::class,'pdp_chapters'])->name('reports.pdp_chapters');
-        Route::get('/project_statuses', [\App\Http\Controllers\ReportController::class,'project_statuses'])->name('reports.project_statuses');
-    });
-
     Route::resource('search', \App\Http\Controllers\SearchController::class);
 
     Route::post('password/change', [\App\Http\Controllers\Auth\PasswordChangeController::class,'update'])->name('change_password_update');
     Route::get('password/change', [\App\Http\Controllers\Auth\PasswordChangeController::class,'index'])->name('change_password_index');
-
-    // Admin routes
-    Route::middleware(['admin'])->prefix('/admin')->name('admin.')->group(function () {
-        Route::get('', \App\Http\Controllers\Admin\AdminController::class)->name('index');
-        Route::resources([
-            'links'                 => \App\Http\Controllers\Admin\LinkController::class,
-            'offices'               => \App\Http\Controllers\Admin\OfficeController::class,
-            'operating_units'       => \App\Http\Controllers\Admin\OperatingUnitController::class,
-//        'permissions'           => \App\Http\Controllers\Admin\PermissionController::class,
-            'roles'                 => \App\Http\Controllers\Admin\RoleController::class,
-            'users'                 => \App\Http\Controllers\Admin\UserController::class,
-            'teams'                 => \App\Http\Controllers\Admin\TeamController::class,
-        ]);
-
-        Route::resource('permissions',\App\Http\Controllers\Admin\PermissionController::class)->except('create','show');
-
-        Route::post('offices/export',[\App\Http\Controllers\Admin\OfficeController::class,'index'])->name('offices.export');
-    });
 });
 
 Auth::routes(['register' => false]);
@@ -112,4 +79,11 @@ Route::get('/debug', function () {
 
 Route::fallback(function () {
     return view('errors.404');
+});
+
+Route::get('/test-date', function () {
+    $deadline = env('IPMS_ENCODING_DEADLINE');
+//    dd(\Carbon\Carbon::create($deadline));
+
+    return \Carbon\Carbon::create($deadline)->isPast();
 });

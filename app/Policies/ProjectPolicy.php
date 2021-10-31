@@ -4,12 +4,27 @@ namespace App\Policies;
 
 use App\Models\Project;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Log;
 
 class ProjectPolicy
 {
     use HandlesAuthorization;
+
+    protected string $validatedMessage = 'This PAP has already been validated.';
+
+    /**
+     * Check if it is already past the deadline.
+     *
+     * @return bool
+     */
+    public function isPastDeadline(): bool
+    {
+        $deadline = config('ipms.deadline');
+
+        return Carbon::create($deadline)->isPast();
+    }
 
     /**
      * Determine whether the user can view index.
@@ -68,6 +83,10 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
+        if ($this->isPastDeadline()) {
+            return $this->deny('The system no longer allows creation of PAPs as it is already past the deadline');
+        }
+
         if ($user->isEncoder()) {
             return true;
         }
@@ -86,7 +105,11 @@ class ProjectPolicy
     {
         // if project has already been validated, disable update
         if ($project->isValidated()) {
-            return $this->deny('PAP has already been validated.');
+            return $this->deny($this->validatedMessage);
+        }
+
+        if ($this->isPastDeadline() && $user->isEncoder()) {
+            return $this->deny('The system no longer allows updating of PAPs by encoders as it is already past the deadline');
         }
 
         // if project is endorsed, only IPD can edit it
@@ -167,6 +190,10 @@ class ProjectPolicy
 
     public function endorse(User $user, Project $project)
     {
+        if ($project->isValidated()) {
+            return $this->deny('This PAP has already been validated.');
+        }
+
         if ($project->office_id == $user->office_id
             || $project->creator_id == $user->id) {
             return true;
@@ -177,6 +204,10 @@ class ProjectPolicy
 
     public function drop(User $user, Project $project)
     {
+        if ($project->isValidated()) {
+            return $this->deny('This PAP has already been validated.');
+        }
+
         if ($project->office_id == $user->office_id
             || $project->creator_id == $user->id) {
             return true;
@@ -187,6 +218,10 @@ class ProjectPolicy
 
     public function undrop(User $user, Project $project)
     {
+        if ($project->isValidated()) {
+            return $this->deny($this->validatedMessage);
+        }
+
         // owner
         // same office
         // ipd can undrop PAP

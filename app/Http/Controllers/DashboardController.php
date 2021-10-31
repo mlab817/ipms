@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request)
     {
         $bySubmissionStatus = RefSubmissionStatus::withCount('projects')->get();
 
