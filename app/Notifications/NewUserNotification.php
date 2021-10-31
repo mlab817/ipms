@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Mail\UserCreated;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,9 +13,9 @@ class NewUserNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $user;
+    public User $user;
 
-    public $password;
+    public string $password;
 
     /**
      * Create a new notification instance.
@@ -38,6 +39,7 @@ class NewUserNotification extends Notification implements ShouldQueue
         return ['mail'];
     }
 
+
     /**
      * Get the mail representation of the notification.
      *
@@ -46,16 +48,6 @@ class NewUserNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $manualUrl = config('ipms.ipms_manual_url');
-
-        return (new MailMessage)
-                    ->subject('Welcome to IPMS v2')
-                    ->line('The IPMS Admin has added you as a user to the System. Click the link below to start using the System.')
-                    ->line('You may use your email <strong>' . $this->user->email . '</strong> to login with password: <strong>'. $this->password . '</strong>. Please change your password ASAP to avoid security issue.')
-                    ->action('Login', route('login'))
-                    ->when($manualUrl, function (MailMessage $mail) use ($manualUrl) {
-                        return $mail->line("You may view the user manual <a href=\"" .$manualUrl ."\" target=\"_blank\">here</a>");
-                    })
-                    ->line('Thank you for using our application!');
+        //
     }
 }

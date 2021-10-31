@@ -93,3 +93,7 @@ Route::get('/test-date', function () {
 
     return \Carbon\Carbon::create($deadline)->isPast();
 });
+
+Route::get('/mailable', function () {
+    return new App\Mail\UserCreated(\App\Models\User::find(1), 'password');
+});

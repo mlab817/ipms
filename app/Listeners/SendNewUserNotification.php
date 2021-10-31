@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
+use App\Mail\UserCreated as UserCreatedMail;
 use App\Events\UserCreated;
-use App\Models\User;
-use App\Notifications\NewUserNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Mail;
 
 class SendNewUserNotification
 {
@@ -28,6 +28,6 @@ class SendNewUserNotification
      */
     public function handle(UserCreated $event)
     {
-        $event->user->notify(new NewUserNotification($event->user, $event->password));
+        Mail::to($event->user->email)->send(new UserCreatedMail($event->user, $event->password));
     }
 }
