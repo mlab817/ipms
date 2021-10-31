@@ -25,7 +25,7 @@
                         <div class="d-flex flex-items-start">
                             <div class="form-checkbox">
                                 <label for="">
-                                    <input name="notifications[]" type="checkbox" class="mr-1" value="{{ $notification->id }}" >
+                                    <input form="markMultipleAsRead" name="notifications[]" type="checkbox" class="mr-1" value="{{ $notification->id }}" >
                                 </label>
                             </div>
                             <div>
@@ -41,13 +41,9 @@
                     </div>
                     </div>
                     @if(! $notification->read_at)
-                    <form action="{{ route('notifications.markAsRead', $notification) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <button type="submit" class="btn btn-octicon tooltipped tooltipped-n" aria-label="Mark as read">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>
-                        </button>
-                    </form>
+                    <button type="button" onclick="markAsRead('{{ $notification->id }}')" class="btn btn-octicon tooltipped tooltipped-n" aria-label="Mark as read">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>
+                    </button>
                     @endif
                 </div>
             @empty
@@ -61,3 +57,19 @@
     </div>
     @endif
 @endsection
+
+@push('scripts')
+    <script>
+        function markAsRead(id) {
+            let url = '{{ route('notifications.markAsRead', ':id') }}';
+            url = url.replace(':id', id);
+            axios.post(url, {
+                _method: 'put',
+                _token: '{{ csrf_token() }}'
+            })
+            .then(res => {
+                location.reload()
+            })
+        }
+    </script>
+@endpush

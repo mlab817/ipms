@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\User;
+use App\Notifications\ProjectValidatedNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ProjectValidateController extends Controller
 {
@@ -20,6 +23,12 @@ class ProjectValidateController extends Controller
         $this->authorize('validate', $project);
 
         $project->toggleValidation();
+
+        $officeId = $project->office_id;
+
+        $users = User::where('office_id', $officeId)->get();
+
+        Notification::send($users, new ProjectValidatedNotification($project->id, auth()->id()));
 
         session()->flash('status','success|Successfully updated validation status');
 

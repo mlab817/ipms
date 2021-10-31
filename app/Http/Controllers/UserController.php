@@ -9,6 +9,7 @@ use App\Models\Office;
 use App\Models\Role;
 use App\Models\User;
 use App\Notifications\UserDeactivatedNotification;
+use App\Notifications\UserUpdatedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -141,6 +142,8 @@ class UserController extends Controller
         if ($request->offices) {
             $user->offices()->sync($request->offices);
         }
+
+        $user->notify(new UserUpdatedNotification(auth()->id()));
 
         session()->flash('status', 'success|Successfully updated user');
 

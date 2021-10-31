@@ -2,29 +2,33 @@
 
 namespace App\Notifications;
 
+use App\Models\Project;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ProjectImportFailedNotification extends Notification
+class ProjectTransferredNotification extends Notification
 {
     use Queueable;
 
-    public $id;
+    public $user;
 
-    public $errorMessage;
+    public $project;
+
+    public $newOwner;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(int $id, string $errorMessage)
+    public function __construct($projectId, $userId, $newOwnerId)
     {
-        $this->id = $id;
-
-        $this->errorMessage = $errorMessage;
+        $this->project  = Project::find($projectId);
+        $this->user     = User::find($userId);
+        $this->newOwner = User::find($newOwnerId);
     }
 
     /**
@@ -46,11 +50,10 @@ class ProjectImportFailedNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        return [
-            'sender'    => config('ipms.system_user'),
-            'subject'   => 'Project Import Failed',
-            'message'   => $this->errorMessage,
-            'actionUrl' => route('projects.import.index'),
-        ];
+        return (array) new NotificationTemplate(
+            $this->user,
+            $this->user->full_name . ' transferred ownership of the "'. $this->project->title .'" to ' . $this->newOwner->full_name . '.',
+            route('projects.show', $this->project)
+        );
     }
 }

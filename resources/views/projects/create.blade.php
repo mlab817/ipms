@@ -26,7 +26,7 @@
 
                 <dl class="form-group @error('title') errored mb-6 @enderror">
                     <dt class="form-group-header">
-                        <label for="title" class="required">PAP Title </label>
+                        <label for="title" class="required">Program or Project </label>
                     </dt>
                     <dd class="form-group-body">
                         <x-input.text name="title" aria-describedby="title-validation" value="{{ old('title') }}"></x-input.text>
@@ -46,7 +46,7 @@
                 </dl>
 
                 <div class="form-group row">
-                    <label for="regular_program" class="col-form-label col-sm-3 required">Is this a regular
+                    <label for="regular_program" class="required">Is this a regular
                         program? </label>
                     <div class="col-sm-9">
                         <div class="form-checkbox">

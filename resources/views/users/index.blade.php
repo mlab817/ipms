@@ -149,7 +149,7 @@
                                 @foreach($user->projects->take(5) as $project)
                                     <a href="{{ route('projects.show', $project) }}" class="btn-link tooltipped tooltipped-n" aria-label="{{ $project->title }}">{{ $project->uuid }}</a>
                                 @endforeach
-                                <a href="{{ route('users.show', $user) }}#projects">View all</a>
+                                <a href="{{ route('users.show', ['user' => $user, 'tab' => 'paps']) }}">View all</a>
                             </p>
 
                             @if(auth()->user()->isIpd())

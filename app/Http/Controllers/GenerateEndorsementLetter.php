@@ -78,7 +78,7 @@ class GenerateEndorsementLetter extends Controller
         $section->addTextRun();
 
         $textrun = $section->addTextRun();
-        $textrun->addText('This is to endorse, for inclusion in the 2023-2025 Three-Year Rolling Infrastructure Program (TRIP) the following priority programs and projects of the {office} as encoded in the Public Investment Program System:');
+        $textrun->addText("This is to endorse, for inclusion in the 2023-2025 Three-Year Rolling Infrastructure Program (TRIP) the following priority programs and projects of the {$office->acronym} as encoded in the Public Investment Program System:");
         $textrun->addFootnote()->addText('Note: FY 2023 cost were derived from total cost for FY 2023 based on inputs in the funding source breakdown.', ['size' => 10]);
 
         $section->addTextRun();

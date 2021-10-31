@@ -121,6 +121,7 @@
                     <dd class="form-group-body">
                         <x-input.text name="title" value="{{ old('title', $project->title) }}" aria-describedby="title-validation"></x-input.text>
                         <x-error-message name="title" id="title-validation"></x-error-message>
+                        <p class="note">PAP title must be unique.</p>
                     </dd>
                 </dl>
 

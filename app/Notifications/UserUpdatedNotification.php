@@ -14,17 +14,14 @@ class UserUpdatedNotification extends Notification implements ShouldQueue
 
     public $user;
 
-    public $causer;
-
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $user, User $causer)
+    public function __construct($userId)
     {
-        $this->user = $user;
-        $this->causer = $causer;
+        $this->user = User::find($userId);
     }
 
     /**
@@ -46,10 +43,9 @@ class UserUpdatedNotification extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
-        return [
-            'sender'    => $this->causer,
-            'subject'   => 'User Updated',
-            'message'   => $this->causer->name . ' updated your information.',
-        ];
+        return (array) (new NotificationTemplate($this->user,
+            $this->user->full_name . ' updated your account information. Review now.',
+            route('users.show', $notifiable)
+        ));
     }
 }

@@ -15,7 +15,7 @@ class PasswordChangedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
+    public User $user;
 
     /**
      * Create a new event instance.

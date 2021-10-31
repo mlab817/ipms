@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\User;
+use App\Notifications\ProjectTransferredNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ProjectTransferController extends Controller
 {
@@ -17,10 +19,17 @@ class ProjectTransferController extends Controller
     public function __invoke(Request $request, Project $project)
     {
         // change creator_id or office_id
-
         $user = User::findByUsername($request->username);
 
+        $officeId = $project->office_id;
+
         $project->transfer($user);
+
+        $users = User::where('office_id', $officeId)->get();
+
+        $usersToNotify = collect($users, $user);
+
+        Notification::send($usersToNotify, new ProjectTransferredNotification($project->id, auth()->id(), $user->id));
 
         session()->flash('status','success|Successfully transferred PAP');
 

@@ -3,25 +3,29 @@
 namespace App\Notifications;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ProjectImportSuccessNotification extends Notification
+class ProjectValidatedNotification extends Notification
 {
     use Queueable;
 
     public $project;
+
+    public $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Project $project)
+    public function __construct($projectId, $userId)
     {
-        $this->project = $project;
+        $this->project = Project::find($projectId);
+        $this->user = User::find($userId);
     }
 
     /**
@@ -43,11 +47,10 @@ class ProjectImportSuccessNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        return [
-            'sender'        => config('ipms.system_user'),
-            'subject'       => 'Project Imported',
-            'message'       => 'Successfully imported ' . $this->project->title,
-            'actionUrl'     => $this->project ? route('projects.show', $this->project) : null,
-        ];
+        return (array) new NotificationTemplate(
+            $this->user,
+            $this->user->full_name . ' updated validation status of your PAP. View now.',
+            route('projects.show', $this->project)
+        );
     }
 }

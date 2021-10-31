@@ -54,10 +54,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/projects/{project}/exportJson', [\App\Http\Controllers\ProjectController::class,'exportJson'])->name('projects.exportJson');
     Route::resource('projects', \App\Http\Controllers\ProjectController::class);
     Route::resource('reviews', \App\Http\Controllers\ReviewController::class)->except('store','create');
-    Route::post('/notifications/markMultipleAsRead', [\App\Http\Controllers\NotificationController::class,'markMultipleAsRead'])->name('notifications.markMultipleAsRead');
-    Route::put('/notifications/{notification}/markAsRead', [\App\Http\Controllers\NotificationController::class,'markAsRead'])->name('notifications.markAsRead');
-    Route::post('/notifications', [\App\Http\Controllers\NotificationController::class,'markAllAsRead'])->name('notifications.markAllAsRead');
     Route::resource('notifications',\App\Http\Controllers\NotificationController::class)->only('index','show');
+    Route::put('/notifications/{notification}', [\App\Http\Controllers\NotificationController::class,'markAsRead'])->name('notifications.markAsRead');
+    Route::post('/notifications/markMultipleAsRead', [\App\Http\Controllers\NotificationController::class,'markMultipleAsRead'])->name('notifications.markMultipleAsRead');
     Route::resource('pipols',\App\Http\Controllers\PipolController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
     Route::get('/offices/{office}/users', \App\Http\Controllers\OfficeUserController::class)->name('offices.users');
