@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'login');
 
 // Resources secured by auth
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','activated'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
 
     Route::post('/auth/password/change', \App\Http\Controllers\Auth\ChangePasswordController::class)->name('password.change');
@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/notifications/markMultipleAsRead', [\App\Http\Controllers\NotificationController::class,'markMultipleAsRead'])->name('notifications.markMultipleAsRead');
     Route::resource('pipols',\App\Http\Controllers\PipolController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
+    Route::put('/users/{user}/activate', \App\Http\Controllers\UserActivateController::class)->name('users.activate');
     Route::get('/offices/{office}/users', \App\Http\Controllers\OfficeUserController::class)->name('offices.users');
     Route::resource('offices', \App\Http\Controllers\OfficeController::class);
 
@@ -64,6 +65,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('password/change', [\App\Http\Controllers\Auth\PasswordChangeController::class,'update'])->name('change_password_update');
     Route::get('password/change', [\App\Http\Controllers\Auth\PasswordChangeController::class,'index'])->name('change_password_index');
+
+    Route::view('/about', 'about')->name('about');
 });
 
 Auth::routes(['register' => false]);

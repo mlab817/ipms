@@ -93,6 +93,8 @@
                 <li><a class="dropdown-item" href="{{ route('projects.index') }}">Your PAPs</a></li>
                 <li><a href="{{ route('users.show', auth()->user()) }}" class="dropdown-item">Your Profile</a></li>
                 <div class="dropdown-divider" role="separator"></div>
+                <li><a href="{{ route('about') }}" class="dropdown-item">About</a></li>
+                <div class="dropdown-divider" role="separator"></div>
                 <form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>

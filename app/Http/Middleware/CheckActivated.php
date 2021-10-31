@@ -16,11 +16,12 @@ class CheckActivated
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && is_null(auth()->user()->activated_at)) {
-            auth()->logout();
+        if (auth()->check() && ! auth()->user()->isActivated()) {
+            \Auth::logout();
 
-            return redirect()->route('login')
-                ->withMessage('Your account has not been activated yet. Please contact the site admin to activate your account.');
+            session()->flash('status','error|Your account has not been activated yet');
+
+            return redirect()->route('login');
         }
 
         return $next($request);

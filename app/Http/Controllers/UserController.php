@@ -83,14 +83,16 @@ class UserController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        $password = 'password';
+        $password = nanoid(8);
 
         $user = new User($request->validated());
         $user->password = Hash::make($password);
         $user->username = generate_username($request->email);
         $user->save();
 
-        $user->activate();
+        if ($request->activate) {
+            $user->activate();
+        }
 
         event(new UserCreated($user, $password));
 
@@ -161,7 +163,7 @@ class UserController extends Controller
         // soft delete the user
         // this is better approach
         // to prevent deletion of PAPs by deleted users
-        $user->delete();
+        $user->deactivate();
 
         // TODO: Notify User
         $user->notify(new UserDeactivatedNotification);

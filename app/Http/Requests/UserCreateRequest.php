@@ -29,6 +29,7 @@ class UserCreateRequest extends FormRequest
             'email'         => 'required|email|unique:users,email',
             'office_id'     => 'required|exists:offices,id',
             'role_id'       => 'required|exists:roles,id',
+            'activate'      => 'sometimes|bool'
         ];
     }
 }

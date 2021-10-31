@@ -74,6 +74,14 @@
                         <x-error-message name="role_id"></x-error-message>
                     </dd>
                 </dl>
+
+                <div class="form-checkbox">
+                    <label for="activate">
+                        <input type="checkbox" name="activate" value="1" id="activate" checked>
+                        Activate user upon creation
+                        <p class="note">Will automatically activate user upon creation of account (i.e. user can immediately login)</p>
+                    </label>
+                </div>
             </div>
             <div class="Box-footer">
                 <button type="submit" class="btn btn-primary">Create</button>

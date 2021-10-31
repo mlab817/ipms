@@ -115,9 +115,9 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function isActive(): bool
+    public function isActivated(): bool
     {
-        return !!$this->active;
+        return !!$this->activated_at;
     }
 
     public function isAdmin(): bool

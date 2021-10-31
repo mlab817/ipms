@@ -89,7 +89,7 @@
         @if(count($users))
         <div class="Box-body p-0">
             @foreach($users as $user)
-                <div class="Box-row clearfix position-relative pr-6">
+                <div class="Box-row @if(! $user->isActivated()) Box-row--dropped @endif clearfix position-relative pr-6">
                     <details class="details-reset details-overlay dropdown position-static">
                         <summary class="color-fg-muted position-absolute right-0 top-0 mt-3 px-3" aria-label="User menu" aria-haspopup="menu" role="button">
                             <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-kebab-horizontal">
@@ -105,16 +105,28 @@
                                 Edit
                             </a>
                             @endcan
-                            @can('delete', $user)
-                            <div class="dropdown-divider"></div>
-                            <form action="{{ route('users.destroy', $user) }}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button onclick="return confirm('Are you sure you want to delete this office?')" type="submit" class="btn-link dropdown-item" role="menuitem">
-                                    Delete
-                                </button>
-                            </form>
-                            @endcan
+                            @if (! $user->isActivated())
+                                @can('update', $user)
+                                    <form action="{{ route('users.activate', $user) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button onclick="return confirm('Are you sure you want to activate this user?');" class="btn-link dropdown-item" type="submit" role="menuitem">
+                                            Activate
+                                        </button>
+                                    </form>
+                                @endcan
+                            @else
+                                @can('delete', $user)
+                                <div class="dropdown-divider"></div>
+                                <form action="{{ route('users.destroy', $user) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button onclick="return confirm('Are you sure you want to deactivate this user?')" type="submit" class="btn-link dropdown-item" role="menuitem">
+                                        Deactivate
+                                    </button>
+                                </form>
+                                @endcan
+                            @endif
                         </details-menu>
                     </details>
 
