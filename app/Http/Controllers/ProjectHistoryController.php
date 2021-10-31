@@ -11,6 +11,8 @@ class ProjectHistoryController extends Controller
     {
         $tab = 'history';
 
+        $project->load('audit_logs');
+
         return view('projects.history', compact('project','tab'));
     }
 }
