@@ -1,43 +1,6 @@
-@extends('layouts.app')
-
-@include('projects.partials.show-header')
+@extends('layouts.print')
 
 @section('content')
-    <div class="d-flex flex-column flex-lg-row flex-auto mb-4">
-        <div class="auto-search-group mb-1 mb-lg-0 mr-lg-1 flex-auto">
-
-        </div>
-        <div class="d-flex flex-wrap">
-            <div class="BtnGroup">
-                <button class="BtnGroup-item btn @if(! $project->isDraft()) btn-{{ $project->isEndorsed() ? 'primary' : 'danger' }} @endif" type="button">
-                    @if($project->isEndorsed())
-                        <svg class="octicon octicon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>
-                        Endorsed
-                    @endif
-                    @if($project->isDraft())
-                        <svg class="octicon octicon-issue-opened" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
-                        Draft
-                    @endif
-                    @if($project->isDropped())
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.404 12.596a6.5 6.5 0 119.192-9.192 6.5 6.5 0 01-9.192 9.192zM2.344 2.343a8 8 0 1011.313 11.314A8 8 0 002.343 2.343zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"></path></svg>
-                        Dropped
-                    @endif
-                </button>
-
-                <button class="BtnGroup-item btn @if($project->isValidated()) btn-primary @endif" type="button">
-                    @if($project->isValidated())
-                        Validated
-                        <svg class="octicon octicon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>
-                    @else
-                        Unvalidated
-                        <svg class="octicon octicon-issue-opened" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
-                    @endif
-                </button>
-
-            </div>
-        </div>
-    </div>
-
     <div class="Box">
         <div class="Box-header py-2 pr-2 position-sticky top-0 clearfix">
             <!-- Project menu -->
@@ -181,169 +144,169 @@
 
                         @if($project->isDropped())
                             @can('undrop', $project)
-                                    <li>
-                                        <details class="details-reset details-overlay details-overlay-dark mr-1">
-                                            <summary class="dropdown-item" aria-label="Undo dropping of this PAP" aria-haspopup="dialog">
-                                                Undo Drop
-                                            </summary>
-                                            <details-dialog class="Box--overlay anim-fade-in fast">
-                                                <form class="inline-form" action="{{ route('projects.undrop', $project) }}" accept-charset="UTF-8" method="post">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <div class="Box">
-                                                        <div class="Box-header">
-                                                            <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
-                                                                <!-- <%= octicon "x" %> -->
-                                                                <svg class="octicon octicon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
-                                                            </button>
-                                                            <h2 class="Box-title">Undo Drop</h2>
-                                                        </div>
-                                                        <div class="flash flash-warn flash-full m-0">
-                                                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
-                                                                <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
-                                                            </svg>
-                                                            <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
-                                                        </div>
-                                                        <div class="Box-body">
-                                                            <div class="d-flex flex-nowrap">
-                                                                <div>
-                                                                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
-                                                                        <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
-                                                                    </svg>
-                                                                </div>
-                                                                <div class="pl-3 flex-1">
-                                                                    <p class="overflow-hidden mb-1">Before you submit, please consider:</p>
-                                                                    <ul class="ml-3">
-                                                                        <strong>Undo Drop:</strong> The dropping of the PAP will be undid and the PAP will be restored as draft. If you wish to permanently delete the PAP, use the Delete function.
-                                                                        Doing so would allow the encoder to further make modifications and endorse the PAP for inclusion in the
-                                                                        PIP/TRIP.
-                                                                    </ul>
-                                                                </div>
+                                <li>
+                                    <details class="details-reset details-overlay details-overlay-dark mr-1">
+                                        <summary class="dropdown-item" aria-label="Undo dropping of this PAP" aria-haspopup="dialog">
+                                            Undo Drop
+                                        </summary>
+                                        <details-dialog class="Box--overlay anim-fade-in fast">
+                                            <form class="inline-form" action="{{ route('projects.undrop', $project) }}" accept-charset="UTF-8" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="Box">
+                                                    <div class="Box-header">
+                                                        <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+                                                            <!-- <%= octicon "x" %> -->
+                                                            <svg class="octicon octicon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
+                                                        </button>
+                                                        <h2 class="Box-title">Undo Drop</h2>
+                                                    </div>
+                                                    <div class="flash flash-warn flash-full m-0">
+                                                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
+                                                            <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
+                                                        </svg>
+                                                        <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
+                                                    </div>
+                                                    <div class="Box-body">
+                                                        <div class="d-flex flex-nowrap">
+                                                            <div>
+                                                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
+                                                                    <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="pl-3 flex-1">
+                                                                <p class="overflow-hidden mb-1">Before you submit, please consider:</p>
+                                                                <ul class="ml-3">
+                                                                    <strong>Undo Drop:</strong> The dropping of the PAP will be undid and the PAP will be restored as draft. If you wish to permanently delete the PAP, use the Delete function.
+                                                                    Doing so would allow the encoder to further make modifications and endorse the PAP for inclusion in the
+                                                                    PIP/TRIP.
+                                                                </ul>
                                                             </div>
                                                         </div>
-                                                        <div class="Box-footer">
-                                                            <button onclick="return confirm('Are you sure you want to undo dropping of this PAP?')" class="btn btn-danger btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
-                                                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-trash">
-                                                                    <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
-                                                                </svg>
-                                                                Undo Drop
-                                                            </button>
-                                                        </div>
                                                     </div>
-                                                </form>
-                                            </details-dialog>
-                                        </details>
-                                    </li>
+                                                    <div class="Box-footer">
+                                                        <button onclick="return confirm('Are you sure you want to undo dropping of this PAP?')" class="btn btn-danger btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
+                                                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-trash">
+                                                                <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
+                                                            </svg>
+                                                            Undo Drop
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </details-dialog>
+                                    </details>
+                                </li>
                             @endcan
                         @endif
 
                         @can('validate', $project)
                             @if($project->isValidated())
-                            <li>
-                                <details class="details-reset details-overlay details-overlay-dark">
-                                    <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
-                                        Invalidate
-                                    </summary>
-                                    <details-dialog class="Box--overlay anim-fade-in fast">
-                                        <form class="inline-form" action="{{ route('projects.validate', $project) }}" accept-charset="UTF-8" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="Box">
-                                                <div class="Box-header">
-                                                    <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
-                                                        <!-- <%= octicon "x" %> -->
-                                                        <svg class="octicon octicon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                                                            <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                                <li>
+                                    <details class="details-reset details-overlay details-overlay-dark">
+                                        <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
+                                            Invalidate
+                                        </summary>
+                                        <details-dialog class="Box--overlay anim-fade-in fast">
+                                            <form class="inline-form" action="{{ route('projects.validate', $project) }}" accept-charset="UTF-8" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="Box">
+                                                    <div class="Box-header">
+                                                        <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+                                                            <!-- <%= octicon "x" %> -->
+                                                            <svg class="octicon octicon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                                                                <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                                                            </svg>
+                                                        </button>
+                                                        <h2 class="Box-title">Invalidate PAP</h2>
+                                                    </div>
+                                                    <div class="flash flash-warn flash-full m-0">
+                                                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
+                                                            <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
                                                         </svg>
-                                                    </button>
-                                                    <h2 class="Box-title">Invalidate PAP</h2>
-                                                </div>
-                                                <div class="flash flash-warn flash-full m-0">
-                                                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
-                                                        <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
-                                                    </svg>
-                                                    <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
-                                                </div>
-                                                <div class="Box-body">
-                                                    <div class="d-flex flex-nowrap">
-                                                        <div>
-                                                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
-                                                                <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
-                                                            </svg>
-                                                        </div>
-                                                        <div class="pl-3 flex-1">
-                                                            <p class="overflow-hidden mb-1">Before you validate, please consider:</p>
-                                                            <ul class="ml-3">
-                                                                <strong>Invalidated:</strong> Invalidated PAPs can be edited again by the user but will not be reverted to draft. This will
-                                                                only allow IPD to edit the PAP information.
-                                                            </ul>
+                                                        <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
+                                                    </div>
+                                                    <div class="Box-body">
+                                                        <div class="d-flex flex-nowrap">
+                                                            <div>
+                                                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
+                                                                    <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="pl-3 flex-1">
+                                                                <p class="overflow-hidden mb-1">Before you validate, please consider:</p>
+                                                                <ul class="ml-3">
+                                                                    <strong>Invalidated:</strong> Invalidated PAPs can be edited again by the user but will not be reverted to draft. This will
+                                                                    only allow IPD to edit the PAP information.
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    <div class="Box-footer">
+                                                        <button onclick="return confirm('Are you sure you want to validate this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
+                                                            <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
+                                                            Invalidate
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div class="Box-footer">
-                                                    <button onclick="return confirm('Are you sure you want to validate this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
-                                                        <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
-                                                        Invalidate
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </details-dialog>
-                                </details>
-                            </li>
+                                            </form>
+                                        </details-dialog>
+                                    </details>
+                                </li>
                             @else
-                            <li>
-                                <details class="details-reset details-overlay details-overlay-dark">
-                                    <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
-                                        Validate
-                                    </summary>
-                                    <details-dialog class="Box--overlay anim-fade-in fast">
-                                        <form class="inline-form" action="{{ route('projects.validate', $project) }}" accept-charset="UTF-8" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="Box">
-                                                <div class="Box-header">
-                                                    <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
-                                                        <!-- <%= octicon "x" %> -->
-                                                        <svg class="octicon octicon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
-                                                    </button>
-                                                    <h2 class="Box-title">Validate PAP</h2>
-                                                </div>
-                                                <div class="flash flash-warn flash-full m-0">
-                                                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
-                                                        <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
-                                                    </svg>
-                                                    <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
-                                                </div>
-                                                <div class="Box-body">
-                                                    <div class="d-flex flex-nowrap">
-                                                        <div>
-                                                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
-                                                                <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
-                                                            </svg>
-                                                        </div>
-                                                        <div class="pl-3 flex-1">
-                                                            <p class="overflow-hidden mb-1">Before you validate, please consider:</p>
-                                                            <ul class="ml-3">
-                                                                <strong>Validated:</strong> Validating PAPs will prevent further modification by IPD and the owner of the PAP.
-                                                                While not required, you may wish to inform the owner of the PAP first esp. if you expect them to provide
-                                                                further information on this PAP.
-                                                                <p>PS: You may still invalidate if needed.</p>
-                                                            </ul>
+                                <li>
+                                    <details class="details-reset details-overlay details-overlay-dark">
+                                        <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
+                                            Validate
+                                        </summary>
+                                        <details-dialog class="Box--overlay anim-fade-in fast">
+                                            <form class="inline-form" action="{{ route('projects.validate', $project) }}" accept-charset="UTF-8" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="Box">
+                                                    <div class="Box-header">
+                                                        <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+                                                            <!-- <%= octicon "x" %> -->
+                                                            <svg class="octicon octicon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
+                                                        </button>
+                                                        <h2 class="Box-title">Validate PAP</h2>
+                                                    </div>
+                                                    <div class="flash flash-warn flash-full m-0">
+                                                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
+                                                            <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
+                                                        </svg>
+                                                        <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
+                                                    </div>
+                                                    <div class="Box-body">
+                                                        <div class="d-flex flex-nowrap">
+                                                            <div>
+                                                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
+                                                                    <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="pl-3 flex-1">
+                                                                <p class="overflow-hidden mb-1">Before you validate, please consider:</p>
+                                                                <ul class="ml-3">
+                                                                    <strong>Validated:</strong> Validating PAPs will prevent further modification by IPD and the owner of the PAP.
+                                                                    While not required, you may wish to inform the owner of the PAP first esp. if you expect them to provide
+                                                                    further information on this PAP.
+                                                                    <p>PS: You may still invalidate if needed.</p>
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    <div class="Box-footer">
+                                                        <button onclick="return confirm('Are you sure you want to validate this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
+                                                            <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
+                                                            Validate
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div class="Box-footer">
-                                                    <button onclick="return confirm('Are you sure you want to validate this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
-                                                        <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
-                                                        Validate
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </details-dialog>
-                                </details>
-                            </li>
+                                            </form>
+                                        </details-dialog>
+                                    </details>
+                                </li>
                             @endif
                         @endcan
                         @can('encode', $project)
@@ -410,11 +373,6 @@
                                 </details>
                             </li>
                         @endcan
-                        <li>
-                            <a target="_blank" class="dropdown-item" href="{{ route('projects.show', ['project' => $project, 'print' => 1]) }}">
-                                Print
-                            </a>
-                        </li>
                         <li class="dropdown-divider" role="separator"></li>
                         <li>
                             <a class="dropdown-item" href="{{ route('projects.index') }}">
@@ -484,11 +442,11 @@
                 <dt><label>Basis for Implementation</label></dt>
                 <dd>
                     <ul class="pl-4">
-                    @forelse($project->bases as $basis)
-                        <li>{{ $basis->name }}</li>
+                        @forelse($project->bases as $basis)
+                            <li>{{ $basis->name }}</li>
                         @empty
-                        <li>None selected.</li>
-                    @endforelse
+                            <li>None selected.</li>
+                        @endforelse
                     </ul>
                 </dd>
             </dl>
@@ -525,7 +483,7 @@
                     <ul class="pl-4">
                         @forelse($project->operating_units as $ou)
                             <li>{{ $ou->name }}</li>
-                            @empty
+                        @empty
                             <li>None selected.</li>
                         @endforelse
                     </ul>
@@ -1343,81 +1301,81 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-bottom">
-                                <th class="col-1 p-2 text-center">2017</th>
-                                <td class="p-2 text-right">{{ number_format($project->nep->y2017 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->allocation->y2017 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->disbursement->y2017 ?? 0, 2) }}</td>
-                            </tr>
-                            <tr class="border-bottom">
-                                <th class="col-1 p-2 text-center">2018</th>
-                                <td class="p-2 text-right">{{ number_format($project->nep->y2018 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->allocation->y2018 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->disbursement->y2018 ?? 0, 2) }}</td>
-                            </tr>
-                            <tr class="border-bottom">
-                                <th class="col-1 p-2 text-center">2019</th>
-                                <td class="p-2 text-right">{{ number_format($project->nep->y2019 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->allocation->y2019 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->disbursement->y2019 ?? 0, 2) }}</td>
-                            </tr>
-                            <tr class="border-bottom">
-                                <th class="col-1 p-2 text-center">2020</th>
-                                <td class="p-2 text-right">{{ number_format($project->nep->y2020 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->allocation->y2020 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->disbursement->y2020 ?? 0, 2) }}</td>
-                            </tr>
-                            <tr class="border-bottom">
-                                <th class="col-1 p-2 text-center">2021</th>
-                                <td class="p-2 text-right">{{ number_format($project->nep->y2021 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->allocation->y2021 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->disbursement->y2021 ?? 0, 2) }}</td>
-                            </tr>
-                            <tr class="border-bottom">
-                                <th class="col-1 p-2 text-center">2022</th>
-                                <td class="p-2 text-right">{{ number_format($project->nep->y2022 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->allocation->y2022 ?? 0, 2) }}</td>
-                                <td class="p-2 text-right">{{ number_format($project->disbursement->y2022 ?? 0, 2) }}</td>
-                            </tr>
-                            <tr class="border-bottom">
-                                <th class="col-1 p-2 text-center">Total</th>
-                                <th class="p-2 text-right">
-                                    {{
-                                        number_format(($project->nep->y2016 ?? 0)
-                                            + ($project->nep->y2017 ?? 0)
-                                            + ($project->nep->y2018 ?? 0)
-                                            + ($project->nep->y2019 ?? 0)
-                                            + ($project->nep->y2020 ?? 0)
-                                            + ($project->nep->y2021 ?? 0)
-                                            + ($project->nep->y2022 ?? 0)
-                                            + ($project->nep->y2023 ?? 0), 2)
-                                    }}
-                                </th>
-                                <th class="p-2 text-right">
-                                    {{
-                                        number_format(($project->allocation->y2016 ?? 0)
-                                            + ($project->allocation->y2017 ?? 0)
-                                            + ($project->allocation->y2018 ?? 0)
-                                            + ($project->allocation->y2019 ?? 0)
-                                            + ($project->allocation->y2020 ?? 0)
-                                            + ($project->allocation->y2021 ?? 0)
-                                            + ($project->allocation->y2022 ?? 0)
-                                            + ($project->allocation->y2023 ?? 0), 2)
-                                    }}
-                                </th>
-                                <th class="p-2 text-right">
-                                    {{
-                                        number_format(($project->disbursement->y2016 ?? 0)
-                                            + ($project->disbursement->y2017 ?? 0)
-                                            + ($project->disbursement->y2018 ?? 0)
-                                            + ($project->disbursement->y2019 ?? 0)
-                                            + ($project->disbursement->y2020 ?? 0)
-                                            + ($project->disbursement->y2021 ?? 0)
-                                            + ($project->disbursement->y2022 ?? 0)
-                                            + ($project->disbursement->y2023 ?? 0), 2)
-                                    }}
-                                </th>
-                            </tr>
+                        <tr class="border-bottom">
+                            <th class="col-1 p-2 text-center">2017</th>
+                            <td class="p-2 text-right">{{ number_format($project->nep->y2017 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->allocation->y2017 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->disbursement->y2017 ?? 0, 2) }}</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <th class="col-1 p-2 text-center">2018</th>
+                            <td class="p-2 text-right">{{ number_format($project->nep->y2018 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->allocation->y2018 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->disbursement->y2018 ?? 0, 2) }}</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <th class="col-1 p-2 text-center">2019</th>
+                            <td class="p-2 text-right">{{ number_format($project->nep->y2019 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->allocation->y2019 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->disbursement->y2019 ?? 0, 2) }}</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <th class="col-1 p-2 text-center">2020</th>
+                            <td class="p-2 text-right">{{ number_format($project->nep->y2020 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->allocation->y2020 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->disbursement->y2020 ?? 0, 2) }}</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <th class="col-1 p-2 text-center">2021</th>
+                            <td class="p-2 text-right">{{ number_format($project->nep->y2021 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->allocation->y2021 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->disbursement->y2021 ?? 0, 2) }}</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <th class="col-1 p-2 text-center">2022</th>
+                            <td class="p-2 text-right">{{ number_format($project->nep->y2022 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->allocation->y2022 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->disbursement->y2022 ?? 0, 2) }}</td>
+                        </tr>
+                        <tr class="border-bottom">
+                            <th class="col-1 p-2 text-center">Total</th>
+                            <th class="p-2 text-right">
+                                {{
+                                    number_format(($project->nep->y2016 ?? 0)
+                                        + ($project->nep->y2017 ?? 0)
+                                        + ($project->nep->y2018 ?? 0)
+                                        + ($project->nep->y2019 ?? 0)
+                                        + ($project->nep->y2020 ?? 0)
+                                        + ($project->nep->y2021 ?? 0)
+                                        + ($project->nep->y2022 ?? 0)
+                                        + ($project->nep->y2023 ?? 0), 2)
+                                }}
+                            </th>
+                            <th class="p-2 text-right">
+                                {{
+                                    number_format(($project->allocation->y2016 ?? 0)
+                                        + ($project->allocation->y2017 ?? 0)
+                                        + ($project->allocation->y2018 ?? 0)
+                                        + ($project->allocation->y2019 ?? 0)
+                                        + ($project->allocation->y2020 ?? 0)
+                                        + ($project->allocation->y2021 ?? 0)
+                                        + ($project->allocation->y2022 ?? 0)
+                                        + ($project->allocation->y2023 ?? 0), 2)
+                                }}
+                            </th>
+                            <th class="p-2 text-right">
+                                {{
+                                    number_format(($project->disbursement->y2016 ?? 0)
+                                        + ($project->disbursement->y2017 ?? 0)
+                                        + ($project->disbursement->y2018 ?? 0)
+                                        + ($project->disbursement->y2019 ?? 0)
+                                        + ($project->disbursement->y2020 ?? 0)
+                                        + ($project->disbursement->y2021 ?? 0)
+                                        + ($project->disbursement->y2022 ?? 0)
+                                        + ($project->disbursement->y2023 ?? 0), 2)
+                                }}
+                            </th>
+                        </tr>
                         </tbody>
                     </table>
                 </dd>
@@ -1426,13 +1384,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        function backToTop() {
-            // function to scroll back to top
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-    </script>
-@endpush

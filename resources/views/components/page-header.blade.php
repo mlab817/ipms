@@ -3,7 +3,7 @@
     'description' => '',
 ])
 
-<div class="color-bg-subtle">
+<div class="color-bg-subtle d-print-none">
     <div class="border-bottom">
         <div class="container-lg d-flex flex-justify-between py-6">
             <div class="flex-auto">

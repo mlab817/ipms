@@ -1,4 +1,4 @@
-<div class="Header">
+<div class="Header d-print-none">
     <div class="Header-item">
         <a href="{{ route('dashboard') }}" class="Header-link f4 d-flex flex-items-center">
             <!-- <%= octicon "mark-github", class: "mr-2", height: 32 %> -->

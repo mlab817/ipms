@@ -42,6 +42,7 @@ Route::middleware(['auth','activated'])->group(function () {
     Route::put('/projects/{project}/undrop', \App\Http\Controllers\ProjectUndropController::class)->name('projects.undrop');
     // ProjectReview
 
+    Route::get('/export', \App\Http\Controllers\ProjectExportController::class)->name('export');
     Route::get('/download', [\App\Http\Controllers\GenerateEndorsementLetter::class,'download'])->name('download');
 
     Route::get('/projects/deleted', [\App\Http\Controllers\ProjectController::class,'deleted'])->name('projects.deleted');
@@ -65,6 +66,8 @@ Route::middleware(['auth','activated'])->group(function () {
 
     Route::post('password/change', [\App\Http\Controllers\Auth\PasswordChangeController::class,'update'])->name('change_password_update');
     Route::get('password/change', [\App\Http\Controllers\Auth\PasswordChangeController::class,'index'])->name('change_password_index');
+
+    Route::get('/encoders', \App\Http\Controllers\SearchEncoderController::class)->name('search.encoders');
 
     Route::view('/about', 'about')->name('about');
 });

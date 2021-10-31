@@ -149,7 +149,7 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return Response
      */
-    public function show(Project $project)
+    public function show(Project $project, Request $request)
     {
         if (! $project->seen) {
             $project->seen_by()->attach(auth()->id());
@@ -175,6 +175,10 @@ class ProjectController extends Controller
             'operating_units');
 
         $tab = 'profile';
+
+        if ($request->has('print')) {
+            return view('projects.print', compact('project'));
+        }
 
         return view('projects.show', compact('project','tab'))
             ->with([

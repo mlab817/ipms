@@ -21,6 +21,12 @@ class ProjectTransferController extends Controller
         // change creator_id or office_id
         $user = User::findByUsername($request->username);
 
+        if (! $user) {
+            session()->flash('status','error|Please select a valid user.');
+
+            return back();
+        }
+
         $officeId = $project->office_id;
 
         $project->transfer($user);

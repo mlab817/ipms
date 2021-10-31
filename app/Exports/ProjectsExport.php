@@ -6,10 +6,13 @@ use App\Models\Project;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ProjectsExport implements FromQuery, WithMapping, WithHeadings
+class ProjectsExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSize, WithStyles
 {
     use Exportable;
 
@@ -42,6 +45,8 @@ class ProjectsExport implements FromQuery, WithMapping, WithHeadings
             $row->implementation_mode->name ?? '',
             $row->tier->name ?? '',
             $row->total_project_cost,
+            $row->submission_status->name ?? '',
+            $row->updated_at->format('Y-m-d h:i:s'),
         ];
     }
 
@@ -55,16 +60,29 @@ class ProjectsExport implements FromQuery, WithMapping, WithHeadings
             'PIPOL Code',
             'Title',
             'Office',
-            'PAP Type',
-            'Project Status',
+            'Program or Project',
+            'Overall Status',
             'Spatial Coverage',
             'Implementation Start',
             'Implementation End',
             'Main PDP Chapter',
             'Main Funding Source',
-            'Implementation Mode',
-            'Budget RefTier',
+            'Mode of Implementation',
+            'Category',
             'Total Project Cost (PhP)',
+            'Submission Status',
+            'As of '
+        ];
+    }
+
+    /**
+     * @param Worksheet $sheet
+     * @return mixed
+     */
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            1 => ['font' => ['bold' => true]]
         ];
     }
 }

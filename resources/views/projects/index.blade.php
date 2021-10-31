@@ -6,12 +6,22 @@
 
 @section('content')
     @if(auth()->user()->isEncoder())
-    <div class="d-flex flex-justify-end mb-5">
-        <a href="{{ route('download') }}" class="btn btn-primary tooltipped tooltipped-n" aria-label="Download endorsement letter">
-            <svg class="octicon octicon-download" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M7.47 10.78a.75.75 0 001.06 0l3.75-3.75a.75.75 0 00-1.06-1.06L8.75 8.44V1.75a.75.75 0 00-1.5 0v6.69L4.78 5.97a.75.75 0 00-1.06 1.06l3.75 3.75zM3.75 13a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z"></path></svg>
-            Download
-        </a>
-    </div>
+        <div class="d-flex flex-justify-end mb-5 position-relative">
+            <details class="details-reset details-overlay">
+                <summary class="btn btn-primary" aria-haspopup="true">
+                    <svg class="octicon octicon-download" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M7.47 10.78a.75.75 0 001.06 0l3.75-3.75a.75.75 0 00-1.06-1.06L8.75 8.44V1.75a.75.75 0 00-1.5 0v6.69L4.78 5.97a.75.75 0 00-1.06 1.06l3.75 3.75zM3.75 13a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z"></path></svg>
+                    Download
+                </summary>
+                <div class="SelectMenu right-0">
+                    <div class="SelectMenu-modal">
+                        <div class="SelectMenu-list SelectMenu-list--borderless">
+                            <a href="{{ route('download') }}" class="SelectMenu-item" role="menuitem">Download Endorsement Letter</a>
+                            <a href="{{ route('export') }}" class="SelectMenu-item" role="menuitem">Export PAPs to Excel</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </div>
     @endif
 
     <div class="d-flex flex-column flex-lg-row flex-auto">
@@ -274,7 +284,7 @@
                                     <form action="{{ route('projects.transfer', $project) }}" method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <div class="Box">
+                                        <div class="Box" x-data="{ username: '' }">
                                             <div class="Box-header">
                                                 <h3 class="Box-title">Transfer PAP</h3>
                                             </div>
@@ -310,13 +320,13 @@
                                                 <p class="mt-3">
                                                     Select user to transfer the PAP ownership into.
                                                 </p>
-                                                <auto-complete src="/api/encoders" for="encoders-popup">
-                                                    <input autofocus required placeholder="Type to search users..." name="username" type="text" class="form-control width-full" >
+                                                <auto-complete src="{{ route('search.encoders') }}" for="encoders-popup">
+                                                    <input x-model="username" autofocus required placeholder="Type to search users..." name="username" type="text" class="form-control width-full" >
                                                     <ul id="encoders-popup"></ul>
                                                 </auto-complete>
                                             </div>
                                             <div class="Box-footer">
-                                                <button type="submit" class="btn btn-primary width-full">Submit</button>
+                                                <button x-bind:disabled="!username" type="submit" class="btn btn-primary width-full">Submit</button>
                                             </div>
                                         </div>
                                     </form>
