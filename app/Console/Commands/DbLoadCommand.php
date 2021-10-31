@@ -36,6 +36,8 @@ class DbLoadCommand extends Command
 
         $latestSql = $files[count($files) - 1];
 
+//        dd($latestSql);
+
         if (DB::unprepared(file_get_contents($latestSql))) {
             $this->info('Successfully loaded database');
         }

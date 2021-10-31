@@ -62,7 +62,7 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $projectQuery = Project::query()->with(['office','creator.office','project_status','pipol']);
+        $projectQuery = Project::query()->with(['office','creator.office','project_status']);
         $q = $request->q;
         $validated = $request->validated;
         $pipsStatus = RefSubmissionStatus::findByName($request->status ?? '');
