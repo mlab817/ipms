@@ -371,7 +371,7 @@
                     </dd>
                 </dl>
 
-                <dl class="form-group @error('rdc_endorsement_required') errored mb-6 @enderror">
+                <dl class="form-group ml-4 @error('rdc_endorsement_required') errored mb-6 @enderror">
                     <dt class="form-group-header">
                         <label for="rdc_endorsement_required" class="required">Will require Regional Development Council (RDC) Endorsement? </label>
                     </dt>
@@ -381,7 +381,7 @@
                     </dd>
                 </dl>
 
-                <dl class="form-group @error('rdc_endorsed') errored mb-6 @enderror">
+                <dl class="form-group ml-4 @error('rdc_endorsed') errored mb-6 @enderror">
                     <dt class="form-group-header">
                         <label for="rdc_endorsed">Already endorsed by RDC? </label>
                     </dt>
@@ -391,7 +391,7 @@
                     </dd>
                 </dl>
 
-                <dl class="form-group @error('rdc_endorsed_date') errored mb-6 @enderror">
+                <dl class="form-group ml-4 @error('rdc_endorsed_date') errored mb-6 @enderror">
                     <dt class="form-group-header">
                         <label for="rdc_endorsed_date">
                             Date of Endorsement
