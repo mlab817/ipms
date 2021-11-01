@@ -41,10 +41,10 @@ class PasswordChangedNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(config('app.name') . ' Password Changed')
-                    ->greeting('Hi, ' . $notifiable->first_name . '!')
+                    ->subject('[' . config('app.name') . '] Your password has been changed')
+                    ->greeting('Hi, @' . $notifiable->username . '!')
                     ->line('You\'ve successfully changed your '. config('app.name') .' password!')
-                    ->line('If you didn\'t authorize this, please call us immediately at (02)8920-9116 or email us at ipd@da.gov.ph.')
+                    ->line('If you didn\'t authorize this, please call us immediately at (02)8920-9116 or email us at ipd@da.gov.ph. You may always just reset your password by clicking "I forgot my password" in the login screen')
                     ->line('Thank you for using our application!');
     }
 }
