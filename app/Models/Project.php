@@ -579,7 +579,7 @@ class Project extends Model
 
         $this->audit_logs()->create([
             'description' => 'transferred',
-            'user_id' => $creator->id,
+            'user_id' => auth()->id(),
         ]);
     }
 
