@@ -353,7 +353,7 @@
 
                 <dl class="form-group @error('covid_interventions') errored mb-6 @enderror">
                     <dt class="form-group-header">
-                        <label for="covid_interventions" class="required">Included in the following documents: </label>
+                        <label for="covid_interventions">Included in the following documents: </label>
                     </dt>
                     <dd class="form-group-body">
                         <x-input.checkbox :options="$covid_interventions" name="covid_interventions[]" :selected="old('covid_interventions', $project->covid_interventions->pluck('id')->toArray() ?? [])" aria-describedby="covid-interventions-validation"></x-input.checkbox>
@@ -373,7 +373,7 @@
 
                 <dl class="form-group ml-4 @error('rdc_endorsement_required') errored mb-6 @enderror">
                     <dt class="form-group-header">
-                        <label for="rdc_endorsement_required" class="required">Will require Regional Development Council (RDC) Endorsement? </label>
+                        <label for="rdc_endorsement_required">Will require Regional Development Council (RDC) Endorsement? </label>
                     </dt>
                     <dd class="form-group-body">
                         <x-input.radio :options="$boolean" name="rdc_endorsement_required" selected="{{ old('rdc_endorsement_required', $project->rdc_endorsement_required) }}" aria-describedby="rdc_endorsement_required-validation"></x-input.radio>
@@ -886,7 +886,7 @@
 
                 <dl class="form-group @error('ref_gad_id') errored mb-6 @enderror">
                     <dt class="form-group-header">
-                        <label for="ref_gad_id" class="required">Level of GAD Responsiveness  </label>
+                        <label for="ref_gad_id">Level of GAD Responsiveness (if ICC-able) </label>
                     </dt>
                     <dd class="form-group-body">
                         <x-select name="ref_gad_id" :options="$gads" :selected="old('ref_gad_id', $project->ref_gad_id ?? '')" aria-describedby="ref_preparation_document_id-validation"></x-select>
