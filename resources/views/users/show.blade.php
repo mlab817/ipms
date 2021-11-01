@@ -69,8 +69,13 @@
     <div class="px-3">
         @if($tab == 'profile')
         <div class="Box">
-            <div class="Box-header">
-                <h3 class="Box-title">Profile</h3>
+            <div class="Box-header d-flex flex-items-center">
+                <div class="flex-auto">
+                    <h3 class="Box-title">Profile</h3>
+                </div>
+                @can('update', $user)
+                <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">Edit</a>
+                @endcan
             </div>
             <div class="Box-body">
                 <dl>
