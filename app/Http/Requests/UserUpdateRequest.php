@@ -28,6 +28,7 @@ class UserUpdateRequest extends FormRequest
             'last_name' => 'required|string',
             'office_id' => 'required|exists:offices,id',
             'role_id'   => 'required|exists:roles,id',
+            'username'  => 'required|unique:users,username,' . $this->id,
         ];
     }
 }

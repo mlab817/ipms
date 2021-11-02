@@ -33,6 +33,8 @@
         <form action="{{ route('users.update', $user) }}" method="POST" accept-charset="utf-8">
             @csrf
             @method('PUT')
+            <input type="hidden" value="{{ $user->id  }}" name="id" id="id">
+
             <div class="Box-body">
                 <p class="note">Note: Email can no longer be changed.</p>
 
@@ -60,6 +62,15 @@
                     </dt>
                     <dd class="form-group-body">
                         <input type="email" name="email" id="email" placeholder="Email (e.g. juandelacruz@gmail.com)" class="form-control" value="{{ $user->email }}" disabled>
+                    </dd>
+                </dl>
+
+                <dl class="form-group">
+                    <dt class="form-group-header">
+                        <label for="username" class="required">Username</label>
+                    </dt>
+                    <dd class="form-group-body">
+                        <input type="text" name="username" id="username" placeholder="Username (e.g. juandelacruz)" class="form-control" value="{{ old('username', $user->username) }}">
                     </dd>
                 </dl>
 
