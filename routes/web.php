@@ -97,3 +97,9 @@ Route::get('/test-date', function () {
 Route::get('/mailable', function () {
     return new App\Mail\UserCreated(\App\Models\User::find(1), 'password');
 });
+
+Route::get('/indicators_json', function () {
+    $json = json_decode(file_get_contents(database_path('seeders/indicators.json')));
+
+    return response()->json($json);
+});

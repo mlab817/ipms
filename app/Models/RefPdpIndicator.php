@@ -25,6 +25,7 @@ class RefPdpIndicator extends Model
         'description',
         'level',
         'parent_id',
+        'ref_pdp_chapter_id',
     ];
 
     protected $hidden = [
@@ -37,6 +38,11 @@ class RefPdpIndicator extends Model
     public function projects(): BelongsToMany
     {
         return $this->belongsToMany(Project::class);
+    }
+
+    public function pdp_chapter(): BelongsTo
+    {
+        return $this->belongsTo(RefPdpChapter::class,'ref_pdp_chapter_id');
     }
 
     public function parent(): BelongsTo

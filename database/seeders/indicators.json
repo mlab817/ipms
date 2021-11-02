@@ -1,0 +1,1292 @@
+[
+  {
+    "id": "5",
+    "name": "PDP Chapter 5",
+    "children": [
+      {
+        "id": "1",
+        "name": "Chapter Outcome 1: Responsive, People-centered, Technology-enabled, and Clean Governance",
+        "children": [
+          {
+            "id": "84",
+            "name": "Sub-chapter Outcome 1.1: Participatory governance broadened"
+          },
+          {
+            "id": "493",
+            "name": "Percentile ranking in the WGI – Voice \nand Accountability improved"
+          },
+          {
+            "id": "494",
+            "name": "Open Budget Index score improved "
+          }
+        ]
+      },
+      {
+        "id": "85",
+        "name": "Sub-chapter Outcome 1.2: Seamless service delivery achieved",
+        "children": [
+          {
+            "id": "495",
+            "name": "Percentile ranking in the WGI – Regulatory Quality sustained"
+          },
+          {
+            "id": "496",
+            "name": "Percentile ranking in the GCI sustained"
+          },
+          {
+            "id": "497",
+            "name": "Score in the Global e-GDI improved"
+          },
+          {
+            "id": "498",
+            "name": "Percentile ranking in the WGI – Government Effectiveness improved"
+          }
+        ]
+      },
+      {
+        "id": "86",
+        "name": "Sub-chapter Outcome 1.3: Smart and resilient public organizations and future-ready public servants developed"
+      },
+      {
+        "id": "88",
+        "name": "Sub-chapter Outcome 1.4: Public accountability and integrity strengthened",
+        "children": [
+          {
+            "id": "499",
+            "name": "Percentile ranking in the WGI – Control \nof Corruption improved"
+          },
+          {
+            "id": "500",
+            "name": "Percentile ranking in the Corruption Perceptions Index (CPI) improved"
+          },
+          {
+            "id": "501",
+            "name": "Score in the CPI improved"
+          }
+        ]
+      },
+      {
+        "id": "140",
+        "name": "-",
+        "children": [
+          {
+            "id": "492",
+            "name": "Score in the national governance index \nimproved"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "name": "PDP Chapter 6",
+    "children": [
+      {
+        "id": "2",
+        "name": "Chapter Outcome 1: Swift, fair, and humane administration of justice ensured",
+        "children": [
+          {
+            "id": "89",
+            "name": "Sub-chapter Outcome 1.1: Criminal, civil, and economic justice processes ICT enabled and streamlined ",
+            "children": [
+              {
+                "id": "161",
+                "name": "World Justice Project - Rule of Law Index improved",
+                "children": [
+                  {
+                    "id": "675",
+                    "name": "World Justice Project - Rule of Law: Sub-indicator on Fundamental Rights improved"
+                  },
+                  {
+                    "id": "676",
+                    "name": "World Justice Project - Rule of Law: Sub-indicator on Civil Justice improved"
+                  },
+                  {
+                    "id": "677",
+                    "name": "World Justice Project - Rule of Law: Sub-indicator on Criminal Justice improved"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "90",
+            "name": "Sub-chapter Outcome 1.2: Sector efficiency and accountability improved",
+            "children": [
+              {
+                "id": "163",
+                "name": "Percentile rank in the World Governance Indicator – Rule of Law improved"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "name": "PDP Chapter 7",
+    "children": [
+      {
+        "id": "3",
+        "name": "Chapter Outcome 1: Philippine Culture and Values towards Bayanihan Promoted",
+        "children": [
+          {
+            "id": "91",
+            "name": "-",
+            "children": [
+              {
+                "id": "402",
+                "name": "Pride of being Filipino increased (%)"
+              },
+              {
+                "id": "403",
+                "name": "Legatum Prosperity Index (LPI) - Social Capital pillar score improved"
+              },
+              {
+                "id": "404",
+                "name": "Legatum Prosperity Index (LPI) - Social Capital pillar percentile rank improved"
+              },
+              {
+                "id": "405",
+                "name": "World Intellectual Property Organization (WIPO) - Creative Outputs score improved"
+              },
+              {
+                "id": "406",
+                "name": "World Intellectual Property Organization (WIPO) - Creative Outputs percentile rank improved"
+              },
+              {
+                "id": "407",
+                "name": "Number of Regional Development Plans with culture components increased (cumulative)"
+              },
+              {
+                "id": "408",
+                "name": "Percentage of LGUs with Local Culture and Arts Councils (LCACs) increased (cumulative; Total P/C/M = 1,715) "
+              },
+              {
+                "id": "409",
+                "name": "Percentage of LGUs with local cultural inventories submitted increased (cumulative; Total P/C/M = 1,715) "
+              }
+            ]
+          },
+          {
+            "id": "410",
+            "name": "Percentage of municipalities, cities, and provinces with Indigenous Peoples Mandatory Representation (IPMR) increased (Threshold of P/C/M = 1,406)",
+            "children": [
+              {
+                "id": "134",
+                "name": "Sub-chapter Outcome 1.1: Diverse cultures valued"
+              },
+              {
+                "id": "135",
+                "name": "Sub-chapter Outcome 1.3: \"Pagkamalikhain\" values of creative excellence advanced"
+              },
+              {
+                "id": "136",
+                "name": "Sub-chapter Outcome 1.2: Values that foster the common good inculcated"
+              },
+              {
+                "id": "137",
+                "name": "Sub-chapter Outcome 1.4: Culture-sensitive public governance and development strengthened"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "name": "PDP Chapter 8",
+    "children": [
+      {
+        "id": "4",
+        "name": "Chapter Outcome 1: Sustainable and resilient production and food availability ensured",
+        "children": [
+          {
+            "id": "719",
+            "name": "Sub-chapter Outcome 1.1: Growth of GVA in AFF Increased (year-on-year at constant prices, in percent)",
+            "children": [
+              {
+                "id": "508",
+                "name": "(a) Crops"
+              },
+              {
+                "id": "509",
+                "name": "(b) Livestock"
+              },
+              {
+                "id": "510",
+                "name": "(c) Poultry"
+              },
+              {
+                "id": "511",
+                "name": "(d) Forestry"
+              }
+            ]
+          },
+          {
+            "id": "720",
+            "name": "Sub-chapter Outcome 1.2: Growth in Value of Production of Fisheries Increased (year-on-year at constant prices, in percent)",
+            "children": [
+              {
+                "id": "512",
+                "name": "(a) Commercial "
+              },
+              {
+                "id": "513",
+                "name": "(b) Municipal "
+              },
+              {
+                "id": "514",
+                "name": "(c) Aquaculture"
+              }
+            ]
+          },
+          {
+            "id": "721",
+            "name": "Sub-chapter Outcome 1.3: Growth in Labor Productivity of Farmers and Fisherfolk Increased (year-on-year at constant prices, in percent)"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "name": "Chapter Ourcome 2: Access to markets of small farmers and fisherfolk increased",
+        "children": [
+          {
+            "id": "722",
+            "name": "Growth in the Value of A&F Exports Increased (year-onyear, FOB value, in percent)"
+          }
+        ]
+      },
+      {
+        "id": "28",
+        "name": "Chapter Outcome 3: Access of Consumers to Nutritious, Affordable and Safe Food Improved",
+        "children": [
+          {
+            "id": "723",
+            "name": "Prevalence of Moderate or Severe Food Insecurity in the Population based on the Food Insecurity Experience Scale"
+          },
+          {
+            "id": "515",
+            "name": "(a) Severely Food Insecure"
+          },
+          {
+            "id": "516",
+            "name": "(b) Moderately Food Insecure"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "102",
+    "name": "PDP Chapter 9A",
+    "children": [
+      {
+        "id": "6",
+        "name": "Chapter Outcome 1: Economic opportunities in Industry expanded",
+        "children": [
+          {
+            "id": "98",
+            "name": "Sub-chapter Outcome 1.1: Local and foreign investments increased",
+            "children": [
+              {
+                "id": "189",
+                "name": "Total approved investments increased (PHP million)"
+              },
+              {
+                "id": "190",
+                "name": "Net FDI increased (USD million)"
+              },
+              {
+                "id": "191",
+                "name": "Number of harmonized investment promotion activities conducted"
+              }
+            ]
+          },
+          {
+            "id": "99",
+            "name": "Sub-chapter Outcome 1.2: Competitiveness, innovativeness and resilience increased",
+            "children": [
+              {
+                "id": "192",
+                "name": "Philippine Business Registry (PBR) fully operationalized (% of agencies' involvement)"
+              },
+              {
+                "id": "193",
+                "name": "Number of cities/municipalities with fully- implemented Business Permit and Licensing System connected to the PBR"
+              },
+              {
+                "id": "194",
+                "name": "Number of Filipino trademarks registered increased"
+              }
+            ]
+          },
+          {
+            "id": "100",
+            "name": "Sub-chapter Outcome 1.3: Market access improved"
+          },
+          {
+            "id": "101",
+            "name": "Sub-chapter Outcome 1.4: Consumer access to safe and quality goods and services ensured",
+            "children": [
+              {
+                "id": "195",
+                "name": "Number of consumer awareness and advocacy initiatives undertaken"
+              },
+              {
+                "id": "196",
+                "name": "Number of consumer education, information and communication materials produced"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "100",
+    "name": "PDP Chapter 9B",
+    "children": [
+      {
+        "id": "27",
+        "name": "Chapter Outcome 2: Economic opportunities in Services expanded"
+      }
+    ]
+  },
+  {
+    "id": "101",
+    "name": "PDP Chapter 9C",
+    "children": [
+      {
+        "id": "7",
+        "name": "Chapter Outcome 3: Expand access to economic opportunities in Industry and Services (I&S) for startups, micro, small and medium enterprises (MSMEs), and cooperatives",
+        "children": [
+          {
+            "id": "102",
+            "name": "Sub-chapter Outcome 2.1: Access to production networks improved"
+          },
+          {
+            "id": "197",
+            "name": "Number of MSMEs participating in Global Value Chains"
+          },
+          {
+            "id": "198",
+            "name": "Number of MSMEs/Cooperatives integrated into corporate value chains increased"
+          },
+          {
+            "id": "199",
+            "name": "Number of Go Negosyo centers established"
+          }
+        ]
+      },
+      {
+        "id": "103",
+        "name": "Sub-chapter Outcome 2.2: Access to finance improved"
+      },
+      {
+        "id": "104",
+        "name": "Sub-chapter Outcome 2.3: Productivity, efficiency and resilience improved",
+        "children": [
+          {
+            "id": "200",
+            "name": "Number of shared service facilities established"
+          },
+          {
+            "id": "201",
+            "name": "Number of Small Enterprise Technology Upgrading Program beneficiaries increased"
+          },
+          {
+            "id": "202",
+            "name": "Number of clients/customers provided with testing and calibration services increased"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "name": "PDP Chapter 10",
+    "children": [
+      {
+        "id": "8",
+        "name": "Chapter Outcome 1: Human Capital Development towards Greater Agility",
+        "children": [
+          {
+            "id": "105",
+            "name": "Sub-chapter Outcome 1.1: Nutrition and health outcomes for all improved",
+            "children": [
+              {
+                "id": "203",
+                "name": "Care at all life stages guaranteed"
+              },
+              {
+                "id": "538",
+                "name": "Maternal mortality ratio decreased (per 100,000 live births)"
+              },
+              {
+                "id": "539",
+                "name": "Neonatal mortality rate decreased (per 1,000 live births)"
+              },
+              {
+                "id": "540",
+                "name": "Infant mortality rate decreased (per 1,000 live births)"
+              },
+              {
+                "id": "541",
+                "name": "Under-five mortality rate decreased (per 1,000 live births)"
+              },
+              {
+                "id": "542",
+                "name": "Mortality rate attributed to cardiovascular disease, cancer, diabetes, and chronic respiratory diseases decreased (number of deaths per 100,000 population aged 30-70 years old)"
+              },
+              {
+                "id": "544",
+                "name": "Prevalence of stunting among children under 5 decreased (%)"
+              },
+              {
+                "id": "545",
+                "name": "Tuberculosis incidence decreased (per 100,000 population)"
+              },
+              {
+                "id": "546",
+                "name": "Number of newly diagnosed HIV cases decreased"
+              },
+              {
+                "id": "204",
+                "name": "-"
+              },
+              {
+                "id": "205",
+                "name": "-"
+              },
+              {
+                "id": "270",
+                "name": "Responsive and resilient health system ensured\n"
+              },
+              {
+                "id": "547",
+                "name": "Proportion of women who are using modern contraceptive methods increased (%)\n- Among women of reproductive age (15-49 years old) who are\ncurrently married or in union"
+              },
+              {
+                "id": "548",
+                "name": "Proportion of women who are using modern contraceptive methods increased (%)\n- Among women of reproductive age (15-49 years old)"
+              },
+              {
+                "id": "549",
+                "name": "Proportion of fully immunized children increased (%)"
+              },
+              {
+                "id": "550",
+                "name": "Percentage of regions with at least one Biosafety Laboratory\nLevel 2 (BSL2) (with RT-PCR)"
+              },
+              {
+                "id": "517",
+                "name": "Equitable health financing sustained"
+              },
+              {
+                "id": "387",
+                "name": "Percentage of population covered by social health insurance"
+              },
+              {
+                "id": "551",
+                "name": "Out-of-pocket health spending as percentage of total health expenditure decreased"
+              },
+              {
+                "id": "552",
+                "name": "National Health Insurance Program availment rate (%)"
+              },
+              {
+                "id": "553",
+                "name": "Percentage of population covered by social health insurance"
+              }
+            ]
+          },
+          {
+            "id": "106",
+            "name": "Sub-chapter Outcome 1.2: Lifelong learning opportunities for all ensured\n",
+            "children": [
+              {
+                "id": "206",
+                "name": "Quality, accessible, relevant, and liberating basic education for all achieved"
+              },
+              {
+                "id": "532",
+                "name": "Proportion of learners achieving at least nearly proficient in the National Achievement Test (%) increased - Grade 6"
+              },
+              {
+                "id": "533",
+                "name": "Proportion of learners completing levels of education (Completion Rate) increased (%) - Elementary"
+              },
+              {
+                "id": "534",
+                "name": "Proportion of school-aged population participating in basic education (Net Enrollment Rate) increased (%) - Kinder"
+              },
+              {
+                "id": "669",
+                "name": "Proportion of students performing at Moving Towards Mastery, Closely Approximating Mastery, or Mastered increased (%) - Elementary"
+              },
+              {
+                "id": "670",
+                "name": "Proportion of students at Low Mastery reduced (%) - Junior High"
+              },
+              {
+                "id": "671",
+                "name": "Quality of higher education and technical education and research for equity and global competitiveness improved - Number of HEIs in reputable international rankings increased"
+              },
+              {
+                "id": "672",
+                "name": "Quality of higher education and technical education and research for equity and global competitiveness improved - Certification rate of TVET graduates increased (%)"
+              },
+              {
+                "id": "678",
+                "name": "Proportion of learners completing levels of education (Completion Rate) increased (%) - Junior High"
+              },
+              {
+                "id": "679",
+                "name": "Proportion of learners completing levels of education (Completion Rate) increased (%) - Senior High"
+              },
+              {
+                "id": "680",
+                "name": "Proportion of school-aged population participating in basic education (Net Enrollment Rate) increased (%) - Elementary"
+              },
+              {
+                "id": "681",
+                "name": "Proportion of school-aged population participating in basic education (Net Enrollment Rate) increased (%) - Junior High"
+              },
+              {
+                "id": "682",
+                "name": "Proportion of school-aged population participating in basic education (Net Enrollment Rate) increased (%) - Senior High"
+              },
+              {
+                "id": "683",
+                "name": "Proportion of students performing at Moving Towards Mastery, Closely Approximating Mastery, or Mastered increased (%) - Junior High"
+              },
+              {
+                "id": "684",
+                "name": "Proportion of students performing at Moving Towards Mastery, Closely Approximating Mastery, or Mastered increased (%) - Senior High"
+              },
+              {
+                "id": "685",
+                "name": "Proportion of students at Low Mastery reduced (%) - Senior High"
+              },
+              {
+                "id": "687",
+                "name": "Proportion of learners completing levels of education (Completion Rate) increased (%) - Kinder"
+              },
+              {
+                "id": "688",
+                "name": "Proportion of learners achieving at least nearly proficient in the National Achievement Test (%) increased - Grade 10"
+              },
+              {
+                "id": "689",
+                "name": "Proportion of learners achieving at least nearly proficient in the National Achievement Test (%) increased - Grade 12"
+              },
+              {
+                "id": "207",
+                "name": "Quality of higher education and technical education and research for equity and global competitiveness improved"
+              },
+              {
+                "id": "673",
+                "name": "Number of HEIs in reputable international rankings increased"
+              },
+              {
+                "id": "674",
+                "name": "Certification rate of TVET graduates increased (%)"
+              }
+            ]
+          },
+          {
+            "id": "107",
+            "name": "Sub-chapter Outcome 1.3: Income-earning ability increased",
+            "children": [
+              {
+                "id": "209",
+                "name": "Employability improved"
+              },
+              {
+                "id": "351",
+                "name": "Duration of school-to-work transition of college graduates reduced (years)"
+              },
+              {
+                "id": "352",
+                "name": "Duration of school-to-work transition of high school graduates reduced (years)"
+              },
+              {
+                "id": "353",
+                "name": "Duration of school-to-work transition of TESDA graduates reduced (months)"
+              },
+              {
+                "id": "354",
+                "name": "Percentage of discouraged workers reduced (%)"
+              },
+              {
+                "id": "355",
+                "name": "Unemployment rate of college graduates decreased (%)"
+              },
+              {
+                "id": "356",
+                "name": "Employment rate of TVET graduates increased (%)"
+              },
+              {
+                "id": "357",
+                "name": "Percentage of females with advanced degrees employed increased"
+              },
+              {
+                "id": "358",
+                "name": "Labor force participation of women increased (%)"
+              },
+              {
+                "id": "210",
+                "name": "Productivity improved"
+              },
+              {
+                "id": "359",
+                "name": "Labor productivity in the industry sector increased (% growth)"
+              },
+              {
+                "id": "360",
+                "name": "Labor productivity in the service sector increased (% growth)"
+              },
+              {
+                "id": "271",
+                "name": "Labor mobility and income security enhanced"
+              },
+              {
+                "id": "361",
+                "name": "Share of employees in precarious work to total employed (%) reduced"
+              },
+              {
+                "id": "362",
+                "name": "Share of wage and salary workers in precarious work to total wage and salary workers (%) reduced"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "name": "PDP Chapter 11",
+    "children": [
+      {
+        "id": "9",
+        "name": "Chapter Outcome 1: Ensuring Food Resiliency and Reducing Vulnerabilities of Filipinos"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "name": "PDP Chapter 12",
+    "children": [
+      {
+        "id": "10",
+        "name": "Chapter Outcome 1:Safe, Resilient, and Sustainable Communities Built",
+        "children": [
+          {
+            "id": "109",
+            "name": "Sub-chapter Outcome 1:1: Integrating public health goals in the design of human settlements",
+            "children": [
+              {
+                "id": "504",
+                "name": "Proportion of LGUs with approved/\nupdated Comprehensive Land Use Plan (CLUP) \nincreased"
+              }
+            ]
+          },
+          {
+            "id": "141",
+            "name": "Sub-chapter Outcome 1.2: Accelerating housing production that incorporates hazard and\nhealth standards",
+            "children": [
+              {
+                "id": "224",
+                "name": "Percentage of socialized housing units delivered to socialized housing targets (Annual)"
+              },
+              {
+                "id": "225",
+                "name": "Percentage of low-cost housing units delivered to low-cost housing targets improved (Annual)"
+              },
+              {
+                "id": "505",
+                "name": "Proportion of urban population living in informal \nsettlements decreased"
+              },
+              {
+                "id": "506",
+                "name": "Proportion of families with owned or owner-like \npossession of housing units"
+              },
+              {
+                "id": "507",
+                "name": "Proportion of families with access to secure \ntenure "
+              }
+            ]
+          },
+          {
+            "id": "142",
+            "name": "Sub-chapter Outcome 1.3: Adopting alternative housing solutions for low-income market"
+          },
+          {
+            "id": "143",
+            "name": "Sub-chapter Outcome 1.4: Stakeholders Empowerment "
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "name": "PDP Chapter 13",
+    "children": [
+      {
+        "id": "11",
+        "name": "Chapter Outcome 1: Demographic transition accelerated ",
+        "children": [
+          {
+            "id": "710",
+            "name": "Sub-chapterOutcome 1.1: Mortaility rates reduced"
+          },
+          {
+            "id": "711",
+            "name": "Sub-chapterOutcome 1.2: Wanted fertility rates achieved"
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "name": "Chapter Outcome 2: Gains from demographic dividend maximized",
+        "children": [
+          {
+            "id": "712",
+            "name": "Sub-chapterOutcome 2.1: Quality of human capital improved"
+          },
+          {
+            "id": "713",
+            "name": "Sub-chapterOutcome 2.2: Savings build-up improved"
+          },
+          {
+            "id": "714",
+            "name": "Sub-chapterOutcome 2.3: Youth and female labor force participation increased"
+          },
+          {
+            "id": "715",
+            "name": "Sub-chapterOutcome 2.4: Population and development integration and youth participation improved"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "name": "PDP Chapter 14",
+    "children": [
+      {
+        "id": "13",
+        "name": "Chapter Outcome 1: Scale-up Technology Adoption",
+        "children": [
+          {
+            "id": "110",
+            "name": "Sub-chapter Outcome 1.1: Increased STI (science, technology and innovation) utilization in agriculture, industry, services, and health sectors",
+            "children": [
+              {
+                "id": "230",
+                "name": "Number of Filipino patents granted increased (incremental)"
+              },
+              {
+                "id": "231",
+                "name": "Number of Filipino utility models registered increased (incremental)"
+              },
+              {
+                "id": "232",
+                "name": "Number of Filipino industrial designs registered increased (incremental)"
+              },
+              {
+                "id": "423",
+                "name": "Proportion of intellectual property products \nexpenditures to GDP increased (%)"
+              },
+              {
+                "id": "424",
+                "name": "Number of Filipino patents filed increased"
+              },
+              {
+                "id": "425",
+                "name": "Number of Filipino utility models filed increased"
+              },
+              {
+                "id": "426",
+                "name": "Number of Filipino industrial designs filed increased"
+              },
+              {
+                "id": "427",
+                "name": "Number of Filipino patents filed under Patent Cooperation Treaty (PCT) increased"
+              }
+            ]
+          },
+          {
+            "id": "111",
+            "name": "Sub-chapter Outcome 1.2: Increased Investments in STI-based start-ups, enterprises and spin-offs ",
+            "children": [
+              {
+                "id": "233",
+                "name": "Number of technology business incubators (TBI) graduates increased (i.e. enterprises and spin-offs)"
+              },
+              {
+                "id": "234",
+                "name": "Number of innovation hubs increased (e.g. TBIs, innovation centers, niche centers, etc.) (incremental)"
+              },
+              {
+                "id": "428",
+                "name": "Global Innovation Index (GII) - Investment Index percentile rank improved"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "14",
+        "name": "Chapter Outcome 2: Accelerate Innovation ",
+        "children": [
+          {
+            "id": "112",
+            "name": "Sub-chapter Outcome 2.1: Enhanced creative capacity for knowledge and technology generation, acquisition and adoption",
+            "children": [
+              {
+                "id": "236",
+                "name": "R&D expenditure as a proportion of GDP increased (in percent, incremental)"
+              },
+              {
+                "id": "237",
+                "name": "Number of Researchers, Scientists and Engineers (RSEs) per million population increased (incremental)"
+              },
+              {
+                "id": "238",
+                "name": "Number of Science, Technology, Engineering, and Mathematics (STEM) enrollees in higher education institutes (HEIs) increased (in million, incremental)"
+              },
+              {
+                "id": "239",
+                "name": "Number of STEM graduates in HEIs increased"
+              },
+              {
+                "id": "244",
+                "name": "Number of Balik Scientists Engaged increased (incremental)"
+              },
+              {
+                "id": "430",
+                "name": "Overall Global Innovation Index (GII) rank \nimproved"
+              },
+              {
+                "id": "431",
+                "name": "GII - Knowledge and Technology Outputs percentile rank improved"
+              }
+            ]
+          },
+          {
+            "id": "113",
+            "name": "Sub-chapter Outcome 2.2: Strengthened open collaboration among actors in the STI ecosystem ",
+            "children": [
+              {
+                "id": "245",
+                "name": "Number of collaborations between HEIs and industries increased (incremental)"
+              },
+              {
+                "id": "246",
+                "name": "Number of collaborations between HEIs and government increased (NGAs and LGUs) (incremental)"
+              },
+              {
+                "id": "247",
+                "name": "Number of STI-related international cooperations of HEIs increased (incremental)"
+              },
+              {
+                "id": "436",
+                "name": "GII University - Industry Collaboration \npercentile rank improved"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "name": "PDP Chapter 15",
+    "children": [
+      {
+        "id": "15",
+        "name": "Chapter Outcome 1: Sound, Stable, and Supportive Macroeconomic Environment Sustained"
+      },
+      {
+        "id": "114",
+        "name": "Sub-chapter Outcome 1.1: Responsible, strategic, supportive, and sustainable fiscal sector"
+      },
+      {
+        "id": "115",
+        "name": "Sub-Sector Outcome 1.2. Resilient and inclusive monetary and financial sector"
+      },
+      {
+        "id": "116",
+        "name": "Sub-sector Outcome 1.3. Sustainable and resilient external sector"
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "name": "PDP Chapter 16",
+    "children": [
+      {
+        "id": "16",
+        "name": "Chapter Outcome 1: Consumer welfare improved",
+        "children": [
+          {
+            "id": "138",
+            "name": "-",
+            "children": [
+              {
+                "id": "437",
+                "name": "Global Competitiveness Index (GCI) score  improved"
+              }
+            ]
+          },
+          {
+            "id": "117",
+            "name": "Sub-Chapter Outcome 1.1: Diminishing Anticompetitive practices ",
+            "children": [
+              {
+                "id": "439",
+                "name": "GCI Business Dynamism improved"
+              },
+              {
+                "id": "440",
+                "name": "GCI Goods/Product Market Efficiency improved"
+              },
+              {
+                "id": "441",
+                "name": "GCI Extent of Market Dominance improved "
+              }
+            ]
+          },
+          {
+            "id": "118",
+            "name": "Sub-Chapter Outcome 1.2: Reducing barriers to entry and re-entry",
+            "children": [
+              {
+                "id": "442",
+                "name": "GCI Market size improved"
+              }
+            ]
+          },
+          {
+            "id": "119",
+            "name": "Sub-Chapter Outcome 1.3: Reducing limits to entrepreneurship ",
+            "children": [
+              {
+                "id": "443",
+                "name": "Burden of government regulation improved"
+              },
+              {
+                "id": "444",
+                "name": "Starting a Business Score Improved "
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "17",
+        "name": "Chapter Outcome 2: Market efficiency improved",
+        "children": [
+          {
+            "id": "716",
+            "name": "Sub-Chapter Outcome 2.1: Diminishing Anticompetitive practices "
+          },
+          {
+            "id": "717",
+            "name": "Sub-Chapter Outcome 2.2: Reducing barriers to entry and re-entry"
+          },
+          {
+            "id": "718",
+            "name": "Sub-Chapter Outcome 2.3: Reducing limits to entrepreneurship "
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "name": "PDP Chapter 17",
+    "children": [
+      {
+        "id": "18",
+        "name": "Chapter Outcome 1: Just and lasting peace attained"
+      },
+      {
+        "id": "120",
+        "name": "Sub-chapter Outcome 1.1: Peace agreements with all internal armed conflict groups successfully negotiated and implemented"
+      },
+      {
+        "id": "121",
+        "name": "Sub-chapter Outcome 1.2: Communities in conflict-affected and conflict-vulnerable areas protected and developed "
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "name": "PDP Chapter 18",
+    "children": [
+      {
+        "id": "19",
+        "name": "Chapter Outcome 1: Security, public order, and safety ensured",
+        "children": [
+          {
+            "id": "122",
+            "name": "Sub-chapter Outcome 1.1: Public safety ensured"
+          },
+          {
+            "id": "123",
+            "name": "Sub-chapter Outcome 1.2: All forms of criminality and illegal drugs significantly reduced"
+          },
+          {
+            "id": "124",
+            "name": "Sub-chapter Outcome 1.3: Territorial integrity and sovereignty upheld and protected"
+          },
+          {
+            "id": "125",
+            "name": "Sub-chapter Outcome 1.4: Security and safety of overseas Filipinos ensured"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "name": "PDP Chapter 19",
+    "children": [
+      {
+        "id": "20",
+        "name": "Infrastructure development accelerated and operations sustained  ",
+        "children": [
+          {
+            "id": "126",
+            "name": "Re-programming for the new normal  "
+          },
+          {
+            "id": "127",
+            "name": "Implementing strategic infrastructure  "
+          },
+          {
+            "id": "128",
+            "name": "Ensuring asset preservation  "
+          },
+          {
+            "id": "129",
+            "name": "Intensifying infrastructure-related research and development  "
+          }
+        ]
+      },
+      {
+        "id": "21",
+        "name": "Clean and healthy environment protected  ",
+        "children": [
+          {
+            "id": "706",
+            "name": "Re-programming for the new normal  "
+          },
+          {
+            "id": "707",
+            "name": "Implementing strategic infrastructure  "
+          },
+          {
+            "id": "708",
+            "name": "Ensuring asset preservation  "
+          },
+          {
+            "id": "709",
+            "name": "Intensifying infrastructure-related research and development  "
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "name": "PDP Chapter 20",
+    "children": [
+      {
+        "id": "24",
+        "name": "Chapter Outcome 1: Ecological integrity and socioeconomic resilience of resource-dependent communities improved",
+        "children": [
+          {
+            "id": "144",
+            "name": "Sub-chapter Outcome 1.1: Biodiversity and ecosystem services sustained",
+            "children": [
+              {
+                "id": "518",
+                "name": "Forest cover increased (in million ha)"
+              },
+              {
+                "id": "519",
+                "name": "Quality of coastal and marine habitats under NIPAS marine protected areas and other priority coastal and marine conservation areas improved",
+                "children": [
+                  {
+                    "id": "520",
+                    "name": "Percentage of hard coral cover (HCC) in MPAs (in number of MPAs)",
+                    "children": [
+                      {
+                        "id": "693",
+                        "name": "No baseline data"
+                      },
+                      {
+                        "id": "694",
+                        "name": "Poor (0-22%)"
+                      },
+                      {
+                        "id": "695",
+                        "name": "Fair (>22%- 33%)"
+                      },
+                      {
+                        "id": "696",
+                        "name": "Good (>33%-44%)"
+                      },
+                      {
+                        "id": "697",
+                        "name": "Excellent (>44%)"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "521",
+                    "name": "Percentage of seagrass cover in MPAs (in number of MPAs)",
+                    "children": [
+                      {
+                        "id": "698",
+                        "name": "No baseline data"
+                      },
+                      {
+                        "id": "699",
+                        "name": "Poor (0-25%) "
+                      },
+                      {
+                        "id": "700",
+                        "name": "Fair (26-50%)"
+                      },
+                      {
+                        "id": "701",
+                        "name": "Good (51-75%)"
+                      },
+                      {
+                        "id": "702",
+                        "name": "Excellent (76-100%) "
+                      }
+                    ]
+                  },
+                  {
+                    "id": "522",
+                    "name": "Number of free patents issued"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "145",
+            "name": "Sub-chapter Outcome 1.2: Environmental quality improved"
+          },
+          {
+            "id": "316",
+            "name": "Area assessed and mapped for soil fertility status and soil fertility management increased (ha)"
+          },
+          {
+            "id": "317",
+            "name": "Area of land degradation hotspots decreased (ha)"
+          },
+          {
+            "id": "523",
+            "name": "Percentage of priority water bodies within water quality guidelines increased (e.g. BOD, DO, pH, temperature, P, TSS, fecal coliform)"
+          },
+          {
+            "id": "703",
+            "name": "Public Water Supply (%)"
+          },
+          {
+            "id": "704",
+            "name": "Food Production (%)"
+          },
+          {
+            "id": "705",
+            "name": "Recreational (%)"
+          },
+          {
+            "id": "524",
+            "name": "Percentage of highly urbanized and other major urban centers within ambient air quality guideline value (i.e., PM10 and PM2.5) increased (%)"
+          },
+          {
+            "id": "525",
+            "name": "Solid waste diversion rate increased (% )"
+          },
+          {
+            "id": "526",
+            "name": "Percentage of healthcare waste managed (%)"
+          },
+          {
+            "id": "146",
+            "name": "Sub-chapter Outcome 1.3: Resilience of communities and their livelihood increased",
+            "children": [
+              {
+                "id": "323",
+                "name": "Number of LGUs with operating early warning systems (EWS) in place increased"
+              },
+              {
+                "id": "324",
+                "name": "Number of fully-functional DRRM operations centers increased\n- Permanent\n- Temporary"
+              },
+              {
+                "id": "527",
+                "name": "Percentage of LGUs with climate change and disaster risk-informed plans increased (%)"
+              },
+              {
+                "id": "528",
+                "name": "Employment from biodiversity-friendly enterprises and other sustainable resource-based industries increased (cumulative)",
+                "children": [
+                  {
+                    "id": "706",
+                    "name": "From NIPAS-PAs and ecotourism sites"
+                  },
+                  {
+                    "id": "707",
+                    "name": "From reforestation and non-timber/agroforestry enterprises (i.e. NGP, CBFM)\n"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "103",
+    "name": "PDP Chapter 21",
+    "children": [
+      {
+        "id": "25",
+        "name": "Chapter Outcome 1: Protect the rights, promote the welfare, and expand opportunities for Overseas Filipinos to contribute to the country's development",
+        "children": [
+          {
+            "id": "701",
+            "name": "Sub-chapter Outcome 1.1: OFs' rights protected and well-being improved "
+          },
+          {
+            "id": "702",
+            "name": "Sub-chapter Outcome 1.2: OFs' participation in the country's development and reintegration in the Philippine society facilitated"
+          },
+          {
+            "id": "703",
+            "name": "Sub-chapter Outcome 1.3: Engagement of OFs, families, and other stakeholders in governance strengthened"
+          },
+          {
+            "id": "704",
+            "name": "Sub-chapter Outcome 1.4: Rights protected and well-being improved for foreign nationals in the country"
+          }
+        ]
+      }
+    ]
+  }
+]

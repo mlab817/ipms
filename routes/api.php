@@ -116,8 +116,7 @@ Route::get('/checkUsernameAvailability', function (Request $request) {
 Route::get('/pdp_chapters/{id}', function ($id) {
     return RefPdpIndicator::select('id','name')
         ->with('children.children')
-        ->where('id', $id)
-        ->where('level', 1)
+        ->where('ref_pdp_chapter_id', $id)
         ->first();
 })->name('api.pdp_chapters');
 
