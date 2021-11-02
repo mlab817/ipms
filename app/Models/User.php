@@ -40,6 +40,7 @@ class User extends Authenticatable
         'avatar',
         'activated_at',
         'password_changed_at',
+        'username',
     ];
 
     /**

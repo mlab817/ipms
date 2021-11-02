@@ -87,7 +87,6 @@ class UserController extends Controller
 
         $user = new User($request->validated());
         $user->password = Hash::make($password);
-        $user->username = generate_username($request->email);
         $user->save();
 
         if ($request->activate) {

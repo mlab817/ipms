@@ -50,8 +50,18 @@
                             });
                         }
                     }">
-                        <input x-on:input="checkEmailAvailability" type="email" name="email" id="email" placeholder="Email (e.g. juandelacruz@gmail.com)" class="form-control" x-model.debounce="email">
+                        <input value="{{ old('email') }}" x-on:input="checkEmailAvailability" type="email" name="email" id="email" placeholder="Email (e.g. juandelacruz@gmail.com)" class="form-control" x-model.debounce="email">
                         <x-error-message name="email"></x-error-message>
+                    </dd>
+                </dl>
+
+                <dl class="form-group @error('username') errored mb-6 @enderror">
+                    <dt class="form-group-header">
+                        <label for="username" class="required">Username</label>
+                    </dt>
+                    <dd class="form-group-body">
+                        <input type="text" name="username" id="username" placeholder="Username (e.g. juandelacruz)" class="form-control" value="{{ old('username') }}">
+                        <x-error-message name="username"></x-error-message>
                     </dd>
                 </dl>
 

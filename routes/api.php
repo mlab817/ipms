@@ -100,6 +100,19 @@ Route::post('/checkEmailAvailability', function (Request $request) {
     }
 })->name('api.checkEmailAvailability');
 
+//checkUsernameAvailability
+Route::get('/checkUsernameAvailability', function (Request $request) {
+    if ($request->username) {
+        $exists = \App\Models\User::where('username', $request->username)->exists();
+
+        if ($exists) {
+            return response()->json(['error' => 'Username is already taken'], 200);
+        } else {
+            return response()->json(['success' => 'Username is available'], 200);
+        }
+    }
+})->name('api.checkUsernameAvailability');
+
 Route::get('/pdp_chapters/{id}', function ($id) {
     return RefPdpIndicator::select('id','name')
         ->with('children.children')
