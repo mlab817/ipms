@@ -34,9 +34,9 @@ class RefPdpChapter extends Model
         return $this->belongsToMany(Project::class);
     }
 
-    public function pdp_outcomes(): HasMany
+    public function children(): HasMany
     {
-        return $this->hasMany(PdpOutcome::class);
+        return $this->hasMany(RefPdpIndicator::class, 'ref_pdp_chapter_id');
     }
 
     /**

@@ -54,6 +54,7 @@ use App\Http\Resources\ProjectStatusResource;
 use App\Http\Resources\RegionResource;
 use App\Models\RefGad;
 use App\Models\Office;
+use App\Models\RefPdpChapter;
 use App\Models\RefPdpIndicator;
 use App\Models\RefPipTypology;
 use App\Models\RefPrerequisite;
@@ -114,10 +115,9 @@ Route::get('/checkUsernameAvailability', function (Request $request) {
 })->name('api.checkUsernameAvailability');
 
 Route::get('/pdp_chapters/{id}', function ($id) {
-    return RefPdpIndicator::select('id','name')
+    return RefPdpChapter::select('id','name')
         ->with('children.children')
-        ->where('ref_pdp_chapter_id', $id)
-        ->first();
+        ->find($id);
 })->name('api.pdp_chapters');
 
 Route::get('/checkProjectTitleAvailability', function(Request $request) {
