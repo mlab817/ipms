@@ -62,8 +62,8 @@ class Office extends Model
     public function getLogoAttribute(): ?string
     {
         return $this->operating_unit
-            ? public_path('images') . '/'. strtoupper($this->operating_unit->acronym) . '.png'
-            : public_path('images/DA-CO.png');
+            ? public_path('images') . '/offices/'. strtoupper($this->operating_unit->acronym) . '.png'
+            : public_path('images/offices/DA-CO.png');
     }
 
     /**
