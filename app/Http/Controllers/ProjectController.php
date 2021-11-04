@@ -177,7 +177,11 @@ class ProjectController extends Controller
         $tab = 'profile';
 
         if ($request->has('print')) {
-            return view('projects.print', compact('project'));
+            return view('projects.print', compact('project'))
+                ->with([
+                    'submission_statuses' => RefSubmissionStatus::all(),
+                    'pipol_statuses' => RefPipolStatus::all(),
+                ]);
         }
 
         return view('projects.show', compact('project','tab'))
