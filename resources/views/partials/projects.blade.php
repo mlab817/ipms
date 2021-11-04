@@ -165,9 +165,9 @@
                                                     <p class="mt-3">
                                                         Select user to transfer the PAP ownership into.
                                                     </p>
-                                                    <auto-complete src="/api/encoders" for="encoders-popup">
+                                                    <auto-complete src="/api/encoders" for="encoders-popup-{{ $project->id }}">
                                                         <input autofocus required placeholder="Type to search users..." name="username" type="text" class="form-control width-full" >
-                                                        <ul id="encoders-popup"></ul>
+                                                        <ul id="encoders-popup-{{ $project->id }}"></ul>
                                                     </auto-complete>
                                                 </div>
                                                 <div class="Box-footer">
