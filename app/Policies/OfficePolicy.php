@@ -30,7 +30,7 @@ class OfficePolicy
      */
     public function view(User $user, Office $office)
     {
-        if ($user->role->name == 'admin') {
+        if ($user->isAdmin()) {
             return true;
         }
 

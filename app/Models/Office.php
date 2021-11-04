@@ -59,6 +59,13 @@ class Office extends Model
         return $this->belongsToMany(User::class,'office_reviewer','office_id','user_id');
     }
 
+    public function getLogoAttribute(): ?string
+    {
+        return $this->operating_unit
+            ? public_path('images') . '/'. strtoupper($this->operating_unit->acronym) . '.png'
+            : public_path('images/DA-CO.png');
+    }
+
     /**
      * @return array
      */
