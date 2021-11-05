@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Office extends Model
 {
@@ -18,11 +19,9 @@ class Office extends Model
     use Sluggable;
     use Auditable;
     use SoftDeletes;
+    use Searchable;
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new OfficeScope);
-    }
+    protected bool $asYouType = true;
 
     protected $fillable = [
         'name',
@@ -75,6 +74,38 @@ class Office extends Model
             'slug' => [
                 'source' => 'name'
             ]
+        ];
+    }
+
+    public function scopeByRole($query)
+    {
+        $authUser = auth()->user();
+
+        if ($authUser->isAdmin()) {
+            return $query;
+        }
+
+        if ($authUser->isIpd()) {
+            $filters = $authUser->offices->pluck('id')->toArray() + [$authUser->office_id] ?? [];
+            return $query->whereIn('offices.id', $filters);
+        }
+
+        if ($authUser->isEncoder()) {
+            return $query->where('offices.id', $authUser->office_id);
+        }
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id'                    => $this->id,
+            'name'                  => $this->name,
+            'acronym'               => $this->acronym,
+            'email'                 => $this->email,
+            'office_head_name'      => $this->office_head_name,
+            'office_head_position'  => $this->office_head_position,
+            'operating_unit_name'   => $this->operating_unit->name ?? '',
+            'operating_unit_label'  => $this->operating_unit->label ?? '',
         ];
     }
 }

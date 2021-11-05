@@ -179,9 +179,16 @@ return [
         // Socialite provider for social login
         \Laravel\Socialite\SocialiteServiceProvider::class,
 
-        \Laravel\Passport\PassportServiceProvider::class,
+//        \Laravel\Passport\PassportServiceProvider::class,
 
         \Rollbar\Laravel\RollbarServiceProvider::class,
+
+        /**
+         * Drivers for searching models
+         */
+        \Laravel\Scout\ScoutServiceProvider::class,
+
+        \TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
     ],
 
     /*

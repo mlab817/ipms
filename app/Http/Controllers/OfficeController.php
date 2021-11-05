@@ -18,35 +18,29 @@ class OfficeController extends Controller
 
     public function index(Request $request)
     {
-        // add scopes for
+        $office = new Office;
+
         $user = auth()->user();
-        $offices = Office::query();
 
-        if (!$user->isAdmin()) {
-            if ($user->isIpd()) {
-                $filters = $user->offices->pluck('id')->toArray() + [$user->office_id] ?? [];
-                $offices->whereIn('id', $filters);
-            }
+        $office = $office->byRole();
 
-            if ($user->isEncoder()) {
-                $offices->where('id', $user->office_id);
-            }
-        }
-
-        $ou_types = RefOperatingUnitType::withCount('offices')->get();
+        $ou_types = RefOperatingUnitType::withCount(['offices' => function($query) {
+            $query->byRole();
+        }])->get();
 
         if ($request->q) {
-            $offices->where('name', 'like', '%' . $request->q . '%')
-                ->orWhere('acronym', 'like', '%' . $request->q . '%');
+            $office = Office::search($request->q)->constrain($office);
         }
 
         if ($request->ou_type) {
             $type = RefOperatingUnitType::where('name', $request->ou_type)->first();
             $ous = RefOperatingUnit::where('ref_operating_unit_type_id', $type->id)->pluck('id')->toArray();
-            $offices->whereIn('ref_operating_unit_id', $ous);
+            $office->whereIn('ref_operating_unit_id', $ous);
         }
 
-        $offices = $offices->with('projects')->paginate(10);
+        $offices = $office->paginate(10);
+
+        $offices->load('projects');
 
         return view('offices.index', compact('offices', 'ou_types'));
     }

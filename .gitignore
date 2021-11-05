@@ -1,3 +1,4 @@
+/storage/*.index
 /vendor/
 .env
 /node_modules/

@@ -5,11 +5,20 @@
 @endsection
 
 @section('content')
-    @if(auth()->user()->isAdmin())
     <div class="d-flex mb-3">
         <div class="flex-auto">
-            <form action="{{ route('offices.index') }}" method="get">
-                <input value="{{ request()->query('q') }}" type="search" name="q" class="form-control width-full" placeholder="Find an office..." aria-label="Find a user">
+            <form class="subnav-search ml-0 mt-3 mt-lg-0 width-full width-lg-auto flex-auto flex-order-1 flex-lg-order-none js-active-navigation-container" action="{{ route('offices.index') }}" method="get">
+                <input value="{{ request()->query('q') }}" type="search" name="q" class="form-control subnav-search-input input-contrast width-full" placeholder="Find an office..." aria-label="Find a user">
+
+                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-search subnav-search-icon">
+                    <path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path>
+                </svg>
+
+                <button type="button" class="position-absolute top-0 right-0 mt-1 mr-1 btn-octicon issues-reset-query js-discussion-search-clear" aria-label="Clear filters" hidden="">
+                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-x issues-reset-query-icon">
+                        <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                    </svg>
+                </button>
             </form>
         </div>
 
@@ -48,7 +57,6 @@
         <a href="{{ route('offices.create') }}" class="btn btn-primary ml-2">New</a>
         @endcan
     </div>
-    @endif
 
     <div class="Box">
         <div class="Box-header d-flex flex-items-center">

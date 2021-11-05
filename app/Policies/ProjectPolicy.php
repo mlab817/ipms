@@ -44,35 +44,34 @@ class ProjectPolicy
      * @param Project $project
      * @return mixed
      */
-    public function view(User $user, Project $project): bool
+    public function view(User $user, Project $project)
     {
-        $roleName = $user->role->name ?? '';
-
         if ($user->isAdmin()) {
             return true;
         }
 
-        if ($roleName == 'ipd' || $roleName == 'admin') {
-            return true;
+        if ($user->isIpd()) {
+            return $user->offices->contains($project->office_id);
         }
 
-        if ($roleName == 'spcmad') {
+        if ($user->isSpcmad()) {
             return $project->ref_pap_type_id == 2 && $project->ref_project_status_id <> 2;
         }
 
-        if ($roleName == 'pds') {
+        if ($user->isPds()) {
             return $project->ref_pap_type_id == 2 && $project->ref_project_status_id == 2;
         }
 
-        if ($roleName == 'encoder') {
-            return $project->office_id == $user->office_id || $project->creator_id == $user->id;
+        if ($user->isEncoder()) {
+            return $project->office_id == $user->office_id
+                || $project->creator_id == $user->id;
         }
 
-        if ($roleName == 'ouri') {
+        if ($user->isOuri()) {
             return $project->trip; // tagged as TRIP
         }
 
-        return false;
+        return $this->deny('You do not have access to this PAP.');
     }
 
     /**

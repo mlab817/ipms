@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\Notification;
 class ProjectObserver
 {
     /**
+     * Whenever a project is updated,
+     * Delete indication that users have seen the PAP
+     *
+     * @param Project $project
+     */
+    public function updated(Project $project)
+    {
+        $project->unseen();
+    }
+
+    /**
      * Handle the Project "force deleted" event.
      *
      * @param  \App\Models\Project  $project

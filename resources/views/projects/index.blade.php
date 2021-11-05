@@ -59,7 +59,7 @@
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal" data-menu-button-text="">All ({{ $totalProjectsCount }})</span>
+                                <span class="text-normal" data-menu-button-text="">All ({{ $projects->total() }})</span>
                             </a>
                             @foreach($submission_statuses as $status)
                             <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('validated','pipol'), ['status' => $status->name ])) }}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
@@ -89,21 +89,21 @@
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal" data-menu-button-text="">All ({{ $totalProjectsCount }})</span>
+                                <span class="text-normal" data-menu-button-text="">All ({{ $projects->total() }})</span>
                             </a>
 
                             <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status','pipol'), ['validated' => 1 ])) }}" role="menuitemradio" @if(request()->query('validated') == 1) aria-checked="true" @endif" tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal">Validated ({{ \App\Models\Project::whereNotNull('validated_at')->count() }})</span>
+                                <span class="text-normal">Validated ({{ $validatedProjects }})</span>
                             </a>
 
                             <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status','pipol'), ['validated' => 0 ])) }}" role="menuitemradio" @if(request()->has('validated') && request()->query('validated') == 0) aria-checked="true" @endif" tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal">Not Validated ({{ \App\Models\Project::whereNull('validated_at')->count() }})</span>
+                                <span class="text-normal">Not Validated ({{ $invalidatedProjects }})</span>
                             </a>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal" data-menu-button-text="">All ({{ $totalProjectsCount }})</span>
+                                <span class="text-normal" data-menu-button-text="">All ({{ $projects->total() }})</span>
                             </a>
 
                             @foreach($pipol_statuses as $status)

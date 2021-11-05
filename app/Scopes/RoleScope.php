@@ -22,30 +22,30 @@ class RoleScope implements Scope
         $user       = auth()->user();
         $roleName   = $user->role->name ?? '';
 
-        if (! $user->isAdmin()) {
+        if ($user && ! $user->isAdmin()) {
             if ($user->isIpd()) {
                 $builder
-                    ->whereIn('office_id', $user->offices->pluck('id')->toArray())
-                    ->orWhere('creator_id', $user->id);
+                    ->whereIn('projects.office_id', $user->offices->pluck('id')->toArray())
+                    ->orWhere('projects.creator_id', $user->id);
             }
 
             if ($user->isEncoder()) {
-                $builder->where('office_id', $user->office_id)
-                    ->orWhere('creator_id', $user->id);
+                $builder->where('projects.office_id', $user->office_id)
+                    ->orWhere('projects.creator_id', $user->id);
             }
 
             if ($roleName == 'pds') {
-                $builder->where('ref_pap_type_id', 2) // project
-                ->where('ref_project_status_id', 2); // proposed
+                $builder->where('projects.ref_pap_type_id', 2) // project
+                ->where('projects.ref_project_status_id', 2); // proposed
             }
 
             if ($roleName == 'spcmad') {
-                $builder->where('ref_pap_type_id', 2) // project
-                ->where('ref_project_status_id','<>', 2); // all projects except proposed
+                $builder->where('projects.ref_pap_type_id', 2) // project
+                ->where('projects.ref_project_status_id','<>', 2); // all projects except proposed
             }
 
             if ($roleName == 'ouri') {
-                $builder->where('trip', 1); // tagged as TRIP
+                $builder->where('projects.trip', 1); // tagged as TRIP
             }
         }
     }

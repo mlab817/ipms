@@ -28,36 +28,33 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::query();
-        $roles = Role::withCount('users')->get();
-        $offices = Office::withCount('users')->get();
-        $user = auth()->user();
+        $user = new User;
 
-        if (!$user->isAdmin()) {
-            if ($user->isIpd()) {
-                $users->whereIn('office_id', $user->offices->pluck('id')->toArray() ?? []);
-            }
+        $roles = Role::withCount(['users' => function ($query) {
+            $query->byRole();
+        }])->get();
+        $offices = Office::withCount(['users' => function ($query) {
+            $query->byRole();
+        }])->get();
+        $authUser = auth()->user();
 
-            if ($user->isEncoder()) {
-                $users->where('office_id', $user->office_id);
-            }
-        }
-
-        if ($request->q) {
-            $users = $users->whereRaw('LOWER(CONCAT(first_name, last_name)) like ? ','%' . trim(strtolower($request->q)) .'%');
-        }
+        $user = $user->byRole();
 
         if ($request->role) {
             $role = Role::findByName($request->role);
-            $users->where('role_id', $role->id);
+            $user = $user->where('role_id', $role->id);
         }
 
         if ($request->office) {
             $office = Office::where('acronym', $request->office)->first();
-            $users->where('office_id', $office->id);
+            $user = $user->where('office_id', $office->id);
         }
 
-        $users = $users->paginate(10);
+        if ($request->q) {
+            $user = User::search($request->q)->constrain($user);
+        }
+
+        $users = $user->paginate();
 
         return view('users.index', compact('users', 'roles','offices'));
     }
