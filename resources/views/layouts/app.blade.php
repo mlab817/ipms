@@ -30,12 +30,9 @@
 
 <div class="Layout Layout--gutter-none">
     <div class="Layout-main">
-        <div class="container-lg py-6">
+        <div class="container-lg py-6 px-0 px-0 px-sm-3 px-md-3 px-lg-0 px-xl-0">
             @yield('content')
         </div>
-{{--        <div class="container py-3 pr-3">--}}
-{{--            @yield('content')--}}
-{{--        </div>--}}
     </div>
 </div>
 
