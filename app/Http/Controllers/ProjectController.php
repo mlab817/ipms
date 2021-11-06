@@ -99,7 +99,6 @@ class ProjectController extends Controller
                 'submission_statuses'=> RefSubmissionStatus::withCount(['projects' => function($query) {
                     $query->byRole();
                 }])->get(),
-                'totalProjectsCount' => Project::count(),
                 'pipol_statuses'     => RefPipolStatus::withCount(['projects' => function($query) {
                     $query->byRole();
                 }])->get(),
