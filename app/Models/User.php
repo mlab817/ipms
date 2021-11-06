@@ -15,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
@@ -23,6 +24,9 @@ class User extends Authenticatable
     use HasApiTokens;
     use SoftDeletes;
     use Auditable;
+    use Searchable;
+
+    protected $asYouType = true;
 
     /**
      * The attributes that are mass assignable.
@@ -30,7 +34,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
         'first_name',
         'last_name',
         'email',
@@ -54,12 +57,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $with = [
-//        'profile',
-//        'permissions',
-//        'roles',
-    ];
-
     public static function findByUsername($username = '')
     {
         return static::where('username', $username)->first();
@@ -70,19 +67,9 @@ class User extends Authenticatable
         return 'username';
     }
 
-    public function accounts(): HasMany
-    {
-        return $this->hasMany(LinkedSocialAccount::class);
-    }
-
     public function office(): BelongsTo
     {
         return $this->belongsTo(Office::class);
-    }
-
-    public function profile(): HasOne
-    {
-        return $this->hasOne(Profile::class,'user_id','id');
     }
 
     public function projects(): HasMany
@@ -137,6 +124,22 @@ class User extends Authenticatable
         return optional($this->role)->name == 'encoder';
     }
 
+    public function isPds(): bool
+    {
+        return optional($this->role)->name == 'pds';
+    }
+
+    public function isSpcmad(): bool
+    {
+        return optional($this->role)->name == 'spcmad';
+    }
+
+    public function isOuri(): bool
+    {
+        return optional($this->role)->name == 'ouri';
+    }
+
+
     public function activate()
     {
         $this->activated_at = now();
@@ -165,13 +168,34 @@ class User extends Authenticatable
         return sprintf($fullName, $this->first_name, $this->last_name);
     }
 
-    public static function search($query)
+    public function scopeByRole($query)
     {
-        return empty($query) ? static::query()
-            : static::where(function($q) use ($query) {
-                    $q
-                        ->where('name', 'LIKE', '%'. $query . '%')
-                        ->orWhere('email', 'LIKE', '%' . $query . '%');
-                });
+        $authUser = auth()->user();
+
+        if ($authUser->isAdmin()) {
+            return $query;
+        }
+
+        if ($authUser->isIpd()) {
+            return $query->whereIn('office_id', $authUser->offices->pluck('id')->toArray() ?? []);
+        }
+
+        if ($authUser->isEncoder()) {
+            return $query->where('office_id', $authUser->office_id);
+        }
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id'            => $this->id,
+            'first_name'    => $this->first_name,
+            'last_name'     => $this->last_name,
+            'full_name'     => $this->full_name,
+            'username'      => $this->username,
+            'email'         => $this->email,
+            'office'        => $this->office->name ?? '' . $this->office->acronym ?? '',
+            'role'          => $this->role->name ?? '',
+        ];
     }
 }

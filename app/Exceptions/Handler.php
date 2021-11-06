@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
         if ($e instanceof AuthorizationException) {
             session()->flash('status', 'error|' . $e->getMessage());
 
-            return redirect()->route('dashboard');
+            return back();
         }
 
         return parent::render($request, $e);

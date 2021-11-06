@@ -87,19 +87,10 @@ Route::fallback(function () {
     return view('errors.404');
 });
 
-Route::get('/test-date', function () {
-    $deadline = env('IPMS_ENCODING_DEADLINE');
-//    dd(\Carbon\Carbon::create($deadline));
-
-    return \Carbon\Carbon::create($deadline)->isPast();
-});
-
 Route::get('/mailable', function () {
     return new App\Mail\UserCreated(\App\Models\User::find(1), 'password');
 });
 
-Route::get('/indicators_json', function () {
-    $json = json_decode(file_get_contents(database_path('seeders/indicators.json')));
-
-    return response()->json($json);
+Route::get('/search_users', function (\Illuminate\Http\Request $request) {
+    return \App\Models\User::search($request->q)->get();
 });

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Scout\Searchable;
 
 class Project extends Model
 {
@@ -21,6 +22,9 @@ class Project extends Model
     use HasUuid;
     use SoftDeletes;
     use Auditable;
+    use Searchable;
+
+    protected bool $asYouType = true;
 
     public array $rules = [
         'office_id'                         => 'required|exists:offices,id',
@@ -168,10 +172,10 @@ class Project extends Model
         'region_infrastructures'        => 'infrastructure cost by region',
     ];
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new RoleScope);
-    }
+//    protected static function booted()
+//    {
+//        static::addGlobalScope(new RoleScope);
+//    }
 
     protected $appends = [
         'is_validated'
@@ -265,7 +269,8 @@ class Project extends Model
 
     public function creator(): BelongsTo
     {
-        return $this->belongsTo(User::class,'creator_id','id');
+        return $this->belongsTo(User::class,'creator_id','id')
+            ->withDefault(['slug' => '#','username' => '#']);
     }
 
     public function funding_source(): BelongsTo
@@ -295,7 +300,7 @@ class Project extends Model
 
     public function office(): BelongsTo
     {
-        return $this->belongsTo(Office::class,'office_id')->withDefault();
+        return $this->belongsTo(Office::class,'office_id')->withDefault(['slug' => '#','name' => '#']);
     }
 
     public function pap_type(): BelongsTo
@@ -534,6 +539,8 @@ class Project extends Model
             'description' => 'endorsed',
             'user_id' => auth()->id(),
         ]);
+
+        $this->unseen();
     }
 
     /**
@@ -550,6 +557,8 @@ class Project extends Model
             'description' => 'dropped due to [' . $reason . ']',
             'user_id' => auth()->id(),
         ]);
+
+        $this->unseen();
     }
 
     /**
@@ -565,6 +574,8 @@ class Project extends Model
             'description' => 'undid drop',
             'user_id' => auth()->id(),
         ]);
+
+        $this->unseen();
     }
 
     /**
@@ -581,6 +592,8 @@ class Project extends Model
             'description' => 'transferred',
             'user_id' => auth()->id(),
         ]);
+
+        $this->unseen();
     }
 
     public function toggleValidation()
@@ -602,6 +615,8 @@ class Project extends Model
                 'user_id' => auth()->id(),
             ]);
         }
+
+        $this->unseen();
     }
 
     public function isValidated(): bool
@@ -682,19 +697,57 @@ class Project extends Model
         return $query->whereIn('id', auth()->user()->assigned_projects->pluck('id')->toArray());
     }
 
-    public static function search(string $query)
+    public function unseen()
     {
-        return empty($query) ? static::query()
-            : static::where(function($q) use ($query) {
-                $q->where('title', 'LIKE', '%'. $query . '%');
-            });
+        $this->seen_by()->sync([]);
     }
 
-    public static function searchTrashed(string $query)
+    public function scopeByRole($query)
     {
-        return empty($query) ? static::onlyTrashed()
-            : static::onlyTrashed()->where(function($q) use ($query) {
-                $q->where('title', 'LIKE', '%'. $query . '%');
-            });
+        $authUser       = auth()->user();
+
+        if ($authUser->isAdmin()) {
+            return $query;
+        }
+
+        if ($authUser->isIpd()) {
+            return $query
+                ->whereIn('projects.office_id', $authUser->offices->pluck('id')->toArray())
+                ->orWhere('projects.creator_id', $authUser->id);
+        }
+
+        if ($authUser->isEncoder()) {
+            return $query->where('projects.office_id', $authUser->office_id)
+                ->orWhere('projects.creator_id', $authUser->id);
+        }
+
+        if ($authUser->isPds()) {
+            return $query->where('projects.ref_pap_type_id', 2) // project
+            ->where('projects.ref_project_status_id', 2); // proposed
+        }
+
+        if ($authUser->isSpcmad()) {
+            return $query->where('projects.ref_pap_type_id', 2) // project
+            ->where('projects.ref_project_status_id','<>', 2); // all projects except proposed
+        }
+
+        if ($authUser->isOuri()) {
+            return $query->where('projects.trip', 1); // tagged as TRIP
+        }
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id'                => $this->id,
+            'type'              => optional($this->project_status)->name . ' '. optional($this->pap_type)->name,
+            'title'             => $this->title,
+            'office'            => optional($this->office)->acronym,
+            'trip'              => $this->trip ? 'trip' : '',
+            'creator'           => optional($this->creator)->full_name,
+            'validated'         => $this->isValidated() ? 'validated' : 'invalidated',
+            'submission_status' => optional($this->submission_status)->name,
+            'pipol_status'      => optional($this->pipol_status)->name,
+        ];
     }
 }

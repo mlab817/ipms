@@ -62,35 +62,47 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $projectQuery = Project::query()->with(['office','creator.office','project_status']);
+        $project = new Project;
+
+        $project = $project->byRole();
+
         $q = $request->q;
         $validated = $request->validated;
         $pipsStatus = RefSubmissionStatus::findByName($request->status ?? '');
         $pipolStatus = RefPipolStatus::findByName($request->pipol);
 
         if ($pipsStatus) {
-            $projectQuery->where('ref_submission_status_id', $pipsStatus->id);
-        }
-
-        if ($q) {
-            $projectQuery->where('title','like', '%'. $q . '%');
+            $project = $project->where('ref_submission_status_id', $pipsStatus->id);
         }
 
         if ($validated) {
-            $projectQuery->whereNotNull('validated_at');
+            $project = $project->whereNotNull('validated_at');
         }
 
         if ($pipolStatus) {
-            $projectQuery->where('ref_pipol_status_id', $pipolStatus->id);
+            $project = $project->where('ref_pipol_status_id', $pipolStatus->id);
         }
 
-        $projects = $projectQuery->paginate();
+        if ($q) {
+            $project = Project::search($q)->constrain($project);
+        }
+
+        $project->orderBy('updated_at','desc');
+
+        $projects = $project->paginate();
+
+        $projects->load(['creator.office','office','pipol_status','submission_status','description','pap_type','project_status','seen_by']);
 
         return view('projects.index', compact('projects'))
             ->with([
-                'submission_statuses'=> RefSubmissionStatus::withCount('projects')->get(),
-                'totalProjectsCount' => Project::count(),
-                'pipol_statuses'     => RefPipolStatus::withCount('projects')->get(),
+                'submission_statuses'=> RefSubmissionStatus::withCount(['projects' => function($query) {
+                    $query->byRole();
+                }])->get(),
+                'pipol_statuses'     => RefPipolStatus::withCount(['projects' => function($query) {
+                    $query->byRole();
+                }])->get(),
+                'validatedProjects'     => Project::byRole()->whereNotNull('validated_at')->count(),
+                'invalidatedProjects'   => Project::byRole()->whereNull('validated_at')->count(),
             ]);
     }
 

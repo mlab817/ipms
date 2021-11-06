@@ -35,7 +35,6 @@
 @endsection
 
 @section('content')
-
     <div class="Box">
         <div class="Box-header d-flex flex-items-center">
             <h3 class="Box-title">Overview</h3>
