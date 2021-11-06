@@ -36,7 +36,6 @@ class UserController extends Controller
         $offices = Office::withCount(['users' => function ($query) {
             $query->byRole();
         }])->get();
-        $authUser = auth()->user();
 
         $user = $user->byRole();
 
