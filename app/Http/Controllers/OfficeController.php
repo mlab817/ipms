@@ -20,8 +20,6 @@ class OfficeController extends Controller
     {
         $office = new Office;
 
-        $user = auth()->user();
-
         $office = $office->byRole();
 
         $ou_types = RefOperatingUnitType::withCount(['offices' => function($query) {
