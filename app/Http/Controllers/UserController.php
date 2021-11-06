@@ -54,6 +54,7 @@ class UserController extends Controller
         }
 
         $users = $user->paginate();
+        $users->load(['projects','office','offices','role']);
 
         return view('users.index', compact('users', 'roles','offices'));
     }
