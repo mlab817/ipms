@@ -27,6 +27,9 @@
     <div class="d-flex flex-column flex-lg-row flex-auto">
         <div class="mb-1 mb-md-0 mr-md-3 flex-auto">
             <form class="subnav-search ml-0 mt-3 mt-lg-0 width-full width-lg-auto flex-auto flex-order-1 flex-lg-order-none js-active-navigation-container" role="search" aria-label="PAPs" action="{{ route('projects.index') }}" accept-charset="UTF-8" method="get">
+                <input type="hidden" name="pipol" value="{{ request()->query('pipol') ?? null }}">
+                <input type="hidden" name="status" value="{{ request()->query('status') ?? null }}">
+                <input type="hidden" name="validated" value="{{ request()->query('validated') ?? null }}">
                 <input type="search" id="q" name="q" class="form-control subnav-search-input input-contrast width-full" placeholder="Find a PAP…" autocomplete="off" aria-label="Find a PAP…" value="{{ old('q', request()->get('q')) }}">
 
                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-search subnav-search-icon">
@@ -55,14 +58,14 @@
                             <span class="SelectMenu-title">Select PIPS status</span>
                         </header>
                         <div class="SelectMenu-list">
-                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('validated','pipol'), ['status' => null ])) }}" role="menuitemradio" @if(! request()->query('status')) aria-checked="true" @endif tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['status' => null ]) }}" role="menuitemradio" @if(! request()->query('status')) aria-checked="true" @endif tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
                                 <span class="text-normal" data-menu-button-text="">All ({{ $projects->total() }})</span>
                             </a>
                             @foreach($submission_statuses as $status)
-                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('validated','pipol'), ['status' => $status->name ])) }}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['status' => $status->name ]) }}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
@@ -85,21 +88,21 @@
                             <span class="SelectMenu-title">Select validation status</span>
                         </header>
                         <div class="SelectMenu-list">
-                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status'), ['validated' => null ])) }}" role="menuitemradio" @if(! request()->has('validated')) aria-checked="true" @endif tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['validated' => null ]) }}" role="menuitemradio" @if(! request()->has('validated')) aria-checked="true" @endif tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
                                 <span class="text-normal" data-menu-button-text="">All ({{ $projects->total() }})</span>
                             </a>
 
-                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status','pipol'), ['validated' => 1 ])) }}" role="menuitemradio" @if(request()->query('validated') == 1) aria-checked="true" @endif" tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['validated' => 1 ]) }}" role="menuitemradio" @if(request()->query('validated') == 1) aria-checked="true" @endif" tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
                                 <span class="text-normal">Validated ({{ $validatedProjects }})</span>
                             </a>
 
-                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status','pipol'), ['validated' => 0 ])) }}" role="menuitemradio" @if(request()->has('validated') && request()->query('validated') == 0) aria-checked="true" @endif" tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['validated' => 0 ]) }}" role="menuitemradio" @if(request()->has('validated') && request()->query('validated') == 0) aria-checked="true" @endif" tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
@@ -121,7 +124,7 @@
                             <span class="SelectMenu-title">Select PIPOL status</span>
                         </header>
                         <div class="SelectMenu-list">
-                            <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status','validated'), ['pipol' => null ])) }}" role="menuitemradio" @if(! request()->has('pipol')) aria-checked="true" @endif tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['pipol' => null ]) }}" role="menuitemradio" @if(! request()->has('pipol')) aria-checked="true" @endif tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
@@ -129,7 +132,7 @@
                             </a>
 
                             @foreach($pipol_statuses as $status)
-                                <a class="SelectMenu-item" href="{{ route('projects.index', array_merge(request()->except('status','validated'), ['pipol' => $status->name ])) }}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
+                                <a class="SelectMenu-item" href="{{ route('projects.index', ['pipol' => $status->name ]) }}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
                                     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                         <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                     </svg>
