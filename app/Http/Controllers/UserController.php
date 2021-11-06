@@ -107,6 +107,8 @@ class UserController extends Controller
     {
         $tab = 'profile';
 
+        $user->load('office','role','offices');
+
         if ($request->tab) {
             $tab = $request->tab;
         }

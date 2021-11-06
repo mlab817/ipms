@@ -66,7 +66,6 @@ class ProjectController extends Controller
 
         $project = $project->byRole();
 
-//        $projectQuery = Project::query()->with(['office','creator.office','project_status']);
         $q = $request->q;
         $validated = $request->validated;
         $pipsStatus = RefSubmissionStatus::findByName($request->status ?? '');
@@ -92,7 +91,7 @@ class ProjectController extends Controller
 
         $projects = $project->paginate();
 
-        $projects->load(['creator','office','pipol_status','submission_status','description']);
+        $projects->load(['creator.office','office','pipol_status','submission_status','description','pap_type','project_status','seen_by']);
 
         return view('projects.index', compact('projects'))
             ->with([
