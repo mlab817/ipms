@@ -653,7 +653,7 @@
 
                         <dl class="form-group">
                             <dt class="form-group-header">
-                                <label for="">Infrastructure Cost by Funding Source</label>
+                                <label for="">Infrastructure Cost by Funding Source (in absolute PhP)</label>
                             </dt>
                             <dd class="form-group-body">
                                 <table class="col-12 d-table">
@@ -749,7 +749,7 @@
 
                         <dl class="form-group">
                             <dt class="form-group-header">
-                                <label for="">Infrastructure Cost by Region</label>
+                                <label for="">Infrastructure Cost by Region (in absolute PhP)</label>
                             </dt>
                             <dd class="form-group-body">
                                 <table class="col-12 d-table">
@@ -1220,7 +1220,7 @@
 
                 <dl class="form-group">
                     <dt class="form-group-header">
-                        <label for="">Investment Requirements by Funding Source</label>
+                        <label for="">Investment Requirements by Funding Source  (in absolute PhP)</label>
                     </dt>
                     <dd class="form-group-body">
                         <table class="col-12 d-table">
@@ -1314,7 +1314,7 @@
 
                 <dl class="form-group">
                     <dt class="form-group-header">
-                        <label for="">Investment Requirements by Region</label>
+                        <label for="">Investment Requirements by Region (in absolute PhP)</label>
                     </dt>
                     <dd class="form-group-body">
                         <table class="col-12 d-table">

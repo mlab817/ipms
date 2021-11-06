@@ -506,7 +506,7 @@
             </dl>
 
             <dl>
-                <dt><label>Total Project Cost</label></dt>
+                <dt><label>Total Project Cost (in absolute PhP)</label></dt>
                 <dd>PhP {{ number_format($project->total_project_cost, 2) }}</dd>
             </dl>
 
@@ -1210,7 +1210,7 @@
             </x-subhead>
 
             <dl>
-                <dt><label>Total Investment Required by Funding Source</label></dt>
+                <dt><label>Total Investment Required by Funding Source (in absolute PhP)</label></dt>
                 <dd>
                     <table class="col-12 d-table border">
                         <thead>
@@ -1257,7 +1257,7 @@
             </dl>
 
             <dl>
-                <dt><label>Total Investment Required by Region</label></dt>
+                <dt><label>Total Investment Required by Region (in absolute PhP)</label></dt>
                 <dd>
                     <table class="col-12 d-table border">
                         <thead>
