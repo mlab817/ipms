@@ -300,7 +300,7 @@ class Project extends Model
 
     public function office(): BelongsTo
     {
-        return $this->belongsTo(Office::class,'office_id')->withDefault();
+        return $this->belongsTo(Office::class,'office_id')->withDefault(['slug' => '#','name' => '#']);
     }
 
     public function pap_type(): BelongsTo
