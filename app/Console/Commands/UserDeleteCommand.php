@@ -40,7 +40,7 @@ class UserDeleteCommand extends Command
         }
 
         if ($this->hasOption('force') && $this->option('force')) {
-            if ($projectCount = Project::withoutGlobalScope(new RoleScope)->where('creator_id', $user->id)->count()) {
+            if ($projectCount = Project::where('creator_id', $user->id)->count()) {
                 $this->warn("Deleting this user will delete {$projectCount} projects associated with them. Please transfer ownership first.");
 
                 return 1;
