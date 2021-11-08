@@ -27,7 +27,7 @@ class User extends Authenticatable
     use Auditable;
     use Searchable;
 
-    protected $asYouType = true;
+    protected bool $asYouType = true;
 
     /**
      * The attributes that are mass assignable.
@@ -86,11 +86,6 @@ class User extends Authenticatable
     public function offices(): BelongsToMany
     {
         return $this->belongsToMany(Office::class,'office_reviewer','user_id','office_id');
-    }
-
-    public function reviews(): HasMany
-    {
-        return $this->hasMany(ProjectReview::class,'user_id','id');
     }
 
     public function assigned_projects(): BelongsToMany

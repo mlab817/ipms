@@ -257,40 +257,12 @@
         </ul>
     </div>
 
-    <div class="Box mb-5">
-        <div class="Box-header d-flex flex-items-center">
-            <h3 class="Box-title">
-                Activities in the last week
-            </h3>
-            <span class="flex-auto"></span>
-            <details class="details-overlay details-reset">
-                <summary class="btn btn-sm">
-                    Dropdown
-                    <span class="dropdown-caret"></span>
-                </summary>
-                <ul class="SelectMenu"></ul>
-            </details>
-        </div>
-        <div class="Box-body">
-            <canvas id="chart2"></canvas>
-        </div>
-    </div>
-
     <div class="Box">
         <div class="Box-header">
             <h3 class="Box-title">Infrastructure Cost by Regions</h3>
         </div>
         <div class="Box-body p-0">
             <canvas id="chart"></canvas>
-        </div>
-    </div>
-
-    <div class="Box">
-        <div class="Box-header">
-            <h3 class="Box-title">Infrastructure Cost by Regions</h3>
-        </div>
-        <div class="Box-body p-0">
-            <canvas id="chart3"></canvas>
         </div>
     </div>
 @endsection

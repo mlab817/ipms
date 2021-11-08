@@ -18,7 +18,8 @@ Route::redirect('/', 'login');
 // Resources secured by auth
 Route::middleware(['auth','activated'])->group(function () {
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
-    Route::get('/dashboard2', \App\Http\Controllers\Dashboard2Controller::class)->name('dashboard2');
+    Route::get('/dashboard2', \App\Http\Controllers\Dashboard2Controller::class)->name('dashboard2')
+        ->middleware('ipd');
 
     Route::post('/auth/password/change', \App\Http\Controllers\Auth\ChangePasswordController::class)->name('password.change');
     Route::get('/settings',\App\Http\Controllers\SettingsController::class)->name('settings');

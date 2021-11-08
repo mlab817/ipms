@@ -31,7 +31,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('content')
@@ -262,92 +261,125 @@
             <h3 class="Box-title">
                 Activities in the last week
             </h3>
-            <span class="flex-auto"></span>
-            <details class="details-overlay details-reset">
-                <summary class="btn btn-sm">
-                    Dropdown
-                    <span class="dropdown-caret"></span>
-                </summary>
-                <ul class="SelectMenu"></ul>
-            </details>
         </div>
         <div class="Box-body">
             <canvas id="chart2"></canvas>
         </div>
     </div>
 
-    <div class="Box mb-5">
-        <div class="Box-header d-flex flex-justify-between flex-items-center">
-            <h3 class="Box-title">Latest Projects</h3>
-            <a href="{{ route('projects.index') }}" class="btn btn-sm float-right">View All</a>
-        </div>
-        <ul>
-            @foreach(\App\Models\Project::byRole()->latest()->take(5)->get() as $project)
-                <li class="Box-row d-flex flex-justify-between">
-                    <div class="col-6">
-                        <a href="{{ route('projects.show', $project) }}">
-                            {{ $project->title }}
-                        </a>
-                    </div>
-                    <div class="">
-                        @foreach ($project->office->reviewers as $reviewer)
-                            <img src="{{ $reviewer->avatar }}" alt="{{ $reviewer->username }}" class="avatar avatar-2 mr-2">
-                        @endforeach
-                    </div>
-{{--                    $project->office->reviewers->pluck('avatar')->join(', ')--}}
-                </li>
-            @endforeach
-        </ul>
-    </div>
-
-    <div class="Box mb-5">
-        <div class="Box-header d-flex flex-justify-between flex-items-center">
-            <h3 class="Box-title">Latest Endorsed Projects</h3>
-            <a href="{{ route('projects.index',['status'=>'Endorsed']) }}" class="btn btn-sm float-right">View All</a>
-        </div>
-        <ul>
-            @forelse(\App\Models\Project::byRole()->where('ref_submission_status_id',2)->latest()->take(5)->get() as $project)
-                <li class="Box-row d-flex flex-justify-between">
-                    <div class="col-6">
-                        <a href="{{ route('projects.show', $project) }}">
-                            {{ $project->title }}
-                        </a>
-                    </div>
-                    <div class="">
-                        @foreach ($project->office->reviewers as $reviewer)
-                            <img src="{{ $reviewer->avatar }}" alt="{{ $reviewer->username }}" class="avatar avatar-2 mr-2">
-                        @endforeach
-                    </div>
-                    {{--                    $project->office->reviewers->pluck('avatar')->join(', ')--}}
-                </li>
-            @empty
-                <x-blankslate message="No PAPs to show"></x-blankslate>
-            @endforelse
-        </ul>
-    </div>
-
-    <div class="Box mb-5">
-        <div class="Box-header">Quick Statistics</div>
-        @foreach(\App\Models\Office::all() as $office)
-            <div class="Box-row d-flex flex-justify-between @if(! count($office->users)) Box-row--dropped @endif">
-                {{ $office->acronym }}
-
-                <div>
-                    @foreach($office->users as $user)
-                        <span class="tooltipped tooltipped-n" aria-label="{{ $user->full_name }}">
-                            <img src="{{ $user->avatar }}" alt="{{ $user->username }}" class="avatar avatar-2 mr-2 tooltipped tooltipped-n" aria-label="{{ $user->full_name }}">
-                        </span>
-                    @endforeach
+    <div class="d-flex flex-items-stretch ml-n3">
+        <div class="col-6 pl-3">
+            <div class="Box mb-5">
+                <div class="Box-header d-flex flex-justify-between flex-items-center">
+                    <h3 class="Box-title">Latest Projects</h3>
+                    <a href="{{ route('projects.index') }}" class="btn-link float-right">View All</a>
                 </div>
+                <ul>
+                    @forelse($latestProjects as $project)
+                        <li class="Box-row d-flex flex-justify-between">
+                            <div class="col-9">
+                                <a href="{{ route('projects.show', $project) }}">
+                                    {{ $project->title }}
+                                </a>
+                            </div>
+                            <div class="">
+                                @foreach ($project->office->reviewers as $reviewer)
+                                    <img src="{{ $reviewer->avatar }}" alt="{{ $reviewer->username }}" class="avatar avatar-2 mr-2">
+                                @endforeach
+                            </div>
+                            {{--                    $project->office->reviewers->pluck('avatar')->join(', ')--}}
+                        </li>
+                    @empty
+                        <x-blankslate message="No PAPs to show"></x-blankslate>
+                    @endforelse
+                </ul>
+            </div>
+        </div>
 
-                <div>
-                    @foreach($office->reviewers as $reviewer)
-                        <span class="tooltipped tooltipped-n" aria-label="{{ $reviewer->full_name }}">
-                            <img src="{{ $reviewer->avatar }}" alt="{{ $reviewer->username }}" class="avatar avatar-2 mr-2">
+        <div class="col-6 pl-3">
+            <div class="Box mb-5">
+                <div class="Box-header d-flex flex-justify-between flex-items-center">
+                    <h3 class="Box-title">Latest Endorsed Projects</h3>
+                    <a href="{{ route('projects.index',['status'=>'Endorsed']) }}" class="btn-link float-right">View All</a>
+                </div>
+                <ul>
+                    @forelse($endorsedProjects as $project)
+                        <li class="Box-row d-flex flex-justify-between">
+                            <div class="col-6">
+                                <a href="{{ route('projects.show', $project) }}">
+                                    {{ $project->title }}
+                                </a>
+                            </div>
+                            <div class="">
+                                @foreach ($project->office->reviewers as $reviewer)
+                                    <img src="{{ $reviewer->avatar }}" alt="{{ $reviewer->username }}" class="avatar avatar-2 mr-2">
+                                @endforeach
+                            </div>
+                            {{--                    $project->office->reviewers->pluck('avatar')->join(', ')--}}
+                        </li>
+                    @empty
+                        <x-blankslate message="No PAPs to show"></x-blankslate>
+                    @endforelse
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="Subhead">
+        <div class="Subhead-heading">Reviewers Progress</div>
+        <div class="Subhead-actions">
+            <details class="details-reset details-overlay details-overlay-dark">
+                <summary class="btn-link">
+                    Learn more
+                </summary>
+                <details-dialog class="Box--overlay">
+                    <div class="Box">
+                        <div class="Box-header">
+                            <h3 class="Box-title">
+                                Reviewers Progress
+                            </h3>
+                        </div>
+                        <div class="Box-body">
+                            <p>
+                                This dashboard includes all active PAPs of the offices assigned to the reviewer.
+                                Note that this dashboard is only tracking <code>validated</code> PAPs.
+                            </p>
+                            <p class="note">
+                                Note: It is possible that PAPs are double-counted when there are overlaps
+                                in the offices assigned to a reviewer.
+                            </p>
+                        </div>
+                    </div>
+                </details-dialog>
+            </details>
+        </div>
+    </div>
+
+    <div class="d-flex flex-items-stretch flex-wrap ml-n3">
+        @foreach($reviewers as $reviewer)
+        <div class="col-12 col-md-6 col-lg-4 col-xl-4 pl-3">
+            <div class="Box rounded-2 overflow-hidden width-full mb-4">
+                <div class="d-flex flex-justify-between flex-items-center px-4 pt-3 pb-4">
+                    <h3 class="lh-condensed mb-3">
+                        <span class="d-inline-flex p-1 circle" style="background-color: #fff">
+                            <img src="{{ $reviewer->avatar }}" class="avatar avatar-2" alt="{{ '@' . $reviewer->username }}">
                         </span>
-                    @endforeach
+                        <span>{{ $reviewer->first_name }}</span>
+                    </h3>
+                    <div class="float-right">
+                        <h1>
+                            {{ \App\Models\Project::whereIn('office_id', $reviewer->offices->pluck('id'))->count() }}
+                        </h1>
+                    </div>
+                </div>
+                <div class=" tooltipped tooltipped-n" aria-label="{{ \App\Models\Project::whereNotNull('validated_at')->whereIn('office_id', $reviewer->offices->pluck('id'))->count() }} validated paps">
+                    <span class="Progress">
+                        <span class="Progress-item color-bg-success-emphasis" style="width: {{ (\App\Models\Project::whereIn('office_id', $reviewer->offices->pluck('id'))->count() ? \App\Models\Project::whereNotNull('validated_at')->whereIn('office_id', $reviewer->offices->pluck('id'))->count() / \App\Models\Project::whereIn('office_id', $reviewer->offices->pluck('id'))->count() : 0) * 100 }}%;"></span>
+                    </span>
                 </div>
             </div>
+        </div>
         @endforeach
     </div>
 @endsection

@@ -66,6 +66,10 @@ class Dashboard2Controller extends Controller
             $data[$date] = $auditLogs->where('date', $date)->first()->count ?? 0;
         }
 
+        $reviewers = User::with('offices.projects','role')->where('role_id', 1)->get();
+
+        $latestProjects = Project::with('office.reviewers')->byRole()->latest()->take(5)->get() ;
+
         return view('dashboard2', [
             'byPipolStatus'         => $byPipolStatus,
             'projectCount'          => Project::byRole()->count(),
@@ -73,6 +77,9 @@ class Dashboard2Controller extends Controller
             'bySubmissionStatus'    => $bySubmissionStatus,
             'infraCostByRegion'     => $infraCostByRegion,
             'auditLogs'             => $data,
+            'reviewers'             => $reviewers,
+            'latestProjects'        => $latestProjects,
+            'endorsedProjects'      => Project::with('office.reviewers')->byRole()->where('ref_submission_status_id',2)->latest()->take(5)->get(),
         ]);
     }
 
