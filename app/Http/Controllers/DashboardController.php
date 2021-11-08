@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AuditLog;
 use App\Models\Project;
 use App\Models\ProjectRegionInfrastructure;
 use App\Models\ProjectReview;
@@ -9,6 +10,8 @@ use App\Models\RefPipolStatus;
 use App\Models\RefRegion;
 use App\Models\RefSubmissionStatus;
 use App\Models\User;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -36,12 +39,41 @@ class DashboardController extends Controller
                 return $p;
             });
 
+        $auditLogs  = AuditLog::where('auditable_type','App\\Models\\Project')
+            ->whereIn('auditable_id', Project::byRole()->get()->pluck('id'))
+            ->groupBy('date')
+            ->orderBy('date','asc')
+            ->get([
+                DB::raw('DATE_FORMAT(created_at, "%Y-%m-%d") as date'),
+                DB::raw('COUNT(id) as count'),
+            ]);
+
+        $dates = $this->generateDateRange(Carbon::now()->subDays(7), Carbon::now());
+
+        $datesArray = collect([]);
+
+        foreach ($dates as $date) {
+            $datesArray->push($date->toDateString());
+        }
+
+        $data = [];
+
+        foreach ($datesArray as $date) {
+            $data[$date] = $auditLogs->where('date', $date)->first()->count ?? 0;
+        }
+
         return view('dashboard', [
             'byPipolStatus'         => $byPipolStatus,
             'projectCount'          => Project::byRole()->count(),
             'validatedCount'        => Project::byRole()->validated()->count(),
             'bySubmissionStatus'    => $bySubmissionStatus,
-            'infraCostByRegion'     => $infraCostByRegion
+            'infraCostByRegion'     => $infraCostByRegion,
+            'auditLogs'             => $data,
         ]);
+    }
+
+    public function generateDateRange($startDate, $endDate): CarbonPeriod
+    {
+        return CarbonPeriod::create($startDate, $endDate);
     }
 }

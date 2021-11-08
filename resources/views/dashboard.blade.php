@@ -35,7 +35,7 @@
 @endsection
 
 @section('content')
-    <div class="Box">
+    <div class="Box mb-5">
         <div class="Box-header d-flex flex-items-center">
             <h3 class="Box-title">Overview</h3>
             <span class="flex-auto"></span>
@@ -257,12 +257,40 @@
         </ul>
     </div>
 
-    <div class="Box mt-5">
+    <div class="Box mb-5">
+        <div class="Box-header d-flex flex-items-center">
+            <h3 class="Box-title">
+                Activities in the last week
+            </h3>
+            <span class="flex-auto"></span>
+            <details class="details-overlay details-reset">
+                <summary class="btn btn-sm">
+                    Dropdown
+                    <span class="dropdown-caret"></span>
+                </summary>
+                <ul class="SelectMenu"></ul>
+            </details>
+        </div>
+        <div class="Box-body">
+            <canvas id="chart2"></canvas>
+        </div>
+    </div>
+
+    <div class="Box">
         <div class="Box-header">
             <h3 class="Box-title">Infrastructure Cost by Regions</h3>
         </div>
-        <div class="Box-body">
+        <div class="Box-body p-0">
             <canvas id="chart"></canvas>
+        </div>
+    </div>
+
+    <div class="Box">
+        <div class="Box-header">
+            <h3 class="Box-title">Infrastructure Cost by Regions</h3>
+        </div>
+        <div class="Box-body p-0">
+            <canvas id="chart3"></canvas>
         </div>
     </div>
 @endsection
@@ -301,93 +329,42 @@
             document.getElementById('chart'),
             config
         );
-{{--    </script>--}}
 
-{{--    <script>--}}
-{{--        var ctx = document.getElementById('chart2').getContext('2d');--}}
-{{--        var myChart = new Chart(ctx, {--}}
-{{--            type: 'doughnut',--}}
-{{--            data: {--}}
-{{--                labels: @json(\App\Models\RefSubmissionStatus::all()->pluck('name')->toArray()),--}}
-{{--                datasets: [{--}}
-{{--                    label: 'No. of PAPs per submission status',--}}
-{{--                    data: @json(\App\Models\RefSubmissionStatus::withCount('projects')->get()->pluck('projects_count')->toArray()),--}}
-{{--                    backgroundColor: [--}}
-{{--                        'rgb(255, 99, 132)',--}}
-{{--                        'rgb(54, 162, 235)',--}}
-{{--                        'rgb(255, 205, 86)'--}}
-{{--                    ],--}}
-{{--                    borderColor: [--}}
-{{--                        'rgba(255, 99, 132, 1)',--}}
-{{--                        'rgba(54, 162, 235, 1)',--}}
-{{--                        'rgba(255, 206, 86, 1)',--}}
-{{--                        'rgba(75, 192, 192, 1)',--}}
-{{--                        'rgba(153, 102, 255, 1)',--}}
-{{--                        'rgba(255, 159, 64, 1)'--}}
-{{--                    ],--}}
-{{--                    borderWidth: 1,--}}
-{{--                    hoverOffset: 4--}}
-{{--                }]--}}
-{{--            }--}}
-{{--        });--}}
-{{--    </script>--}}
+        const data2 = {
+            labels: @json(array_keys($auditLogs)),
+            datasets: [
+                {
+                    label: 'No. of activities',
+                    data: @json(array_values($auditLogs)),
+                    fill: false,
+                    borderColor: '#2da44e',
+                    tension: 0.1
+                }
+            ]
+        }
 
-{{--    <script>--}}
-{{--        var ctx = document.getElementById('chart3').getContext('2d');--}}
-{{--        var myChart = new Chart(ctx, {--}}
-{{--            type: 'doughnut',--}}
-{{--            data: {--}}
-{{--                labels: @json(\App\Models\RefSubmissionStatus::all()->pluck('name')->toArray()),--}}
-{{--                datasets: [{--}}
-{{--                    label: 'No. of PAPs per submission status',--}}
-{{--                    data: @json(\App\Models\RefSubmissionStatus::withCount('projects')->get()->pluck('projects_count')->toArray()),--}}
-{{--                    backgroundColor: [--}}
-{{--                        'rgb(255, 99, 132)',--}}
-{{--                        'rgb(54, 162, 235)',--}}
-{{--                        'rgb(255, 205, 86)'--}}
-{{--                    ],--}}
-{{--                    borderColor: [--}}
-{{--                        'rgba(255, 99, 132, 1)',--}}
-{{--                        'rgba(54, 162, 235, 1)',--}}
-{{--                        'rgba(255, 206, 86, 1)',--}}
-{{--                        'rgba(75, 192, 192, 1)',--}}
-{{--                        'rgba(153, 102, 255, 1)',--}}
-{{--                        'rgba(255, 159, 64, 1)'--}}
-{{--                    ],--}}
-{{--                    borderWidth: 1,--}}
-{{--                    hoverOffset: 4--}}
-{{--                }]--}}
-{{--            }--}}
-{{--        });--}}
-{{--    </script>--}}
+        const config2 = {
+            type: 'line',
+            data: data2,
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
 
-{{--    <script>--}}
-{{--        var ctx = document.getElementById('chart4').getContext('2d');--}}
-{{--        var myChart = new Chart(ctx, {--}}
-{{--            type: 'doughnut',--}}
-{{--            data: {--}}
-{{--                labels: @json(\App\Models\RefSubmissionStatus::all()->pluck('name')->toArray()),--}}
-{{--                datasets: [{--}}
-{{--                    label: 'No. of PAPs per submission status',--}}
-{{--                    data: @json(\App\Models\RefSubmissionStatus::withCount('projects')->get()->pluck('projects_count')->toArray()),--}}
-{{--                    backgroundColor: [--}}
-{{--                        'rgb(255, 99, 132)',--}}
-{{--                        'rgb(54, 162, 235)',--}}
-{{--                        'rgb(255, 205, 86)'--}}
-{{--                    ],--}}
-{{--                    borderColor: [--}}
-{{--                        'rgba(255, 99, 132, 1)',--}}
-{{--                        'rgba(54, 162, 235, 1)',--}}
-{{--                        'rgba(255, 206, 86, 1)',--}}
-{{--                        'rgba(75, 192, 192, 1)',--}}
-{{--                        'rgba(153, 102, 255, 1)',--}}
-{{--                        'rgba(255, 159, 64, 1)'--}}
-{{--                    ],--}}
-{{--                    borderWidth: 1,--}}
-{{--                    hoverOffset: 4--}}
-{{--                }]--}}
-{{--            }--}}
-{{--        });--}}
+        var myChart2 = new Chart(
+            document.getElementById('chart2'),
+            config2
+        );
+
+        var myChart3 = new Chart(
+            document.getElementById('chart2'),
+            config2
+        );
+
     </script>
 
 @endpush

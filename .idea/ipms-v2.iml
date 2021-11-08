@@ -189,5 +189,6 @@
     <orderEntry type="library" name="alpinejs" level="application" />
     <orderEntry type="library" name="chart.js" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="chart.js" level="application" />
   </component>
 </module>
