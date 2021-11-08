@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -65,6 +66,11 @@ class User extends Authenticatable
     public function getRouteKeyName(): string
     {
         return 'username';
+    }
+
+    public function audit_logs(): MorphMany
+    {
+        return $this->morphMany(AuditLog::class, 'auditable');
     }
 
     public function office(): BelongsTo
