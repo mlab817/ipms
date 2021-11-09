@@ -6,9 +6,32 @@
     <title>{{ config('app.name') }}</title>
 
     <style>
+        @font-face {
+            font-family: Cambria;
+            src: local('Cambria'), url({{ storage_path('/fonts/Cambria.ttf') }});
+        }
+
+        @font-face {
+            font-family: CambriaBold;
+            src: local('Cambria Bold'), url({{ storage_path('/fonts/cambriab.ttf') }});
+        }
+
+        .strong {
+            font-family: 'CambriaBold', serif;
+        }
+
+        body, td {
+            font-family: Cambria, serif;
+            font-size: 1em;
+        }
+
         table, tr, th, td {
             border: 1px solid gray;
             border-collapse: collapse;
+        }
+
+        table {
+            table-layout: fixed;
         }
 
         .text-right {
@@ -26,6 +49,7 @@
         th, td {
             margin: 0;
             padding: 2px;
+            white-space: normal;
         }
 
         /** Define the footer rules **/
@@ -39,12 +63,21 @@
             /** Extra personal styles **/
             color: black;
             text-align: left;
-            line-height: 1.5cm;
+            line-height: 1em;
         }
 
         @page {
             margin: 60px 60px 60px 60px !important;
             padding: 0 !important;
+        }
+
+        table {
+            page-break-inside:auto
+        }
+
+        tr {
+            page-break-inside:avoid;
+            page-break-after:auto
         }
 
     </style>

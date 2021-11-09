@@ -48,7 +48,7 @@ return array(
          *
          * Note: This directory must exist and be writable by the webserver process.
          */
-        "font_cache" => storage_path('fonts/'),
+        "font_cache" => public_path('fonts/'),
 
         /**
          * The location of a temporary directory.

@@ -1,20 +1,27 @@
 @extends('layouts.print-only')
 
 @section('content')
-    <p style="margin-top: 60px;">{{ date('F d, Y') }}</p>
+    <p style="margin-top: 100px;">{{ date('F d, Y') }}</p>
 
-    <p style="padding-top: 10px;"><strong>DR. WILLIAM D. DAR</strong><br/>
+    <p style="padding-top: 10px;"><span class="strong">DR. WILLIAM D. DAR</span><br/>
     Secretary<br/>
     Department of Agriculture<br/>
     Elliptical Road, Diliman, Quezon City</p>
 
-    <p style="padding-top: 10px; margin-left: 100px;">
-        <strong>ATTN: AGNES CATHERINE T. MIRANDA</strong><br/>
-        Assistant Secretary-designate for Planning and Project Development and <br/>
-        Director for Planning and Monitoring Service
-    </p>
+    <table style="width: 100%; margin-left: 100px; padding-top: 10px; border: 0 !important;">
+        <tbody>
+            <tr class="border: 0 !important;">
+                <td style="vertical-align: top; border: 0 !important;"><span class="strong">ATTN: </span></td>
+                <td style="width: 90%; vertical-align: top; border: 0 !important;">
+                    <span class="strong">MS. AGNES CATHERINE T. MIRANDA</span><br/>
+                    Assistant Secretary-designate for Planning and Project Development and <br/>
+                    Director for Planning and Monitoring Service
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    <p style="padding-top: 10px;">Dear <strong>Secretary Dar:</strong></p>
+    <p style="padding-top: 10px;">Dear <span class="strong">Secretary Dar:</span></p>
 
     <p style="padding-top: 10px;">
         Greetings!
@@ -39,14 +46,14 @@
         <tbody>
             <tr>
                 <td colspan="5" style="padding: 5px 2px !important;">
-                    <strong>
+                    <span class="strong">
                         Endorsed PAPs
-                    </strong>
+                    </span>
                 </td>
             </tr>
             @forelse($endorsedProjects as $project)
                 <tr>
-                    <td>{{ $project->title }} <br/><small>({{ $project->pap_type->name }})</small></td>
+                    <td>{{ $project->title }}</td>
                     <td>{{ $project->spatial_coverage->name }}</td>
                     <td class="text-center">{{ $project->target_start_year . ' - ' . $project->target_end_year }}</td>
                     <td class="text-right">{{ number_format($project->fs_infrastructures->sum('y2023')) }}</td>
@@ -82,14 +89,14 @@
         <tbody>
             <tr>
                 <td colspan="2" style="padding: 5px 2px !important;">
-                    <strong>
+                    <span class="strong">
                         Dropped PAPs
-                    </strong>
+                    </span>
                 </td>
             </tr>
             @forelse($droppedProjects as $project)
                 <tr>
-                    <td>{{ $project->title }} <br/><small>({{ $project->pap_type->name }})</small></td>
+                    <td>{{ $project->title }}</small></td>
 {{--                    <td>{{ $project->spatial_coverage->name }}</td>--}}
 {{--                    <td class="text-center">{{ $project->target_start_year . ' - ' . $project->target_end_year }}</td>--}}
 {{--                    <td class="text-right">{{ number_format($project->fs_infrastructures->sum('y2023')) }}</td>--}}
@@ -126,14 +133,14 @@
         <tbody>
             <tr>
                 <td colspan="5" style="padding: 5px 2px !important;">
-                    <strong>
+                    <span class="strong">
                         Neither Endorsed or Dropped PAPs
-                    </strong>
+                    </span>
                 </td>
             </tr>
             @forelse($draftProjects as $project)
                 <tr>
-                    <td>{{ $project->title }} <br/><small>({{ $project->pap_type->name }})</small></td>
+                    <td>{{ $project->title }}</small></td>
                     <td>{{ $project->spatial_coverage->name }}</td>
                     <td class="text-center">{{ $project->target_start_year . ' - ' . $project->target_end_year }}</td>
                     <td class="text-right">{{ number_format($project->fs_infrastructures->sum('y2023')) }}</td>
@@ -160,7 +167,7 @@
     <p style="padding-top: 10px;">Very truly yours,</p>
 
     <p style="padding-top: 40px;">
-        <strong>{{ strtoupper($office->office_head_name) }} </strong><br/>
+        <span class="strong">{{ strtoupper($office->office_head_name) }} </span><br/>
         {{ $office->name }}
     </p>
 
