@@ -21,10 +21,10 @@ class ProjectDroppedNotification extends Notification
      *
      * @return void
      */
-    public function __construct($project, User $user)
+    public function __construct($project, $userId)
     {
         $this->project  = $project;
-        $this->user     = $user;
+        $this->user     = User::find($userId);
     }
 
     /**

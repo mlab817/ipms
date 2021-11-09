@@ -15,7 +15,7 @@
                 <div class="SelectMenu right-0">
                     <div class="SelectMenu-modal">
                         <div class="SelectMenu-list SelectMenu-list--borderless">
-                            <a href="{{ route('download') }}" class="SelectMenu-item" role="menuitem">Download Endorsement Letter</a>
+                            <a href="{{ route('download') }}" target="_blank" class="SelectMenu-item" role="menuitem">Download Endorsement Letter</a>
                             <a href="{{ route('export') }}" class="SelectMenu-item" role="menuitem">Export PAPs to Excel</a>
                         </div>
                     </div>
