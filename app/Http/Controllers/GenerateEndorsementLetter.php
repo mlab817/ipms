@@ -152,12 +152,19 @@ class GenerateEndorsementLetter extends Controller
         $projects = \App\Models\Project::byRole()
             ->whereIn('ref_submission_status_id', [2,3])->get();
 
-        $byStatus = RefSubmissionStatus::with(['projects' => function ($query) {
-            $query->byRole();
-        }])->whereIn('id',[2])
+        $draftProjects = Project::byRole()
+            ->where('ref_submission_status_id',1)
             ->get();
 
-        $pdf = \Barryvdh\DomPDF\Facade::loadView('endorsement', compact('projects',  'office', 'byStatus'))
+        $endorsedProjects = Project::byRole()
+            ->where('ref_submission_status_id',2)
+            ->get();
+
+        $droppedProjects = Project::byRole()
+            ->where('ref_submission_status_id',3)
+            ->get();
+
+        $pdf = \Barryvdh\DomPDF\Facade::loadView('endorsement', compact('projects',  'office', 'endorsedProjects', 'draftProjects', 'droppedProjects'))
             ->setPaper('a4');
 
         return $pdf->stream('endorsement.pdf');

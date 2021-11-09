@@ -25,7 +25,21 @@
 
         th, td {
             margin: 0;
-            padding: 0;
+            padding: 2px;
+        }
+
+        /** Define the footer rules **/
+        footer {
+            position: fixed;
+            bottom: -1cm;
+            left: 0;
+            right: 0;
+            height: 2cm;
+
+            /** Extra personal styles **/
+            color: black;
+            text-align: left;
+            line-height: 1.5cm;
         }
 
         @page {
