@@ -31,9 +31,15 @@ class ProjectEndorseController extends Controller
         $otherUsersFromSameOffice = User::where('office_id', $office->id)
             ->where('id', '<>', auth()->id())->get();
         $reviewers = $office->reviewers;
-        $users = collect([$otherUsersFromSameOffice, $reviewers]);
+//        $users = $otherUsersFromSameOffice->merge($reviewers);
 
-        Notification::send($users, new ProjectEndorsedNotification($project->id, auth()->id()));
+        if (count($otherUsersFromSameOffice)) {
+            Notification::send($otherUsersFromSameOffice, new ProjectEndorsedNotification($project->id, auth()->id()));
+        }
+
+        if (count($reviewers)) {
+            Notification::send($reviewers, new ProjectEndorsedNotification($project->id, auth()->id()));
+        }
 
         session()->flash('status','success|Successfully endorsed PAP.');
 
