@@ -189,6 +189,10 @@ class ProjectPolicy
 
     public function endorse(User $user, Project $project)
     {
+        if ($this->isPastDeadline()) {
+            return $this->deny('The system no longer allows updating of PAPs by encoders as it is already past the deadline');
+        }
+
         if ($project->isValidated()) {
             return $this->deny('This PAP has already been validated.');
         }
@@ -203,6 +207,10 @@ class ProjectPolicy
 
     public function drop(User $user, Project $project)
     {
+        if ($this->isPastDeadline()) {
+            return $this->deny('The system no longer allows updating of PAPs by encoders as it is already past the deadline');
+        }
+
         if ($project->isValidated()) {
             return $this->deny('This PAP has already been validated.');
         }
@@ -217,6 +225,10 @@ class ProjectPolicy
 
     public function undrop(User $user, Project $project)
     {
+        if ($this->isPastDeadline()) {
+            return $this->deny('The system no longer allows updating of PAPs by encoders as it is already past the deadline');
+        }
+
         if ($project->isValidated()) {
             return $this->deny($this->validatedMessage);
         }
