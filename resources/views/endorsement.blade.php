@@ -116,7 +116,7 @@
 
     @if(count($draftProjects) > 0)
     <p style="padding-top: 10px;">
-        It is understood that the following programs and projects that were neither endorsed or dropped in the DA PIPS will not be
+        It is understood that the following programs and projects that were neither endorsed nor dropped in the DA PIPS will not be
         considered for submission in the NEDA PIPOL System and if previously submitted will be dropped in the NEDA PIPOL System:
     </p>
 
@@ -134,7 +134,7 @@
             <tr>
                 <td colspan="5" style="padding: 5px 2px !important;">
                     <span class="strong">
-                        Neither Endorsed or Dropped PAPs
+                        Neither Endorsed nor Dropped PAPs
                     </span>
                 </td>
             </tr>
@@ -149,7 +149,7 @@
             @empty
                 <tr>
                     <td colspan="5" style="color: red; text-align: center; padding: 5px 0 !important;">
-                        No program or project that were neither endorsed or dropped.
+                        No program or project that were neither endorsed nor dropped.
                     </td>
                 </tr>
             @endforelse
