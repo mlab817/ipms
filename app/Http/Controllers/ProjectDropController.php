@@ -30,7 +30,7 @@ class ProjectDropController extends Controller
         $otherUsersFromSameOffice = User::where('office_id', $office->id)
             ->where('id', '<>', auth()->id())->get();
         $reviewers = $office->reviewers;
-        $users = collect($otherUsersFromSameOffice, $reviewers);
+        $users = collect([$otherUsersFromSameOffice, $reviewers]);
 
         Notification::send($users, new ProjectDroppedNotification($project->id, auth()->id()));
 
