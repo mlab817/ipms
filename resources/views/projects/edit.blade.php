@@ -42,7 +42,8 @@
                 </h2>
             </div>
 
-            <div class="float-right">
+            <div class="float-right d-flex flex-nowrap">
+                <a href="{{ route('projects.index') }}" class="btn mr-1">Back to List</a>
 {{--                <button type="submit" form="editProjectForm" class="btn btn-primary" name="immediate" value="1">Save Immediately</button>--}}
                 <button type="submit" form="editProjectForm" class="btn btn-primary">Save</button>
             </div>
