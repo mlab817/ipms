@@ -245,7 +245,7 @@
                                         Invalidate
                                     </summary>
                                     <details-dialog class="Box--overlay anim-fade-in fast">
-                                        <form class="inline-form" action="{{ route('projects.validate', $project) }}" accept-charset="UTF-8" method="post">
+                                        <form class="inline-form" action="{{ route('projects.undovalidate', $project) }}" accept-charset="UTF-8" method="post">
                                             @csrf
                                             @method('PUT')
                                             <div class="Box">
@@ -301,7 +301,7 @@
                                         <form class="inline-form" action="{{ route('projects.validate', $project) }}" accept-charset="UTF-8" method="post">
                                             @csrf
                                             @method('PUT')
-                                            <div class="Box">
+                                            <div class="Box" x-data="{ validation_remarks: '' }">
                                                 <div class="Box-header">
                                                     <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
                                                         <!-- <%= octicon "x" %> -->
@@ -332,9 +332,12 @@
                                                             </ul>
                                                         </div>
                                                     </div>
+                                                    <div class="d-flex">
+                                                        <textarea x-model="validation_remarks" placeholder="Provide your remarks here..." required name="validation_remarks" id="validation_remarks" class="width-full form-control"></textarea>
+                                                    </div>
                                                 </div>
                                                 <div class="Box-footer">
-                                                    <button onclick="return confirm('Are you sure you want to validate this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
+                                                    <button x-bind:disabled="!validation_remarks" onclick="return confirm('Are you sure you want to validate this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
                                                         <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
                                                         Validate
                                                     </button>

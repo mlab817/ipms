@@ -66,10 +66,25 @@ class ProjectController extends Controller
 
         $project = $project->byRole();
 
+        // set default tab to trip
+        $tab = $request->tab ?? 'trip';
+
         $q = $request->q;
         $validated = $request->validated;
         $pipsStatus = RefSubmissionStatus::findByName($request->status ?? '');
         $pipolStatus = RefPipolStatus::findByName($request->pipol);
+
+        if ($tab == 'trip') {
+            $project = $project->trip();
+        }
+
+        if ($tab == 'pip') {
+            $project = $project->pip();
+        }
+
+        if ($tab == 'untagged') {
+            $project = $project->untagged();
+        }
 
         if ($pipsStatus) {
             $project = $project->where('ref_submission_status_id', $pipsStatus->id);
@@ -93,7 +108,7 @@ class ProjectController extends Controller
 
         $projects->load(['creator.office','office','pipol_status','submission_status','description','pap_type','project_status','seen_by']);
 
-        return view('projects.index', compact('projects'))
+        return view('projects.index', compact('projects','tab'))
             ->with([
                 'submission_statuses'=> RefSubmissionStatus::withCount(['projects' => function($query) {
                     $query->byRole();

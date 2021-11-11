@@ -596,29 +596,6 @@ class Project extends Model
         $this->unseen();
     }
 
-    public function toggleValidation()
-    {
-        if (! $this->validated_at) {
-            $this->validated_at = now();
-            $this->saveQuietly();
-
-            $this->audit_logs()->create([
-                'description' => 'validated',
-                'user_id' => auth()->id(),
-            ]);
-        } else {
-            $this->validated_at = null;
-            $this->saveQuietly();
-
-            $this->audit_logs()->create([
-                'description' => 'invalidated',
-                'user_id' => auth()->id(),
-            ]);
-        }
-
-        $this->unseen();
-    }
-
     public function isValidated(): bool
     {
         return !!$this->validated_at;
@@ -681,12 +658,18 @@ class Project extends Model
 
     public function scopeTrip($query)
     {
-        return $query->where('has_infra', true);
+        return $query->where('trip', true);
     }
 
-    public function scopeHasSubprojects($query)
+    public function scopePip($query)
     {
-        return $query->where('has_subprojects', true);
+        return $query->where('pip', true);
+    }
+
+    public function scopeUntagged($query)
+    {
+        return $query->where('pip', false)
+            ->where('trip', false);
     }
 
     public function scopeAssigned($query)
@@ -695,6 +678,34 @@ class Project extends Model
             return $query;
         }
         return $query->whereIn('id', auth()->user()->assigned_projects->pluck('id')->toArray());
+    }
+
+    public function validate($remarks = '')
+    {
+        $this->validation_remarks = $remarks;
+        $this->validated_at = now();
+        $this->saveQuietly();
+
+        $this->audit_logs()->create([
+            'description' => 'validated with remarks: [' . $remarks . ']',
+            'user_id' => auth()->id(),
+        ]);
+
+        $this->unseen();
+    }
+
+    public function undoValidate()
+    {
+        $this->validation_remarks = null;
+        $this->validated_at = null;
+        $this->saveQuietly();
+
+        $this->audit_logs()->create([
+            'description' => 'undid validation of',
+            'user_id' => auth()->id(),
+        ]);
+
+        $this->unseen();
     }
 
     public function unseen()

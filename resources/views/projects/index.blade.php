@@ -1,7 +1,76 @@
 @extends('layouts.app')
 
 @section('page-header')
-    <x-page-header header="Programs and Projects"></x-page-header>
+    <header class="color-bg-subtle border-bottom-0 pt-0">
+
+        <div class="container-lg pt-4 p-responsive clearfix">
+
+            <div class="d-flex flex-wrap flex-items-start flex-md-items-center my-3">
+
+                <div class="flex-1">
+                    <h1 class="h1 lh-condensed">
+                        Programs and Projects
+                    </h1>
+
+                    <div class="color-fg-muted"><div></div></div>
+
+                    <div class="d-md-flex flex-items-center mt-2">
+
+                    </div>
+                </div>
+
+                <div class="flex-self-start mt-3">
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="position-relative mt-3">
+            <nav class="UnderlineNav hx_UnderlineNav overflow-visible" aria-label="Tag">
+                <div class="width-full d-flex position-relative container-lg">
+                    <ul class="list-style-none UnderlineNav-body width-full p-responsive overflow-hidden">
+                        <li data-tab-item="org-header-projects-tab" class="d-flex">
+                            <a class="UnderlineNav-item " href="{{ route('projects.index', ['tab' => 'trip']) }}" data-hotkey="g b" @if($tab == 'trip') aria-current="page" @endif>
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-project UnderlineNav-octicon">
+                                    <path fill-rule="evenodd" d="M1.75 0A1.75 1.75 0 000 1.75v12.5C0 15.216.784 16 1.75 16h12.5A1.75 1.75 0 0016 14.25V1.75A1.75 1.75 0 0014.25 0H1.75zM1.5 1.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v12.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V1.75zM11.75 3a.75.75 0 00-.75.75v7.5a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75zm-8.25.75a.75.75 0 011.5 0v5.5a.75.75 0 01-1.5 0v-5.5zM8 3a.75.75 0 00-.75.75v3.5a.75.75 0 001.5 0v-3.5A.75.75 0 008 3z"></path>
+                                </svg>
+                                TRIP
+                                <span title="Not available" class="Counter js-profile-project-count">
+                                    {{ \App\Models\Project::byRole()->trip()->count() }}
+                                </span>
+                            </a>
+                        </li>
+
+                        <li data-tab-item="org-header-people-tab" class="d-flex">
+                            <a class="UnderlineNav-item " href="{{ route('projects.index', ['tab' => 'pip']) }}" @if($tab == 'pip') aria-current="page" @endif>
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-person UnderlineNav-octicon">
+                                    <path fill-rule="evenodd" d="M10.5 5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm.061 3.073a4 4 0 10-5.123 0 6.004 6.004 0 00-3.431 5.142.75.75 0 001.498.07 4.5 4.5 0 018.99 0 .75.75 0 101.498-.07 6.005 6.005 0 00-3.432-5.142z"></path>
+                                </svg>
+                                PIP
+                                <span title="Not available" class="Counter">
+                                    {{ \App\Models\Project::byRole()->trip()->count() }}
+                                </span>
+                            </a>
+                        </li>
+
+                        <li data-tab-item="org-header-people-tab" class="d-flex">
+                            <a class="UnderlineNav-item " href="{{ route('projects.index', ['tab' => 'untagged']) }}" @if($tab == 'untagged') aria-current="page" @endif>
+                                <svg class="octicon octicon-x-circle-fill UnderlineNav-octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"></path></svg>
+                                Untagged
+                                <span title="Not available" class="Counter">
+                                    {{ \App\Models\Project::byRole()->untagged()->count() }}
+                                </span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+
+    </header>
 @endsection
 
 @section('content')
@@ -24,7 +93,7 @@
         </div>
     @endif
 
-    <div class="d-flex flex-row flex-items-center ">
+    <div class="d-flex flex-row flex-items-center mt-5">
         <div class="d-flex mr-md-0 mr-lg-3 flex-auto">
             <form class="subnav-search ml-0 mt-lg-0 width-full width-lg-auto flex-auto flex-order-1 flex-lg-order-none js-active-navigation-container" role="search" aria-label="PAPs" action="{{ route('projects.index') }}" accept-charset="UTF-8" method="get">
                 @if(request()->has('pipol'))
@@ -35,6 +104,9 @@
                 @endif
                 @if(request()->has('validated'))
                 <input type="hidden" name="validated" value="{{ request()->query('validated') ?? null }}">
+                @endif
+                @if(request()->has('tab'))
+                    <input type="hidden" name="tab" value="{{ request()->query('tab') ?? 'trip' }}">
                 @endif
                 <input type="search" id="q" name="q" class="form-control subnav-search-input input-contrast width-full" placeholder="Find a PAP…" autocomplete="off" aria-label="Find a PAP…" value="{{ old('q', request()->get('q')) }}">
 

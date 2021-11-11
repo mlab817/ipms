@@ -19,6 +19,20 @@ class ProjectObserver
     public function updated(Project $project)
     {
         $project->unseen();
+
+        if ($project->isDirty('trip') && ! $project->trip) {
+            $project->audit_logs()->create([
+                'description' => 'untagged as TRIP',
+                'user_id' => auth()->id(),
+            ]);
+        }
+
+        if ($project->isDirty('pip') &&! $project->pip) {
+            $project->audit_logs()->create([
+                'description' => 'untagged as PIP',
+                'user_id' => auth()->id(),
+            ]);
+        }
     }
 
     /**
