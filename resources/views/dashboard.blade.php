@@ -56,7 +56,7 @@
         <p class="mt-2">Both (2) and (3) will not be considered for TRIP submission, and for PAPs previously submitted
             in the NEDA-PIPOL System, these will be dropped.
         </p>
-        <p>For your guidance.</p>
+        <p>For everyone's guidance.</p>
         <p>PIPS Admin</p>
     </div>
 
