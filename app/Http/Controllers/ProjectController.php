@@ -34,6 +34,7 @@ use App\Models\RefSpatialCoverage;
 use App\Models\RefSubmissionStatus;
 use App\Models\RefTenPointAgenda;
 use App\Models\RefTier;
+use App\Models\RefValidationStatus;
 use App\Models\RefYear;
 use App\Models\User;
 use App\Notifications\ProjectCreatedNotification;
@@ -200,6 +201,7 @@ class ProjectController extends Controller
             ->with([
                 'submission_statuses' => RefSubmissionStatus::all(),
                 'pipol_statuses' => RefPipolStatus::all(),
+                'validation_statuses' => RefValidationStatus::all(),
             ]);
     }
 

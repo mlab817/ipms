@@ -24,12 +24,11 @@
                     @endif
                 </button>
 
-                <button class="BtnGroup-item btn @if($project->isValidated()) btn-primary @endif" type="button">
+                <button class="BtnGroup-item btn" type="button" style="color: white; background-color: {{ $project->validation_status->color ?? '#fff' }}">
                     @if($project->isValidated())
-                        Validated
-                        <svg class="octicon octicon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>
+                        {{ $project->validation_status->name }}
                     @else
-                        Unvalidated
+                        Not yet validated
                         <svg class="octicon octicon-issue-opened" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
                     @endif
                 </button>
@@ -238,60 +237,6 @@
                         @endif
 
                         @can('validate', $project)
-                            @if($project->isValidated())
-                            <li>
-                                <details class="details-reset details-overlay details-overlay-dark">
-                                    <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
-                                        Invalidate
-                                    </summary>
-                                    <details-dialog class="Box--overlay anim-fade-in fast">
-                                        <form class="inline-form" action="{{ route('projects.validate', $project) }}" accept-charset="UTF-8" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="Box">
-                                                <div class="Box-header">
-                                                    <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
-                                                        <!-- <%= octicon "x" %> -->
-                                                        <svg class="octicon octicon-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                                                            <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
-                                                        </svg>
-                                                    </button>
-                                                    <h2 class="Box-title">Invalidate PAP</h2>
-                                                </div>
-                                                <div class="flash flash-warn flash-full m-0">
-                                                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
-                                                        <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
-                                                    </svg>
-                                                    <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>
-                                                </div>
-                                                <div class="Box-body">
-                                                    <div class="d-flex flex-nowrap">
-                                                        <div>
-                                                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-checklist">
-                                                                <path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path>
-                                                            </svg>
-                                                        </div>
-                                                        <div class="pl-3 flex-1">
-                                                            <p class="overflow-hidden mb-1">Before you validate, please consider:</p>
-                                                            <ul class="ml-3">
-                                                                <strong>Invalidated:</strong> Invalidated PAPs can be edited again by the user but will not be reverted to draft. This will
-                                                                only allow IPD to edit the PAP information.
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="Box-footer">
-                                                    <button onclick="return confirm('Are you sure you want to validate this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
-                                                        <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
-                                                        Invalidate
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </details-dialog>
-                                </details>
-                            </li>
-                            @else
                             <li>
                                 <details class="details-reset details-overlay details-overlay-dark">
                                     <summary class="dropdown-item" aria-label="Endorse this PAP" aria-haspopup="dialog">
@@ -332,7 +277,43 @@
                                                             </ul>
                                                         </div>
                                                     </div>
+
+                                                    <dl>
+                                                        <dt>
+                                                            <label for="ref_validation_status_id">Validation Status</label>
+                                                        </dt>
+                                                        <dd>
+                                                            <select required class="form-control width-full" name="ref_validation_status_id" id="ref_validation_status_id">
+                                                                <option value="">Select status</option>
+                                                                @foreach($validation_statuses as $status)
+                                                                    <option value="{{ $status->id }}" @if($project->ref_validation_status_id == $status->id) selected @endif>Validate as {{ $status->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </dd>
+                                                    </dl>
+
+                                                    <dl>
+                                                        <dt>
+                                                            <label for="validation_remarks">Remarks</label>
+                                                        </dt>
+                                                        <dd>
+                                                            <textarea
+                                                                required
+                                                                name="validation_remarks"
+                                                                id="validation_remarks"
+                                                                class="form-control width-full">{{ $project->validation_remarks }}</textarea>
+                                                        </dd>
+                                                    </dl>
+
+                                                    <div class="form-checkbox">
+                                                        <label for="no_further_inputs">
+                                                            <input type="checkbox" name="no_further_inputs" id="no_further_inputs" value="1" @if($project->no_further_inputs) checked @endif>
+                                                            No further inputs from IPD staff
+                                                        </label>
+                                                    </div>
+
                                                 </div>
+
                                                 <div class="Box-footer">
                                                     <button onclick="return confirm('Are you sure you want to validate this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">
                                                         <svg class="octicon octicon-tasklist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
@@ -344,7 +325,6 @@
                                     </details-dialog>
                                 </details>
                             </li>
-                            @endif
                         @endcan
                         @can('encode', $project)
                             <li class="dropdown-divider" role="separator"></li>

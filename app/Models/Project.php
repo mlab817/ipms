@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Scopes\RoleScope;
 use App\Traits\Auditable;
 use App\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -273,6 +272,12 @@ class Project extends Model
             ->withDefault(['slug' => '#','username' => '#']);
     }
 
+    public function validator(): BelongsTo
+    {
+        return $this->belongsTo(User::class,'validator_id','id')
+            ->withDefault(['slug' => '#','username' => '#']);
+    }
+
     public function funding_source(): BelongsTo
     {
         return $this->belongsTo(RefFundingSource::class, 'ref_funding_source_id')->withDefault(['name' => '_']);
@@ -353,6 +358,11 @@ class Project extends Model
     public function tier(): BelongsTo
     {
         return $this->belongsTo(RefTier::class, 'ref_tier_id')->withDefault();
+    }
+
+    public function validation_status()
+    {
+        return $this->belongsTo(RefValidationStatus::class, 'ref_validation_status_id')->withDefault(['name' => '_']);
     }
 
     /**
@@ -596,27 +606,18 @@ class Project extends Model
         $this->unseen();
     }
 
-    public function toggleValidation()
+    public function validate($statusId, $remarks = '', $noFurtherInputs = false)
     {
-        if (! $this->validated_at) {
-            $this->validated_at = now();
-            $this->saveQuietly();
+        $this->validated_at             = now();
+        $this->ref_validation_status_id = $statusId;
+        $this->validation_remarks       = $remarks;
+        $this->no_further_inputs        = $noFurtherInputs;
+        $this->saveQuietly();
 
-            $this->audit_logs()->create([
-                'description' => 'validated',
-                'user_id' => auth()->id(),
-            ]);
-        } else {
-            $this->validated_at = null;
-            $this->saveQuietly();
-
-            $this->audit_logs()->create([
-                'description' => 'invalidated',
-                'user_id' => auth()->id(),
-            ]);
-        }
-
-        $this->unseen();
+        $this->audit_logs()->create([
+            'description' => 'validated as ' . RefValidationStatus::find($statusId)->name ?? '_',
+            'user_id' => auth()->id(),
+        ]);
     }
 
     public function isValidated(): bool
@@ -659,6 +660,11 @@ class Project extends Model
 
     // relationships
 
+    public function scopeNotValidated($query)
+    {
+        return $query->whereNull('validated_at');
+    }
+
     public function scopeValidated($query)
     {
         return $query->whereNotNull('validated_at');
@@ -684,17 +690,21 @@ class Project extends Model
         return $query->where('has_infra', true);
     }
 
-    public function scopeHasSubprojects($query)
-    {
-        return $query->where('has_subprojects', true);
-    }
-
     public function scopeAssigned($query)
     {
         if (! auth()->user()) {
             return $query;
         }
         return $query->whereIn('id', auth()->user()->assigned_projects->pluck('id')->toArray());
+    }
+
+    public function scopeValidationStatus($query, $status)
+    {
+        if ($status = RefValidationStatus::findByName($status)) {
+            return $query->where('ref_validation_status_id', $status->id);
+        }
+
+        return $query;
     }
 
     public function unseen()

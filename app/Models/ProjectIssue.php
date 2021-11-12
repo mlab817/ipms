@@ -14,4 +14,13 @@ class ProjectIssue extends Model
         'issues',
         'project_updated_at',
     ];
+
+    protected $casts = [
+        'issues' => 'array',
+    ];
+
+    public function getIssuesCountAttribute(): int
+    {
+        return count((array) $this->issues);
+    }
 }

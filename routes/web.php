@@ -29,6 +29,8 @@ Route::middleware(['auth','activated'])->group(function () {
 
     Route::put('/projects/{project}/drop', [\App\Http\Controllers\ProjectController::class,'drop'])->name('projects.drop');
 
+    Route::get('/appraisal', \App\Http\Controllers\AppraisalController::class)->name('appraisal');
+
     // Upload
     Route::put('/projects/{project}/upload', [\App\Http\Controllers\ProjectController::class,'upload'])->name('projects.upload');
 

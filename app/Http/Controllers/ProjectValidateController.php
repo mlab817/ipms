@@ -22,7 +22,17 @@ class ProjectValidateController extends Controller
     {
         $this->authorize('validate', $project);
 
-        $project->toggleValidation();
+        $request->validate([
+            'ref_validation_status_id'  => 'required|exists:ref_validation_statuses,id',
+            'validation_remarks'        => 'required',
+            'no_further_inputs'         => 'sometimes|bool',
+        ]);
+
+        $project->validate(
+            $request->ref_validation_status_id,
+            $request->validation_remarks,
+            $request->no_further_inputs,
+        );
 
         $officeId = $project->office_id;
 
