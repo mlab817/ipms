@@ -86,6 +86,10 @@ class ProjectController extends Controller
             $project = $project->untagged();
         }
 
+        if ($tab == 'dropped') {
+            $project = $project->dropped();
+        }
+
         if ($pipsStatus) {
             $project = $project->where('ref_submission_status_id', $pipsStatus->id);
         }

@@ -36,7 +36,7 @@
                                     <path fill-rule="evenodd" d="M1.75 0A1.75 1.75 0 000 1.75v12.5C0 15.216.784 16 1.75 16h12.5A1.75 1.75 0 0016 14.25V1.75A1.75 1.75 0 0014.25 0H1.75zM1.5 1.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v12.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V1.75zM11.75 3a.75.75 0 00-.75.75v7.5a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75zm-8.25.75a.75.75 0 011.5 0v5.5a.75.75 0 01-1.5 0v-5.5zM8 3a.75.75 0 00-.75.75v3.5a.75.75 0 001.5 0v-3.5A.75.75 0 008 3z"></path>
                                 </svg>
                                 TRIP
-                                <span title="Not available" class="Counter js-profile-project-count">
+                                <span title="TRIP" class="Counter js-profile-project-count">
                                     {{ \App\Models\Project::byRole()->trip()->count() }}
                                 </span>
                             </a>
@@ -48,8 +48,18 @@
                                     <path fill-rule="evenodd" d="M10.5 5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm.061 3.073a4 4 0 10-5.123 0 6.004 6.004 0 00-3.431 5.142.75.75 0 001.498.07 4.5 4.5 0 018.99 0 .75.75 0 101.498-.07 6.005 6.005 0 00-3.432-5.142z"></path>
                                 </svg>
                                 PIP
-                                <span title="Not available" class="Counter">
+                                <span title="PIP" class="Counter">
                                     {{ \App\Models\Project::byRole()->trip()->count() }}
+                                </span>
+                            </a>
+                        </li>
+
+                        <li data-tab-item="org-header-people-tab" class="d-flex">
+                            <a class="UnderlineNav-item " href="{{ route('projects.index', ['tab' => 'dropped']) }}" @if($tab == 'dropped') aria-current="page" @endif>
+                                <svg class="octicon octicon-x-circle-fill UnderlineNav-octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"></path></svg>
+                                Dropped
+                                <span title="Dropped" class="Counter">
+                                    {{ \App\Models\Project::byRole()->dropped()->count() }}
                                 </span>
                             </a>
                         </li>
@@ -58,7 +68,7 @@
                             <a class="UnderlineNav-item " href="{{ route('projects.index', ['tab' => 'untagged']) }}" @if($tab == 'untagged') aria-current="page" @endif>
                                 <svg class="octicon octicon-x-circle-fill UnderlineNav-octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"></path></svg>
                                 Untagged
-                                <span title="Not available" class="Counter">
+                                <span title="Untagged" class="Counter">
                                     {{ \App\Models\Project::byRole()->untagged()->count() }}
                                 </span>
                             </a>

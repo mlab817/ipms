@@ -658,12 +658,14 @@ class Project extends Model
 
     public function scopeTrip($query)
     {
-        return $query->where('trip', true);
+        return $query->where('trip', true)
+            ->where('ref_submission_status_id','<>',3);
     }
 
     public function scopePip($query)
     {
-        return $query->where('pip', true);
+        return $query->where('pip', true)
+            ->where('ref_submission_status_id','<>',3);
     }
 
     public function scopeUntagged($query)
@@ -671,6 +673,12 @@ class Project extends Model
         return $query->where('pip', false)
             ->where('trip', false);
     }
+
+    public function scopeDropped($query)
+    {
+        return $query->where('ref_submission_status_id', 3); // 3 is dropped
+    }
+
 
     public function scopeAssigned($query)
     {

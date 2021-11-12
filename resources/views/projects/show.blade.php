@@ -332,9 +332,37 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="d-flex">
-                                                        <textarea x-model="validation_remarks" placeholder="Provide your remarks here..." required name="validation_remarks" id="validation_remarks" class="width-full form-control"></textarea>
-                                                    </div>
+                                                    <hr class="dropdown-divider" role="separator">
+                                                    <dl class="form-group">
+                                                        <dt></dt>
+                                                        <dd>
+                                                            <div class="form-check">
+                                                                <label for="pip">
+                                                                    <input type="checkbox" name="pip" id="pip" value="1" @if($project->pip) checked @endif>
+                                                                    Included in the Public Investment Program (PIP)
+                                                                </label>
+                                                            </div>
+                                                        </dd>
+                                                    </dl>
+                                                    <dl class="form-group">
+                                                        <dt></dt>
+                                                        <dd>
+                                                            <div class="form-check">
+                                                                <label for="trip">
+                                                                    <input type="checkbox" name="trip" id="trip" value="1" @if($project->trip) checked @endif>
+                                                                    Included in the Three-Year Rolling Infrastructure Program (TRIP)
+                                                                </label>
+                                                            </div>
+                                                        </dd>
+                                                    </dl>
+                                                    <dl class="form-group">
+                                                        <dt>
+                                                            <label for="validation_remarks">Remarks</label>
+                                                        </dt>
+                                                        <dd>
+                                                            <textarea x-model="validation_remarks" placeholder="Provide your remarks here..." required name="validation_remarks" id="validation_remarks" class="width-full form-control"></textarea>
+                                                        </dd>
+                                                    </dl>
                                                 </div>
                                                 <div class="Box-footer">
                                                     <button x-bind:disabled="!validation_remarks" onclick="return confirm('Are you sure you want to validate this PAP?')" class="btn btn-outline-dark btn-block" type="submit" aria-label="Delete this PAP" data-disable-with="">

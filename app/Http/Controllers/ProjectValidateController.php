@@ -22,6 +22,10 @@ class ProjectValidateController extends Controller
     {
         $this->authorize('validate', $project);
 
+        $project->trip = $request->trip;
+        $project->pip = $request->pip;
+        $project->save();
+
         $project->validate($request->validation_remarks);
 
         $officeId = $project->office_id;
