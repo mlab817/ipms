@@ -9,15 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 
-class ProjectValidateController extends Controller
+class ProjectInvalidateController extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param Project $project
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __invoke(Request $request, Project $project)
     {
@@ -31,11 +29,9 @@ class ProjectValidateController extends Controller
             return back()->with('status','error|' . $validator->errors()->first('validation_remarks'));
         }
 
-        $project->validate($request->validation_remarks);
+        $project->invalidate($request->validation_remarks);
 
-        $officeId = $project->office_id;
-
-        $users = User::where('office_id', $officeId)->get();
+        $users = $project->office->reviewers;
 
         Notification::send($users, new ProjectValidatedNotification($project->id, auth()->id()));
 

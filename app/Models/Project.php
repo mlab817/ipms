@@ -596,25 +596,30 @@ class Project extends Model
         $this->unseen();
     }
 
-    public function toggleValidation()
+    public function validate($remarks = '')
     {
-        if (! $this->validated_at) {
-            $this->validated_at = now();
-            $this->saveQuietly();
+        $this->validation_remarks = $remarks;
+        $this->validated_at = now();
+        $this->saveQuietly();
 
-            $this->audit_logs()->create([
-                'description' => 'validated',
-                'user_id' => auth()->id(),
-            ]);
-        } else {
-            $this->validated_at = null;
-            $this->saveQuietly();
+        $this->audit_logs()->create([
+            'description' => 'validated with remark: ' . $remarks,
+            'user_id' => auth()->id(),
+        ]);
 
-            $this->audit_logs()->create([
-                'description' => 'invalidated',
-                'user_id' => auth()->id(),
-            ]);
-        }
+        $this->unseen();
+    }
+
+    public function invalidate($remarks = '')
+    {
+        $this->validation_remarks = $remarks;
+        $this->validated_at = null;
+        $this->saveQuietly();
+
+        $this->audit_logs()->create([
+            'description' => 'invalidated with remark: ' . $remarks,
+            'user_id' => auth()->id(),
+        ]);
 
         $this->unseen();
     }

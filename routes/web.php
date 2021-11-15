@@ -35,6 +35,7 @@ Route::middleware(['auth','activated'])->group(function () {
     Route::put('/projects/{uuid}/restore', [\App\Http\Controllers\ProjectController::class,'restore'])->name('projects.restore');
 
     Route::put('/projects/{project}/transfer', \App\Http\Controllers\ProjectTransferController::class)->name('projects.transfer');
+    Route::put('/projects/{project}/invalidate', \App\Http\Controllers\ProjectInvalidateController::class)->name('projects.invalidate');
     Route::put('/projects/{project}/validate', \App\Http\Controllers\ProjectValidateController::class)->name('projects.validate');
     Route::put('/projects/{project}/endorse', \App\Http\Controllers\ProjectEndorseController::class)->name('projects.endorse');
     Route::put('/projects/{project}/drop', \App\Http\Controllers\ProjectDropController::class)->name('projects.drop');
