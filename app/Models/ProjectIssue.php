@@ -14,4 +14,8 @@ class ProjectIssue extends Model
         'issues',
         'project_updated_at',
     ];
+
+    protected $casts = [
+        'issues' => 'array',
+    ];
 }
