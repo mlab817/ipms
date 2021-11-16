@@ -10,7 +10,7 @@ class ProjectIssueController extends Controller
     public function __invoke(Project $project)
     {
         $tab = 'issues';
-        $issues = json_decode($project->issue->issues ?? '{}', true);
+        $issues = $project->issue->issues ?? [];
 
         return view('projects.issues', compact('project','tab', 'issues'));
     }
