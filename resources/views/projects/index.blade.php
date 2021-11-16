@@ -1,7 +1,35 @@
+@php($activeTab = request()->query('tab') ?? 'trip')
+
 @extends('layouts.app')
 
 @section('page-header')
-    <x-page-header header="Programs and Projects"></x-page-header>
+
+    <div class="pt-3 mb-5 color-bg-subtle border-bottom">
+
+        <div class="d-flex mb-5 container-lg">
+
+            <div class="flex-auto min-width-0 width-fit mr-3">
+                <h1 class=" d-flex flex-wrap flex-items-center wb-break-word text-normal">
+                    Programs and Projects
+                </h1>
+
+            </div>
+
+        </div>
+
+        <div class="d-flex container-lg">
+            <nav class="UnderlineNav">
+                <div class="UnderlineNav-body">
+                    @foreach($tabs as $tab)
+                    <a href="{{ route('projects.index', ['tab' => $tab]) }}" class="UnderlineNav-item no-wrap mr-2" @if($activeTab == $tab) aria-current="page" @endif>
+                        <span>{{ strtoupper($tab) }}</span>
+                        <span class="Counter">{{ \App\Models\Project::byRole()->{$tab}()->count() }}</span>
+                    </a>
+                    @endforeach
+                </div>
+            </nav>
+        </div>
+    </div>
 @endsection
 
 @section('content')
@@ -24,9 +52,59 @@
         </div>
     @endif
 
+    <div>
+        <ol class="d-flex flex-wrap list-style-none gutter-condensed mb-4">
+            <li class="mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-6">
+                <div class="Box pinned-item-list-item d-flex flex-column p-3 width-full">
+                    <div class="d-flex width-full flex-items-center position-relative">
+                        <span class="text-bold flex-auto min-width-0">
+                            <span>Validated / Endorsed</span>
+                        </span>
+                        <span></span>
+                        <span class="Label Label--secondary v-align-middle ml-1">
+                            {{ \App\Models\Project::byRole()->validated()->count() }} /
+                            {{ \App\Models\Project::byRole()->endorsed()->trip()->count() }}
+                        </span>
+                    </div>
+                    <div class="d-flex width-full">
+                        <p class="note">No. of validated PAPs in the PIPS vs. no. of endorsed PAPs</p>
+                        <span class="flex-auto"></span>
+                        <p class="note">{{ \App\Models\Project::byRole()->endorsed()->trip()->count() > 0 ?\App\Models\Project::byRole()->validated()->count() /
+                            \App\Models\Project::byRole()->endorsed()->trip()->count() * 100 : 0 }}%</p>
+                    </div>
+                </div>
+            </li>
+
+            <li class="mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-6">
+                <div class="Box pinned-item-list-item d-flex flex-column p-3 width-full">
+                    <div class="d-flex width-full flex-items-center position-relative">
+                        <span class="text-bold flex-auto min-width-0">
+                            <span>Encoded / Validated</span>
+                        </span>
+                        <span></span>
+                        <span class="Label Label--secondary v-align-middle ml-1">
+                            {{ \App\Models\Project::byRole()->encoded()->count() }} /
+                            {{ \App\Models\Project::byRole()->validated()->trip()->count() }}
+                        </span>
+                    </div>
+                    <div class="d-flex width-full">
+                        <p class="note">No. of encoded PAPs in the PIPOL vs. no. of validated PAPs that are TRIP</p>
+                        <span class="flex-auto"></span>
+                        <p class="note">{{ \App\Models\Project::byRole()->validated()->trip()->count() > 0 ? \App\Models\Project::byRole()->encoded()->count() /
+                            \App\Models\Project::byRole()->validated()->trip()->count() * 100 : 0}}%</p>
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+
     <div class="d-flex flex-row flex-items-center ">
         <div class="d-flex mr-md-0 mr-lg-3 flex-auto">
             <form class="subnav-search ml-0 mt-lg-0 width-full width-lg-auto flex-auto flex-order-1 flex-lg-order-none js-active-navigation-container" role="search" aria-label="PAPs" action="{{ route('projects.index') }}" accept-charset="UTF-8" method="get">
+                @if(request()->has('tab'))
+                    <input type="hidden" name="tab" value="{{ request()->query('tab') ?? null }}">
+                @endif
+
                 @if(request()->has('pipol'))
                 <input type="hidden" name="pipol" value="{{ request()->query('pipol') ?? null }}">
                 @endif
@@ -55,7 +133,7 @@
 
             <details class="details-reset details-overlay position-relative mt-lg-0 ml-1" id="sort-options">
                 <summary aria-haspopup="menu" role="button" class="btn">
-                    <span>{{ request()->query('status') ?? 'All' }}</span>
+                    PIPS Status
                     <span class="dropdown-caret"></span>
                 </summary>
                 <details-menu class="SelectMenu right-lg-0" role="menu">
@@ -64,18 +142,18 @@
                             <span class="SelectMenu-title">Select PIPS status</span>
                         </header>
                         <div class="SelectMenu-list">
-                            <a class="SelectMenu-item" href="{{ route('projects.index', ['status' => null ]) }}" role="menuitemradio" @if(! request()->query('status')) aria-checked="true" @endif tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['tab' => $activeTab, 'status' => null ]) }}" role="menuitemradio" @if(! request()->query('status')) aria-checked="true" @endif tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal" data-menu-button-text="">All ({{ $projects->total() }})</span>
+                                <span class="text-normal">All</span>
                             </a>
                             @foreach($submission_statuses as $status)
-                            <a class="SelectMenu-item" href="{{ route('projects.index', ['status' => $status->name ]) }}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['tab' => $activeTab, 'status' => $status->name ]) }}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal">{{ $status->name }} ({{ $status->projects_count }})</span>
+                                <span class="text-normal">{{ $status->name }}</span>
                             </a>
                             @endforeach
                         </div>
@@ -85,7 +163,7 @@
 
             <details class="details-reset details-overlay position-relative mt-lg-0 ml-1" id="sort-validated">
                 <summary aria-haspopup="menu" role="button" class="btn">
-                    <span>{{ ! request()->has('validated') ? 'All' : (request()->query('validated' == 1) ? 'Validated' : 'Not Validated') }}</span>
+                    Validation
                     <span class="dropdown-caret"></span>
                 </summary>
                 <details-menu class="SelectMenu right-lg-0" role="menu">
@@ -94,25 +172,25 @@
                             <span class="SelectMenu-title">Select validation status</span>
                         </header>
                         <div class="SelectMenu-list">
-                            <a class="SelectMenu-item" href="{{ route('projects.index', ['validated' => null ]) }}" role="menuitemradio" @if(! request()->has('validated')) aria-checked="true" @endif tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['tab' => $activeTab, 'validated' => null ]) }}" role="menuitemradio" @if(! request()->has('validated')) aria-checked="true" @endif tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal" data-menu-button-text="">All ({{ $projects->total() }})</span>
+                                <span class="text-normal">All</span>
                             </a>
 
-                            <a class="SelectMenu-item" href="{{ route('projects.index', ['validated' => 1 ]) }}" role="menuitemradio" @if(request()->query('validated') == 1) aria-checked="true" @endif" tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['tab' => $activeTab, 'validated' => 1 ]) }}" role="menuitemradio" @if(request()->has('validated') && request()->query('validated') == 1) aria-checked="true" @endif" tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal">Validated ({{ $validatedProjects }})</span>
+                                <span class="text-normal">Validated</span>
                             </a>
 
-                            <a class="SelectMenu-item" href="{{ route('projects.index', ['validated' => 0 ]) }}" role="menuitemradio" @if(request()->has('validated') && request()->query('validated') == 0) aria-checked="true" @endif" tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['tab' => $activeTab, 'validated' => 0 ]) }}" role="menuitemradio" @if(request()->has('validated') && request()->query('validated') == 0) aria-checked="true" @endif" tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal">Not Validated ({{ $invalidatedProjects }})</span>
+                                <span class="text-normal">Not Validated</span>
                             </a>
                         </div>
                     </div>
@@ -121,7 +199,7 @@
 
             <details class="details-reset details-overlay position-relative mt-lg-0 ml-1" id="sort-validated">
                 <summary aria-haspopup="menu" role="button" class="btn">
-                    <span>{{ ! request()->has('pipol') ? 'All' : request()->query('pipol') }}</span>
+                    PIPOL
                     <span class="dropdown-caret"></span>
                 </summary>
                 <details-menu class="SelectMenu right-lg-0" role="menu">
@@ -130,19 +208,19 @@
                             <span class="SelectMenu-title">Select PIPOL status</span>
                         </header>
                         <div class="SelectMenu-list">
-                            <a class="SelectMenu-item" href="{{ route('projects.index', ['pipol' => null ]) }}" role="menuitemradio" @if(! request()->has('pipol')) aria-checked="true" @endif tabindex="0">
+                            <a class="SelectMenu-item" href="{{ route('projects.index', ['tab' => $activeTab, 'pipol' => null ]) }}" role="menuitemradio" @if(! request()->has('pipol')) aria-checked="true" @endif tabindex="0">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                 </svg>
-                                <span class="text-normal" data-menu-button-text="">All ({{ $projects->total() }})</span>
+                                <span class="text-normal">All</span>
                             </a>
 
                             @foreach($pipol_statuses as $pipol)
-                                <a class="SelectMenu-item" href="{{ route('projects.index', ['pipol' => $pipol->name ]) }}" role="menuitemradio" @if(request()->query('pipol') == $pipol->name) aria-checked="true" @endif" tabindex="0">
+                                <a class="SelectMenu-item" href="{{ route('projects.index', ['tab' => $activeTab, 'pipol' => $pipol->name ]) }}" role="menuitemradio" @if(request()->query('pipol') == $pipol->name) aria-checked="true" @endif" tabindex="0">
                                     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
                                         <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
                                     </svg>
-                                    <span class="text-normal">{{ $pipol->name }} ({{ $pipol->projects_count }})</span>
+                                    <span class="text-normal">{{ $pipol->name }}</span>
                                 </a>
                             @endforeach
                         </div>
@@ -226,9 +304,6 @@
                     </div>
                 </div>
 
-                <div>
-                </div>
-
                 <div class="f6 color-fg-muted mt-2">
 
                     <span class="ml-0 mr-3">
@@ -304,7 +379,7 @@
                                                 <h3 class="Box-title">Transfer PAP</h3>
                                             </div>
                                             <div class="flash flash-warn flash-full">
-                                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
+                                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-alert">
                                                     <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
                                                 </svg>
                                                 <strong class="overflow-hidden">Unexpected bad things will happen if you don’t read this!</strong>

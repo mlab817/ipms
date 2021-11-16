@@ -189,8 +189,18 @@ class ProjectPolicy
 
     public function endorse(User $user, Project $project)
     {
+        if ($project->isEndorsed()) {
+            return false;
+        }
+
+        // if it is past the deadline,
+        // only ipd can endorse pap
         if ($this->isPastDeadline()) {
-            return $this->deny('The system no longer allows updating of PAPs by encoders as it is already past the deadline');
+            if ($user->isIpd()) {
+                return true;
+            }
+
+            return $this->deny('The system no longer allows endorsement of PAPs by encoders as it is already past the deadline');
         }
 
         if ($project->isValidated()) {
@@ -207,12 +217,22 @@ class ProjectPolicy
 
     public function drop(User $user, Project $project)
     {
-        if ($this->isPastDeadline()) {
-            return $this->deny('The system no longer allows updating of PAPs by encoders as it is already past the deadline');
+        if ($project->isDropped()) {
+            return false;
         }
 
         if ($project->isValidated()) {
             return $this->deny('This PAP has already been validated.');
+        }
+
+        // if it is past the deadline
+        // only IPD can drop a PAP
+        if ($this->isPastDeadline()) {
+            if ($user->isIpd()) {
+                return true;
+            }
+
+            return $this->deny('The system no longer allows updating of PAPs by encoders as it is already past the deadline');
         }
 
         if ($project->office_id == $user->office_id
@@ -225,6 +245,10 @@ class ProjectPolicy
 
     public function undrop(User $user, Project $project)
     {
+        if (! $project->isDropped()) {
+            return false;
+        }
+
         if ($this->isPastDeadline()) {
             return $this->deny('The system no longer allows updating of PAPs by encoders as it is already past the deadline');
         }

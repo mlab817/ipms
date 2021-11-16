@@ -11,7 +11,7 @@
                         </a>
                         <a class="UnderlineNav-item" href="{{ route('projects.issues', $project) }}" @if($tab == 'issues') aria-current="page" @endif style="cursor:pointer;">
                             Issues
-                            <span class="Counter Counter--gray">{{ count(optional($project->issue)->issues ?? []) }}</span>
+{{--                            <span class="Counter Counter--gray">{{ count(optional($project->issue)->issues ?? []) }}</span>--}}
                         </a>
                     </div>
                 </nav>

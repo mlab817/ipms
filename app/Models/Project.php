@@ -649,24 +649,31 @@ class Project extends Model
         return optional($this->submission_status)->name == 'Endorsed';
     }
 
-    public function getPermissionsAttribute(): array
-    {
-        $user = auth()->user();
+    // scopes
 
-        return [
-            'view'          => true,
-            'update'        => $user ? $user->can('update', $this) : false,
-            'delete'        => $user ? $user->can('delete', $this) : false,
-            'restore'       => $user ? $user->can('restore', $this) : false,
-            'force-delete'  => $user ? $user->can('force-delete', $this) : false,
-        ];
+    public function scopeDropped($query)
+    {
+        return $query->where('ref_submission_status_id', RefSubmissionStatus::findByName('Dropped')->id);
     }
 
-    // relationships
+    public function scopeEndorsed($query)
+    {
+        return $query->where('ref_submission_status_id', RefSubmissionStatus::findByName('Endorsed')->id);
+    }
+
+    public function scopeDraft($query)
+    {
+        return $query->where('ref_submission_status_id', RefSubmissionStatus::findByName('Draft')->id);
+    }
 
     public function scopeValidated($query)
     {
         return $query->whereNotNull('validated_at');
+    }
+
+    public function scopeEncoded($query)
+    {
+        return $query->whereNotNull('ref_pipol_status_id');
     }
 
     public function scopeOffice($query)
@@ -686,12 +693,18 @@ class Project extends Model
 
     public function scopeTrip($query)
     {
-        return $query->where('has_infra', true);
+        return $query->where('trip', true);
     }
 
-    public function scopeHasSubprojects($query)
+    public function scopePip($query)
     {
-        return $query->where('has_subprojects', true);
+        return $query->where('pip', true);
+    }
+
+    public function scopeUntagged($query)
+    {
+        return $query->where('pip', false)
+            ->where('trip', false);
     }
 
     public function scopeAssigned($query)

@@ -67,16 +67,34 @@ class ProjectController extends Controller
         $project = $project->byRole();
 
         $q = $request->q;
-        $validated = $request->validated;
         $pipsStatus = RefSubmissionStatus::findByName($request->status ?? '');
         $pipolStatus = RefPipolStatus::findByName($request->pipol);
+
+        $tab = $request->tab ?? 'trip';
+
+        if ($tab == 'pip') {
+            $project = $project->pip();
+        }
+
+        if ($tab == 'trip') {
+            $project = $project->trip();
+        }
+
+        if ($tab == 'untagged') {
+            $project = $project->untagged();
+        }
 
         if ($pipsStatus) {
             $project = $project->where('ref_submission_status_id', $pipsStatus->id);
         }
 
-        if ($validated) {
-            $project = $project->whereNotNull('validated_at');
+        if ($request->has('validated')) {
+            if ($request->validated == 1) {
+                $project = $project->whereNotNull('validated_at');
+            } else if ($request->validated == 0) {
+                $project = $project->whereNull('validated_at');
+            }
+
         }
 
         if ($pipolStatus) {
@@ -103,6 +121,7 @@ class ProjectController extends Controller
                 }])->get(),
                 'validatedProjects'     => Project::byRole()->whereNotNull('validated_at')->count(),
                 'invalidatedProjects'   => Project::byRole()->whereNull('validated_at')->count(),
+                'tabs'                  => ['trip','pip','untagged'],
             ]);
     }
 
