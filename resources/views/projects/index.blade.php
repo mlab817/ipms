@@ -67,7 +67,7 @@
                         </span>
                     </div>
                     <div class="d-flex width-full">
-                        <p class="note">No. of validated PAPs in the PIPS vs. no. of endorsed PAPs</p>
+                        <p class="note">No. of validated PAPs in the PIPS vs. no. of endorsed TRIP PAPs</p>
                         <span class="flex-auto"></span>
                         <p class="note">{{ \App\Models\Project::byRole()->endorsed()->trip()->count() > 0 ?\App\Models\Project::byRole()->validated()->count() /
                             \App\Models\Project::byRole()->endorsed()->trip()->count() * 100 : 0 }}%</p>
