@@ -1,4 +1,4 @@
-@php($activeTab = request()->query('tab') ?? 'trip')
+@php($activeTab = request()->query('tab') ?? 'ALL')
 
 @extends('layouts.app')
 
@@ -20,10 +20,10 @@
         <div class="d-flex container-lg">
             <nav class="UnderlineNav">
                 <div class="UnderlineNav-body">
-                    @foreach($tabs as $tab)
+                    @foreach($tabs as $key => $tab)
                     <a href="{{ route('projects.index', ['tab' => $tab]) }}" class="UnderlineNav-item no-wrap mr-2" @if($activeTab == $tab) aria-current="page" @endif>
-                        <span>{{ strtoupper($tab) }}</span>
-                        <span class="Counter">{{ \App\Models\Project::byRole()->{$tab}()->count() }}</span>
+                        <span>{{ $tab }}</span>
+                        <span class="Counter">{{ \App\Models\Project::byRole()->{$key}()->count() }}</span>
                     </a>
                     @endforeach
                 </div>

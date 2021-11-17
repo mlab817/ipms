@@ -58,15 +58,15 @@ if (! function_exists('format_money')) {
     {
         $money = (float) $money;
 
-        if ($money > 10**9) {
+        if ($money >= 10**9) {
             return number_format($money / 10**9, 2) .' B';
         }
 
-        if ($money > 10**6) {
+        if ($money >= 10**6) {
             return number_format($money / 10**6, 2) .' M';
         }
 
-        if ($money > 10**3) {
+        if ($money >= 10**3) {
             return number_format($money / 10**3, 2) .' K';
         }
 
