@@ -6,6 +6,9 @@ use App\Events\UserCreated;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Office;
+use App\Models\Project;
+use App\Models\RefPipolStatus;
+use App\Models\RefSubmissionStatus;
 use App\Models\Role;
 use App\Models\User;
 use App\Notifications\UserDeactivatedNotification;
@@ -105,7 +108,7 @@ class UserController extends Controller
      */
     public function show(User $user, Request $request)
     {
-        $tab = 'profile';
+        $tab = 'paps';
 
         $user->load('office','role','offices');
 
@@ -113,7 +116,48 @@ class UserController extends Controller
             $tab = $request->tab;
         }
 
-        return view('users.show', compact('user', 'tab'));
+        $project = new Project;
+
+        $project = $project->byRole();
+
+        $project = $project->where('creator_id', $user->id);
+
+        $q = $request->q;
+        $pipsStatus = RefSubmissionStatus::findByName($request->status ?? '');
+        $pipolStatus = RefPipolStatus::findByName($request->pipol);
+
+        if ($pipsStatus) {
+            $project = $project->where('ref_submission_status_id', $pipsStatus->id);
+        }
+
+        if ($request->has('validated')) {
+            if ($request->validated == 1) {
+                $project = $project->whereNotNull('validated_at');
+            } else if ($request->validated == 0) {
+                $project = $project->whereNull('validated_at');
+            }
+
+        }
+
+        if ($pipolStatus) {
+            $project = $project->where('ref_pipol_status_id', $pipolStatus->id);
+        }
+
+        if ($q) {
+            $project = Project::search($q)->constrain($project);
+        }
+
+        $project->orderBy('updated_at','desc');
+
+        $projects = $project->paginate();
+
+        $projects->load(['creator.office','office','pipol_status','submission_status','description','pap_type','project_status','seen_by']);
+
+        return view('users.show', compact('user', 'projects', 'tab'))
+            ->with([
+                'submission_statuses' => RefSubmissionStatus::all(),
+                'pipol_statuses' => RefPipolStatus::all(),
+            ]);;
     }
 
     /**
