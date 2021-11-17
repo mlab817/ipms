@@ -241,11 +241,23 @@
         @endif
     </div>
 
-    @if(request()->has('q'))
-        <div class="d-flex my-3 p-2">
-            Showing page {{ $projects->currentPage() }} of {{ $projects->lastPage() }} of results for<strong>&nbsp;{{ request()->query('q') }}</strong>
-        </div>
-    @endif
+    <div class="d-flex my-3">
+        <span class="mr-2">
+        Filtered by:
+        </span>
+        @if(request()->query('q'))
+            <span class="Label mr-2">search: {{ request()->query('q') }}</span>
+        @endif
+        @if(request()->query('status'))
+            <span class="Label mr-2">pips: {{ request()->query('status') }}</span>
+        @endif
+        @if(request()->query('validated'))
+            <span class="Label mr-2">validated: {{ request()->query('validated') ? 'true' : 'false' }}</span>
+        @endif
+        @if(request()->query('pipol'))
+            <span class="Label mr-2">pipol: {{ request()->query('pipol') }}</span>
+        @endif
+    </div>
 
     <ul class="border-top mt-3 border-bottom">
         @forelse($projects as $project)

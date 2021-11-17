@@ -548,9 +548,11 @@ class Project extends Model
      */
     public function drop($reason = '')
     {
-        $this->reason_for_dropping = $reason;
+        $this->trip                 = false;
+        $this->pip                  = false;
+        $this->reason_for_dropping  = $reason;
         $this->submission_status()->associate(RefSubmissionStatus::findByName('Dropped'));
-        $this->updated_at = now();
+        $this->updated_at           = now();
         $this->saveQuietly();
 
         $this->audit_logs()->create([

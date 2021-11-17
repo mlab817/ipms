@@ -1,5 +1,155 @@
+<div class="d-flex flex-row flex-items-center mb-3">
+    <div class="d-flex mr-md-0 mr-lg-3 flex-auto">
+        <form class="subnav-search ml-0 mt-lg-0 width-full width-lg-auto flex-auto flex-order-1 flex-lg-order-none js-active-navigation-container" role="search" aria-label="PAPs" action="{{ url()->current() }}" accept-charset="UTF-8" method="get">
+            @if(request()->has('pipol'))
+                <input type="hidden" name="pipol" value="{{ request()->query('pipol') ?? null }}">
+            @endif
+
+            @if(request()->has('status'))
+                <input type="hidden" name="status" value="{{ request()->query('status') ?? null }}">
+            @endif
+
+            @if(request()->has('validated'))
+                <input type="hidden" name="validated" value="{{ request()->query('validated') ?? null }}">
+            @endif
+
+            <input type="search" id="q" name="q" class="form-control subnav-search-input input-contrast width-full" placeholder="Find a PAP…" autocomplete="off" aria-label="Find a PAP…" value="{{ old('q', request()->get('q')) }}">
+
+            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-search subnav-search-icon">
+                <path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path>
+            </svg>
+
+            <button type="button" class="position-absolute top-0 right-0 mt-1 mr-1 btn-octicon issues-reset-query js-discussion-search-clear" aria-label="Clear filters" hidden="">
+                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-x issues-reset-query-icon">
+                    <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                </svg>
+            </button>
+        </form>
+
+    </div>
+
+    <div class="d-flex">
+
+        <details class="details-reset details-overlay position-relative mt-lg-0 ml-1" id="sort-options">
+            <summary aria-haspopup="menu" role="button" class="btn">
+                PIPS Status
+                <span class="dropdown-caret"></span>
+            </summary>
+            <details-menu class="SelectMenu right-lg-0" role="menu">
+                <div class="SelectMenu-modal">
+                    <header class="SelectMenu-header">
+                        <span class="SelectMenu-title">Select PIPS status</span>
+                    </header>
+                    <div class="SelectMenu-list">
+                        <a class="SelectMenu-item" href="{{ url()->current() }}" role="menuitemradio" @if(! request()->query('status')) aria-checked="true" @endif tabindex="0">
+                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                                <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                            </svg>
+                            <span class="text-normal">All</span>
+                        </a>
+                        @foreach($submission_statuses as $status)
+                            <a class="SelectMenu-item" href="{{ url()->current() }}?status={{$status->name}}" role="menuitemradio" @if(request()->query('status') == $status->name) aria-checked="true" @endif" tabindex="0">
+                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                                <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                            </svg>
+                            <span class="text-normal">{{ $status->name }}</span>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </details-menu>
+        </details>
+
+        <details class="details-reset details-overlay position-relative mt-lg-0 ml-1" id="sort-validated">
+            <summary aria-haspopup="menu" role="button" class="btn">
+                Validation
+                <span class="dropdown-caret"></span>
+            </summary>
+            <details-menu class="SelectMenu right-lg-0" role="menu">
+                <div class="SelectMenu-modal">
+                    <header class="SelectMenu-header">
+                        <span class="SelectMenu-title">Select validation status</span>
+                    </header>
+                    <div class="SelectMenu-list">
+                        <a class="SelectMenu-item" href="{{ url()->current() }}" role="menuitemradio" @if(! request()->has('validated')) aria-checked="true" @endif tabindex="0">
+                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                                <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                            </svg>
+                            <span class="text-normal">All</span>
+                        </a>
+
+                        <a class="SelectMenu-item" href="{{ url()->current() }}?validated=1" role="menuitemradio" @if(request()->has('validated') && request()->query('validated') == 1) aria-checked="true" @endif" tabindex="0">
+                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                            <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                        </svg>
+                        <span class="text-normal">Validated</span>
+                        </a>
+
+                        <a class="SelectMenu-item" href="{{ url()->current() }}?validated=0" role="menuitemradio" @if(request()->has('validated') && request()->query('validated') == 0) aria-checked="true" @endif" tabindex="0">
+                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                            <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                        </svg>
+                        <span class="text-normal">Not Validated</span>
+                        </a>
+                    </div>
+                </div>
+            </details-menu>
+        </details>
+
+        <details class="details-reset details-overlay position-relative mt-lg-0 ml-1" id="sort-validated">
+            <summary aria-haspopup="menu" role="button" class="btn">
+                PIPOL
+                <span class="dropdown-caret"></span>
+            </summary>
+            <details-menu class="SelectMenu right-lg-0" role="menu">
+                <div class="SelectMenu-modal">
+                    <header class="SelectMenu-header">
+                        <span class="SelectMenu-title">Select PIPOL status</span>
+                    </header>
+                    <div class="SelectMenu-list">
+                        <a class="SelectMenu-item" href="{{ url()->current()  }}" role="menuitemradio" @if(! request()->has('pipol')) aria-checked="true" @endif tabindex="0">
+                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                                <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                            </svg>
+                            <span class="text-normal">All</span>
+                        </a>
+
+                        @foreach($pipol_statuses as $pipol)
+                            <a class="SelectMenu-item" href="{{ url()->current() }}?pipol={{$pipol->name}}" role="menuitemradio" @if(request()->query('pipol') == $pipol->name) aria-checked="true" @endif" tabindex="0">
+                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
+                                <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                            </svg>
+                            <span class="text-normal">{{ $pipol->name }}</span>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </details-menu>
+        </details>
+
+    </div>
+</div>
+
+<div class="d-flex my-3">
+    <span class="mr-2">
+    Filtered by:
+    </span>
+    @if(request()->query('q'))
+        <span class="Label mr-2">search: {{ request()->query('q') }}</span>
+    @endif
+    @if(request()->query('status'))
+        <span class="Label mr-2">pips: {{ request()->query('status') }}</span>
+    @endif
+    @if(request()->query('validated'))
+        <span class="Label mr-2">validated: {{ request()->query('validated') ? 'true' : 'false' }}</span>
+    @endif
+    @if(request()->query('pipol'))
+        <span class="Label mr-2">pipol: {{ request()->query('pipol') }}</span>
+    @endif
+</div>
 
 @if(count($projects))
+
     <ul class="border-top mt-3">
         @foreach($projects as $project)
             <li class="d-flex Box-row px-2 @if(! $project->seen) Box-row--gray @endif width-full py-3 clearfix position-relative color-border-muted">

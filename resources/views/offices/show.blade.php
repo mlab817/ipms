@@ -4,6 +4,6 @@
 
 @section('content')
     <div class="px-3">
-        @include('partials.projects', ['projects' => $office->projects()->paginate()])
+        @include('partials.projects', ['projects' => $projects])
     </div>
 @endsection
