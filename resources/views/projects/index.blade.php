@@ -58,18 +58,18 @@
                 <div class="Box pinned-item-list-item d-flex flex-column p-3 width-full">
                     <div class="d-flex width-full flex-items-center position-relative">
                         <span class="text-bold flex-auto min-width-0">
-                            <span>Validated / Endorsed</span>
+                            <span>Validated / Endorsed (TRIP only)</span>
                         </span>
                         <span></span>
                         <span class="Label Label--secondary v-align-middle ml-1">
-                            {{ \App\Models\Project::byRole()->validated()->count() }} /
+                            {{ \App\Models\Project::byRole()->validated()->trip()->count() }} /
                             {{ \App\Models\Project::byRole()->endorsed()->trip()->count() }}
                         </span>
                     </div>
                     <div class="d-flex width-full">
                         <p class="note">No. of validated PAPs in the PIPS vs. no. of endorsed TRIP PAPs</p>
                         <span class="flex-auto"></span>
-                        <p class="note">{{ \App\Models\Project::byRole()->endorsed()->trip()->count() > 0 ?\App\Models\Project::byRole()->validated()->count() /
+                        <p class="note">{{ \App\Models\Project::byRole()->endorsed()->trip()->count() > 0 ?\App\Models\Project::byRole()->validated()->trip()->count() /
                             \App\Models\Project::byRole()->endorsed()->trip()->count() * 100 : 0 }}%</p>
                     </div>
                 </div>
@@ -79,18 +79,18 @@
                 <div class="Box pinned-item-list-item d-flex flex-column p-3 width-full">
                     <div class="d-flex width-full flex-items-center position-relative">
                         <span class="text-bold flex-auto min-width-0">
-                            <span>Encoded / Validated</span>
+                            <span>Encoded / Validated (TRIP only)</span>
                         </span>
                         <span></span>
                         <span class="Label Label--secondary v-align-middle ml-1">
-                            {{ \App\Models\Project::byRole()->encoded()->count() }} /
+                            {{ \App\Models\Project::byRole()->encoded()->trip()->count() }} /
                             {{ \App\Models\Project::byRole()->validated()->trip()->count() }}
                         </span>
                     </div>
                     <div class="d-flex width-full">
                         <p class="note">No. of encoded PAPs in the PIPOL vs. no. of validated PAPs that are TRIP</p>
                         <span class="flex-auto"></span>
-                        <p class="note">{{ \App\Models\Project::byRole()->validated()->trip()->count() > 0 ? \App\Models\Project::byRole()->encoded()->count() /
+                        <p class="note">{{ \App\Models\Project::byRole()->validated()->trip()->count() > 0 ? \App\Models\Project::byRole()->encoded()->trip()->count() /
                             \App\Models\Project::byRole()->validated()->trip()->count() * 100 : 0}}%</p>
                     </div>
                 </div>
