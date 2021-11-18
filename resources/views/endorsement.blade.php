@@ -168,7 +168,7 @@
 
     <p style="padding-top: 40px;">
         <span class="strong">{{ strtoupper($office->office_head_name) }} </span><br/>
-        {{ $office->name }}
+        {{ $office->office_head_position }}
     </p>
 
     <footer>
