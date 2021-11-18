@@ -46,6 +46,10 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
+        if ($user->id == $project->creator_id) {
+            return true;
+        }
+
         if ($user->isAdmin()) {
             return true;
         }
