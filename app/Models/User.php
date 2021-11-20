@@ -198,4 +198,11 @@ class User extends Authenticatable
             'role'          => $this->role->name ?? '',
         ];
     }
+
+    public function findForPassport($username)
+    {
+        $field = (filter_var(request()->username, FILTER_VALIDATE_EMAIL) || !request()->username) ? 'email' : 'username';
+
+        return $this->where($field, $username)->first();
+    }
 }
