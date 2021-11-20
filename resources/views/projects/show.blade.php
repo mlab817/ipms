@@ -933,11 +933,11 @@
                                     @foreach($project->region_infrastructures->sortBy('region.order') as $region_infrastructure)
                                         <tr class="border-bottom">
                                             <td class="p-2">{{ $region_infrastructure->region->name ?? '_' }}</td>
-                                            <td class="p-2 text-right">{{ $region_infrastructure->y2022 ?? '0.00' }}</td>
-                                            <td class="p-2 text-right">{{ $region_infrastructure->y2023 ?? '0.00' }}</td>
-                                            <td class="p-2 text-right">{{ $region_infrastructure->y2024 ?? '0.00' }}</td>
-                                            <td class="p-2 text-right">{{ $region_infrastructure->y2025 ?? '0.00' }}</td>
-                                            <td class="p-2 text-right">{{ $region_infrastructure->y2026 ?? '0.00' }}</td>
+                                            <td class="p-2 text-right">{{ number_format($region_infrastructure->y2022 ?? 0, 2) }}</td>
+                                            <td class="p-2 text-right">{{ number_format($region_infrastructure->y2023 ?? 0, 2) }}</td>
+                                            <td class="p-2 text-right">{{ number_format($region_infrastructure->y2024 ?? 0, 2) }}</td>
+                                            <td class="p-2 text-right">{{ number_format($region_infrastructure->y2025 ?? 0, 2) }}</td>
+                                            <td class="p-2 text-right">{{ number_format($region_infrastructure->y2026 ?? 0, 2) }}</td>
                                             <td class="p-2 text-right">{{ number_format($region_infrastructure->y2022 + $region_infrastructure->y2023 + $region_infrastructure->y2024 + $region_infrastructure->y2025 + $region_infrastructure->y2026, 2) }}</td>
                                         </tr>
                                     @endforeach
@@ -1056,12 +1056,12 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td class="p-2 text-right">{{ $project->feasibility_study->y2017 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->feasibility_study->y2018 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->feasibility_study->y2019 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->feasibility_study->y2020 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->feasibility_study->y2021 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->feasibility_study->y2022 ?? 0 }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->feasibility_study->y2017 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->feasibility_study->y2018 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->feasibility_study->y2019 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->feasibility_study->y2020 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->feasibility_study->y2021 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->feasibility_study->y2022 ?? 0, 2) }}</td>
                             <td class="p-2 text-right">
                                 {{ number_format($project->feasibility_study->y2017 ?? 0
                                     + $project->feasibility_study->y2018 ?? 0
@@ -1112,12 +1112,12 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td class="p-2 text-right">{{ $project->right_of_way->y2017 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->right_of_way->y2018 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->right_of_way->y2019 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->right_of_way->y2020 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->right_of_way->y2021 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->right_of_way->y2022 ?? 0 }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->right_of_way->y2017 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->right_of_way->y2018 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->right_of_way->y2019 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->right_of_way->y2020 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->right_of_way->y2021 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->right_of_way->y2022 ?? 0, 2) }}</td>
                             <td class="p-2 text-right">
                                 {{ number_format($project->right_of_way->y2017 ?? 0
                                     + $project->right_of_way->y2018 ?? 0
@@ -1163,12 +1163,12 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2017 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2018 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2019 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2020 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2021 ?? 0 }}</td>
-                            <td class="p-2 text-right">{{ $project->resettlement_action_plan->y2022 ?? 0 }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->resettlement_action_plan->y2017 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->resettlement_action_plan->y2018 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->resettlement_action_plan->y2019 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->resettlement_action_plan->y2020 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->resettlement_action_plan->y2021 ?? 0, 2) }}</td>
+                            <td class="p-2 text-right">{{ number_format($project->resettlement_action_plan->y2022 ?? 0, 2) }}</td>
                             <td class="p-2 text-right">
                                 {{ number_format($project->resettlement_action_plan->y2017 ?? 0
                                     + $project->resettlement_action_plan->y2018 ?? 0
