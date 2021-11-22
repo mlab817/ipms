@@ -156,7 +156,7 @@ class ProjectUpdateRequest extends FormRequest
             'approval_date'                     => 'nullable|date',
             'ref_gad_id'                        => 'nullable|exists:ref_gads,id',
             'rdip'                              => 'nullable|bool',
-            'rdc_endorsement_nullable'          => 'nullable|bool',
+            'rdc_endorsement_required'          => 'nullable|bool',
             'rdc_endorsed'                      => 'nullable|bool',
             'rdc_endorsed_date'                 => 'nullable|date',
             'ref_preparation_document_id'       => 'nullable|exists:ref_preparation_documents,id',
