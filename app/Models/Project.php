@@ -678,6 +678,11 @@ class Project extends Model
         return $query->whereNotNull('ref_pipol_status_id');
     }
 
+    public function scopePipolEndorsed($query)
+    {
+        return $query->where('ref_pipol_status_id', 2);
+    }
+
     public function scopeOffice($query)
     {
         $user = auth() ? auth()->user() : null;

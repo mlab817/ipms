@@ -80,6 +80,29 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\SocialLoginController::class,'handleGoogleCallback'])->name('auth.google-callback');
 });
 
+Route::get('report', function () {
+    $programs = \App\Models\Project::pipolEndorsed()->with('pap_type')->where('ref_pap_type_id', 1)->count();
+    $projects = \App\Models\Project::pipolEndorsed()->with('pap_type')->where('ref_pap_type_id', 2)->count();
+    $totalProjectCost = \App\Models\Project::pipolEndorsed()->sum('total_project_cost');
+    $top5 = \App\Models\Project::pipolEndorsed()->with('pap_type')->orderByDesc('total_project_cost')->take(5)->get();
+    $top5_2023 = \App\Models\Project::pipolEndorsed()
+        ->join('project_fs_investments AS b','projects.id','=','b.project_id')
+        ->join('ref_pap_types AS c', 'projects.ref_pap_type_id','=','c.id')
+        ->selectRaw('projects.title as title, c.name AS pap_type, SUM(b.y2023) AS y2023')
+        ->groupBy('projects.id')
+        ->orderByDesc('y2023')
+        ->take(5)
+        ->get();
+    $total2023 = \App\Models\Project::pipolEndorsed()
+        ->with('fs_investments')
+        ->get()
+        ->reduce(function ($carry, $item) {
+            return $carry + $item->fs_investments->sum('y2023');
+        });
+
+    return view('report', compact('projects', 'programs', 'totalProjectCost', 'top5', 'top5_2023', 'total2023'));
+});
+
 Route::get('/debug', function () {
     Log::debug('rollbar is working');
 });
