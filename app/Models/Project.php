@@ -678,6 +678,11 @@ class Project extends Model
         return $query->whereNotNull('ref_pipol_status_id');
     }
 
+    public function scopePipolEndorsed($query)
+    {
+        return $query->where('ref_pipol_status_id', 2);
+    }
+
     public function scopeOffice($query)
     {
         $user = auth() ? auth()->user() : null;
@@ -707,6 +712,16 @@ class Project extends Model
     {
         return $query->where('pip', false)
             ->where('trip', false);
+    }
+
+    public function scopeProgram($query)
+    {
+        return $query->where('ref_pap_type_id', 1);
+    }
+
+    public function scopeProject($query)
+    {
+        return $query->where('ref_pap_type_id', 2);
     }
 
     public function scopeAssigned($query)

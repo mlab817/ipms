@@ -57,7 +57,6 @@ Route::middleware(['auth','activated'])->group(function () {
     Route::resource('notifications',\App\Http\Controllers\NotificationController::class)->only('index','show');
     Route::put('/notifications/{notification}', [\App\Http\Controllers\NotificationController::class,'markAsRead'])->name('notifications.markAsRead');
     Route::post('/notifications/markMultipleAsRead', [\App\Http\Controllers\NotificationController::class,'markMultipleAsRead'])->name('notifications.markMultipleAsRead');
-    Route::resource('pipols',\App\Http\Controllers\PipolController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
     Route::put('/users/{user}/activate', \App\Http\Controllers\UserActivateController::class)->name('users.activate');
     Route::get('/offices/{office}/users', \App\Http\Controllers\OfficeUserController::class)->name('offices.users');
@@ -71,6 +70,8 @@ Route::middleware(['auth','activated'])->group(function () {
     Route::get('/encoders', \App\Http\Controllers\SearchEncoderController::class)->name('search.encoders');
 
     Route::view('/about', 'about')->name('about');
+
+    Route::get('/report', \App\Http\Controllers\ReportController::class)->name('report');
 });
 
 Auth::routes(['register' => false]);
@@ -94,4 +95,11 @@ Route::get('/mailable', function () {
 
 Route::get('/search_users', function (\Illuminate\Http\Request $request) {
     return \App\Models\User::search($request->q)->get();
+});
+
+Route::get('/send', function () {
+    \Illuminate\Support\Facades\Mail::to(\App\Models\User::findByUsername('mlab817'))
+        ->send(new App\Mail\UserCreated(\App\Models\User::find(1), 'password'));
+
+    return 'successfully created user';
 });

@@ -7,14 +7,44 @@ use App\Models\RefFundingSource;
 use App\Models\RefImplementationMode;
 use App\Models\Office;
 use App\Models\Project;
+use App\Models\RefRegion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
-    public function index()
+    public function __invoke()
     {
-        return view('reports.index');
+        $projectIds = $this->getProjects();
+
+        $fundingSources = RefFundingSource::join('project_fs_investments','project_fs_investments.ref_funding_source_id','=','ref_funding_sources.id')
+            ->selectRaw('ref_funding_sources.name as fs, SUM(project_fs_investments.y2023) AS y2023, SUM(project_fs_investments.y2024) AS y2024, SUM(project_fs_investments.y2025) AS y2025')
+            ->whereIn('project_fs_investments.project_id', $projectIds)
+            ->groupBy('ref_funding_sources.id')
+            ->get();
+
+//        $regions = RefRegion::withSum(['region_investments' => function ($query) use ($projectIds) {
+//            $query->whereIn('project_id', $projectIds);
+//        }],'y2023')
+//            ->get();
+
+        $regions = RefRegion::join('project_region_investments','project_region_investments.ref_region_id','=','ref_regions.id')
+            ->selectRaw('ref_regions.label as region, SUM(project_region_investments.y2023) AS y2023, SUM(project_region_investments.y2024) AS y2024, SUM(project_region_investments.y2025) AS y2025')
+            ->whereIn('project_region_investments.project_id', $projectIds)
+            ->groupBy('ref_regions.id')
+            ->orderBy('ref_regions.order')
+            ->get();
+
+        return view('report')
+            ->with([
+                'fundingSources' => $fundingSources,
+                'regions'        => $regions
+            ]);
+    }
+
+    public function getProjects(): array
+    {
+        return Project::pipolEndorsed()->pluck('id')->toArray();
     }
 
     public function implementation_modes()
