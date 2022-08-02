@@ -3,14 +3,11 @@ import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-    server: {
-        host: 'ipms.test'
-    },
     plugins: [
         laravel({
-            input: 'resources/js/app.jsx',
-            refresh: true
+            input: ['resources/js/app.jsx','resources/sass/app.scss'],
+            refresh: true,
         }),
-        react()
+        react(),
     ],
 });
