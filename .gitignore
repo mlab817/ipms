@@ -1,3 +1,4 @@
+/public/build
 /storage/*.index
 /vendor/
 .env

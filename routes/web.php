@@ -57,7 +57,6 @@ Route::middleware(['auth','activated'])->group(function () {
     Route::resource('notifications',\App\Http\Controllers\NotificationController::class)->only('index','show');
     Route::put('/notifications/{notification}', [\App\Http\Controllers\NotificationController::class,'markAsRead'])->name('notifications.markAsRead');
     Route::post('/notifications/markMultipleAsRead', [\App\Http\Controllers\NotificationController::class,'markMultipleAsRead'])->name('notifications.markMultipleAsRead');
-    Route::resource('pipols',\App\Http\Controllers\PipolController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
     Route::put('/users/{user}/activate', \App\Http\Controllers\UserActivateController::class)->name('users.activate');
     Route::get('/offices/{office}/users', \App\Http\Controllers\OfficeUserController::class)->name('offices.users');
@@ -72,8 +71,6 @@ Route::middleware(['auth','activated'])->group(function () {
 
     Route::view('/about', 'about')->name('about');
 });
-
-Auth::routes(['register' => false]);
 
 Route::group(['middleware' => 'guest'], function() {
     Route::get('/auth/google', [\App\Http\Controllers\Auth\SocialLoginController::class,'redirectToGoogle'])->name('auth.google');
@@ -94,4 +91,8 @@ Route::get('/mailable', function () {
 
 Route::get('/search_users', function (\Illuminate\Http\Request $request) {
     return \App\Models\User::search($request->q)->get();
+});
+
+Route::get('inertia-test', function () {
+    return \Inertia\Inertia::render('Welcome');
 });
