@@ -441,9 +441,9 @@ class Project extends Model
         return $this->hasOne(ProjectDisbursement::class)->withDefault();
     }
 
-    public function expected_output(): HasOne
+    public function expected_outputs(): HasMany
     {
-        return $this->hasOne(ProjectExpectedOutput::class)->withDefault();
+        return $this->hasMany(ProjectExpectedOutput::class);
     }
 
     public function feasibility_study(): HasOne
