@@ -87,7 +87,13 @@ Route::middleware(['auth','activated'])->group(function () {
 
     Route::get('/encoders', \App\Http\Controllers\SearchEncoderController::class)->name('search.encoders');
 
-    Route::view('/about', 'about')->name('about');
+    Route::get('/about', function() {
+        return Inertia::render('About', [
+            'officeCount'   => \App\Models\Office::count(),
+            'userCount'     => \App\Models\User::count(),
+            'projectCount'  => \App\Models\Project::withoutGlobalScope(\App\Scopes\RoleScope::class)->count()
+        ]);
+    })->name('about');
 });
 
 Route::group(['middleware' => 'guest'], function() {
@@ -110,3 +116,9 @@ Route::get('/mailable', function () {
 Route::get('/search_users', function (\Illuminate\Http\Request $request) {
     return \App\Models\User::search($request->q)->get();
 });
+
+Route::get('/directory', function () {
+    return Inertia::render('Directory', [
+        'offices' => \App\Models\Office::with('users')->paginate(10),
+    ]);
+})->name('directory');

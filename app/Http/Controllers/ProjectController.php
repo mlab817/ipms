@@ -45,6 +45,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
 use Spatie\Searchable\Search;
 
 class ProjectController extends Controller
@@ -58,7 +59,7 @@ class ProjectController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return Response
+     * @return \Inertia\Response
      */
     public function index(Request $request)
     {
@@ -111,12 +112,12 @@ class ProjectController extends Controller
 
         $projects->load(['creator.office','office','pipol_status','submission_status','description','pap_type','project_status','seen_by']);
 
-        return view('projects.index', compact('projects'))
-            ->with([
-                'submission_statuses'=> RefSubmissionStatus::withCount(['projects' => function($query) {
+        return Inertia::render('Projects', [
+                'projects'              => $projects,
+                'submission_statuses'   => RefSubmissionStatus::withCount(['projects' => function($query) {
                     $query->byRole();
                 }])->get(),
-                'pipol_statuses'     => RefPipolStatus::withCount(['projects' => function($query) {
+                'pipol_statuses'        => RefPipolStatus::withCount(['projects' => function($query) {
                     $query->byRole();
                 }])->get(),
                 'validatedProjects'     => Project::byRole()->whereNotNull('validated_at')->count(),

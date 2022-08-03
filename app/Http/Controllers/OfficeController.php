@@ -11,6 +11,7 @@ use App\Models\RefSubmissionStatus;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class OfficeController extends Controller
 {
@@ -43,7 +44,7 @@ class OfficeController extends Controller
 
         $offices->load('projects');
 
-        return view('offices.index', compact('offices', 'ou_types'));
+        return Inertia::render('Offices', compact('offices', 'ou_types'));
     }
 
     public function create()

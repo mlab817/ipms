@@ -5,20 +5,20 @@ import fs from 'fs';
 import { resolve } from 'path';
 import { homedir } from 'os';
 
-let host = 'ipms.test';
+let host = '172.17.218.188';
 let homeDir = homedir();
 
 let serverConfig = {};
 
 if (homeDir) {
     serverConfig = {
-        https: {
-            key: fs.readFileSync(resolve(homeDir, `.config/valet/Certificates/${host}.key`)),
-            cert: fs.readFileSync(resolve(homeDir, `.config/valet/Certificates/${host}.crt`)),
-        },
-        hmr: {
-            host: host,
-        },
+        // https: {
+        //     key: fs.readFileSync(resolve(homeDir, `.config/valet/Certificates/${host}.key`)),
+        //     cert: fs.readFileSync(resolve(homeDir, `.config/valet/Certificates/${host}.crt`)),
+        // },
+        // hmr: {
+        //     host: host,
+        // },
         host: host,
     };
 }

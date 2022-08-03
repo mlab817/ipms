@@ -11,6 +11,7 @@ use App\Models\RefSubmissionStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
@@ -36,7 +37,7 @@ class DashboardController extends Controller
                 return $p;
             });
 
-        return view('dashboard', [
+        return Inertia::render('Dashboard', [
             'byPipolStatus'         => $byPipolStatus,
             'projectCount'          => Project::byRole()->count(),
             'validatedCount'        => Project::byRole()->validated()->count(),
