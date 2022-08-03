@@ -1,18 +1,5 @@
 <?php
 
-/**
- * Get client_secret.json from https://console.cloud.google.com/apis/credentials/oauthclient
- */
-$client = json_decode(file_get_contents(base_path('client_secret.json')), true);
-
-$clientId = '';
-$clientSecret = '';
-
-if ($client) {
-    $clientId = $client['web']['client_id'];
-    $clientSecret = $client['web']['client_secret'];
-}
-
 return [
 
     /*
@@ -44,8 +31,8 @@ return [
     ],
 
     'google' => [
-        'client_id' => $clientId,
-        'client_secret' => $clientSecret,
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT_URI')
     ],
 
