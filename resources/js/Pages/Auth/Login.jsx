@@ -48,7 +48,7 @@ const Login = ({ status, canResetPassword }) => {
                         block
                         autoComplete="username"
                         isFocused={true}
-                        handleChange={onHandleChange}
+                        onChange={onHandleChange}
                     />
                 </FormControl>
 
@@ -63,13 +63,13 @@ const Login = ({ status, canResetPassword }) => {
                         value={data.password}
                         block
                         autoComplete="current-password"
-                        handleChange={onHandleChange}
+                        onChange={onHandleChange}
                     />
                 </FormControl>
 
                 <div className="block mt-4">
                     <label className="flex items-center">
-                        <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
+                        <Checkbox name="remember" value={data.remember} onChange={onHandleChange} />
 
                         <span className="ml-2 text-sm text-gray-600">Remember me</span>
                     </label>
