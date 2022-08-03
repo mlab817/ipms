@@ -11,8 +11,16 @@ class ProjectExpectedOutput extends Model
     use HasFactory;
 
     protected $fillable = [
-        'expected_outputs',
+        'project_id',
+        'target',
+        'ref_output_indicator_id',
+//        'expected_outputs',
     ];
+
+    public function output_indicator(): BelongsTo
+    {
+        return $this->belongsTo(RefOutputIndicator::class);
+    }
 
     public function project(): BelongsTo
     {
