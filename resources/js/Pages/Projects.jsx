@@ -7,7 +7,6 @@ import {
     Checkbox,
     Link,
     Pagination,
-    StyledOcticon,
     Text,
     TextInput,
     IconButton, Avatar, Heading
