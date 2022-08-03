@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasTotal;
 use App\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ class ProjectRegionInfrastructure extends Model
 {
     use HasFactory;
     use HasUuid;
+    use HasTotal;
 
     protected $touches = [
         'project'

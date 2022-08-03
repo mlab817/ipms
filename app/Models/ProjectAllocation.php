@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasTotal;
 use App\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ class ProjectAllocation extends Model
 {
     use HasFactory;
     use HasUuid;
+    use HasTotal;
 
     protected $touches = [
         'project'
@@ -24,14 +26,14 @@ class ProjectAllocation extends Model
 //        'y2019',
 //        'y2020',
 //        'y2021',
-        'y2022',
+//        'y2022',
         'y2023',
         'y2024',
         'y2025',
         'y2026',
         'y2027',
         'y2028',
-        'y2029'
+//        'y2029'
     ];
 
     public function getRouteKeyName(): string
