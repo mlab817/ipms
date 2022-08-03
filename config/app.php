@@ -181,8 +181,6 @@ return [
 
 //        \Laravel\Passport\PassportServiceProvider::class,
 
-        \Rollbar\Laravel\RollbarServiceProvider::class,
-
         /**
          * Drivers for searching models
          */

@@ -19,7 +19,7 @@
 
     <link href="https://unpkg.com/@github/details-dialog-element/dist/index.css" rel="stylesheet" />
 
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.jsx') }}" defer></script>
 </head>
 <body>
 @include('partials.header')

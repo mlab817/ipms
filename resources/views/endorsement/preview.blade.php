@@ -35,7 +35,7 @@
 
 </div>
 
-<script src="{{ asset('js/app.js') }}" type="text/js"></script>
+<script src="{{ asset('js/app.jsx') }}" type="text/js"></script>
 </body>
 
 </html>
