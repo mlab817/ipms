@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
-import Checkbox from '@/Components/Checkbox';
-import Input from '@/Components/Input';
-import Label from '@/Components/Label';
-import ValidationErrors from '@/Components/ValidationErrors';
-import { Head, Link, useForm } from '@inertiajs/inertia-react';
-import {Box, Button, FormControl, Header, TextInput} from "@primer/react";
+import React, {useEffect, useState} from 'react';
+import { Link, useForm } from '@inertiajs/inertia-react';
+import {Avatar, Box, Button, FormControl, Heading, TextInput} from "@primer/react";
+import {EyeClosedIcon, EyeIcon, LockIcon, PersonIcon} from "@primer/octicons-react";
 
 const Login = ({ status, canResetPassword }) => {
+    const [showPassword, setShowPassword] = useState(false)
+
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
-        remember: '',
     });
 
     useEffect(() => {
@@ -20,7 +18,7 @@ const Login = ({ status, canResetPassword }) => {
     }, []);
 
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+        setData(event.target.name, event.target.value);
     };
 
     const submit = (e) => {
@@ -29,67 +27,76 @@ const Login = ({ status, canResetPassword }) => {
         post(route('login'));
     };
 
+    const togglePassword = () => setShowPassword(!showPassword)
+
     return (
-        <Box display="flex">
+        <Box display="flex" flex={1} height="100vh" flexDirection="column" justifyContent="center" maxWidth={360} mx="auto">
+            <Box display="flex" flexDirection="column" alignItems="center">
+                <Avatar src={`/logo.png`} size={100} alt="logo" />
+                <Heading as="h4">Login to PIPS</Heading>
+            </Box>
+
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-            <ValidationErrors errors={errors} />
+            <form onSubmit={submit}>
+                <Box mt={3}>
+                    <FormControl>
+                        <FormControl.Label forInput="email">
+                            Username or Email
+                        </FormControl.Label>
 
-            <form onSubmit={submit} className="col-md-4 mx-auto mt-10">
-                <FormControl>
-                    <FormControl.Label forInput="email">
-                        Email
-                    </FormControl.Label>
+                        <TextInput
+                            type="text"
+                            name="email"
+                            value={data.email}
+                            block
+                            autoComplete="username"
+                            isFocused={true}
+                            onChange={onHandleChange}
+                            leadingVisual={PersonIcon}
+                        />
+                    </FormControl>
+                </Box>
 
-                    <TextInput
-                        type="text"
-                        name="email"
-                        value={data.email}
-                        block
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={onHandleChange}
-                    />
-                </FormControl>
+                <Box mt={3}>
+                    <FormControl>
+                        <FormControl.Label forInput="password">
+                            Password
+                        </FormControl.Label>
 
-                <FormControl>
-                    <FormControl.Label forInput="password">
-                        Password
-                    </FormControl.Label>
+                        <TextInput
+                            type={showPassword ? 'text' : 'password' }
+                            name="password"
+                            value={data.password}
+                            block
+                            autoComplete="current-password"
+                            onChange={onHandleChange}
+                            leadingVisual={LockIcon}
+                            trailingAction={<TextInput.Action
+                                onClick={togglePassword}
+                                icon={showPassword ? EyeClosedIcon : EyeIcon}
+                                aria-label="show/hide password"
+                            />}
+                        />
+                    </FormControl>
+                </Box>
 
-                    <TextInput
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        block
-                        autoComplete="current-password"
-                        onChange={onHandleChange}
-                    />
-                </FormControl>
-
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox name="remember" value={data.remember} onChange={onHandleChange} />
-
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <Button className="ml-4" processing={processing}>
+                <Box mt={3}>
+                    <Button variant="primary" processing={processing} sx={{ width: '100%' }}>
                         Log in
                     </Button>
-                </div>
+                </Box>
             </form>
+
+            <Box mt={3} display="flex" justifyContent="center">
+                {canResetPassword && (
+                    <Link
+                        href={route('password.request')}
+                    >
+                        Forgot your password?
+                    </Link>
+                )}
+            </Box>
         </Box>
     );
 }

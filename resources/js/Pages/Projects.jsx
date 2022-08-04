@@ -9,20 +9,20 @@ import {
     Pagination,
     Text,
     TextInput,
-    IconButton, Avatar, Heading
+    IconButton, Avatar, Heading, StyledOcticon
 } from "@primer/react";
 import {
     AlertIcon,
-    ArchiveIcon,
     KebabHorizontalIcon,
     LinkIcon,
     PencilIcon,
     SearchIcon,
     TrashIcon
 } from "@primer/octicons-react";
+import * as OcticonsReact from "@primer/octicons-react"
 import {usePage} from "@inertiajs/inertia-react";
 
-const ProjectsIndex = ({ projects }) => {
+const ProjectsIndex = ({ projects, submission_statuses }) => {
     const { ziggy: { location } } = usePage().props
 
     const [search, setSearch] = useState('')
@@ -56,20 +56,20 @@ const ProjectsIndex = ({ projects }) => {
             </Box>
             <Box display="flex" mt={3}>
                 <Box mr={3}>
-                    <Heading as="h4" sx={{ fontSize: 16 }}>Categories</Heading>
+                    <Heading as="h4" sx={{ fontSize: 16 }}>
+                        Submission Status
+                    </Heading>
                     <ActionList>
-                        <ActionList.Item>
-                            <ActionList.LeadingVisual><LinkIcon /></ActionList.LeadingVisual>
-                            github.com/primer
-                        </ActionList.Item>
-                        <ActionList.Item variant="danger">
-                            <ActionList.LeadingVisual><AlertIcon /></ActionList.LeadingVisual>
-                            4 vulnerabilities
-                        </ActionList.Item>
-                        <ActionList.Item>
-                            <ActionList.LeadingVisual><Avatar src="https://github.com/mona.png" /></ActionList.LeadingVisual>
-                            mona
-                        </ActionList.Item>
+                        {
+                            submission_statuses.map(submission_status => (
+                                <ActionList.Item key={submission_status.id}>
+                                    <ActionList.LeadingVisual>
+                                        <StyledOcticon icon={OcticonsReact[submission_status.icon]} />
+                                    </ActionList.LeadingVisual>
+                                    {submission_status.name}
+                                </ActionList.Item>
+                            ))
+                        }
                     </ActionList>
                 </Box>
                 <Box flexGrow={1} borderTopLeftRadius={2} borderTopRightRadius={2}>
