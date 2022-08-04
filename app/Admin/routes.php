@@ -30,6 +30,7 @@ use App\Admin\Controllers\RefSubmissionStatusController;
 use App\Admin\Controllers\RefTierController;
 use App\Admin\Controllers\RefTripIndicatorController;
 use App\Admin\Controllers\RefYearController;
+use App\Admin\Controllers\UserController;
 use Encore\Admin\Facades\Admin;
 use Illuminate\Routing\Router;
 
@@ -37,7 +38,7 @@ Admin::routes();
 
 Route::group([
     'prefix'        => config('admin.route.prefix'),
-    'namespace'     => config('admin.route.namespace'),
+//    'namespace'     => config('admin.route.namespace'),
     'middleware'    => config('admin.route.middleware'),
     'as'            => config('admin.route.prefix') . '.',
 ], function (Router $router) {
@@ -73,6 +74,7 @@ Route::group([
     $router->resource('submission-statuses', RefSubmissionStatusController::class);
     $router->resource('tiers', RefTierController::class);
     $router->resource('trip-indicators', RefTripIndicatorController::class);
+    $router->resource('users', UserController::class);
     $router->resource('years', RefYearController::class);
 
 });

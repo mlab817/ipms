@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\RefOperatingUnit;
+use App\Models\RefOperatingUnitType;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -15,7 +16,7 @@ class RefOperatingUnitController extends AdminController
      *
      * @var string
      */
-    protected $title = 'RefOperatingUnit';
+    protected $title = 'Operating Unit';
 
     /**
      * Make a grid builder.
@@ -26,14 +27,13 @@ class RefOperatingUnitController extends AdminController
     {
         $grid = new Grid(new RefOperatingUnit());
 
-        $grid->column('id', __('Id'));
+        $types = RefOperatingUnitType::all()->pluck('name','id');
+
         $grid->column('name', __('Name'));
         $grid->column('slug', __('Slug'));
         $grid->column('label', __('Label'));
-        $grid->column('operating_unit_type', __('Type'))
-            ->display(function() {
-                return $this->operating_unit_type->name ?? '';
-            });
+        $grid->column('ref_operating_unit_type_id', __('Type'))
+            ->using($types->toArray());
         $grid->column('logo', __('Logo'));
 
         return $grid;
@@ -53,10 +53,7 @@ class RefOperatingUnitController extends AdminController
         $show->field('name', __('Name'));
         $show->field('slug', __('Slug'));
         $show->field('label', __('Label'));
-        $show->field('ref_operating_unit_type_id', __('Ref operating unit type id'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
-        $show->field('deleted_at', __('Deleted at'));
+        $show->field('ref_operating_unit_type_id', __('Type'));
         $show->field('logo', __('Logo'));
 
         return $show;
@@ -71,10 +68,13 @@ class RefOperatingUnitController extends AdminController
     {
         $form = new Form(new RefOperatingUnit());
 
+        $types = RefOperatingUnitType::all()->pluck('name','id');
+
         $form->text('name', __('Name'));
         $form->text('slug', __('Slug'));
         $form->text('label', __('Label'));
-        $form->number('ref_operating_unit_type_id', __('Ref operating unit type id'));
+        $form->select('ref_operating_unit_type_id', __('Type'))
+            ->options($types);
         $form->textarea('logo', __('Logo'));
 
         return $form;

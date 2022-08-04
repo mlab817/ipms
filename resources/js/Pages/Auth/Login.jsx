@@ -86,6 +86,12 @@ const Login = ({ status, canResetPassword }) => {
                         Log in
                     </Button>
                 </Box>
+
+                <Box mt={3}>
+                    <Link href={route('auth.google')}>
+                        Sign in Google
+                    </Link>
+                </Box>
             </form>
 
             <Box mt={3} display="flex" justifyContent="center">

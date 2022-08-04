@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'appName' => config('app.name', 'Laravel'),
             'auth' => [
-                'user' => $request->user()->load('office.operating_unit'),
+                'user' => optional($request->user())->load('office.operating_unit'),
             ],
             'flash' => [
                 'message' => fn () => $request->session()->get('message')

@@ -24,7 +24,7 @@ class RefOperatingUnit extends Model
         'name',
         'slug',
         'description',
-        'operating_unit_type_id'
+        'ref_operating_unit_type_id'
     ];
 
     protected $appends = [
