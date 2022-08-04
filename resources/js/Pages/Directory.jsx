@@ -12,7 +12,14 @@ import {
     IconButton
 } from "@primer/react";
 import { Link } from "@inertiajs/inertia-react";
-import { KebabHorizontalIcon, PencilIcon, SearchIcon, TrashIcon} from "@primer/octicons-react";
+import {
+    KebabHorizontalIcon,
+    OrganizationIcon,
+    PencilIcon,
+    PersonIcon,
+    SearchIcon,
+    TrashIcon
+} from "@primer/octicons-react";
 import NoUser from "@/Components/NoUser";
 
 const Directory = ({ offices }) => {
@@ -55,6 +62,29 @@ const Directory = ({ offices }) => {
                                 <ActionList.Item>Edit file</ActionList.Item>
                                 <ActionList.Divider />
                                 <ActionList.Item variant="danger">Delete file</ActionList.Item>
+                            </ActionList>
+                        </ActionMenu.Overlay>
+                    </ActionMenu>
+                </Box>
+
+                <Box ml={3}>
+                    <ActionMenu>
+                        <ActionMenu.Button variant="primary">New</ActionMenu.Button>
+
+                        <ActionMenu.Overlay>
+                            <ActionList>
+                                <ActionList.LinkItem href={route('offices.create')} onSelect={event => console.log('New file')}>
+                                    <ActionList.LeadingVisual>
+                                        <OrganizationIcon />
+                                    </ActionList.LeadingVisual>
+                                    Office
+                                </ActionList.LinkItem>
+                                <ActionList.LinkItem href={route('users.create')}>
+                                    <ActionList.LeadingVisual>
+                                        <PersonIcon />
+                                    </ActionList.LeadingVisual>
+                                    User
+                                </ActionList.LinkItem>
                             </ActionList>
                         </ActionMenu.Overlay>
                     </ActionMenu>

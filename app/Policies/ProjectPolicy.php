@@ -86,6 +86,9 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
+        // TODO: Remove this
+        return true;
+
         if ($this->isPastDeadline()) {
             return $this->deny('The system no longer allows creation of PAPs as it is already past the deadline');
         }
@@ -106,6 +109,9 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
+        // TODO: Remove this
+        return true;
+
         // if project has already been validated, disable update
         if ($project->isValidated()) {
             return $this->deny($this->validatedMessage);

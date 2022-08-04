@@ -18,7 +18,7 @@ export default function Authenticated({ auth, children }) {
                         <Flash>{flash.message}</Flash>
                     )
                 }
-                <Box minHeight="100vh" px={3}>
+                <Box minHeight="100vh">
                     {children}
                 </Box>
             </PageLayout.Content>

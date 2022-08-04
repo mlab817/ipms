@@ -39,7 +39,7 @@ const Login = ({ status, canResetPassword }) => {
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <form onSubmit={submit}>
-                <Box mt={3}>
+                <Box mt={5}>
                     <FormControl>
                         <FormControl.Label forInput="email">
                             Username or Email
@@ -96,6 +96,10 @@ const Login = ({ status, canResetPassword }) => {
                         Forgot your password?
                     </Link>
                 )}
+            </Box>
+
+            <Box border={1} borderStyle="solid" borderColor="border.default" borderRadius={1} p={3} justifyContent="center" display="flex" mt={5}>
+                &copy; 2022 Investment Programming Division
             </Box>
         </Box>
     );

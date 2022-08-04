@@ -17,7 +17,7 @@ import {
     LinkIcon,
     PencilIcon,
     SearchIcon,
-    TrashIcon
+    TrashIcon, XIcon
 } from "@primer/octicons-react";
 import * as OcticonsReact from "@primer/octicons-react"
 import {usePage} from "@inertiajs/inertia-react";
@@ -44,6 +44,8 @@ const ProjectsIndex = ({ projects, submission_statuses }) => {
         }
     }
 
+    const getIcon = icon => icon ? OcticonsReact[icon] : XIcon
+
     return (
         <Authenticated>
             <Box>
@@ -64,7 +66,7 @@ const ProjectsIndex = ({ projects, submission_statuses }) => {
                             submission_statuses.map(submission_status => (
                                 <ActionList.Item key={submission_status.id}>
                                     <ActionList.LeadingVisual>
-                                        <StyledOcticon icon={OcticonsReact[submission_status.icon]} />
+                                        <StyledOcticon icon={getIcon(submission_status.icon)} />
                                     </ActionList.LeadingVisual>
                                     {submission_status.name}
                                 </ActionList.Item>

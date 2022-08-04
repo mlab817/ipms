@@ -135,8 +135,7 @@ class ProjectController extends Controller
     {
         $project = new Project;
 
-        return view('projects.create', compact('project'))
-            ->with('pageTitle', 'Add New Project')
+        return Inertia::render('Projects/Create', compact('project'))
             ->with([
                 'offices'                   => Office::all(),
                 'pap_types'                 => RefPapType::all(),

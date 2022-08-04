@@ -94,6 +94,8 @@ Route::middleware(['auth','activated'])->group(function () {
             'projectCount'  => \App\Models\Project::withoutGlobalScope(\App\Scopes\RoleScope::class)->count()
         ]);
     })->name('about');
+
+    Route::get('/tracker', [\App\Http\Controllers\TrackerController::class, 'index'])->name('tracker');
 });
 
 Route::group(['middleware' => 'guest'], function() {

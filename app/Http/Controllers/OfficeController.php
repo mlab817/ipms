@@ -51,7 +51,7 @@ class OfficeController extends Controller
     {
         $operating_units = RefOperatingUnit::all();
 
-        return view('offices.create', compact('operating_units'));
+        return Inertia::render('Offices/Create', compact('operating_units'));
     }
 
     public function store(Request $request)
