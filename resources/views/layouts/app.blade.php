@@ -17,6 +17,8 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
+    <link href="https://unpkg.com/@primer/css@^20.2.4/dist/primer.css" rel="stylesheet" />
+
     <link href="https://unpkg.com/@github/details-dialog-element/dist/index.css" rel="stylesheet" />
 
     <script src="{{ mix('js/app.jsx') }}" defer></script>

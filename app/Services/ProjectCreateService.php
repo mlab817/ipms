@@ -29,7 +29,7 @@ class ProjectCreateService
                 $project->description()->create([]);
                 $project->project_update()->create([]);
                 $project->risk()->create([]);
-                $project->expected_output()->create([]);
+                $project->expected_outputs()->create([]);
                 $project->feasibility_study()->create([]);
                 $project->right_of_way()->create([]);
                 $project->resettlement_action_plan()->create([]);

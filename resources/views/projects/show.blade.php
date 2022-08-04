@@ -968,7 +968,7 @@
 
             <dl>
                 <dt><label>Expected Outputs</label></dt>
-                <dd>{{ strip_tags($project->expected_output->expected_outputs) ?? '_' }}</dd>
+                <dd></dd>
             </dl>
 
             <x-subhead subhead="Sustainable Development Goals" id="sdgs">

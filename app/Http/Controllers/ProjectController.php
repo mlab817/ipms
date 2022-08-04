@@ -187,6 +187,7 @@ class ProjectController extends Controller
         }
 
         $project->load(
+            'expected_outputs',
             'regions',
             'region_investments.region',
             'region_infrastructures.region',
